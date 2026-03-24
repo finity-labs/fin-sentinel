@@ -38,7 +38,10 @@ class FinSentinelPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        // Phase 2+ will register settings pages and log viewer here.
+        $panel->discoverClusters(
+            in: __DIR__.'/Clusters',
+            for: 'FinityLabs\\FinSentinel\\Clusters'
+        );
     }
 
     public function boot(Panel $panel): void {}

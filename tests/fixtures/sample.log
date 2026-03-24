@@ -1,0 +1,7 @@
+[2026-01-15 10:30:00] production.ERROR: Something broke {"exception":"[object] (RuntimeException(code: 0): Something broke at /app/Http/Controller.php:42)"}
+#0 /app/Http/Controller.php(42): App\Http\Controller->handle()
+#1 /vendor/laravel/framework/src/Illuminate/Routing/Router.php(100): dispatch()
+[2026-01-15 10:31:00] production.INFO: User logged in
+[2026-01-15 10:32:00] production.WARNING: Deprecated function called
+[2026-01-15 10:33:00] production.DEBUG: Query executed in 150ms
+[2026-01-15 10:34:00] production.ERROR: Database connection failed

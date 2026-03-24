@@ -46,4 +46,10 @@ return [
     'log_no_entries' => 'No log entries found',
     'log_unsupported_format' => 'This file does not appear to use the standard Laravel log format',
     'log_back_to_list' => 'Back to Log Files',
+
+    'test_email_send' => 'Send Test Email',
+    'test_email_sent' => 'Test email sent to :count recipient(s)',
+    'test_email_no_recipients' => 'No recipients configured. Add at least one email address first.',
+    'test_email_failed' => 'Failed to send test email',
+    'test_email_channel_disabled' => 'This channel is currently disabled. The test email will still be sent.',
 ];

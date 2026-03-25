@@ -19,8 +19,6 @@ class FinSentinelPlugin implements Plugin
 
     protected ?int $navigationSort = null;
 
-    protected string $policyNamespace = 'App\\Policies';
-
     public static function make(): static
     {
         return app(static::class);
@@ -65,13 +63,6 @@ class FinSentinelPlugin implements Plugin
         return $this;
     }
 
-    public function policyNamespace(string $namespace): static
-    {
-        $this->policyNamespace = $namespace;
-
-        return $this;
-    }
-
     public function getNavigationGroup(): string|\UnitEnum|null
     {
         return $this->evaluate($this->navigationGroup);
@@ -82,8 +73,4 @@ class FinSentinelPlugin implements Plugin
         return $this->navigationSort;
     }
 
-    public function getPolicyNamespace(): string
-    {
-        return $this->policyNamespace;
-    }
 }

@@ -33,6 +33,7 @@ class FinSentinelServiceProvider extends PackageServiceProvider
                 '../settings/create_debug_channel_settings',
                 '../settings/add_throttle_toggles_to_error_channel_settings',
                 '../settings/add_throttle_enabled_to_debug_channel_settings',
+                '../settings/add_ignored_log_levels_to_error_channel_settings',
             ])
             ->hasCommands([
                 Commands\InstallCommand::class,
@@ -106,20 +107,20 @@ class FinSentinelServiceProvider extends PackageServiceProvider
      */
     private function bootSettingsSafe(): void
     {
-        try {
-            $settings = app(ErrorChannelSettings::class);
+        // try {
+        //     $settings = app(ErrorChannelSettings::class);
 
-            if ($settings->error_enabled && ! empty($settings->error_recipients)) {
-                Event::listen(MessageLogged::class, MessageLoggedListener::class);
-            }
+        //     if ($settings->error_enabled && ! empty($settings->error_recipients)) {
+        //         Event::listen(MessageLogged::class, MessageLoggedListener::class);
+        //     }
 
-            $debugSettings = app(DebugChannelSettings::class);
+        //     $debugSettings = app(DebugChannelSettings::class);
 
-            if ($debugSettings->debug_enabled && ! empty($debugSettings->debug_recipients)) {
-                Event::listen(SentinelDebug::class, SentinelDebugListener::class);
-            }
-        } catch (\Throwable) {
-            logger()->debug('fin-sentinel: settings table not available yet, skipping settings boot.');
-        }
+        //     if ($debugSettings->debug_enabled && ! empty($debugSettings->debug_recipients)) {
+        //         Event::listen(SentinelDebug::class, SentinelDebugListener::class);
+        //     }
+        // } catch (\Throwable) {
+        //     // logger()->debug('fin-sentinel: settings table not available yet, skipping settings boot.');
+        // }
     }
 }

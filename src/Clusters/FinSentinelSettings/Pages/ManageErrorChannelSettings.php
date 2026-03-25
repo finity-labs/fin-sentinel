@@ -7,7 +7,6 @@ namespace FinityLabs\FinSentinel\Clusters\FinSentinelSettings\Pages;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Schemas\Components\Callout;
-use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -158,19 +157,9 @@ class ManageErrorChannelSettings extends SettingsPage
             ]),
 
             Group::make([
-                Section::make(__('fin-sentinel::fin-sentinel.section_filtering'))
-                    ->description(__('fin-sentinel::fin-sentinel.filtering_description'))
+                Section::make(__('fin-sentinel::fin-sentinel.section_ignored_exceptions'))
+                    ->description(__('fin-sentinel::fin-sentinel.ignored_exceptions_description'))
                     ->schema([
-                        CheckboxList::make('ignored_log_levels')
-                            ->label(__('fin-sentinel::fin-sentinel.ignored_log_levels_label'))
-                            ->options(
-                                collect(\FinityLabs\FinSentinel\Enums\LogLevel::cases())
-                                    ->mapWithKeys(fn (\FinityLabs\FinSentinel\Enums\LogLevel $level) => [
-                                        strtolower($level->value) => $level->getLabel(),
-                                    ])
-                                    ->all()
-                            )
-                            ->columns(4),
                         Repeater::make('ignored_exceptions')
                             ->label(__('fin-sentinel::fin-sentinel.ignored_exceptions_label'))
                             ->label('')

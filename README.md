@@ -81,14 +81,13 @@ public function panel(Panel $panel): Panel
 FinSentinelPlugin::make()
     ->navigationGroup('Monitoring')      // string, UnitEnum, Closure, or null
     ->navigationSort(10)                 // ?int
-    ->policyNamespace('App\\Policies')   // where Shield policies live (default: App\Policies)
 ```
 
 ## Usage
 
 ### Error Notifications
 
-Once installed, the error channel works automatically -- there's no code to write. When an exception is logged at the `error` level or above, FinSentinel catches it, formats the stack trace and request context, scrubs sensitive data, and emails it to your configured recipients.
+Once installed, the error channel works automatically -- there's no code to write. When an exception or message is logged at `error`, `critical`, `alert`, or `emergency` level, FinSentinel catches it, formats the stack trace and request context, scrubs sensitive data, and emails it to your configured recipients. Lower-severity log events (`debug`, `info`, `notice`, `warning`) are always ignored -- use the debug channel for ad-hoc inspection instead.
 
 To get started, open the **Error Channel Settings** page in your admin panel and:
 1. Toggle the channel on
@@ -109,7 +108,7 @@ php artisan vendor:publish --tag=fin-sentinel-views
 
 ### Debug Channel
 
-The debug channel gives you a quick way to email yourself any variable, model, or collection for inspection. It's like `dd()` but it lands in your inbox instead of killing the request.
+The debug channel gives you a quick way to email yourself any variable, model, or collection for inspection. It's like `dd()` but it lands in your inbox instead of killing the request. Every `FinSentinel::debug()` call also writes a `Log::debug()` entry, so you always have a log trail regardless of whether the email is enabled.
 
 #### Using the Facade
 
@@ -178,7 +177,17 @@ Publish the config file:
 php artisan vendor:publish --tag=fin-sentinel-config
 ```
 
-The config file (`config/fin-sentinel.php`) controls sensitive data scrubbing. Values matching these keys are replaced with `[REDACTED]` in error and debug emails:
+The config file (`config/fin-sentinel.php`) contains:
+
+**Email layout** -- Controls the max-width of error and debug notification emails. Stack traces and data tables benefit from extra space, so the default is wider than standard emails:
+
+```php
+'email_max_width' => '90%',
+```
+
+The log file attachment email uses Laravel's default 600px width since it's a simple message.
+
+**Sensitive data scrubbing** -- Values matching these keys are replaced with `[REDACTED]` in error and debug emails:
 
 ```php
 'scrub' => [
@@ -213,13 +222,6 @@ If you use Shield, generate the permissions:
 
 ```bash
 php artisan shield:generate --panel=admin --option=policies_and_permissions
-```
-
-To change where Shield looks for policies:
-
-```php
-FinSentinelPlugin::make()
-    ->policyNamespace('App\\Policies\\Admin')
 ```
 
 ## Uninstalling

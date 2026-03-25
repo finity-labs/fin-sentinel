@@ -12,6 +12,7 @@ use FinityLabs\FinSentinel\Settings\DebugChannelSettings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class DebugBuilder
@@ -62,6 +63,8 @@ class DebugBuilder
 
         $this->sent = true;
 
+        $this->writeLogEntry();
+
         $settings = app(DebugChannelSettings::class);
 
         if (! $settings->debug_enabled) {
@@ -107,6 +110,8 @@ class DebugBuilder
         try {
             $this->sent = true;
 
+            $this->writeLogEntry();
+
             $settings = app(DebugChannelSettings::class);
 
             if (! $settings->debug_enabled) {
@@ -141,6 +146,28 @@ class DebugBuilder
         } catch (\Throwable) {
             // Exceptions in __destruct are fatal in PHP 8 -- swallow silently.
         }
+    }
+
+    /**
+     * Always write a log entry for the debug call.
+     */
+    private function writeLogEntry(): void
+    {
+        $context = [
+            'sentinel_debug' => true,
+            'call_site' => $this->callSite['file'] . ':' . $this->callSite['line'],
+        ];
+
+        if ($this->data instanceof Model) {
+            $context['model'] = $this->data::class . ':' . $this->data->getKey();
+        } elseif ($this->data instanceof Collection) {
+            $context['collection_count'] = $this->data->count();
+        }
+
+        Log::debug(
+            'Sentinel debug: ' . ($this->subject ?? class_basename($this->data ?? 'mixed')),
+            $context,
+        );
     }
 
     /**

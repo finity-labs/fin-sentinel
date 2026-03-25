@@ -23,7 +23,6 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use FinityLabs\FinSentinel\Enums\LogLevel;
-use FinityLabs\FinSentinel\Facades\FinSentinel;
 use FinityLabs\FinSentinel\Services\LogEntryParser;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -41,18 +40,6 @@ class LogFileViewer extends Page implements HasTable
 
     public function mount(string $file): void
     {
-        // Quick one-liner -- sends to the configured recipients
-// FinSentinel::debug(auth()->user());
-
-// // With a custom subject
-// FinSentinel::debug($file, 'Order inspection');
-
-// // Fluent builder for full control
-// FinSentinel::debug($cart)
-//     ->subject('Cart contents')
-//     ->to('dev@example.com')
-//     ->send();
-
         $this->file = base64_decode(strtr($file, '-_', '+/'));
 
         $logsPath = storage_path('logs');

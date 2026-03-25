@@ -13,52 +13,42 @@ use Illuminate\Support\Facades\Mail;
 
 class MessageLoggedListener
 {
-    private static bool $resolving = false;
+    private const ACTIONABLE_LEVELS = ['error', 'critical', 'alert', 'emergency'];
+
+    public function __construct(private ErrorChannelSettings $settings) {}
 
     public function handle(MessageLogged $event): void
     {
-        // Prevent recursion: resolving settings triggers DB queries which can fire MessageLogged
-        if (self::$resolving || FinSentinelServiceProvider::isHandling()) {
+        if (! in_array($event->level, self::ACTIONABLE_LEVELS, true)) {
             return;
         }
 
-        self::$resolving = true;
-
-        try {
-            $settings = app(ErrorChannelSettings::class);
-        } catch (\Throwable) {
-            return;
-        } finally {
-            self::$resolving = false;
-        }
-
-        if (! $settings->error_enabled || empty($settings->error_recipients)) {
-            return;
-        }
-
-        if (in_array($event->level, $settings->ignored_log_levels ?? [], true)) {
+        if (FinSentinelServiceProvider::isHandling()) {
             return;
         }
 
         $exception = $event->context['exception'] ?? null;
 
-        if ($exception instanceof \Throwable && $this->isIgnored($settings, $exception)) {
+        if ($exception instanceof \Throwable && $this->isIgnored($exception)) {
             return;
         }
 
-        if ($this->isThrottled($settings, $event, $exception)) {
+        if ($this->isThrottled($event, $exception)) {
             return;
         }
 
-        FinSentinelServiceProvider::guardedHandle(function () use ($settings, $event, $exception) {
-            Mail::to($settings->error_recipients)
+        FinSentinelServiceProvider::guardedHandle(function () use ($event, $exception) {
+            Mail::to($this->settings->error_recipients)
                 ->send(new ErrorMail($event->message, $exception));
         });
     }
 
-    private function isIgnored(ErrorChannelSettings $settings, \Throwable $exception): bool
+    /**
+     * Check if the exception is on the ignore list.
+     */
+    private function isIgnored(\Throwable $exception): bool
     {
-        foreach ($settings->ignored_exceptions as $fqcn) {
+        foreach ($this->settings->ignored_exceptions as $fqcn) {
             if (is_a($exception, $fqcn)) {
                 return true;
             }
@@ -67,13 +57,16 @@ class MessageLoggedListener
         return false;
     }
 
-    private function isThrottled(ErrorChannelSettings $settings, MessageLogged $event, ?\Throwable $exception): bool
+    /**
+     * Check if this error has been seen within the throttle window.
+     */
+    private function isThrottled(MessageLogged $event, ?\Throwable $exception): bool
     {
-        if ($exception instanceof \Throwable && ! $settings->error_throttle_exceptions) {
+        if ($exception instanceof \Throwable && ! $this->settings->error_throttle_exceptions) {
             return false;
         }
 
-        if (! $exception instanceof \Throwable && ! $settings->error_throttle_log_messages) {
+        if (! $exception instanceof \Throwable && ! $this->settings->error_throttle_log_messages) {
             return false;
         }
 
@@ -85,7 +78,7 @@ class MessageLoggedListener
             return true;
         }
 
-        Cache::put($key, true, now()->addMinutes($settings->error_throttle_minutes));
+        Cache::put($key, true, now()->addMinutes($this->settings->error_throttle_minutes));
 
         return false;
     }

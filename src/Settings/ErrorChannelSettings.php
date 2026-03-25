@@ -18,13 +18,6 @@ class ErrorChannelSettings extends Settings
 
     public bool $error_throttle_log_messages = true;
 
-    public ?array $ignored_log_levels = [
-        'debug',
-        'info',
-        'notice',
-        'warning',
-    ];
-
     public array $ignored_exceptions = [
         \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class,
         \Illuminate\Validation\ValidationException::class,

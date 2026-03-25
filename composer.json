@@ -38,6 +38,7 @@
     },
     "scripts": {
         "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
         "analyse": "vendor/bin/phpstan analyse",
         "format": "vendor/bin/pint"
     },

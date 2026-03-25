@@ -62,6 +62,17 @@ class LogFileList extends Page implements HasTable
         return __('fin-sentinel::fin-sentinel.log_viewer_heading');
     }
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            \Filament\Actions\Action::make('refresh')
+                ->label(__('fin-sentinel::fin-sentinel.log_action_refresh'))
+                ->icon(Heroicon::OutlinedArrowPath)
+                ->color('gray')
+                ->action(fn () => $this->flushCachedTableRecords()),
+        ];
+    }
+
     public function table(Table $table): Table
     {
         return $table
@@ -105,7 +116,7 @@ class LogFileList extends Page implements HasTable
                 Action::make('view')
                     ->label(__('fin-sentinel::fin-sentinel.log_action_view'))
                     ->icon(Heroicon::OutlinedEye)
-                    ->action(fn (array $record) => $this->redirect(LogFileViewer::getUrl(['file' => base64_encode($record['path'])]))),
+                    ->url(fn ($record): string => LogFileViewer::getUrl(['file' => base64_encode($record['path'])])),
                 Action::make('download')
                     ->label(__('fin-sentinel::fin-sentinel.log_action_download'))
                     ->icon(Heroicon::OutlinedArrowDownTray)

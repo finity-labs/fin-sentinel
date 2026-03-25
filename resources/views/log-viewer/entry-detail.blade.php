@@ -12,16 +12,16 @@
     {{-- Full message --}}
     <div>
         <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Message
+            {{ __('fin-sentinel::fin-sentinel.log_column_message') }}
         </h4>
-        <pre class="font-mono text-sm whitespace-pre-wrap break-words bg-gray-50 dark:bg-gray-900 rounded-lg p-4 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">{{ $entry['message'] }}</pre>
+        <div class="font-mono text-sm whitespace-pre-wrap break-words bg-gray-50 dark:bg-gray-900 rounded-lg p-4 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">{!! nl2br(e($entry['message'])) !!}</div>
     </div>
 
     {{-- Stack trace --}}
     @if ($entry['has_stack_trace'])
         <div>
             <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Stack Trace
+                {{ __('fin-sentinel::fin-sentinel.error_section_trace') }}
             </h4>
             <div class="max-h-96 overflow-y-auto bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
                 @php
@@ -121,7 +121,7 @@
                     "
                 >
                     <span x-show="!copied">{{ __('fin-sentinel::fin-sentinel.log_copy_trace') }}</span>
-                    <span x-show="copied" x-cloak>Copied!</span>
+                    <span x-show="copied" x-cloak>{{ __('fin-sentinel::fin-sentinel.log_copied') }}</span>
                 </x-filament::button>
             </div>
         @endif
@@ -144,7 +144,7 @@
                 "
             >
                 <span x-show="!copied">{{ __('fin-sentinel::fin-sentinel.log_copy_entry') }}</span>
-                <span x-show="copied" x-cloak>Copied!</span>
+                <span x-show="copied" x-cloak>{{ __('fin-sentinel::fin-sentinel.log_copied') }}</span>
             </x-filament::button>
         </div>
     </div>

@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace FinityLabs\FinSentinel\Pages;
 
 use Filament\Actions\Action;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Text;
 use Filament\Support\Enums\Width;
 use Filament\Support\Icons\Heroicon;
+use FinityLabs\FinSentinel\Mail\LogFileMail;
+use Illuminate\Support\Facades\Mail;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -31,10 +36,10 @@ class LogFileViewer extends Page implements HasTable
 
     public function mount(string $file): void
     {
-        $this->file = base64_decode($file);
+        $this->file = base64_decode(strtr($file, '-_', '+/'));
 
         $logsPath = storage_path('logs');
-        $fullPath = $logsPath . DIRECTORY_SEPARATOR . $file;
+        $fullPath = $logsPath . DIRECTORY_SEPARATOR . $this->file;
         $realPath = realpath($fullPath);
         $realLogsPath = realpath($logsPath);
 
@@ -58,6 +63,108 @@ class LogFileViewer extends Page implements HasTable
     public function getHeading(): string
     {
         return basename((string) $this->file);
+    }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            LogFileList::getUrl() => __('fin-sentinel::fin-sentinel.log_viewer_heading'),
+            '' => basename((string) $this->file),
+        ];
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('email')
+                ->label(__('fin-sentinel::fin-sentinel.log_action_email'))
+                ->icon(Heroicon::OutlinedEnvelope)
+                ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.log_action_email_send'))
+                ->fillForm(fn (): array => [
+                    'email' => auth()->user()?->email,
+                ])
+                ->schema([
+                    Text::make(__('fin-sentinel::fin-sentinel.log_email_description')),
+                    TextInput::make('email')
+                        ->label(__('fin-sentinel::fin-sentinel.log_email_recipient'))
+                        ->email()
+                        ->required(),
+                ])
+                ->action(function (array $data): void {
+                    $fullPath = $this->resolveLogPath((string) $this->file);
+
+                    if ($fullPath === null) {
+                        return;
+                    }
+
+                    Mail::to($data['email'])->send(new LogFileMail($fullPath, basename((string) $this->file)));
+
+                    Notification::make()
+                        ->title(__('fin-sentinel::fin-sentinel.log_action_email_sent'))
+                        ->success()
+                        ->send();
+                }),
+            Action::make('download')
+                ->label(__('fin-sentinel::fin-sentinel.log_action_download'))
+                ->icon(Heroicon::OutlinedArrowDownTray)
+                ->color('gray')
+                ->action(function (): mixed {
+                    $fullPath = $this->resolveLogPath((string) $this->file);
+
+                    if ($fullPath === null) {
+                        return null;
+                    }
+
+                    $filename = basename((string) $this->file);
+
+                    return response()->streamDownload(function () use ($fullPath): void {
+                        $file = new \SplFileObject($fullPath, 'r');
+
+                        while (! $file->eof()) {
+                            echo $file->fgets();
+                        }
+                    }, $filename, ['Content-Type' => 'text/plain']);
+                }),
+            Action::make('delete')
+                ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
+                ->icon(Heroicon::OutlinedTrash)
+                ->color('danger')
+                ->requiresConfirmation()
+                ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_delete'))
+                ->action(function (): void {
+                    $fullPath = $this->resolveLogPath((string) $this->file);
+
+                    if ($fullPath === null) {
+                        return;
+                    }
+
+                    unlink($fullPath);
+
+                    Notification::make()
+                        ->title(__('fin-sentinel::fin-sentinel.log_action_deleted'))
+                        ->success()
+                        ->send();
+
+                    $this->redirect(LogFileList::getUrl());
+                }),
+        ];
+    }
+
+    private function resolveLogPath(string $relativePath): ?string
+    {
+        $logsPath = realpath(storage_path('logs'));
+
+        if ($logsPath === false) {
+            return null;
+        }
+
+        $fullPath = realpath($logsPath . DIRECTORY_SEPARATOR . $relativePath);
+
+        if ($fullPath === false || ! str_starts_with($fullPath, $logsPath) || ! is_file($fullPath)) {
+            return null;
+        }
+
+        return $fullPath;
     }
 
     public function table(Table $table): Table
@@ -112,7 +219,7 @@ class LogFileViewer extends Page implements HasTable
                     ),
             ])
             ->searchable()
-            ->actions([
+            ->recordActions([
                 Action::make('viewEntry')
                     ->label('')
                     ->icon(Heroicon::OutlinedEye)

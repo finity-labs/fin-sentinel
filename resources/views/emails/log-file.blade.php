@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $appName }} - Log File</title>
+    <title>{{ $appName }} - {{ __('fin-sentinel::fin-sentinel.email_header_log_file') }}</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f4f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #333333; font-size: 14px; line-height: 1.6;">
 
@@ -15,14 +15,14 @@
                 {{-- Header --}}
                 <tr>
                     <td style="background-color: #0d6efd; padding: 20px 24px; color: #ffffff; font-size: 18px; font-weight: bold;">
-                        {{ $appName }} &mdash; Log File
+                        {{ $appName }} &mdash; {{ __('fin-sentinel::fin-sentinel.email_header_log_file') }}
                     </td>
                 </tr>
 
                 {{-- Content --}}
                 <tr>
                     <td style="padding: 20px 24px;">
-                        <p>Log file <strong>{{ $fileName }}</strong> from {{ $appName }} is attached.</p>
+                        <p>{!! __('fin-sentinel::fin-sentinel.email_log_file_body', ['file' => $fileName, 'app' => $appName]) !!}</p>
                     </td>
                 </tr>
 

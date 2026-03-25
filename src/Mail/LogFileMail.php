@@ -11,28 +11,49 @@ use Illuminate\Mail\Mailables\Envelope;
 
 class LogFileMail extends Mailable
 {
+    /** @var array<int, array{path: string, name: string}> */
+    private readonly array $files;
+
+    /**
+     * @param  string|array<int, array{path: string, name: string}>  $filePath
+     */
     public function __construct(
-        private readonly string $filePath,
-        private readonly string $fileName,
-    ) {}
+        string|array $filePath,
+        private readonly ?string $fileName = null,
+    ) {
+        if (is_string($filePath)) {
+            $this->files = [['path' => $filePath, 'name' => $this->fileName ?? basename($filePath)]];
+        } else {
+            $this->files = $filePath;
+        }
+    }
 
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: __('fin-sentinel::fin-sentinel.log_email_subject', [
+        $fileNames = array_column($this->files, 'name');
+
+        $subject = count($this->files) === 1
+            ? __('fin-sentinel::fin-sentinel.log_email_subject', [
                 'app' => config('app.name', 'Laravel'),
-                'file' => $this->fileName,
-            ]),
-        );
+                'file' => $fileNames[0],
+            ])
+            : __('fin-sentinel::fin-sentinel.log_bulk_email_subject', [
+                'app' => config('app.name', 'Laravel'),
+                'count' => count($this->files),
+            ]);
+
+        return new Envelope(subject: $subject);
     }
 
     public function content(): Content
     {
+        $fileNames = array_column($this->files, 'name');
+
         return new Content(
             view: 'fin-sentinel::emails.log-file',
             text: 'fin-sentinel::emails.log-file-text',
             with: [
-                'fileName' => $this->fileName,
+                'fileName' => implode(', ', $fileNames),
                 'appName' => config('app.name', 'Laravel'),
             ],
         );
@@ -43,10 +64,11 @@ class LogFileMail extends Mailable
      */
     public function attachments(): array
     {
-        return [
-            Attachment::fromPath($this->filePath)
-                ->as($this->fileName)
+        return array_map(
+            fn (array $file) => Attachment::fromPath($file['path'])
+                ->as($file['name'])
                 ->withMime('text/plain'),
-        ];
+            $this->files,
+        );
     }
 }

@@ -6,7 +6,7 @@ namespace FinityLabs\FinSentinel\Clusters\FinSentinelSettings\Pages;
 
 use BackedEnum;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Placeholder;
+use Filament\Schemas\Components\Callout;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -35,12 +35,12 @@ class ManageDebugChannelSettings extends SettingsPage
 
     public static function getNavigationLabel(): string
     {
-        return 'Debug Channel';
+        return __('fin-sentinel::fin-sentinel.debug_channel_nav_label');
     }
 
     public function getTitle(): string
     {
-        return 'Debug Channel Settings';
+        return __('fin-sentinel::fin-sentinel.debug_channel_title');
     }
 
     protected function getHeaderActions(): array
@@ -48,7 +48,7 @@ class ManageDebugChannelSettings extends SettingsPage
         return [
             Action::make('sendTestEmail')
                 ->label(__('fin-sentinel::fin-sentinel.test_email_send'))
-                ->icon('heroicon-o-paper-airplane')
+                ->icon(Heroicon::OutlinedPaperAirplane)
                 ->color('primary')
                 ->action(function (): void {
                     $settings = app(DebugChannelSettings::class);
@@ -108,78 +108,51 @@ class ManageDebugChannelSettings extends SettingsPage
     {
         return $schema->schema([
             Toggle::make('debug_enabled')
-                ->label('Enable debug channel')
-                ->helperText('When disabled, Sentinel::debug() calls will be silently ignored.')
-                ->live(),
+                ->label(__('fin-sentinel::fin-sentinel.debug_enabled_label'))
+                ->helperText(__('fin-sentinel::fin-sentinel.debug_enabled_helper'))
+                ->columnSpanFull(),
 
-            Placeholder::make('disabled_warning')
-                ->label('')
-                ->content('This channel is currently disabled.')
-                ->extraAttributes(['class' => 'text-warning-600 dark:text-warning-400 font-medium'])
-                ->visible(fn (callable $get): bool => ! $get('debug_enabled')),
-
-            Placeholder::make('no_recipients_warning')
-                ->label('')
-                ->content('No recipients configured -- notifications won\'t be sent until at least one email is added.')
-                ->extraAttributes(['class' => 'text-warning-600 dark:text-warning-400 font-medium'])
-                ->visible(fn (callable $get): bool => empty($get('debug_recipients'))),
-
-            Section::make('Recipients')
+            Section::make(__('fin-sentinel::fin-sentinel.section_recipients'))
                 ->schema([
+                    Callout::make()
+                        ->heading(__('fin-sentinel::fin-sentinel.no_recipients_warning'))
+                        ->color('warning')
+                        ->visible(fn (callable $get): bool => empty(array_filter((array) $get('debug_recipients')))),
+
                     Repeater::make('debug_recipients')
-                        ->label('')
-                        ->helperText('Add email addresses that will receive debug notifications.')
-                        ->schema([
+                        ->hiddenLabel()
+                        ->helperText(__('fin-sentinel::fin-sentinel.debug_recipients_helper'))
+                        ->simple(
                             TextInput::make('email')
-                                ->label('Email address')
+                                ->label(__('fin-sentinel::fin-sentinel.email_address_label'))
                                 ->email()
                                 ->required()
                                 ->maxLength(255),
-                        ])
+                        )
                         ->defaultItems(0)
-                        ->collapsible()
-                        ->itemLabel(fn (array $state): string => $state['email'] ?? 'New recipient'),
+                        ->live(),
                 ]),
 
-            Section::make('Throttling')
+            Section::make(__('fin-sentinel::fin-sentinel.section_throttling'))
+                ->columns(['lg' => 2])
                 ->schema([
                     Toggle::make('debug_throttle_enabled')
-                        ->label('Enable throttling')
-                        ->helperText('When disabled, every debug call sends an email. When enabled, duplicate calls are throttled.')
-                        ->live(),
+                        ->label(__('fin-sentinel::fin-sentinel.debug_throttle_enabled_label'))
+                        ->helperText(__('fin-sentinel::fin-sentinel.debug_throttle_enabled_helper'))
+                        ->live()
+                        ->columnSpanFull(),
 
                     TextInput::make('debug_throttle_minutes')
-                        ->label('Throttle rate')
-                        ->helperText('Minimum minutes between duplicate debug emails.')
+                        ->label(__('fin-sentinel::fin-sentinel.throttle_rate_label'))
+                        ->helperText(__('fin-sentinel::fin-sentinel.debug_throttle_helper'))
                         ->numeric()
                         ->required()
                         ->minValue(1)
                         ->maxValue(1440)
-                        ->suffix('minutes')
-                        ->visible(fn (callable $get): bool => (bool) $get('debug_throttle_enabled')),
+                        ->suffix(__('fin-sentinel::fin-sentinel.minutes_suffix'))
+                        ->visible(fn (callable $get): bool => (bool) $get('debug_throttle_enabled'))
                 ]),
         ]);
     }
 
-    protected function mutateFormDataBeforeFill(array $data): array
-    {
-        $data['debug_recipients'] = array_map(
-            fn (string $email): array => ['email' => $email],
-            $data['debug_recipients'] ?? []
-        );
-
-        return $data;
-    }
-
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        $data['debug_recipients'] = array_values(array_filter(
-            array_map(
-                fn (array $row): ?string => $row['email'] ?? null,
-                $data['debug_recipients'] ?? []
-            )
-        ));
-
-        return $data;
-    }
 }

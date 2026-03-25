@@ -3,6 +3,68 @@
 declare(strict_types=1);
 
 return [
+    // Navigation
+    'settings_nav_label' => 'Settings',
+    'error_channel_nav_label' => 'Error Channel',
+    'error_channel_title' => 'Error Channel Settings',
+    'debug_channel_nav_label' => 'Debug Channel',
+    'debug_channel_title' => 'Debug Channel Settings',
+
+    // Enums
+    'enums' => [
+        'navigation_group' => [
+            'sentinel' => 'Sentinel',
+        ],
+        'log_level' => [
+            'EMERGENCY' => 'Emergency',
+            'ALERT' => 'Alert',
+            'CRITICAL' => 'Critical',
+            'ERROR' => 'Error',
+            'WARNING' => 'Warning',
+            'NOTICE' => 'Notice',
+            'INFO' => 'Info',
+            'DEBUG' => 'Debug',
+        ],
+    ],
+
+    // Email templates - shared labels
+    'email_header_error' => 'Error Notification',
+    'email_header_debug' => 'Debug',
+    'email_header_log_file' => 'Log File',
+    'email_label_error_message' => 'Error Message',
+    'email_label_class' => 'Class',
+    'email_label_file' => 'File',
+    'email_label_context' => 'Context',
+    'email_label_command' => 'Command',
+    'email_label_url' => 'URL',
+    'email_label_method' => 'Method',
+    'email_label_ip' => 'IP',
+    'email_label_params' => 'Params',
+    'email_label_headers' => 'Headers',
+    'email_label_name' => 'Name',
+    'email_label_email' => 'Email',
+    'email_label_id' => 'ID',
+    'email_label_user' => 'User',
+    'email_label_environment' => 'Environment',
+    'email_label_debug_mode' => 'Debug Mode',
+    'email_label_php_version' => 'PHP Version',
+    'email_label_laravel_version' => 'Laravel Version',
+    'email_label_laravel' => 'Laravel',
+    'email_label_peak_memory' => 'Peak Memory',
+    'email_label_enabled' => 'Enabled',
+    'email_label_disabled' => 'Disabled',
+    'email_label_relation' => 'Relation: :name',
+    'email_label_bindings' => 'Bindings:',
+    'email_label_trace_number' => '#',
+    'email_label_trace_location' => 'Location',
+    'email_label_trace_call' => 'Call',
+    'email_collection_count' => ':count item|:count items',
+    'email_collection_more' => '... and :count more items',
+    'email_footer' => 'Sent by Fin-Sentinel',
+    'email_log_file_body' => 'Log file <strong>:file</strong> from :app is attached.',
+    'email_log_file_body_text' => 'Log file :file from :app is attached.',
+
+    // Error channel emails
     'error_subject' => ':app - An error has occurred',
     'error_guest' => 'Guest',
     'error_console' => 'Console',
@@ -12,6 +74,7 @@ return [
     'error_section_user' => 'Authenticated User',
     'error_section_environment' => 'Environment',
 
+    // Debug channel emails
     'debug_subject' => ':app - Debug: :subject',
     'debug_section_data' => 'Debug Data',
     'debug_section_call_site' => 'Call Site',
@@ -20,7 +83,45 @@ return [
     'debug_console' => 'Console',
     'debug_guest' => 'Guest',
 
+    // Settings forms - shared
+    'section_recipients' => 'Recipients',
+    'section_throttling' => 'Throttling',
+    'email_address_label' => 'Email address',
+    'new_recipient' => 'New recipient',
+    'no_recipients_warning' => 'No recipients configured — notifications won\'t be sent until at least one email is added.',
+    'throttle_rate_label' => 'Throttle rate',
+    'minutes_suffix' => 'minutes',
+
+    // Settings forms - error channel
+    'error_enabled_label' => 'Enable error notifications',
+    'error_enabled_helper' => 'When disabled, no error emails will be sent.',
+    'error_disabled_warning' => 'This channel is currently disabled.',
+    'error_recipients_helper' => 'Add email addresses that will receive error notifications.',
+    'error_throttle_helper' => 'Minimum minutes between duplicate error emails.',
+    'throttle_exceptions_label' => 'Throttle exceptions',
+    'throttle_exceptions_helper' => 'When enabled, duplicate exceptions at the same file:line won\'t trigger emails within the throttle window.',
+    'throttle_log_messages_label' => 'Throttle log messages',
+    'throttle_log_messages_helper' => 'When enabled, identical error log messages won\'t trigger emails within the throttle window.',
+    'section_ignored_exceptions' => 'Ignored Exceptions',
+    'ignored_exceptions_description' => 'Exceptions in this list will not trigger email notifications.',
+    'other_custom' => 'Other (custom)',
+    'exception_class_label' => 'Exception class (FQCN)',
+    'class_not_exist' => 'This class does not exist.',
+    'custom_exception' => 'Custom exception',
+    'select_exception' => 'Select exception',
+
+    // Settings forms - debug channel
+    'debug_enabled_label' => 'Enable debug channel',
+    'debug_enabled_helper' => 'When disabled, Sentinel::debug() calls will be silently ignored.',
+    'debug_disabled_warning' => 'This channel is currently disabled.',
+    'debug_recipients_helper' => 'Add email addresses that will receive debug notifications.',
+    'debug_throttle_enabled_label' => 'Enable throttling',
+    'debug_throttle_enabled_helper' => 'When disabled, every debug call sends an email. When enabled, duplicate calls are throttled.',
+    'debug_throttle_helper' => 'Minimum minutes between duplicate debug emails.',
+
+    // Log viewer
     'log_email_subject' => ':app - Log file: :file',
+    'log_bulk_email_subject' => ':app - :count log files attached',
     'log_viewer_title' => 'Log Viewer',
     'log_viewer_heading' => 'Log Files',
     'log_entry_viewer_title' => 'Log Entries',
@@ -28,11 +129,19 @@ return [
     'log_column_size' => 'Size',
     'log_column_modified' => 'Last Modified',
     'log_column_subfolder' => 'Subfolder',
+    'log_column_level' => 'Level',
+    'log_column_timestamp' => 'Timestamp',
+    'log_column_message' => 'Message',
     'log_action_view' => 'View',
     'log_action_delete' => 'Delete',
     'log_action_download' => 'Download',
     'log_action_email' => 'Email To',
+    'log_email_description' => 'Send this log file as an email attachment to the specified recipient.',
+    'log_action_email_send' => 'Send',
     'log_action_email_sent' => 'Log file emailed successfully',
+    'log_bulk_email_description' => 'Send the selected log files as individual email attachments to the specified recipient.',
+    'log_bulk_email_files' => 'Selected Files',
+    'log_bulk_email_sent' => ':count log file(s) emailed successfully',
     'log_action_deleted' => 'Log file deleted',
     'log_action_bulk_deleted' => ':count log file(s) deleted',
     'log_confirm_delete' => 'Are you sure you want to delete this log file? This action cannot be undone.',
@@ -47,6 +156,7 @@ return [
     'log_unsupported_format' => 'This file does not appear to use the standard Laravel log format',
     'log_back_to_list' => 'Back to Log Files',
 
+    // Test email
     'test_email_send' => 'Send Test Email',
     'test_email_sent' => 'Test email sent to :count recipient(s)',
     'test_email_no_recipients' => 'No recipients configured. Add at least one email address first.',

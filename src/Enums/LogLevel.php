@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace FinityLabs\FinSentinel\Enums;
 
-enum LogLevel: string
+use BackedEnum;
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasIcon;
+use Filament\Support\Contracts\HasLabel;
+use Filament\Support\Icons\Heroicon;
+
+enum LogLevel: string implements HasColor, HasIcon, HasLabel
 {
     case Emergency = 'EMERGENCY';
     case Alert = 'ALERT';
@@ -15,7 +21,12 @@ enum LogLevel: string
     case Info = 'INFO';
     case Debug = 'DEBUG';
 
-    public function color(): string
+    public function getLabel(): string
+    {
+        return (string) __('fin-sentinel::fin-sentinel.enums.log_level.'.$this->value);
+    }
+
+    public function getColor(): string
     {
         return match ($this) {
             self::Emergency, self::Alert, self::Critical, self::Error => 'danger',
@@ -26,17 +37,17 @@ enum LogLevel: string
         };
     }
 
-    public function icon(): string
+    public function getIcon(): BackedEnum
     {
         return match ($this) {
-            self::Emergency => 'heroicon-o-fire',
-            self::Alert => 'heroicon-o-bell-alert',
-            self::Critical => 'heroicon-o-x-circle',
-            self::Error => 'heroicon-o-exclamation-circle',
-            self::Warning => 'heroicon-o-exclamation-triangle',
-            self::Notice => 'heroicon-o-megaphone',
-            self::Info => 'heroicon-o-information-circle',
-            self::Debug => 'heroicon-o-bug-ant',
+            self::Emergency => Heroicon::OutlinedFire,
+            self::Alert => Heroicon::OutlinedBellAlert,
+            self::Critical => Heroicon::OutlinedXCircle,
+            self::Error => Heroicon::OutlinedExclamationCircle,
+            self::Warning => Heroicon::OutlinedExclamationTriangle,
+            self::Notice => Heroicon::OutlinedMegaphone,
+            self::Info => Heroicon::OutlinedInformationCircle,
+            self::Debug => Heroicon::OutlinedBugAnt,
         };
     }
 }

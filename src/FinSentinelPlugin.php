@@ -72,15 +72,9 @@ class FinSentinelPlugin implements Plugin
         return $this;
     }
 
-    public function getNavigationGroup(): ?string
+    public function getNavigationGroup(): string|\UnitEnum|null
     {
-        $group = $this->evaluate($this->navigationGroup);
-
-        if ($group instanceof UnitEnum) {
-            return $group->value ?? $group->name;
-        }
-
-        return $group;
+        return $this->evaluate($this->navigationGroup);
     }
 
     public function getNavigationSort(): ?int

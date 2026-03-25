@@ -1,15 +1,15 @@
-{{ config('app.name', 'Laravel') }} - Error Notification
+{{ config('app.name', 'Laravel') }} - {{ __('fin-sentinel::fin-sentinel.email_header_error') }}
 ========================================================
 
-ERROR MESSAGE
+{{ __('fin-sentinel::fin-sentinel.email_label_error_message') }}
 -------------
 {{ $errorMessage }}
 
 @if($exceptionClass)
 {{ __('fin-sentinel::fin-sentinel.error_section_exception') }}
 ---------------------
-Class: {{ $exceptionClass }}
-File:  {{ $exceptionFile }}:{{ $exceptionLine }}
+{{ __('fin-sentinel::fin-sentinel.email_label_class') }}: {{ $exceptionClass }}
+{{ __('fin-sentinel::fin-sentinel.email_label_file') }}:  {{ $exceptionFile }}:{{ $exceptionLine }}
 
 @endif
 @if($stackTrace)
@@ -23,37 +23,37 @@ File:  {{ $exceptionFile }}:{{ $exceptionLine }}
 {{ __('fin-sentinel::fin-sentinel.error_section_request') }}
 ---------------
 @if(isset($requestContext['context']))
-Context: {{ $requestContext['context'] }}
-Command: {{ $requestContext['command'] }}
+{{ __('fin-sentinel::fin-sentinel.email_label_context') }}: {{ $requestContext['context'] }}
+{{ __('fin-sentinel::fin-sentinel.email_label_command') }}: {{ $requestContext['command'] }}
 @else
-URL:    {{ $requestContext['url'] ?? '' }}
-Method: {{ $requestContext['method'] ?? '' }}
-IP:     {{ $requestContext['ip'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_url') }}:    {{ $requestContext['url'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_method') }}: {{ $requestContext['method'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_ip') }}:     {{ $requestContext['ip'] ?? '' }}
 @if(!empty($requestContext['params']))
-Params: {{ json_encode($requestContext['params'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
+{{ __('fin-sentinel::fin-sentinel.email_label_params') }}: {{ json_encode($requestContext['params'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
 @endif
 @if(!empty($requestContext['headers']))
-Headers: {{ json_encode($requestContext['headers'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
+{{ __('fin-sentinel::fin-sentinel.email_label_headers') }}: {{ json_encode($requestContext['headers'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
 @endif
 @endif
 
 {{ __('fin-sentinel::fin-sentinel.error_section_user') }}
 ------------------
-Name: {{ $userContext['name'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_name') }}: {{ $userContext['name'] ?? '' }}
 @if(isset($userContext['email']))
-Email: {{ $userContext['email'] }}
+{{ __('fin-sentinel::fin-sentinel.email_label_email') }}: {{ $userContext['email'] }}
 @endif
 @if(isset($userContext['id']))
-ID: {{ $userContext['id'] }}
+{{ __('fin-sentinel::fin-sentinel.email_label_id') }}: {{ $userContext['id'] }}
 @endif
 
 {{ __('fin-sentinel::fin-sentinel.error_section_environment') }}
 -----------
-Environment:    {{ $environmentContext['app_env'] ?? '' }}
-Debug Mode:     {{ $environmentContext['app_debug'] ? 'Enabled' : 'Disabled' }}
-PHP Version:    {{ $environmentContext['php_version'] ?? '' }}
-Laravel Version: {{ $environmentContext['laravel_version'] ?? '' }}
-Peak Memory:    {{ $environmentContext['memory_peak'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_environment') }}:    {{ $environmentContext['app_env'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_debug_mode') }}:     {{ $environmentContext['app_debug'] ? __('fin-sentinel::fin-sentinel.email_label_enabled') : __('fin-sentinel::fin-sentinel.email_label_disabled') }}
+{{ __('fin-sentinel::fin-sentinel.email_label_php_version') }}:    {{ $environmentContext['php_version'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_laravel_version') }}: {{ $environmentContext['laravel_version'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email_label_peak_memory') }}:    {{ $environmentContext['memory_peak'] ?? '' }}
 
 ---
 {{ $environmentContext['timestamp'] ?? '' }}

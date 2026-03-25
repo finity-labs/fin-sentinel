@@ -45,6 +45,8 @@ class FinSentinelServiceProvider extends PackageServiceProvider
         parent::register();
 
         $this->app->singleton('fin-sentinel.debug', fn () => new DebugService());
+
+        $this->app->bind(Services\LogEntryParser::class, fn () => new Services\LogEntryParser(storage_path('logs')));
     }
 
     public function packageBooted(): void

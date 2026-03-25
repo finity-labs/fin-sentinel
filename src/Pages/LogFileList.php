@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace FinityLabs\FinSentinel\Pages;
 
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Text;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Actions\BulkAction;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\BulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -27,22 +31,20 @@ class LogFileList extends Page implements HasTable
     use HasPageShieldSupport;
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     protected static ?string $slug = 'sentinel/logs';
 
-    protected static string $view = 'fin-sentinel::log-viewer.file-list';
+    protected string $view = 'fin-sentinel::log-viewer.file-list';
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string|\UnitEnum|null
     {
         return FinSentinelPlugin::get()->getNavigationGroup();
     }
 
     public static function getNavigationSort(): ?int
     {
-        $sort = FinSentinelPlugin::get()->getNavigationSort();
-
-        return $sort !== null ? $sort + 10 : null;
+        return FinSentinelPlugin::get()->getNavigationSort();
     }
 
     public function getTitle(): string
@@ -99,102 +101,160 @@ class LogFileList extends Page implements HasTable
                     ->label(__('fin-sentinel::fin-sentinel.log_column_subfolder'))
                     ->placeholder('-'),
             ])
-            ->actions([
-                ActionGroup::make([
-                    Action::make('view')
-                        ->label(__('fin-sentinel::fin-sentinel.log_action_view'))
-                        ->icon('heroicon-o-eye')
-                        ->url(fn (array $record): string => LogFileViewer::getUrl(['file' => $record['path']])),
-                    Action::make('download')
-                        ->label(__('fin-sentinel::fin-sentinel.log_action_download'))
-                        ->icon('heroicon-o-arrow-down-tray')
-                        ->action(function (array $record): mixed {
-                            $fullPath = $this->resolveLogPath($record['path']);
+            ->recordActions([
+                Action::make('view')
+                    ->label(__('fin-sentinel::fin-sentinel.log_action_view'))
+                    ->icon(Heroicon::OutlinedEye)
+                    ->action(fn (array $record) => $this->redirect(LogFileViewer::getUrl(['file' => base64_encode($record['path'])]))),
+                Action::make('download')
+                    ->label(__('fin-sentinel::fin-sentinel.log_action_download'))
+                    ->icon(Heroicon::OutlinedArrowDownTray)
+                    ->action(function (array $record): mixed {
+                        $fullPath = $this->resolveLogPath($record['path']);
 
-                            if ($fullPath === null) {
-                                return null;
+                        if ($fullPath === null) {
+                            return null;
+                        }
+
+                        return response()->streamDownload(function () use ($fullPath): void {
+                            $file = new \SplFileObject($fullPath, 'r');
+
+                            while (! $file->eof()) {
+                                echo $file->fgets();
                             }
+                        }, $record['filename'], ['Content-Type' => 'text/plain']);
+                    }),
+                Action::make('email')
+                    ->label(__('fin-sentinel::fin-sentinel.log_action_email'))
+                    ->icon(Heroicon::OutlinedEnvelope)
+                    ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.log_action_email_send'))
+                    ->fillForm(fn (array $record): array => [
+                        'filename' => $record['filename'],
+                        'email' => auth()->user()?->email,
+                    ])
+                    ->schema([
+                        Text::make(__('fin-sentinel::fin-sentinel.log_email_description')),
+                        TextEntry::make('filename')
+                            ->label(__('fin-sentinel::fin-sentinel.log_column_filename')),
+                        TextInput::make('email')
+                            ->label(__('fin-sentinel::fin-sentinel.log_email_recipient'))
+                            ->email()
+                            ->required(),
+                    ])
+                    ->action(function (array $record, array $data): void {
+                        $fullPath = $this->resolveLogPath($record['path']);
 
-                            return response()->streamDownload(function () use ($fullPath): void {
-                                $file = new \SplFileObject($fullPath, 'r');
+                        if ($fullPath === null) {
+                            return;
+                        }
 
-                                while (! $file->eof()) {
-                                    echo $file->fgets();
-                                }
-                            }, $record['filename'], ['Content-Type' => 'text/plain']);
-                        }),
-                    Action::make('email')
+                        Mail::to($data['email'])->send(new LogFileMail($fullPath, $record['filename']));
+
+                        Notification::make()
+                            ->title(__('fin-sentinel::fin-sentinel.log_action_email_sent'))
+                            ->success()
+                            ->send();
+                    }),
+                Action::make('delete')
+                    ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
+                    ->icon(Heroicon::OutlinedTrash)
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_delete'))
+                    ->action(function (array $record): void {
+                        $fullPath = $this->resolveLogPath($record['path']);
+
+                        if ($fullPath === null) {
+                            return;
+                        }
+
+                        unlink($fullPath);
+                        $this->flushCachedTableRecords();
+
+                        Notification::make()
+                            ->title(__('fin-sentinel::fin-sentinel.log_action_deleted'))
+                            ->success()
+                            ->send();
+                    }),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    BulkAction::make('email')
                         ->label(__('fin-sentinel::fin-sentinel.log_action_email'))
-                        ->icon('heroicon-o-envelope')
-                        ->form([
+                        ->icon(Heroicon::OutlinedEnvelope)
+                        ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.log_action_email_send'))
+                        // ->fillForm(fn (Collection $records): array => [
+                        //     'filenames' => $records->pluck('filename')->toArray(),
+                        //     'email' => auth()->user()?->email,
+                        // ])
+                        ->fillForm(fn (Collection $records): array => [
+                            'email' => auth()->user()?->email,
+                        ])
+                        ->schema(fn (Collection $records): array => [
+                            Text::make(__('fin-sentinel::fin-sentinel.log_bulk_email_description')),
+                            TextEntry::make('filenames')
+                                ->label(__('fin-sentinel::fin-sentinel.log_bulk_email_files'))
+                                ->state($records->pluck('filename')->toArray())
+                                ->bulleted(),
                             TextInput::make('email')
                                 ->label(__('fin-sentinel::fin-sentinel.log_email_recipient'))
                                 ->email()
                                 ->required(),
                         ])
-                        ->action(function (array $record, array $data): void {
-                            $fullPath = $this->resolveLogPath($record['path']);
+                        ->action(function (Collection $records, array $data): void {
+                            $files = [];
 
-                            if ($fullPath === null) {
+                            foreach ($records as $record) {
+                                $fullPath = $this->resolveLogPath($record['path']);
+
+                                if ($fullPath === null) {
+                                    continue;
+                                }
+
+                                $files[] = ['path' => $fullPath, 'name' => $record['filename']];
+                            }
+
+                            if (empty($files)) {
                                 return;
                             }
 
-                            Mail::to($data['email'])->send(new LogFileMail($fullPath, $record['filename']));
+                            Mail::to($data['email'])->send(new LogFileMail($files));
 
                             Notification::make()
-                                ->title(__('fin-sentinel::fin-sentinel.log_action_email_sent'))
+                                ->title(__('fin-sentinel::fin-sentinel.log_bulk_email_sent', ['count' => count($files)]))
                                 ->success()
                                 ->send();
-                        }),
-                    Action::make('delete')
+                        })
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('delete')
                         ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
-                        ->icon('heroicon-o-trash')
+                        ->icon(Heroicon::OutlinedTrash)
                         ->color('danger')
                         ->requiresConfirmation()
-                        ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_delete'))
-                        ->action(function (array $record): void {
-                            $fullPath = $this->resolveLogPath($record['path']);
+                        ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_bulk_delete'))
+                        ->action(function (Collection $records): void {
+                            $count = 0;
 
-                            if ($fullPath === null) {
-                                return;
+                            foreach ($records as $record) {
+                                $fullPath = $this->resolveLogPath($record['path']);
+
+                                if ($fullPath === null) {
+                                    continue;
+                                }
+
+                                unlink($fullPath);
+                                $count++;
                             }
 
-                            unlink($fullPath);
+                            $this->flushCachedTableRecords();
 
                             Notification::make()
-                                ->title(__('fin-sentinel::fin-sentinel.log_action_deleted'))
+                                ->title(__('fin-sentinel::fin-sentinel.log_action_bulk_deleted', ['count' => $count]))
                                 ->success()
                                 ->send();
-                        }),
+                        })
+                        ->deselectRecordsAfterCompletion(),
                 ]),
-            ])
-            ->bulkActions([
-                BulkAction::make('delete')
-                    ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
-                    ->icon('heroicon-o-trash')
-                    ->color('danger')
-                    ->requiresConfirmation()
-                    ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_bulk_delete'))
-                    ->action(function (Collection $records): void {
-                        $count = 0;
-
-                        foreach ($records as $record) {
-                            $fullPath = $this->resolveLogPath($record['path']);
-
-                            if ($fullPath === null) {
-                                continue;
-                            }
-
-                            unlink($fullPath);
-                            $count++;
-                        }
-
-                        Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.log_action_bulk_deleted', ['count' => $count]))
-                            ->success()
-                            ->send();
-                    })
-                    ->deselectRecordsAfterCompletion(),
             ]);
     }
 

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace FinityLabs\FinSentinel\Pages;
 
+use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Support\Enums\Width;
-use Filament\Tables\Actions\Action;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -24,13 +25,13 @@ class LogFileViewer extends Page implements HasTable
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected static string $view = 'fin-sentinel::log-viewer.viewer';
+    protected string $view = 'fin-sentinel::log-viewer.viewer';
 
     public ?string $file = null;
 
     public function mount(string $file): void
     {
-        $this->file = $file;
+        $this->file = base64_decode($file);
 
         $logsPath = storage_path('logs');
         $fullPath = $logsPath . DIRECTORY_SEPARATOR . $file;
@@ -81,22 +82,21 @@ class LogFileViewer extends Page implements HasTable
                     search: $search,
                 );
             })
-            ->recordKey('start_line')
             ->defaultPaginationPageOption(50)
             ->defaultSort('start_line', 'desc')
             ->columns([
                 TextColumn::make('level')
-                    ->label('Level')
+                    ->label(__('fin-sentinel::fin-sentinel.log_column_level'))
                     ->badge()
-                    ->color(fn (string $state): string => LogLevel::from($state)->color())
+                    ->color(fn (string $state): string => LogLevel::from($state)->getColor())
                     ->sortable(false),
 
                 TextColumn::make('timestamp')
-                    ->label('Timestamp')
+                    ->label(__('fin-sentinel::fin-sentinel.log_column_timestamp'))
                     ->sortable(false),
 
                 TextColumn::make('preview')
-                    ->label('Message')
+                    ->label(__('fin-sentinel::fin-sentinel.log_column_message'))
                     ->wrap()
                     ->lineClamp(3)
                     ->sortable(false),
@@ -107,7 +107,7 @@ class LogFileViewer extends Page implements HasTable
                     ->multiple()
                     ->options(
                         collect(LogLevel::cases())
-                            ->mapWithKeys(fn (LogLevel $level) => [$level->value => $level->value])
+                            ->mapWithKeys(fn (LogLevel $level) => [$level->value => $level->getLabel()])
                             ->all()
                     ),
             ])
@@ -115,7 +115,7 @@ class LogFileViewer extends Page implements HasTable
             ->actions([
                 Action::make('viewEntry')
                     ->label('')
-                    ->icon('heroicon-o-eye')
+                    ->icon(Heroicon::OutlinedEye)
                     ->modalHeading(fn (array $record): string => $record['level'] . ' - ' . $record['timestamp'])
                     ->modalContent(fn (array $record) => view('fin-sentinel::log-viewer.entry-detail', ['entry' => $record]))
                     ->modalWidth(Width::SevenExtraLarge)

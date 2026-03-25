@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Laravel') }} - Error Notification</title>
+    <title>{{ config('app.name', 'Laravel') }} - {{ __('fin-sentinel::fin-sentinel.email_header_error') }}</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f4f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #333333; font-size: 14px; line-height: 1.6;">
 
 <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f7; padding: 24px 0;">
     <tr>
         <td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width: {{ config('fin-sentinel.email_max_width', '90%') }}; background-color: #ffffff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
 
                 {{-- Header --}}
                 <tr>
                     <td style="background-color: #dc3545; padding: 20px 24px; color: #ffffff; font-size: 18px; font-weight: bold;">
-                        {{ config('app.name', 'Laravel') }} &mdash; Error Notification
+                        {{ config('app.name', 'Laravel') }} &mdash; {{ __('fin-sentinel::fin-sentinel.email_header_error') }}
                     </td>
                 </tr>
 
                 {{-- Error Message --}}
                 <tr>
                     <td style="padding: 20px 24px; border-bottom: 1px solid #e9ecef;">
-                        <div style="font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #555555;">Error Message</div>
+                        <div style="font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #555555;">{{ __('fin-sentinel::fin-sentinel.email_label_error_message') }}</div>
                         <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; word-break: break-word;">
                             {{ $errorMessage }}
                         </div>
@@ -36,11 +36,11 @@
                         <div style="font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #555555;">{{ __('fin-sentinel::fin-sentinel.error_section_exception') }}</div>
                         <table width="100%" cellpadding="6" cellspacing="0" style="font-size: 13px;">
                             <tr>
-                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Class</td>
+                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_class') }}</td>
                                 <td style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; word-break: break-all;">{{ $exceptionClass }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">File</td>
+                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_file') }}</td>
                                 <td style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; word-break: break-all;">{{ $exceptionFile }}:{{ $exceptionLine }}</td>
                             </tr>
                         </table>
@@ -56,9 +56,9 @@
                         <div style="max-height: 400px; overflow: auto; background-color: #f8f9fa; border-radius: 4px; padding: 12px;">
                             <table width="100%" cellpadding="4" cellspacing="0" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; border-collapse: collapse;">
                                 <tr style="background-color: #e9ecef; font-weight: 600;">
-                                    <td style="padding: 4px 8px;">#</td>
-                                    <td style="padding: 4px 8px;">Location</td>
-                                    <td style="padding: 4px 8px;">Call</td>
+                                    <td style="padding: 4px 8px;">{{ __('fin-sentinel::fin-sentinel.email_label_trace_number') }}</td>
+                                    <td style="padding: 4px 8px;">{{ __('fin-sentinel::fin-sentinel.email_label_trace_location') }}</td>
+                                    <td style="padding: 4px 8px;">{{ __('fin-sentinel::fin-sentinel.email_label_trace_call') }}</td>
                                 </tr>
                                 @foreach($stackTrace as $index => $frame)
                                 <tr style="border-bottom: 1px solid #e9ecef;">
@@ -80,29 +80,29 @@
                         <table width="100%" cellpadding="6" cellspacing="0" style="font-size: 13px;">
                             @if(isset($requestContext['context']))
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Context</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_context') }}</td>
                                     <td>{{ $requestContext['context'] }}</td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Command</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_command') }}</td>
                                     <td style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{{ $requestContext['command'] }}</td>
                                 </tr>
                             @else
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">URL</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_url') }}</td>
                                     <td style="word-break: break-all;">{{ $requestContext['url'] ?? '' }}</td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Method</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_method') }}</td>
                                     <td>{{ $requestContext['method'] ?? '' }}</td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">IP</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_ip') }}</td>
                                     <td>{{ $requestContext['ip'] ?? '' }}</td>
                                 </tr>
                                 @if(!empty($requestContext['params']))
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Params</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_params') }}</td>
                                     <td style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">
                                         <pre style="margin: 0; white-space: pre-wrap; word-break: break-word;">{{ json_encode($requestContext['params'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}</pre>
                                     </td>
@@ -110,7 +110,7 @@
                                 @endif
                                 @if(!empty($requestContext['headers']))
                                 <tr>
-                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Headers</td>
+                                    <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_headers') }}</td>
                                     <td style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">
                                         <pre style="margin: 0; white-space: pre-wrap; word-break: break-word;">{{ json_encode($requestContext['headers'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}</pre>
                                     </td>
@@ -127,18 +127,18 @@
                         <div style="font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #555555;">{{ __('fin-sentinel::fin-sentinel.error_section_user') }}</div>
                         <table width="100%" cellpadding="6" cellspacing="0" style="font-size: 13px;">
                             <tr>
-                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Name</td>
+                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_name') }}</td>
                                 <td>{{ $userContext['name'] ?? '' }}</td>
                             </tr>
                             @if(isset($userContext['email']))
                             <tr>
-                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">Email</td>
+                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_email') }}</td>
                                 <td>{{ $userContext['email'] }}</td>
                             </tr>
                             @endif
                             @if(isset($userContext['id']))
                             <tr>
-                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">ID</td>
+                                <td style="width: 80px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_id') }}</td>
                                 <td>{{ $userContext['id'] }}</td>
                             </tr>
                             @endif
@@ -152,23 +152,23 @@
                         <div style="font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #555555;">{{ __('fin-sentinel::fin-sentinel.error_section_environment') }}</div>
                         <table width="100%" cellpadding="6" cellspacing="0" style="font-size: 13px;">
                             <tr>
-                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">Environment</td>
+                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_environment') }}</td>
                                 <td>{{ $environmentContext['app_env'] ?? '' }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">Debug Mode</td>
-                                <td>{{ $environmentContext['app_debug'] ? 'Enabled' : 'Disabled' }}</td>
+                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_debug_mode') }}</td>
+                                <td>{{ $environmentContext['app_debug'] ? __('fin-sentinel::fin-sentinel.email_label_enabled') : __('fin-sentinel::fin-sentinel.email_label_disabled') }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">PHP Version</td>
+                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_php_version') }}</td>
                                 <td>{{ $environmentContext['php_version'] ?? '' }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">Laravel Version</td>
+                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_laravel_version') }}</td>
                                 <td>{{ $environmentContext['laravel_version'] ?? '' }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">Peak Memory</td>
+                                <td style="width: 120px; font-weight: 600; vertical-align: top; color: #666666;">{{ __('fin-sentinel::fin-sentinel.email_label_peak_memory') }}</td>
                                 <td>{{ $environmentContext['memory_peak'] ?? '' }}</td>
                             </tr>
                         </table>

@@ -13,6 +13,18 @@ return [
     | case-insensitively.
     |
     */
+    /*
+    |--------------------------------------------------------------------------
+    | Email Layout
+    |--------------------------------------------------------------------------
+    |
+    | Maximum width for error and debug notification emails. These emails
+    | contain stack traces and data tables that benefit from extra space.
+    | The log file attachment email uses Laravel's default 600px width.
+    |
+    */
+    'email_max_width' => '90%',
+
     'scrub' => [
         'params' => [
             'password',

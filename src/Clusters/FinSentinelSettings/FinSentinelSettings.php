@@ -8,6 +8,7 @@ use BackedEnum;
 use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
+use FinityLabs\FinSentinel\FinSentinelPlugin;
 use UnitEnum;
 
 class FinSentinelSettings extends Cluster
@@ -20,10 +21,7 @@ class FinSentinelSettings extends Cluster
 
     public static function getNavigationSort(): ?int
     {
-        /** @var \FinityLabs\FinSentinel\FinSentinelPlugin $plugin */
-        $plugin = filament('fin-sentinel');
-
-        return $plugin->getNavigationSort();
+        return (FinSentinelPlugin::get()->getNavigationSort() ?? 0) + 10;
     }
 
     public static function getNavigationGroup(): string|UnitEnum|null
@@ -36,11 +34,11 @@ class FinSentinelSettings extends Cluster
 
     public static function getNavigationLabel(): string
     {
-        return 'Settings';
+        return __('fin-sentinel::fin-sentinel.settings_nav_label');
     }
 
     public static function getClusterBreadcrumb(): ?string
     {
-        return 'Settings';
+        return __('fin-sentinel::fin-sentinel.settings_nav_label');
     }
 }

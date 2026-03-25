@@ -12,8 +12,6 @@ enum NavigationGroup: string implements HasLabel
 
     public function getLabel(): string
     {
-        return match ($this) {
-            self::Sentinel => 'Sentinel',
-        };
+        return (string) __('fin-sentinel::fin-sentinel.enums.navigation_group.'.$this->value);
     }
 }

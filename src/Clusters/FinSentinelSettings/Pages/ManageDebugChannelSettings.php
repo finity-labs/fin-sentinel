@@ -41,19 +41,19 @@ class ManageDebugChannelSettings extends SettingsPage
 
     public static function getNavigationLabel(): string
     {
-        return __('fin-sentinel::fin-sentinel.debug_channel_nav_label');
+        return __('fin-sentinel::fin-sentinel.navigation.debug_channel');
     }
 
     public function getTitle(): string
     {
-        return __('fin-sentinel::fin-sentinel.debug_channel_title');
+        return __('fin-sentinel::fin-sentinel.navigation.debug_channel_title');
     }
 
     protected function getHeaderActions(): array
     {
         return [
             Action::make('sendTestEmail')
-                ->label(__('fin-sentinel::fin-sentinel.test_email_send'))
+                ->label(__('fin-sentinel::fin-sentinel.settings.test_email.send'))
                 ->icon(Heroicon::OutlinedPaperAirplane)
                 ->color('primary')
                 ->action(function (): void {
@@ -61,7 +61,7 @@ class ManageDebugChannelSettings extends SettingsPage
 
                     if (empty($settings->debug_recipients)) {
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_no_recipients'))
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.no_recipients'))
                             ->danger()
                             ->send();
 
@@ -70,7 +70,7 @@ class ManageDebugChannelSettings extends SettingsPage
 
                     if (! $settings->debug_enabled) {
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_channel_disabled'))
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.channel_disabled'))
                             ->warning()
                             ->send();
                     }
@@ -94,14 +94,14 @@ class ManageDebugChannelSettings extends SettingsPage
                         Mail::to($settings->debug_recipients)->send($testMail);
 
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_sent', [
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.sent', [
                                 'count' => count($settings->debug_recipients),
                             ]))
                             ->success()
                             ->send();
                     } catch (\Throwable $e) {
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_failed'))
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.failed'))
                             ->body($e->getMessage())
                             ->danger()
                             ->send();
@@ -114,23 +114,23 @@ class ManageDebugChannelSettings extends SettingsPage
     {
         return $schema->schema([
             Toggle::make('debug_enabled')
-                ->label(__('fin-sentinel::fin-sentinel.debug_enabled_label'))
-                ->helperText(__('fin-sentinel::fin-sentinel.debug_enabled_helper'))
+                ->label(__('fin-sentinel::fin-sentinel.settings.debug.enabled'))
+                ->helperText(__('fin-sentinel::fin-sentinel.settings.debug.enabled_helper'))
                 ->columnSpanFull(),
 
-            Section::make(__('fin-sentinel::fin-sentinel.section_recipients'))
+            Section::make(__('fin-sentinel::fin-sentinel.settings.recipients'))
                 ->schema([
                     Callout::make()
-                        ->heading(__('fin-sentinel::fin-sentinel.no_recipients_warning'))
+                        ->heading(__('fin-sentinel::fin-sentinel.settings.no_recipients_warning'))
                         ->color('warning')
                         ->visible(fn (callable $get): bool => empty(array_filter((array) $get('debug_recipients')))),
 
                     Repeater::make('debug_recipients')
                         ->hiddenLabel()
-                        ->helperText(__('fin-sentinel::fin-sentinel.debug_recipients_helper'))
+                        ->helperText(__('fin-sentinel::fin-sentinel.settings.debug.recipients_helper'))
                         ->simple(
                             TextInput::make('email')
-                                ->label(__('fin-sentinel::fin-sentinel.email_address_label'))
+                                ->label(__('fin-sentinel::fin-sentinel.settings.email_address'))
                                 ->email()
                                 ->required()
                                 ->maxLength(255),
@@ -139,23 +139,23 @@ class ManageDebugChannelSettings extends SettingsPage
                         ->live(),
                 ]),
 
-            Section::make(__('fin-sentinel::fin-sentinel.section_throttling'))
+            Section::make(__('fin-sentinel::fin-sentinel.settings.throttling'))
                 ->columns(['lg' => 2])
                 ->schema([
                     Toggle::make('debug_throttle_enabled')
-                        ->label(__('fin-sentinel::fin-sentinel.debug_throttle_enabled_label'))
-                        ->helperText(__('fin-sentinel::fin-sentinel.debug_throttle_enabled_helper'))
+                        ->label(__('fin-sentinel::fin-sentinel.settings.debug.throttle_enabled'))
+                        ->helperText(__('fin-sentinel::fin-sentinel.settings.debug.throttle_enabled_helper'))
                         ->live()
                         ->columnSpanFull(),
 
                     TextInput::make('debug_throttle_minutes')
-                        ->label(__('fin-sentinel::fin-sentinel.throttle_rate_label'))
-                        ->helperText(__('fin-sentinel::fin-sentinel.debug_throttle_helper'))
+                        ->label(__('fin-sentinel::fin-sentinel.settings.throttle_rate'))
+                        ->helperText(__('fin-sentinel::fin-sentinel.settings.debug.throttle_helper'))
                         ->numeric()
                         ->required()
                         ->minValue(1)
                         ->maxValue(1440)
-                        ->suffix(__('fin-sentinel::fin-sentinel.minutes_suffix'))
+                        ->suffix(__('fin-sentinel::fin-sentinel.settings.minutes_suffix'))
                         ->visible(fn (callable $get): bool => (bool) $get('debug_throttle_enabled')),
                 ]),
         ]);

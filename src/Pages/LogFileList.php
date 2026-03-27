@@ -48,17 +48,17 @@ class LogFileList extends Page implements HasTable
 
     public function getTitle(): string
     {
-        return __('fin-sentinel::fin-sentinel.log_viewer_title');
+        return __('fin-sentinel::fin-sentinel.logs.title');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('fin-sentinel::fin-sentinel.log_viewer_title');
+        return __('fin-sentinel::fin-sentinel.logs.title');
     }
 
     public function getHeading(): string
     {
-        return __('fin-sentinel::fin-sentinel.log_viewer_heading');
+        return __('fin-sentinel::fin-sentinel.logs.heading');
     }
 
     public function table(Table $table): Table
@@ -86,27 +86,27 @@ class LogFileList extends Page implements HasTable
             ->defaultSort('last_modified', 'desc')
             ->columns([
                 TextColumn::make('filename')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_filename'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.filename'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('size_human')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_size'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.size'))
                     ->sortable(query: fn () => null),
                 TextColumn::make('last_modified')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_modified'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.modified'))
                     ->sortable()
                     ->dateTime(),
                 TextColumn::make('subfolder')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_subfolder'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.subfolder'))
                     ->placeholder('-'),
             ])
             ->recordActions([
                 Action::make('view')
-                    ->label(__('fin-sentinel::fin-sentinel.log_action_view'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.action.view'))
                     ->icon(Heroicon::OutlinedEye)
                     ->url(fn ($record): string => LogFileViewer::getUrl(['file' => base64_encode($record['path'])])),
                 Action::make('download')
-                    ->label(__('fin-sentinel::fin-sentinel.log_action_download'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.action.download'))
                     ->icon(Heroicon::OutlinedArrowDownTray)
                     ->action(function (array $record): mixed {
                         $fullPath = $this->resolveLogPath($record['path']);
@@ -124,19 +124,19 @@ class LogFileList extends Page implements HasTable
                         }, $record['filename'], ['Content-Type' => 'text/plain']);
                     }),
                 Action::make('email')
-                    ->label(__('fin-sentinel::fin-sentinel.log_action_email'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.action.email'))
                     ->icon(Heroicon::OutlinedEnvelope)
-                    ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.log_action_email_send'))
+                    ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.logs.action.email_send'))
                     ->fillForm(fn (array $record): array => [
                         'filename' => $record['filename'],
                         'email' => auth()->user()?->email,
                     ])
                     ->schema([
-                        Text::make(__('fin-sentinel::fin-sentinel.log_email_description')),
+                        Text::make(__('fin-sentinel::fin-sentinel.logs.email_description')),
                         TextEntry::make('filename')
-                            ->label(__('fin-sentinel::fin-sentinel.log_column_filename')),
+                            ->label(__('fin-sentinel::fin-sentinel.logs.column.filename')),
                         TextInput::make('email')
-                            ->label(__('fin-sentinel::fin-sentinel.log_email_recipient'))
+                            ->label(__('fin-sentinel::fin-sentinel.logs.email_recipient'))
                             ->email()
                             ->required(),
                     ])
@@ -150,16 +150,16 @@ class LogFileList extends Page implements HasTable
                         Mail::to($data['email'])->send(new LogFileMail($fullPath, $record['filename']));
 
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.log_action_email_sent'))
+                            ->title(__('fin-sentinel::fin-sentinel.logs.action.email_sent'))
                             ->success()
                             ->send();
                     }),
                 Action::make('delete')
-                    ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.action.delete'))
                     ->icon(Heroicon::OutlinedTrash)
                     ->color('danger')
                     ->requiresConfirmation()
-                    ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_delete'))
+                    ->modalDescription(__('fin-sentinel::fin-sentinel.logs.confirm.delete'))
                     ->action(function (array $record): void {
                         $fullPath = $this->resolveLogPath($record['path']);
 
@@ -171,7 +171,7 @@ class LogFileList extends Page implements HasTable
                         $this->flushCachedTableRecords();
 
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.log_action_deleted'))
+                            ->title(__('fin-sentinel::fin-sentinel.logs.action.deleted'))
                             ->success()
                             ->send();
                     }),
@@ -179,9 +179,9 @@ class LogFileList extends Page implements HasTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     BulkAction::make('email')
-                        ->label(__('fin-sentinel::fin-sentinel.log_action_email'))
+                        ->label(__('fin-sentinel::fin-sentinel.logs.action.email'))
                         ->icon(Heroicon::OutlinedEnvelope)
-                        ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.log_action_email_send'))
+                        ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.logs.action.email_send'))
                         // ->fillForm(fn (Collection $records): array => [
                         //     'filenames' => $records->pluck('filename')->toArray(),
                         //     'email' => auth()->user()?->email,
@@ -190,13 +190,13 @@ class LogFileList extends Page implements HasTable
                             'email' => auth()->user()?->email,
                         ])
                         ->schema(fn (Collection $records): array => [
-                            Text::make(__('fin-sentinel::fin-sentinel.log_bulk_email_description')),
+                            Text::make(__('fin-sentinel::fin-sentinel.logs.bulk_email_description')),
                             TextEntry::make('filenames')
-                                ->label(__('fin-sentinel::fin-sentinel.log_bulk_email_files'))
+                                ->label(__('fin-sentinel::fin-sentinel.logs.bulk_email_files'))
                                 ->state($records->pluck('filename')->toArray())
                                 ->bulleted(),
                             TextInput::make('email')
-                                ->label(__('fin-sentinel::fin-sentinel.log_email_recipient'))
+                                ->label(__('fin-sentinel::fin-sentinel.logs.email_recipient'))
                                 ->email()
                                 ->required(),
                         ])
@@ -220,17 +220,17 @@ class LogFileList extends Page implements HasTable
                             Mail::to($data['email'])->send(new LogFileMail($files));
 
                             Notification::make()
-                                ->title(__('fin-sentinel::fin-sentinel.log_bulk_email_sent', ['count' => count($files)]))
+                                ->title(__('fin-sentinel::fin-sentinel.logs.action.bulk_email_sent', ['count' => count($files)]))
                                 ->success()
                                 ->send();
                         })
                         ->deselectRecordsAfterCompletion(),
                     BulkAction::make('delete')
-                        ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
+                        ->label(__('fin-sentinel::fin-sentinel.logs.action.delete'))
                         ->icon(Heroicon::OutlinedTrash)
                         ->color('danger')
                         ->requiresConfirmation()
-                        ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_bulk_delete'))
+                        ->modalDescription(__('fin-sentinel::fin-sentinel.logs.confirm.bulk_delete'))
                         ->action(function (Collection $records): void {
                             $count = 0;
 
@@ -248,7 +248,7 @@ class LogFileList extends Page implements HasTable
                             $this->flushCachedTableRecords();
 
                             Notification::make()
-                                ->title(__('fin-sentinel::fin-sentinel.log_action_bulk_deleted', ['count' => $count]))
+                                ->title(__('fin-sentinel::fin-sentinel.logs.action.bulk_deleted', ['count' => $count]))
                                 ->success()
                                 ->send();
                         })

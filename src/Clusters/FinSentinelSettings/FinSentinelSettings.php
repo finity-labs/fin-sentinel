@@ -39,11 +39,11 @@ class FinSentinelSettings extends Cluster
 
     public static function getNavigationLabel(): string
     {
-        return __('fin-sentinel::fin-sentinel.settings_nav_label');
+        return __('fin-sentinel::fin-sentinel.navigation.settings');
     }
 
     public static function getClusterBreadcrumb(): ?string
     {
-        return __('fin-sentinel::fin-sentinel.settings_nav_label');
+        return __('fin-sentinel::fin-sentinel.navigation.settings');
     }
 }

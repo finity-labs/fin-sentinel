@@ -1,7 +1,7 @@
-{{ $appName }} - {{ __('fin-sentinel::fin-sentinel.email_header_log_file') }}
+{{ $appName }} - {{ __('fin-sentinel::fin-sentinel.email.header.log_file') }}
 ========================
 
-{{ __('fin-sentinel::fin-sentinel.email_log_file_body_text', ['file' => $fileName, 'app' => $appName]) }}
+{{ __('fin-sentinel::fin-sentinel.email.log_file.body_text', ['file' => $fileName, 'app' => $appName]) }}
 
 ---
 {{ now()->toDateTimeString() }} ({{ config('app.timezone', 'UTC') }})

@@ -73,7 +73,7 @@ class LogFileViewer extends Page implements HasTable
     public function getBreadcrumbs(): array
     {
         return [
-            LogFileList::getUrl() => __('fin-sentinel::fin-sentinel.log_viewer_heading'),
+            LogFileList::getUrl() => __('fin-sentinel::fin-sentinel.logs.heading'),
             '' => basename((string) $this->file),
         ];
     }
@@ -82,21 +82,21 @@ class LogFileViewer extends Page implements HasTable
     {
         return [
             Action::make('refresh')
-                ->label(__('fin-sentinel::fin-sentinel.log_action_refresh'))
+                ->label(__('fin-sentinel::fin-sentinel.logs.action.refresh'))
                 ->icon(Heroicon::OutlinedArrowPath)
                 ->color('gray')
                 ->action(fn () => $this->flushCachedTableRecords()),
             Action::make('email')
-                ->label(__('fin-sentinel::fin-sentinel.log_action_email'))
+                ->label(__('fin-sentinel::fin-sentinel.logs.action.email'))
                 ->icon(Heroicon::OutlinedEnvelope)
-                ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.log_action_email_send'))
+                ->modalSubmitActionLabel(__('fin-sentinel::fin-sentinel.logs.action.email_send'))
                 ->fillForm(fn (): array => [
                     'email' => auth()->user()?->email,
                 ])
                 ->schema([
-                    Text::make(__('fin-sentinel::fin-sentinel.log_email_description')),
+                    Text::make(__('fin-sentinel::fin-sentinel.logs.email_description')),
                     TextInput::make('email')
-                        ->label(__('fin-sentinel::fin-sentinel.log_email_recipient'))
+                        ->label(__('fin-sentinel::fin-sentinel.logs.email_recipient'))
                         ->email()
                         ->required(),
                 ])
@@ -110,12 +110,12 @@ class LogFileViewer extends Page implements HasTable
                     Mail::to($data['email'])->send(new LogFileMail($fullPath, basename((string) $this->file)));
 
                     Notification::make()
-                        ->title(__('fin-sentinel::fin-sentinel.log_action_email_sent'))
+                        ->title(__('fin-sentinel::fin-sentinel.logs.action.email_sent'))
                         ->success()
                         ->send();
                 }),
             Action::make('download')
-                ->label(__('fin-sentinel::fin-sentinel.log_action_download'))
+                ->label(__('fin-sentinel::fin-sentinel.logs.action.download'))
                 ->icon(Heroicon::OutlinedArrowDownTray)
                 ->color('gray')
                 ->action(function (): mixed {
@@ -136,11 +136,11 @@ class LogFileViewer extends Page implements HasTable
                     }, $filename, ['Content-Type' => 'text/plain']);
                 }),
             Action::make('delete')
-                ->label(__('fin-sentinel::fin-sentinel.log_action_delete'))
+                ->label(__('fin-sentinel::fin-sentinel.logs.action.delete'))
                 ->icon(Heroicon::OutlinedTrash)
                 ->color('danger')
                 ->requiresConfirmation()
-                ->modalDescription(__('fin-sentinel::fin-sentinel.log_confirm_delete'))
+                ->modalDescription(__('fin-sentinel::fin-sentinel.logs.confirm.delete'))
                 ->action(function (): void {
                     $fullPath = $this->resolveLogPath((string) $this->file);
 
@@ -151,7 +151,7 @@ class LogFileViewer extends Page implements HasTable
                     unlink($fullPath);
 
                     Notification::make()
-                        ->title(__('fin-sentinel::fin-sentinel.log_action_deleted'))
+                        ->title(__('fin-sentinel::fin-sentinel.logs.action.deleted'))
                         ->success()
                         ->send();
 
@@ -203,24 +203,24 @@ class LogFileViewer extends Page implements HasTable
             ->defaultSort('start_line', 'desc')
             ->columns([
                 TextColumn::make('level')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_level'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.level'))
                     ->badge()
                     ->color(fn (string $state): string => LogLevel::from($state)->getColor())
                     ->sortable(false),
 
                 TextColumn::make('timestamp')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_timestamp'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.timestamp'))
                     ->sortable(false),
 
                 TextColumn::make('preview')
-                    ->label(__('fin-sentinel::fin-sentinel.log_column_message'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.column.message'))
                     ->wrap()
                     ->lineClamp(3)
                     ->sortable(false),
             ])
             ->filters([
                 SelectFilter::make('level')
-                    ->label(__('fin-sentinel::fin-sentinel.log_level_filter'))
+                    ->label(__('fin-sentinel::fin-sentinel.logs.level_filter'))
                     ->multiple()
                     ->options(
                         collect(LogLevel::cases())
@@ -238,7 +238,7 @@ class LogFileViewer extends Page implements HasTable
                     ->slideOver()
                     ->modalSubmitAction(false)
                     ->schema(fn (array $record): array => [
-                        Section::make(__('fin-sentinel::fin-sentinel.log_column_message'))
+                        Section::make(__('fin-sentinel::fin-sentinel.logs.column.message'))
                             ->schema([
                                 TextEntry::make('message')
                                     ->hiddenLabel()
@@ -250,7 +250,7 @@ class LogFileViewer extends Page implements HasTable
                                     ->copyableState($record['message']),
                             ]),
                         ...($record['has_stack_trace'] ? [
-                            Section::make(__('fin-sentinel::fin-sentinel.error_section_trace'))
+                            Section::make(__('fin-sentinel::fin-sentinel.email.error.section_trace'))
                                 ->schema([
                                     TextEntry::make('stack_trace')
                                         ->hiddenLabel()

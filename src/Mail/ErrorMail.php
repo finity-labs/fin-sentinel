@@ -44,7 +44,7 @@ class ErrorMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('fin-sentinel::fin-sentinel.error_subject', ['app' => config('app.name', 'Laravel')]),
+            subject: __('fin-sentinel::fin-sentinel.email.error.subject', ['app' => config('app.name', 'Laravel')]),
         );
     }
 
@@ -97,7 +97,7 @@ class ErrorMail extends Mailable
     {
         if (app()->runningInConsole()) {
             return [
-                'context' => __('fin-sentinel::fin-sentinel.error_console'),
+                'context' => __('fin-sentinel::fin-sentinel.email.error.console'),
                 'command' => implode(' ', $_SERVER['argv'] ?? []),
             ];
         }
@@ -131,7 +131,7 @@ class ErrorMail extends Mailable
         }
 
         return [
-            'name' => __('fin-sentinel::fin-sentinel.error_guest'),
+            'name' => __('fin-sentinel::fin-sentinel.email.error.guest'),
         ];
     }
 

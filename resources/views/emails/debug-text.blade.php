@@ -1,7 +1,7 @@
-{{ config('app.name', 'Laravel') }} - {{ __('fin-sentinel::fin-sentinel.email_header_debug') }}
+{{ config('app.name', 'Laravel') }} - {{ __('fin-sentinel::fin-sentinel.email.header.debug') }}
 ============================================
 
-{{ __('fin-sentinel::fin-sentinel.debug_section_data') }}
+{{ __('fin-sentinel::fin-sentinel.email.debug.section_data') }}
 ----------
 @if($formattedData['type'] === 'model')
 Type: Model ({{ $formattedData['class'] }})
@@ -12,16 +12,16 @@ Type: Model ({{ $formattedData['class'] }})
 @if(!empty($formattedData['relations']))
 
 @foreach($formattedData['relations'] as $relationName => $relationData)
-  {{ __('fin-sentinel::fin-sentinel.email_label_relation', ['name' => $relationName]) }}: {{ json_encode($relationData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
+  {{ __('fin-sentinel::fin-sentinel.email.label.relation', ['name' => $relationName]) }}: {{ json_encode($relationData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
 @endforeach
 @endif
 @elseif($formattedData['type'] === 'collection')
-{{ trans_choice('fin-sentinel::fin-sentinel.email_collection_count', $formattedData['count'], ['count' => $formattedData['count']]) }}
+{{ trans_choice('fin-sentinel::fin-sentinel.email.collection.count', $formattedData['count'], ['count' => $formattedData['count']]) }}
 
 @foreach(array_slice($formattedData['items'], 0, 20) as $index => $item)
 #{{ $index }} ({{ $item['type'] }})
 @if($item['type'] === 'model')
-  {{ __('fin-sentinel::fin-sentinel.email_label_class') }}: {{ $item['class'] }}
+  {{ __('fin-sentinel::fin-sentinel.email.label.class') }}: {{ $item['class'] }}
   {{ json_encode($item['attributes'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}
 @elseif($item['type'] === 'scalar')
   {{ $item['value'] }}
@@ -31,14 +31,14 @@ Type: Model ({{ $formattedData['class'] }})
 
 @endforeach
 @if($formattedData['count'] > 20)
-{{ __('fin-sentinel::fin-sentinel.email_collection_more', ['count' => $formattedData['count'] - 20]) }}
+{{ __('fin-sentinel::fin-sentinel.email.collection.more', ['count' => $formattedData['count'] - 20]) }}
 @endif
 @elseif($formattedData['type'] === 'query')
 Type: Query
 
 SQL: {{ $formattedData['sql'] }}
 @if(!empty($formattedData['bindings']))
-{{ __('fin-sentinel::fin-sentinel.email_label_bindings') }} {{ json_encode($formattedData['bindings'], JSON_UNESCAPED_SLASHES) }}
+{{ __('fin-sentinel::fin-sentinel.email.label.bindings') }} {{ json_encode($formattedData['bindings'], JSON_UNESCAPED_SLASHES) }}
 @endif
 @elseif($formattedData['type'] === 'array')
 Type: Array
@@ -50,26 +50,26 @@ Type: Scalar
 {{ $formattedData['value'] }}
 @endif
 
-{{ __('fin-sentinel::fin-sentinel.debug_section_call_site') }}
+{{ __('fin-sentinel::fin-sentinel.email.debug.section_call_site') }}
 ---------
 {{ $callSite['file'] ?? '' }}:{{ $callSite['line'] ?? '' }}
 
-{{ __('fin-sentinel::fin-sentinel.debug_section_request') }}
+{{ __('fin-sentinel::fin-sentinel.email.debug.section_request') }}
 ---------------
 @if(isset($requestContext['context']))
-{{ __('fin-sentinel::fin-sentinel.email_label_context') }}: {{ $requestContext['context'] }}
-{{ __('fin-sentinel::fin-sentinel.email_label_command') }}: {{ $requestContext['command'] }}
+{{ __('fin-sentinel::fin-sentinel.email.label.context') }}: {{ $requestContext['context'] }}
+{{ __('fin-sentinel::fin-sentinel.email.label.command') }}: {{ $requestContext['command'] }}
 @else
-{{ __('fin-sentinel::fin-sentinel.email_label_url') }}:    {{ $requestContext['url'] ?? '' }}
-{{ __('fin-sentinel::fin-sentinel.email_label_method') }}: {{ $requestContext['method'] ?? '' }}
-{{ __('fin-sentinel::fin-sentinel.email_label_user') }}:   {{ $requestContext['user'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.label.url') }}:    {{ $requestContext['url'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.label.method') }}: {{ $requestContext['method'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.label.user') }}:   {{ $requestContext['user'] ?? '' }}
 @endif
 
-{{ __('fin-sentinel::fin-sentinel.debug_section_environment') }}
+{{ __('fin-sentinel::fin-sentinel.email.debug.section_environment') }}
 -----------
-{{ __('fin-sentinel::fin-sentinel.email_label_environment') }}:    {{ $environmentContext['app_env'] ?? '' }}
-{{ __('fin-sentinel::fin-sentinel.email_label_php_version') }}:    {{ $environmentContext['php_version'] ?? '' }}
-{{ __('fin-sentinel::fin-sentinel.email_label_laravel') }}:        {{ $environmentContext['laravel_version'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.label.environment') }}:    {{ $environmentContext['app_env'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.label.php_version') }}:    {{ $environmentContext['php_version'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.label.laravel') }}:        {{ $environmentContext['laravel_version'] ?? '' }}
 
 ---
-{{ __('fin-sentinel::fin-sentinel.email_footer') }} | {{ $environmentContext['timestamp'] ?? '' }}
+{{ __('fin-sentinel::fin-sentinel.email.footer') }} | {{ $environmentContext['timestamp'] ?? '' }}

@@ -33,11 +33,11 @@ class LogFileMail extends Mailable
         $fileNames = array_column($this->files, 'name');
 
         $subject = count($this->files) === 1
-            ? __('fin-sentinel::fin-sentinel.log_email_subject', [
+            ? __('fin-sentinel::fin-sentinel.email.log_file.subject', [
                 'app' => config('app.name', 'Laravel'),
                 'file' => $fileNames[0],
             ])
-            : __('fin-sentinel::fin-sentinel.log_bulk_email_subject', [
+            : __('fin-sentinel::fin-sentinel.email.log_file.bulk_subject', [
                 'app' => config('app.name', 'Laravel'),
                 'count' => count($this->files),
             ]);

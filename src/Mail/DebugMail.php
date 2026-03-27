@@ -28,7 +28,7 @@ class DebugMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('fin-sentinel::fin-sentinel.debug_subject', [
+            subject: __('fin-sentinel::fin-sentinel.email.debug.subject', [
                 'app' => config('app.name', 'Laravel'),
                 'subject' => $this->customSubject ?? 'Debug',
             ]),
@@ -58,14 +58,14 @@ class DebugMail extends Mailable
     {
         if (app()->runningInConsole()) {
             return [
-                'context' => __('fin-sentinel::fin-sentinel.debug_console'),
+                'context' => __('fin-sentinel::fin-sentinel.email.debug.console'),
                 'command' => implode(' ', $_SERVER['argv'] ?? []),
             ];
         }
 
         $user = auth()->check()
             ? auth()->user()->name.' (#'.auth()->user()->getKey().')'
-            : __('fin-sentinel::fin-sentinel.debug_guest');
+            : __('fin-sentinel::fin-sentinel.email.debug.guest');
 
         return [
             'url' => request()->fullUrl(),

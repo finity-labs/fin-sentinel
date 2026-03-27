@@ -58,19 +58,19 @@ class ManageErrorChannelSettings extends SettingsPage
 
     public static function getNavigationLabel(): string
     {
-        return __('fin-sentinel::fin-sentinel.error_channel_nav_label');
+        return __('fin-sentinel::fin-sentinel.navigation.error_channel');
     }
 
     public function getTitle(): string
     {
-        return __('fin-sentinel::fin-sentinel.error_channel_title');
+        return __('fin-sentinel::fin-sentinel.navigation.error_channel_title');
     }
 
     protected function getHeaderActions(): array
     {
         return [
             Action::make('sendTestEmail')
-                ->label(__('fin-sentinel::fin-sentinel.test_email_send'))
+                ->label(__('fin-sentinel::fin-sentinel.settings.test_email.send'))
                 ->icon(Heroicon::OutlinedPaperAirplane)
                 ->color('primary')
                 ->action(function (): void {
@@ -78,7 +78,7 @@ class ManageErrorChannelSettings extends SettingsPage
 
                     if (empty($settings->error_recipients)) {
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_no_recipients'))
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.no_recipients'))
                             ->danger()
                             ->send();
 
@@ -87,7 +87,7 @@ class ManageErrorChannelSettings extends SettingsPage
 
                     if (! $settings->error_enabled) {
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_channel_disabled'))
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.channel_disabled'))
                             ->warning()
                             ->send();
                     }
@@ -95,19 +95,19 @@ class ManageErrorChannelSettings extends SettingsPage
                     try {
                         $exception = new \RuntimeException('[TEST] This is a test error notification from FinSentinel');
                         $testMail = new ErrorMail('[TEST] Test error notification', $exception);
-                        $testMail->subject('[TEST] '.__('fin-sentinel::fin-sentinel.error_subject', ['app' => config('app.name')]));
+                        $testMail->subject('[TEST] '.__('fin-sentinel::fin-sentinel.email.error.subject', ['app' => config('app.name')]));
 
                         Mail::to($settings->error_recipients)->send($testMail);
 
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_sent', [
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.sent', [
                                 'count' => count($settings->error_recipients),
                             ]))
                             ->success()
                             ->send();
                     } catch (\Throwable $e) {
                         Notification::make()
-                            ->title(__('fin-sentinel::fin-sentinel.test_email_failed'))
+                            ->title(__('fin-sentinel::fin-sentinel.settings.test_email.failed'))
                             ->body($e->getMessage())
                             ->danger()
                             ->send();
@@ -120,16 +120,16 @@ class ManageErrorChannelSettings extends SettingsPage
     {
         return $schema->schema([
             Toggle::make('error_enabled')
-                ->label(__('fin-sentinel::fin-sentinel.error_enabled_label'))
-                ->helperText(__('fin-sentinel::fin-sentinel.error_enabled_helper'))
+                ->label(__('fin-sentinel::fin-sentinel.settings.error.enabled'))
+                ->helperText(__('fin-sentinel::fin-sentinel.settings.error.enabled_helper'))
                 ->columnSpanFull(),
 
             Group::make([
-                Section::make(__('fin-sentinel::fin-sentinel.section_recipients'))
-                    ->description(__('fin-sentinel::fin-sentinel.error_recipients_helper'))
+                Section::make(__('fin-sentinel::fin-sentinel.settings.recipients'))
+                    ->description(__('fin-sentinel::fin-sentinel.settings.error.recipients_helper'))
                     ->schema([
                         Callout::make()
-                            ->heading(__('fin-sentinel::fin-sentinel.no_recipients_warning'))
+                            ->heading(__('fin-sentinel::fin-sentinel.settings.no_recipients_warning'))
                             ->color('warning')
                             ->visible(fn (callable $get): bool => empty(array_filter((array) $get('error_recipients')))),
 
@@ -137,7 +137,7 @@ class ManageErrorChannelSettings extends SettingsPage
                             ->hiddenLabel()
                             ->simple(
                                 TextInput::make('email')
-                                    ->label(__('fin-sentinel::fin-sentinel.email_address_label'))
+                                    ->label(__('fin-sentinel::fin-sentinel.settings.email_address'))
                                     ->email()
                                     ->required()
                                     ->maxLength(255),
@@ -146,51 +146,51 @@ class ManageErrorChannelSettings extends SettingsPage
                             ->live(),
                     ]),
 
-                Section::make(__('fin-sentinel::fin-sentinel.section_throttling'))
+                Section::make(__('fin-sentinel::fin-sentinel.settings.throttling'))
                     ->columns(['lg' => 2])
                     ->schema([
                         TextInput::make('error_throttle_minutes')
-                            ->label(__('fin-sentinel::fin-sentinel.throttle_rate_label'))
-                            ->helperText(__('fin-sentinel::fin-sentinel.error_throttle_helper'))
+                            ->label(__('fin-sentinel::fin-sentinel.settings.throttle_rate'))
+                            ->helperText(__('fin-sentinel::fin-sentinel.settings.error.throttle_helper'))
                             ->numeric()
                             ->required()
                             ->minValue(1)
                             ->maxValue(1440)
-                            ->suffix(__('fin-sentinel::fin-sentinel.minutes_suffix')),
+                            ->suffix(__('fin-sentinel::fin-sentinel.settings.minutes_suffix')),
                         Toggle::make('error_throttle_exceptions')
-                            ->label(__('fin-sentinel::fin-sentinel.throttle_exceptions_label'))
-                            ->helperText(__('fin-sentinel::fin-sentinel.throttle_exceptions_helper'))
+                            ->label(__('fin-sentinel::fin-sentinel.settings.error.throttle_exceptions'))
+                            ->helperText(__('fin-sentinel::fin-sentinel.settings.error.throttle_exceptions_helper'))
                             ->columnSpanFull(),
                         Toggle::make('error_throttle_log_messages')
-                            ->label(__('fin-sentinel::fin-sentinel.throttle_log_messages_label'))
-                            ->helperText(__('fin-sentinel::fin-sentinel.throttle_log_messages_helper'))
+                            ->label(__('fin-sentinel::fin-sentinel.settings.error.throttle_log_messages'))
+                            ->helperText(__('fin-sentinel::fin-sentinel.settings.error.throttle_log_messages_helper'))
                             ->columnSpanFull(),
                     ]),
             ]),
 
             Group::make([
-                Section::make(__('fin-sentinel::fin-sentinel.section_ignored_exceptions'))
-                    ->description(__('fin-sentinel::fin-sentinel.ignored_exceptions_description'))
+                Section::make(__('fin-sentinel::fin-sentinel.settings.error.ignored_exceptions'))
+                    ->description(__('fin-sentinel::fin-sentinel.settings.error.ignored_exceptions_description'))
                     ->schema([
                         Repeater::make('ignored_exceptions')
-                            ->label(__('fin-sentinel::fin-sentinel.ignored_exceptions_label'))
+                            ->label(__('fin-sentinel::fin-sentinel.settings.error.ignored_exceptions_label'))
                             ->label('')
                             ->schema([
                                 Select::make('exception')
                                     ->options(array_merge(
                                         static::KNOWN_EXCEPTIONS,
-                                        ['other' => __('fin-sentinel::fin-sentinel.other_custom')]
+                                        ['other' => __('fin-sentinel::fin-sentinel.settings.error.other_custom')]
                                     ))
                                     ->required()
                                     ->live(),
                                 TextInput::make('custom_class')
-                                    ->label(__('fin-sentinel::fin-sentinel.exception_class_label'))
+                                    ->label(__('fin-sentinel::fin-sentinel.settings.error.exception_class'))
                                     ->visible(fn (callable $get): bool => $get('exception') === 'other')
                                     ->required(fn (callable $get): bool => $get('exception') === 'other')
                                     ->rules([
                                         fn () => function (string $attribute, $value, $fail) {
                                             if ($value && ! class_exists($value)) {
-                                                $fail(__('fin-sentinel::fin-sentinel.class_not_exist'));
+                                                $fail(__('fin-sentinel::fin-sentinel.settings.error.class_not_exist'));
                                             }
                                         },
                                     ]),
@@ -198,8 +198,8 @@ class ManageErrorChannelSettings extends SettingsPage
                             ->defaultItems(0)
                             ->collapsible()
                             ->itemLabel(fn (array $state): string => $state['exception'] === 'other'
-                                ? ($state['custom_class'] ?? __('fin-sentinel::fin-sentinel.custom_exception'))
-                                : (class_basename($state['exception'] ?? '') ?: __('fin-sentinel::fin-sentinel.select_exception'))),
+                                ? ($state['custom_class'] ?? __('fin-sentinel::fin-sentinel.settings.error.custom_exception'))
+                                : (class_basename($state['exception'] ?? '') ?: __('fin-sentinel::fin-sentinel.settings.error.select_exception'))),
                     ]),
             ]),
         ]);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace FinityLabs\FinSentinel;
 
 use Closure;
+use Filament\Clusters\Cluster;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
@@ -20,6 +21,10 @@ class FinSentinelPlugin implements Plugin
     protected ?int $navigationSort = null;
 
     protected ?Closure $canAccessUsing = null;
+
+    protected static ?string $resolvedSettingsCluster = null;
+
+    protected ?int $settingsNavigationSort = null;
 
     public static function make(): static
     {
@@ -70,6 +75,36 @@ class FinSentinelPlugin implements Plugin
         $this->canAccessUsing = $callback;
 
         return $this;
+    }
+
+    /**
+     * @param  class-string<Cluster>|null  $cluster
+     */
+    public function settingsCluster(?string $cluster): static
+    {
+        static::$resolvedSettingsCluster = $cluster;
+
+        return $this;
+    }
+
+    /**
+     * @return class-string<Cluster>
+     */
+    public static function getSettingsCluster(): string
+    {
+        return static::$resolvedSettingsCluster ?? Clusters\FinSentinelSettings\FinSentinelSettings::class;
+    }
+
+    public function settingsNavigationSort(?int $sort): static
+    {
+        $this->settingsNavigationSort = $sort;
+
+        return $this;
+    }
+
+    public function getSettingsNavigationSort(int $default = 1): int
+    {
+        return $this->settingsNavigationSort ?? $default;
     }
 
     public function getNavigationGroup(): string|UnitEnum|null

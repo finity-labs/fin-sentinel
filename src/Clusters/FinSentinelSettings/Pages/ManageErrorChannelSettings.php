@@ -17,7 +17,7 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use FinityLabs\FinSentinel\Clusters\FinSentinelSettings\FinSentinelSettings;
+use FinityLabs\FinSentinel\FinSentinelPlugin;
 use FinityLabs\FinSentinel\Mail\ErrorMail;
 use FinityLabs\FinSentinel\Settings\ErrorChannelSettings;
 use FinityLabs\FinSentinel\Traits\HasPageShieldSupport;
@@ -33,13 +33,19 @@ class ManageErrorChannelSettings extends SettingsPage
 {
     use HasPageShieldSupport;
 
-    protected static ?string $cluster = FinSentinelSettings::class;
+    public static function getCluster(): ?string
+    {
+        return FinSentinelPlugin::getSettingsCluster();
+    }
 
     protected static string $settings = ErrorChannelSettings::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedExclamationTriangle;
 
-    protected static ?int $navigationSort = 1;
+    public static function getNavigationSort(): ?int
+    {
+        return FinSentinelPlugin::get()->getSettingsNavigationSort(1);
+    }
 
     public const KNOWN_EXCEPTIONS = [
         NotFoundHttpException::class => 'NotFoundHttpException',

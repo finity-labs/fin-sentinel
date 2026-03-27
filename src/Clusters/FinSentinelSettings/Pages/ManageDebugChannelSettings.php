@@ -15,7 +15,7 @@ use Filament\Schemas\Components\Callout;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use FinityLabs\FinSentinel\Clusters\FinSentinelSettings\FinSentinelSettings;
+use FinityLabs\FinSentinel\FinSentinelPlugin;
 use FinityLabs\FinSentinel\Mail\DebugMail;
 use FinityLabs\FinSentinel\Settings\DebugChannelSettings;
 use FinityLabs\FinSentinel\Traits\HasPageShieldSupport;
@@ -25,13 +25,19 @@ class ManageDebugChannelSettings extends SettingsPage
 {
     use HasPageShieldSupport;
 
-    protected static ?string $cluster = FinSentinelSettings::class;
+    public static function getCluster(): ?string
+    {
+        return FinSentinelPlugin::getSettingsCluster();
+    }
 
     protected static string $settings = DebugChannelSettings::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBugAnt;
 
-    protected static ?int $navigationSort = 2;
+    public static function getNavigationSort(): ?int
+    {
+        return FinSentinelPlugin::get()->getSettingsNavigationSort(1) + 1;
+    }
 
     public static function getNavigationLabel(): string
     {

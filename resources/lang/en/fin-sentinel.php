@@ -122,7 +122,7 @@ return [
     // Log viewer
     'log_email_subject' => ':app - Log file: :file',
     'log_bulk_email_subject' => ':app - :count log files attached',
-    'log_viewer_title' => 'Log Viewer',
+    'log_viewer_title' => 'System Logs',
     'log_viewer_heading' => 'Log Files',
     'log_entry_viewer_title' => 'Log Entries',
     'log_column_filename' => 'Filename',

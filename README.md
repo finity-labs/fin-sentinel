@@ -83,9 +83,12 @@ FinSentinelPlugin::make()
     ->navigationGroup('Monitoring')      // string, UnitEnum, Closure, or null
     ->navigationSort(10)                 // ?int
     ->canAccess(fn () => auth()->user()?->is_admin)  // restrict access without Shield
+    ->settingsCluster(MySettingsCluster::class)       // move settings to a custom cluster
 ```
 
 The `canAccess` closure controls who can see all Sentinel pages. When omitted, every authenticated panel user has access. When [Filament Shield](#filament-shield-integration) is installed, its page-level permissions take priority.
+
+The `settingsCluster` option lets you move the Error Channel and Debug Channel settings pages into a different cluster (e.g., a shared "Settings" cluster in your app). By default, they live in the built-in FinSentinelSettings cluster.
 
 ## Usage
 

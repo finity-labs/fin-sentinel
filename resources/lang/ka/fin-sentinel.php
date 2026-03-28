@@ -107,6 +107,7 @@ return [
         'recipients' => 'მიმღებები',
         'throttling' => 'სიხშირის შეზღუდვა',
         'email_address' => 'Email მისამართი',
+        'add_recipient' => 'მიმღების დამატება',
         'no_recipients_warning' => 'მიმღებები არ არის კონფიგურირებული — შეტყობინებები არ გაიგზავნება სანამ მინიმუმ ერთი email მისამართი არ დაემატება.',
         'throttle_rate' => 'შეზღუდვის სიხშირე',
         'minutes_suffix' => 'წუთი',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'ეს კლასი არ არსებობს.',
             'custom_exception' => 'მორგებული გამონაკლისი',
             'select_exception' => 'აირჩიეთ გამონაკლისი',
+            'add_exception' => 'გამონაკლისის დამატება',
         ],
 
         'debug' => [

@@ -107,6 +107,7 @@ return [
         'recipients' => 'Empfänger',
         'throttling' => 'Drosselung',
         'email_address' => 'E-Mail-Adresse',
+        'add_recipient' => 'Empfänger hinzufügen',
         'no_recipients_warning' => 'Keine Empfänger konfiguriert — Benachrichtigungen werden erst gesendet, wenn mindestens eine E-Mail-Adresse hinzugefügt wurde.',
         'throttle_rate' => 'Drosselungsrate',
         'minutes_suffix' => 'Minuten',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Diese Klasse existiert nicht.',
             'custom_exception' => 'Benutzerdefinierte Ausnahme',
             'select_exception' => 'Ausnahme auswählen',
+            'add_exception' => 'Ausnahme hinzufügen',
         ],
 
         'debug' => [

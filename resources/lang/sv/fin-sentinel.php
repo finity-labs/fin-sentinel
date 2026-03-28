@@ -107,6 +107,7 @@ return [
         'recipients' => 'Mottagare',
         'throttling' => 'Begränsning',
         'email_address' => 'E-postadress',
+        'add_recipient' => 'Lägg till mottagare',
         'no_recipients_warning' => 'Inga mottagare konfigurerade — notifieringar skickas inte förrän minst en e-postadress har lagts till.',
         'throttle_rate' => 'Begränsningsfrekvens',
         'minutes_suffix' => 'minuter',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Denna klass finns inte.',
             'custom_exception' => 'Anpassat undantag',
             'select_exception' => 'Välj undantag',
+            'add_exception' => 'Lägg till undantag',
         ],
 
         'debug' => [

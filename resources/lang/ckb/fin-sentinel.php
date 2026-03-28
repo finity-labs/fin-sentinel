@@ -107,6 +107,7 @@ return [
         'recipients' => 'وەرگرەکان',
         'throttling' => 'کۆنترۆڵی خێرایی',
         'email_address' => 'ناونیشانی ئیمەیڵ',
+        'add_recipient' => 'زیادکردنی وەرگر',
         'no_recipients_warning' => 'هیچ وەرگرێک دیاری نەکراوە — ئاگادارکردنەوەکان نانێردرێن تا کەمی یەک ئیمەیڵ زیاد بکرێت.',
         'throttle_rate' => 'ڕێژەی سنوور',
         'minutes_suffix' => 'خولەک',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'ئەم کلاسە بوونی نییە.',
             'custom_exception' => 'تەواوەی تایبەت',
             'select_exception' => 'تەواوە هەڵبژێرە',
+            'add_exception' => 'زیادکردنی جیاوازی',
         ],
 
         'debug' => [

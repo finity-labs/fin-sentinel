@@ -107,6 +107,7 @@ return [
         'recipients' => 'Отримувачі',
         'throttling' => 'Обмеження частоти',
         'email_address' => 'Адреса електронної пошти',
+        'add_recipient' => 'Додати одержувача',
         'no_recipients_warning' => 'Отримувачів не налаштовано — сповіщення не надсилатимуться, поки не буде додано принаймні одну адресу.',
         'throttle_rate' => 'Частота обмеження',
         'minutes_suffix' => 'хвилин',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Цей клас не існує.',
             'custom_exception' => 'Довільний виняток',
             'select_exception' => 'Оберіть виняток',
+            'add_exception' => 'Додати виняток',
         ],
 
         'debug' => [

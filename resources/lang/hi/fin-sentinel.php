@@ -107,6 +107,7 @@ return [
         'recipients' => 'प्राप्तकर्ता',
         'throttling' => 'थ्रॉटलिंग',
         'email_address' => 'ईमेल पता',
+        'add_recipient' => 'प्राप्तकर्ता जोड़ें',
         'no_recipients_warning' => 'कोई प्राप्तकर्ता कॉन्फ़िगर नहीं किया गया है — जब तक कम से कम एक ईमेल नहीं जोड़ा जाता, सूचनाएँ नहीं भेजी जाएँगी।',
         'throttle_rate' => 'थ्रॉटल दर',
         'minutes_suffix' => 'मिनट',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'यह क्लास मौजूद नहीं है।',
             'custom_exception' => 'कस्टम अपवाद',
             'select_exception' => 'अपवाद चुनें',
+            'add_exception' => 'अपवाद जोड़ें',
         ],
 
         'debug' => [

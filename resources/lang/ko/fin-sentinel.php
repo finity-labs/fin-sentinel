@@ -107,6 +107,7 @@ return [
         'recipients' => '수신자',
         'throttling' => '발송 제한',
         'email_address' => '이메일 주소',
+        'add_recipient' => '수신자 추가',
         'no_recipients_warning' => '수신자가 설정되지 않았습니다 - 이메일 주소를 하나 이상 추가해야 알림이 발송됩니다.',
         'throttle_rate' => '제한 빈도',
         'minutes_suffix' => '분',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => '이 클래스가 존재하지 않습니다.',
             'custom_exception' => '사용자 정의 예외',
             'select_exception' => '예외 선택',
+            'add_exception' => '예외 추가',
         ],
 
         'debug' => [

@@ -107,6 +107,7 @@ return [
         'recipients' => 'Alıcılar',
         'throttling' => 'Sürət Məhdudiyyəti',
         'email_address' => 'E-poçt ünvanı',
+        'add_recipient' => 'Alıcı əlavə et',
         'no_recipients_warning' => 'Alıcı təyin edilməyib — ən azı bir e-poçt ünvanı əlavə edilənə qədər bildirişlər göndərilməyəcək.',
         'throttle_rate' => 'Məhdudiyyət dərəcəsi',
         'minutes_suffix' => 'dəqiqə',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Bu sinif mövcud deyil.',
             'custom_exception' => 'Xüsusi istisna',
             'select_exception' => 'İstisna seçin',
+            'add_exception' => 'İstisna əlavə et',
         ],
 
         'debug' => [

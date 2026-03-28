@@ -107,6 +107,7 @@ return [
         'recipients' => 'Vastaanottajat',
         'throttling' => 'Rajoitus',
         'email_address' => 'Sähköpostiosoite',
+        'add_recipient' => 'Lisää vastaanottaja',
         'no_recipients_warning' => 'Vastaanottajia ei ole määritetty — ilmoituksia ei lähetetä ennen kuin vähintään yksi sähköpostiosoite on lisätty.',
         'throttle_rate' => 'Rajoitusnopeus',
         'minutes_suffix' => 'minuuttia',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Tätä luokkaa ei ole olemassa.',
             'custom_exception' => 'Mukautettu poikkeus',
             'select_exception' => 'Valitse poikkeus',
+            'add_exception' => 'Lisää poikkeus',
         ],
 
         'debug' => [

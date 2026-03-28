@@ -107,6 +107,7 @@ return [
         'recipients' => 'Qabul qiluvchilar',
         'throttling' => 'Cheklash',
         'email_address' => 'Elektron pochta manzili',
+        'add_recipient' => 'Qabul qiluvchi qo\'shish',
         'no_recipients_warning' => 'Qabul qiluvchilar sozlanmagan — kamida bitta elektron pochta qo\'shilmaguncha xabarnomalar yuborilmaydi.',
         'throttle_rate' => 'Cheklash tezligi',
         'minutes_suffix' => 'daqiqa',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Bu klass mavjud emas.',
             'custom_exception' => 'Maxsus istisno',
             'select_exception' => 'Istisno tanlang',
+            'add_exception' => 'Istisno qo\'shish',
         ],
 
         'debug' => [

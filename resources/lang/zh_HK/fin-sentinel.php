@@ -107,6 +107,7 @@ return [
         'recipients' => '收件人',
         'throttling' => '頻率限制',
         'email_address' => '電郵地址',
+        'add_recipient' => '新增收件人',
         'no_recipients_warning' => '未設定收件人 - 喺加入至少一個電郵地址之前，通知唔會發送。',
         'throttle_rate' => '限制頻率',
         'minutes_suffix' => '分鐘',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => '呢個類別唔存在。',
             'custom_exception' => '自訂例外',
             'select_exception' => '選擇例外',
+            'add_exception' => '新增例外',
         ],
 
         'debug' => [

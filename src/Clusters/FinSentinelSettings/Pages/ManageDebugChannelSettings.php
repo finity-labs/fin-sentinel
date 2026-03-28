@@ -127,6 +127,7 @@ class ManageDebugChannelSettings extends SettingsPage
 
                     Repeater::make('debug_recipients')
                         ->hiddenLabel()
+                        ->addActionLabel(__('fin-sentinel::fin-sentinel.settings.add_recipient'))
                         ->helperText(__('fin-sentinel::fin-sentinel.settings.debug.recipients_helper'))
                         ->simple(
                             TextInput::make('email')

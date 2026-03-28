@@ -107,6 +107,7 @@ return [
         'recipients' => 'Saņēmēji',
         'throttling' => 'Biežuma ierobežošana',
         'email_address' => 'Email adrese',
+        'add_recipient' => 'Pievienot saņēmēju',
         'no_recipients_warning' => 'Nav konfigurēti saņēmēji — paziņojumi netiks sūtīti, kamēr nebūs pievienota vismaz viena email adrese.',
         'throttle_rate' => 'Ierobežošanas biežums',
         'minutes_suffix' => 'minūtes',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Šī klase neeksistē.',
             'custom_exception' => 'Pielāgots izņēmums',
             'select_exception' => 'Izvēlieties izņēmumu',
+            'add_exception' => 'Pievienot izņēmumu',
         ],
 
         'debug' => [

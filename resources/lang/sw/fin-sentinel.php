@@ -107,6 +107,7 @@ return [
         'recipients' => 'Wapokeaji',
         'throttling' => 'Udhibiti wa Kasi',
         'email_address' => 'Anwani ya barua pepe',
+        'add_recipient' => 'Ongeza mpokeaji',
         'no_recipients_warning' => 'Hakuna wapokeaji waliowekwa — arifa hazitatumwa hadi barua pepe angalau moja iongezwe.',
         'throttle_rate' => 'Kiwango cha udhibiti',
         'minutes_suffix' => 'dakika',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Darasa hili halipo.',
             'custom_exception' => 'Ubaguzi maalum',
             'select_exception' => 'Chagua ubaguzi',
+            'add_exception' => 'Ongeza ubaguzi',
         ],
 
         'debug' => [

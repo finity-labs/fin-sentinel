@@ -107,6 +107,7 @@ return [
         'recipients' => 'Marrësit',
         'throttling' => 'Kufizimi',
         'email_address' => 'Adresa email',
+        'add_recipient' => 'Shto marrës',
         'no_recipients_warning' => 'Nuk ka marrës të konfiguruar — njoftimet nuk do të dërgohen derisa të shtohet të paktën një adresë email.',
         'throttle_rate' => 'Shkalla e kufizimit',
         'minutes_suffix' => 'minuta',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Kjo klasë nuk ekziston.',
             'custom_exception' => 'Përjashtim i personalizuar',
             'select_exception' => 'Zgjidhni përjashtimin',
+            'add_exception' => 'Shto përjashtim',
         ],
 
         'debug' => [

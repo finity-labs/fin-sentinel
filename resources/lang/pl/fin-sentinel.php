@@ -107,6 +107,7 @@ return [
         'recipients' => 'Odbiorcy',
         'throttling' => 'Ograniczanie',
         'email_address' => 'Adres email',
+        'add_recipient' => 'Dodaj odbiorcę',
         'no_recipients_warning' => 'Brak skonfigurowanych odbiorców — powiadomienia nie będą wysyłane, dopóki nie zostanie dodany przynajmniej jeden adres email.',
         'throttle_rate' => 'Częstotliwość ograniczania',
         'minutes_suffix' => 'minut',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Ta klasa nie istnieje.',
             'custom_exception' => 'Niestandardowy wyjątek',
             'select_exception' => 'Wybierz wyjątek',
+            'add_exception' => 'Dodaj wyjątek',
         ],
 
         'debug' => [

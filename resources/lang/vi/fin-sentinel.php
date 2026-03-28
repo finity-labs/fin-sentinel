@@ -107,6 +107,7 @@ return [
         'recipients' => 'Người nhận',
         'throttling' => 'Giới hạn tần suất',
         'email_address' => 'Địa chỉ email',
+        'add_recipient' => 'Thêm người nhận',
         'no_recipients_warning' => 'Chưa cấu hình người nhận - thông báo sẽ không được gửi cho đến khi thêm ít nhất một địa chỉ email.',
         'throttle_rate' => 'Tần suất giới hạn',
         'minutes_suffix' => 'phút',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Lớp này không tồn tại.',
             'custom_exception' => 'Ngoại lệ tùy chỉnh',
             'select_exception' => 'Chọn ngoại lệ',
+            'add_exception' => 'Thêm ngoại lệ',
         ],
 
         'debug' => [

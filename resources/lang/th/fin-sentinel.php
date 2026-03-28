@@ -107,6 +107,7 @@ return [
         'recipients' => 'ผู้รับ',
         'throttling' => 'การจำกัดความถี่',
         'email_address' => 'ที่อยู่อีเมล',
+        'add_recipient' => 'เพิ่มผู้รับ',
         'no_recipients_warning' => 'ยังไม่ได้ตั้งค่าผู้รับ - การแจ้งเตือนจะไม่ถูกส่งจนกว่าจะเพิ่มอีเมลอย่างน้อยหนึ่งรายการ',
         'throttle_rate' => 'อัตราการจำกัด',
         'minutes_suffix' => 'นาที',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'คลาสนี้ไม่มีอยู่',
             'custom_exception' => 'ข้อยกเว้นที่กำหนดเอง',
             'select_exception' => 'เลือกข้อยกเว้น',
+            'add_exception' => 'เพิ่มข้อยกเว้น',
         ],
 
         'debug' => [

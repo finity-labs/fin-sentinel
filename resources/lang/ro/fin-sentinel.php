@@ -107,6 +107,7 @@ return [
         'recipients' => 'Destinatari',
         'throttling' => 'Limitare',
         'email_address' => 'Adresă de email',
+        'add_recipient' => 'Adaugă destinatar',
         'no_recipients_warning' => 'Nu sunt configurați destinatari — notificările nu vor fi trimise până când nu este adăugată cel puțin o adresă de email.',
         'throttle_rate' => 'Rata de limitare',
         'minutes_suffix' => 'minute',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Această clasă nu există.',
             'custom_exception' => 'Excepție personalizată',
             'select_exception' => 'Selectați excepția',
+            'add_exception' => 'Adaugă excepție',
         ],
 
         'debug' => [

@@ -107,6 +107,7 @@ return [
         'recipients' => 'Dawngtu',
         'throttling' => 'Throttling',
         'email_address' => 'Email address',
+        'add_recipient' => 'Recipient dah belh',
         'no_recipients_warning' => 'Dawngtu siamṭhat a ni lo — email pakhat tal a siam phawt loh chuan hriatṭhiahna thawn a ni lovang.',
         'throttle_rate' => 'Throttle sang zat',
         'minutes_suffix' => 'minit',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'He class hi a awm lo.',
             'custom_exception' => 'Custom exception',
             'select_exception' => 'Exception thlang rawh',
+            'add_exception' => 'Exception dah belh',
         ],
 
         'debug' => [

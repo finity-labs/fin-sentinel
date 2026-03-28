@@ -107,6 +107,7 @@ return [
         'recipients' => 'گیرندگان',
         'throttling' => 'کنترل نرخ',
         'email_address' => 'آدرس ایمیل',
+        'add_recipient' => 'افزودن گیرنده',
         'no_recipients_warning' => 'گیرنده‌ای تنظیم نشده — تا زمانی که حداقل یک آدرس ایمیل اضافه نشود، اعلان‌ها ارسال نخواهند شد.',
         'throttle_rate' => 'نرخ محدودیت',
         'minutes_suffix' => 'دقیقه',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'این کلاس وجود ندارد.',
             'custom_exception' => 'استثنای سفارشی',
             'select_exception' => 'انتخاب استثنا',
+            'add_exception' => 'افزودن استثنا',
         ],
 
         'debug' => [

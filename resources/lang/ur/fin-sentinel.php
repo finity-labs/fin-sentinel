@@ -107,6 +107,7 @@ return [
         'recipients' => 'وصول کنندگان',
         'throttling' => 'شرح کی حد بندی',
         'email_address' => 'ای میل ایڈریس',
+        'add_recipient' => 'وصول کنندہ شامل کریں',
         'no_recipients_warning' => 'کوئی وصول کنندہ مقرر نہیں — جب تک کم از کم ایک ای میل ایڈریس شامل نہ کیا جائے، اطلاعات نہیں بھیجی جائیں گی۔',
         'throttle_rate' => 'حد بندی کی شرح',
         'minutes_suffix' => 'منٹ',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'یہ کلاس موجود نہیں ہے۔',
             'custom_exception' => 'حسب ضرورت استثناء',
             'select_exception' => 'استثناء منتخب کریں',
+            'add_exception' => 'استثناء شامل کریں',
         ],
 
         'debug' => [

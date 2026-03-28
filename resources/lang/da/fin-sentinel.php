@@ -107,6 +107,7 @@ return [
         'recipients' => 'Modtagere',
         'throttling' => 'Begrænsning',
         'email_address' => 'E-mailadresse',
+        'add_recipient' => 'Tilføj modtager',
         'no_recipients_warning' => 'Ingen modtagere konfigureret — notifikationer sendes ikke, før der er tilføjet mindst én e-mailadresse.',
         'throttle_rate' => 'Begrænsningsfrekvens',
         'minutes_suffix' => 'minutter',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Denne klasse eksisterer ikke.',
             'custom_exception' => 'Tilpasset undtagelse',
             'select_exception' => 'Vælg undtagelse',
+            'add_exception' => 'Tilføj undtagelse',
         ],
 
         'debug' => [

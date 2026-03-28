@@ -107,6 +107,7 @@ return [
         'recipients' => 'Príjemcovia',
         'throttling' => 'Obmedzovanie',
         'email_address' => 'Emailová adresa',
+        'add_recipient' => 'Pridať príjemcu',
         'no_recipients_warning' => 'Nie sú nastavení žiadni príjemcovia — oznámenia nebudú odosielané, kým nebude pridaná aspoň jedna emailová adresa.',
         'throttle_rate' => 'Frekvencia obmedzenia',
         'minutes_suffix' => 'minút',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Táto trieda neexistuje.',
             'custom_exception' => 'Vlastná výnimka',
             'select_exception' => 'Vyberte výnimku',
+            'add_exception' => 'Pridať výnimku',
         ],
 
         'debug' => [

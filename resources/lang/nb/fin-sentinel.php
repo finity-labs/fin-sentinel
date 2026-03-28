@@ -107,6 +107,7 @@ return [
         'recipients' => 'Mottakere',
         'throttling' => 'Begrensning',
         'email_address' => 'E-postadresse',
+        'add_recipient' => 'Legg til mottaker',
         'no_recipients_warning' => 'Ingen mottakere konfigurert — varsler sendes ikke før minst én e-postadresse er lagt til.',
         'throttle_rate' => 'Begrensningsfrekvens',
         'minutes_suffix' => 'minutter',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Denne klassen finnes ikke.',
             'custom_exception' => 'Tilpasset unntak',
             'select_exception' => 'Velg unntak',
+            'add_exception' => 'Legg til unntak',
         ],
 
         'debug' => [

@@ -107,6 +107,7 @@ return [
         'recipients' => 'Penerima',
         'throttling' => 'Had Frekuensi',
         'email_address' => 'Alamat emel',
+        'add_recipient' => 'Tambah penerima',
         'no_recipients_warning' => 'Tiada penerima dikonfigurasi - pemberitahuan tidak akan dihantar sehingga sekurang-kurangnya satu alamat emel ditambah.',
         'throttle_rate' => 'Kadar had',
         'minutes_suffix' => 'minit',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Kelas ini tidak wujud.',
             'custom_exception' => 'Exception tersuai',
             'select_exception' => 'Pilih exception',
+            'add_exception' => 'Tambah pengecualian',
         ],
 
         'debug' => [

@@ -107,6 +107,7 @@ return [
         'recipients' => 'လက်ခံသူများ',
         'throttling' => 'ထရော့တ်လင်း',
         'email_address' => 'အီးမေးလ် လိပ်စာ',
+        'add_recipient' => 'လက်ခံသူ ထည့်ရန်',
         'no_recipients_warning' => 'လက်ခံသူ သတ်မှတ်မထားပါ — အီးမေးလ် အနည်းဆုံး တစ်ခု ထည့်မှသာ အကြောင်းကြားချက်များ ပေးပို့မည်။',
         'throttle_rate' => 'ထရော့တ် နှုန်း',
         'minutes_suffix' => 'မိနစ်',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'ဤအတန်း မရှိပါ။',
             'custom_exception' => 'စိတ်ကြိုက် ချွင်းချက်',
             'select_exception' => 'ချွင်းချက် ရွေးပါ',
+            'add_exception' => 'ခြွင်းချက် ထည့်ရန်',
         ],
 
         'debug' => [

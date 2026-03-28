@@ -107,6 +107,7 @@ return [
         'recipients' => 'Destinataris',
         'throttling' => 'Limitació',
         'email_address' => 'Adreça de correu electrònic',
+        'add_recipient' => 'Afegir destinatari',
         'no_recipients_warning' => 'No s\'han configurat destinataris — les notificacions no s\'enviaran fins que s\'afegeixi almenys un correu electrònic.',
         'throttle_rate' => 'Taxa de limitació',
         'minutes_suffix' => 'minuts',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Aquesta classe no existeix.',
             'custom_exception' => 'Excepció personalitzada',
             'select_exception' => 'Seleccionar excepció',
+            'add_exception' => 'Afegir excepció',
         ],
 
         'debug' => [

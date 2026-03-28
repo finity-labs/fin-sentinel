@@ -107,6 +107,7 @@ return [
         'recipients' => 'ተቀባዮች',
         'throttling' => 'ገደብ መጣል',
         'email_address' => 'የኢሜይል አድራሻ',
+        'add_recipient' => 'ተቀባይ ያክሉ',
         'no_recipients_warning' => 'ምንም ተቀባዮች አልተዋቀሩም — ቢያንስ አንድ ኢሜይል እስኪጨመር ማሳወቂያዎች አይላኩም።',
         'throttle_rate' => 'የገደብ መጠን',
         'minutes_suffix' => 'ደቂቃዎች',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'ይህ ክላስ የለም።',
             'custom_exception' => 'ብጁ ልዩ ሁኔታ',
             'select_exception' => 'ልዩ ሁኔታ ይምረጡ',
+            'add_exception' => 'ልዩ ሁኔታ ያክሉ',
         ],
 
         'debug' => [

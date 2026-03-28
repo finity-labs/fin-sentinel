@@ -107,6 +107,7 @@ return [
         'recipients' => 'נמענים',
         'throttling' => 'הגבלת קצב',
         'email_address' => 'כתובת דוא"ל',
+        'add_recipient' => 'הוסף נמען',
         'no_recipients_warning' => 'לא הוגדרו נמענים — לא יישלחו התראות עד שתתווסף לפחות כתובת דוא"ל אחת.',
         'throttle_rate' => 'קצב הגבלה',
         'minutes_suffix' => 'דקות',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'מחלקה זו אינה קיימת.',
             'custom_exception' => 'חריגה מותאמת אישית',
             'select_exception' => 'בחר חריגה',
+            'add_exception' => 'הוסף חריגה',
         ],
 
         'debug' => [

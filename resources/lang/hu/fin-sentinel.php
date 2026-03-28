@@ -107,6 +107,7 @@ return [
         'recipients' => 'Címzettek',
         'throttling' => 'Korlátozás',
         'email_address' => 'Email cím',
+        'add_recipient' => 'Címzett hozzáadása',
         'no_recipients_warning' => 'Nincsenek beállított címzettek — az értesítések nem lesznek elküldve, amíg legalább egy email cím nincs megadva.',
         'throttle_rate' => 'Korlátozási arány',
         'minutes_suffix' => 'perc',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Ez az osztály nem létezik.',
             'custom_exception' => 'Egyedi kivétel',
             'select_exception' => 'Kivétel kiválasztása',
+            'add_exception' => 'Kivétel hozzáadása',
         ],
 
         'debug' => [

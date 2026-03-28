@@ -107,6 +107,7 @@ return [
         'recipients' => '受信者',
         'throttling' => '送信制限',
         'email_address' => 'メールアドレス',
+        'add_recipient' => '受信者を追加',
         'no_recipients_warning' => '受信者が設定されていません - メールアドレスを少なくとも1つ追加するまで、通知は送信されません。',
         'throttle_rate' => '制限頻度',
         'minutes_suffix' => '分',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'このクラスは存在しません。',
             'custom_exception' => 'カスタム例外',
             'select_exception' => '例外を選択',
+            'add_exception' => '例外を追加',
         ],
 
         'debug' => [

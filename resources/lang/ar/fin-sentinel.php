@@ -107,6 +107,7 @@ return [
         'recipients' => 'المستلمون',
         'throttling' => 'التحكم بالمعدل',
         'email_address' => 'عنوان البريد الإلكتروني',
+        'add_recipient' => 'إضافة مستلم',
         'no_recipients_warning' => 'لم يتم تحديد مستلمين — لن يتم إرسال الإشعارات حتى تتم إضافة عنوان بريد إلكتروني واحد على الأقل.',
         'throttle_rate' => 'معدل التحكم',
         'minutes_suffix' => 'دقائق',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'هذه الفئة غير موجودة.',
             'custom_exception' => 'استثناء مخصص',
             'select_exception' => 'اختر استثناء',
+            'add_exception' => 'إضافة استثناء',
         ],
 
         'debug' => [

@@ -107,6 +107,7 @@ return [
         'recipients' => 'Хүлээн авагчид',
         'throttling' => 'Хязгаарлалт',
         'email_address' => 'Имэйл хаяг',
+        'add_recipient' => 'Хүлээн авагч нэмэх',
         'no_recipients_warning' => 'Хүлээн авагч тохируулаагүй байна — хамгийн багадаа нэг имэйл нэмэх хүртэл мэдэгдэл илгээгдэхгүй.',
         'throttle_rate' => 'Хязгаарлах хурд',
         'minutes_suffix' => 'минут',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Энэ класс байхгүй байна.',
             'custom_exception' => 'Тусгай онцгой тохиолдол',
             'select_exception' => 'Онцгой тохиолдол сонгох',
+            'add_exception' => 'Үл хамаарах зүйл нэмэх',
         ],
 
         'debug' => [

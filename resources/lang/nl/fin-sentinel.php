@@ -107,6 +107,7 @@ return [
         'recipients' => 'Ontvangers',
         'throttling' => 'Beperking',
         'email_address' => 'E-mailadres',
+        'add_recipient' => 'Ontvanger toevoegen',
         'no_recipients_warning' => 'Geen ontvangers geconfigureerd — meldingen worden pas verzonden als er minstens één e-mailadres is toegevoegd.',
         'throttle_rate' => 'Beperkingsfrequentie',
         'minutes_suffix' => 'minuten',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Deze klasse bestaat niet.',
             'custom_exception' => 'Aangepaste uitzondering',
             'select_exception' => 'Uitzondering selecteren',
+            'add_exception' => 'Uitzondering toevoegen',
         ],
 
         'debug' => [

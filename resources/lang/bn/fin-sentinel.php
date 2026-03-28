@@ -107,6 +107,7 @@ return [
         'recipients' => 'প্রাপক',
         'throttling' => 'থ্রটলিং',
         'email_address' => 'ইমেইল ঠিকানা',
+        'add_recipient' => 'প্রাপক যোগ করুন',
         'no_recipients_warning' => 'কোনো প্রাপক কনফিগার করা হয়নি — কমপক্ষে একটি ইমেইল যোগ না করা পর্যন্ত বিজ্ঞপ্তি পাঠানো হবে না।',
         'throttle_rate' => 'থ্রটল হার',
         'minutes_suffix' => 'মিনিট',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'এই ক্লাসটি বিদ্যমান নেই।',
             'custom_exception' => 'কাস্টম ব্যতিক্রম',
             'select_exception' => 'ব্যতিক্রম নির্বাচন করুন',
+            'add_exception' => 'ব্যতিক্রম যোগ করুন',
         ],
 
         'debug' => [

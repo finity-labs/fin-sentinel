@@ -107,6 +107,7 @@ return [
         'recipients' => 'Prejemniki',
         'throttling' => 'Omejevanje',
         'email_address' => 'E-poštni naslov',
+        'add_recipient' => 'Dodaj prejemnika',
         'no_recipients_warning' => 'Ni nastavljenih prejemnikov — obvestila ne bodo poslana, dokler ni dodan vsaj en e-poštni naslov.',
         'throttle_rate' => 'Pogostost omejevanja',
         'minutes_suffix' => 'minut',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Ta razred ne obstaja.',
             'custom_exception' => 'Izjema po meri',
             'select_exception' => 'Izberite izjemo',
+            'add_exception' => 'Dodaj izjemo',
         ],
 
         'debug' => [

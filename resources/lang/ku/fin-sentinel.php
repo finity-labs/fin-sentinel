@@ -107,6 +107,7 @@ return [
         'recipients' => 'Wergir',
         'throttling' => 'Kontrola Rêjeyê',
         'email_address' => 'Navnîşana e-peyamê',
+        'add_recipient' => 'Wergir lê zêde bike',
         'no_recipients_warning' => 'Tu wergir nehatiye diyarkirin — agahdarî nayên şandin heta ku herî kêm yek e-peyam were zêdekirin.',
         'throttle_rate' => 'Rêjeya sînor',
         'minutes_suffix' => 'deqîqe',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Ev çîn tune ye.',
             'custom_exception' => 'Vegotina taybet',
             'select_exception' => 'Vegotinê hilbijêre',
+            'add_exception' => 'Awarte lê zêde bike',
         ],
 
         'debug' => [

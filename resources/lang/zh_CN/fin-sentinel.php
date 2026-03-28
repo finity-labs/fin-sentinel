@@ -107,6 +107,7 @@ return [
         'recipients' => '收件人',
         'throttling' => '频率限制',
         'email_address' => '邮箱地址',
+        'add_recipient' => '添加收件人',
         'no_recipients_warning' => '尚未配置收件人 - 在添加至少一个邮箱地址之前，通知将不会发送。',
         'throttle_rate' => '限制频率',
         'minutes_suffix' => '分钟',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => '此类不存在。',
             'custom_exception' => '自定义异常',
             'select_exception' => '选择异常',
+            'add_exception' => '添加例外',
         ],
 
         'debug' => [

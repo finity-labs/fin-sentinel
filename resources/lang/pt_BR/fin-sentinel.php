@@ -107,6 +107,7 @@ return [
         'recipients' => 'Destinatários',
         'throttling' => 'Limitação',
         'email_address' => 'Endereço de e-mail',
+        'add_recipient' => 'Adicionar destinatário',
         'no_recipients_warning' => 'Nenhum destinatário configurado — as notificações não serão enviadas até que pelo menos um endereço de e-mail seja adicionado.',
         'throttle_rate' => 'Taxa de limitação',
         'minutes_suffix' => 'minutos',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Esta classe não existe.',
             'custom_exception' => 'Exceção personalizada',
             'select_exception' => 'Selecionar exceção',
+            'add_exception' => 'Adicionar exceção',
         ],
 
         'debug' => [

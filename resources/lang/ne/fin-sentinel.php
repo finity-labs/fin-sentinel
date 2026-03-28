@@ -107,6 +107,7 @@ return [
         'recipients' => 'प्राप्तकर्ता',
         'throttling' => 'थ्रटलिङ',
         'email_address' => 'इमेल ठेगाना',
+        'add_recipient' => 'प्राप्तकर्ता थप्नुहोस्',
         'no_recipients_warning' => 'कुनै प्राप्तकर्ता कन्फिगर गरिएको छैन — कम्तीमा एउटा इमेल नथपेसम्म सूचनाहरू पठाइने छैन।',
         'throttle_rate' => 'थ्रटल दर',
         'minutes_suffix' => 'मिनेट',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'यो क्लास अवस्थित छैन।',
             'custom_exception' => 'कस्टम अपवाद',
             'select_exception' => 'अपवाद छान्नुहोस्',
+            'add_exception' => 'अपवाद थप्नुहोस्',
         ],
 
         'debug' => [

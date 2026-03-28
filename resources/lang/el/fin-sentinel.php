@@ -107,6 +107,7 @@ return [
         'recipients' => 'Παραλήπτες',
         'throttling' => 'Περιορισμός συχνότητας',
         'email_address' => 'Διεύθυνση email',
+        'add_recipient' => 'Προσθήκη παραλήπτη',
         'no_recipients_warning' => 'Δεν έχουν ρυθμιστεί παραλήπτες — οι ειδοποιήσεις δεν θα αποστέλλονται μέχρι να προστεθεί τουλάχιστον ένα email.',
         'throttle_rate' => 'Ρυθμός περιορισμού',
         'minutes_suffix' => 'λεπτά',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Αυτή η κλάση δεν υπάρχει.',
             'custom_exception' => 'Προσαρμοσμένη εξαίρεση',
             'select_exception' => 'Επιλέξτε εξαίρεση',
+            'add_exception' => 'Προσθήκη εξαίρεσης',
         ],
 
         'debug' => [

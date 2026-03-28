@@ -135,6 +135,7 @@ class ManageErrorChannelSettings extends SettingsPage
 
                         Repeater::make('error_recipients')
                             ->hiddenLabel()
+                            ->addActionLabel(__('fin-sentinel::fin-sentinel.settings.add_recipient'))
                             ->simple(
                                 TextInput::make('email')
                                     ->label(__('fin-sentinel::fin-sentinel.settings.email_address'))
@@ -173,8 +174,8 @@ class ManageErrorChannelSettings extends SettingsPage
                     ->description(__('fin-sentinel::fin-sentinel.settings.error.ignored_exceptions_description'))
                     ->schema([
                         Repeater::make('ignored_exceptions')
-                            ->label(__('fin-sentinel::fin-sentinel.settings.error.ignored_exceptions_label'))
-                            ->label('')
+                            ->hiddenLabel()
+                            ->addActionLabel(__('fin-sentinel::fin-sentinel.settings.error.add_exception'))
                             ->schema([
                                 Select::make('exception')
                                     ->options(array_merge(

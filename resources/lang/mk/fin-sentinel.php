@@ -107,6 +107,7 @@ return [
         'recipients' => 'Приматели',
         'throttling' => 'Ограничување на честотата',
         'email_address' => 'Email адреса',
+        'add_recipient' => 'Додади примач',
         'no_recipients_warning' => 'Нема поставени приматели — известувањата нема да се испраќаат додека не се додаде барем една email адреса.',
         'throttle_rate' => 'Стапка на ограничување',
         'minutes_suffix' => 'минути',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Оваа класа не постои.',
             'custom_exception' => 'Произволен исклучок',
             'select_exception' => 'Изберете исклучок',
+            'add_exception' => 'Додади исклучок',
         ],
 
         'debug' => [

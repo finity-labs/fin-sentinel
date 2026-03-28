@@ -107,6 +107,7 @@ return [
         'recipients' => 'Recipients',
         'throttling' => 'Throttling',
         'email_address' => 'Email address',
+        'add_recipient' => 'Add recipient',
         'no_recipients_warning' => 'No recipients configured — notifications won\'t be sent until at least one email is added.',
         'throttle_rate' => 'Throttle rate',
         'minutes_suffix' => 'minutes',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'This class does not exist.',
             'custom_exception' => 'Custom exception',
             'select_exception' => 'Select exception',
+            'add_exception' => 'Add exception',
         ],
 
         'debug' => [

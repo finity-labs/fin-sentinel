@@ -107,6 +107,7 @@ return [
         'recipients' => 'Gavėjai',
         'throttling' => 'Dažnio ribojimas',
         'email_address' => 'Email adresas',
+        'add_recipient' => 'Pridėti gavėją',
         'no_recipients_warning' => 'Gavėjai nesukonfigūruoti — pranešimai nebus siunčiami, kol nebus pridėtas bent vienas email adresas.',
         'throttle_rate' => 'Ribojimo dažnis',
         'minutes_suffix' => 'minučių',
@@ -128,6 +129,7 @@ return [
             'class_not_exist' => 'Ši klasė neegzistuoja.',
             'custom_exception' => 'Pasirinktinė išimtis',
             'select_exception' => 'Pasirinkite išimtį',
+            'add_exception' => 'Pridėti išimtį',
         ],
 
         'debug' => [

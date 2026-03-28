@@ -29,10 +29,7 @@ class FinSentinelServiceProvider extends PackageServiceProvider
             ->hasViews('fin-sentinel')
             ->hasTranslations()
             ->hasMigrations([
-                '../settings/create_error_channel_settings',
-                '../settings/create_debug_channel_settings',
-                '../settings/add_throttle_toggles_to_error_channel_settings',
-                '../settings/add_throttle_enabled_to_debug_channel_settings',
+                '../settings/create_fin_sentinel_settings',
             ])
             ->hasCommands([
                 Commands\InstallCommand::class,

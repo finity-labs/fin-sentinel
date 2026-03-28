@@ -19,8 +19,12 @@ class UninstallCommand extends Command
     use DiscoversPanelProviders;
 
     private const SETTINGS_MIGRATION_FILES = [
+        'create_fin_sentinel_settings.php',
+        // Legacy migration files (pre-consolidation)
         'create_error_channel_settings.php',
         'create_debug_channel_settings.php',
+        'add_throttle_toggles_to_error_channel_settings.php',
+        'add_throttle_enabled_to_debug_channel_settings.php',
     ];
 
     protected $signature = 'fin-sentinel:uninstall {--force : Skip confirmation prompt}';

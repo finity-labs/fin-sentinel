@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2026-05-11
+
+### Fixed
+
+- **`+sdk` test rows on the mirror** -- All five `+sdk` matrix jobs reported 21 binding failures (`Unresolvable dependency resolving [Parameter #0 [ <required> $app ]] in class Illuminate\Support\MultipleInstanceManager`). Cause: `tests/TestCase::getPackageProviders()` did not register `Laravel\Ai\AiServiceProvider` when `laravel/ai` was installed, so Testbench never bound `AiManager`. Now conditionally appended when the class exists.
+- **`AiAnalyzerCircuitBreakerTest`, `AiAnalyzerHourlyCapTest`, `AiAnalyzerTimeoutTest`** -- The gateway-swap mocks in these files used `app()->resolving(AiManager::class, fn ($m) => $m->textProvider('anthropic')->useTextGateway($spy))`, which set the spy on the cached anthropic provider. `AiErrorAnalyzer::withProviderKey()` then called `Ai::forgetInstance('anthropic')` to make the DB-stored API key take effect, which wiped the cached provider — and the next resolution rebuilt a fresh provider without the spy. The real HTTP call then fired and `Http::preventStrayRequests()` threw a `StrayRequestException` that the analyzer's outer catch swallowed as `'unknown error'`. The `AiAnalyzerTimeoutTest > threads the configured ai_timeout` test was separately broken: `Ai::fakeAgent` passes a `string` to its closure, not an `AgentPrompt`, so `$prompt->timeout` was always null. Both tests rewritten to use `AiManager::extend('anthropic', fn () => $provider->useTextGateway($spy))`, which re-runs on every resolution and survives `forgetInstance`. Helpers extracted to `tests/AiTestHelpers.php` for reuse.
+- **L13 dependency resolution** -- `composer.json` widened to allow `illuminate/contracts ^13.0` and `orchestra/testbench ^11.0` (the testbench line that supports Laravel 13). Tests workflow updated to constrain `illuminate/contracts` (matching fin-mail's idiom) and remove `pest-plugin-laravel` on the L13 row, where the plugin has no compatible version yet.
+- **L11 matrix row** -- The Filament ^4 row pinned `laravel: ^11.0`, but the test suite uses `Mail::assertSentTimes` and the L12-shape `StrayRequestException`, which are L12+ APIs. The row now omits the Laravel pin so composer picks the latest compatible version (L12 under Filament ^4), matching fin-mail's idiom. Job name template adjusted to omit the Laravel segment when unpinned.
+
 ## [1.1.2] - 2026-05-11
 
 ### Fixed

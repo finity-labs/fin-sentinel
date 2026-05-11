@@ -8,14 +8,13 @@ on:
 
 jobs:
   tests:
-    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }} / Filament ${{ matrix.filament }}${{ matrix.with-sdk == 'true' && ' / +sdk' || '' }}
+    name: PHP ${{ matrix.php }}${{ matrix.laravel && format(' / Laravel {0}', matrix.laravel) || '' }} / Filament ${{ matrix.filament }}${{ matrix.with-sdk == 'true' && ' / +sdk' || '' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         include:
           - php: '8.2'
-            laravel: '^11.0'
             filament: '^4.0'
             with-sdk: 'false'
           - php: '8.3'
@@ -41,7 +40,13 @@ jobs:
 
       - name: Constrain Laravel + Filament versions
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "filament/filament:${{ matrix.filament }}" --no-interaction --no-update
+          composer require "filament/filament:${{ matrix.filament }}" --no-interaction --no-update
+          if [ -n "${{ matrix.laravel }}" ]; then
+            composer require "illuminate/contracts:${{ matrix.laravel }}" --no-interaction --no-update
+          fi
+          if [ "${{ matrix.laravel }}" = "^13.0" ]; then
+            composer remove pestphp/pest-plugin-laravel --dev --no-interaction --no-update
+          fi
           composer update --no-interaction --prefer-dist
 
       - name: Install laravel/ai

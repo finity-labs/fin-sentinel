@@ -9,8 +9,6 @@ use FinityLabs\FinSentinel\Support\AiSuggestionState;
 use FinityLabs\FinSentinel\Support\ScrubbedErrorPayload;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
-use Laravel\Ai\Contracts\Gateway\TextGateway;
-use Laravel\Ai\Responses\TextResponse;
 
 beforeEach(function () {
     if (! class_exists('Laravel\\Ai\\AnonymousAgent')) {
@@ -83,28 +81,7 @@ it('counts attempts not results — increments cap before SDK call even when SDK
     $settings->ai_hourly_cap = 5;
     $settings->save();
 
-    $throwingGateway = new class implements TextGateway
-    {
-        public function generateText($provider, $model, $instructions, $messages = [], $tools = [], $schema = null, $options = null, $timeout = null): TextResponse
-        {
-            throw new ConnectionException('cURL error 28');
-        }
-
-        public function streamText(string $invocationId, $provider, $model, $instructions, $messages = [], $tools = [], $schema = null, $options = null, $timeout = null): Generator
-        {
-            yield from [];
-        }
-
-        public function onToolInvocation(Closure $invoking, Closure $invoked): self
-        {
-            return $this;
-        }
-    };
-
-    $aiManagerClass = 'Laravel\\Ai\\AiManager';
-    app()->resolving($aiManagerClass, function ($manager) use ($throwingGateway) {
-        $manager->textProvider('anthropic')->useTextGateway($throwingGateway);
-    });
+    bindFakeAnthropicProvider(fakeAnthropicGateway(throws: new ConnectionException('cURL error 28')));
 
     $bucketKey = 'fin-sentinel:ai:cap:'.now()->format('Y-m-d:H');
     $capBefore = (int) Cache::get($bucketKey, 0);

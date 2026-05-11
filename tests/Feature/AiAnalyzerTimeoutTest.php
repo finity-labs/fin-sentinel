@@ -9,8 +9,6 @@ use FinityLabs\FinSentinel\Support\AiSuggestionState;
 use FinityLabs\FinSentinel\Support\ScrubbedErrorPayload;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
-use Laravel\Ai\Contracts\Gateway\TextGateway;
-use Laravel\Ai\Responses\TextResponse;
 
 beforeEach(function () {
     if (! class_exists('Laravel\\Ai\\AnonymousAgent')) {
@@ -51,40 +49,10 @@ afterEach(function () {
 });
 
 it('returns FAILED with timeout reason when SDK throws ConnectionException, with no retry and no real wait', function () {
-    $counter = new stdClass;
-    $counter->calls = 0;
-
-    // Throw immediately to simulate timeout: Ai::fakeAgent bypasses Http::timeout(),
-    // so a real sleep would never trip the timeout layer under it.
-    $throwingGateway = new class($counter) implements TextGateway
-    {
-        public function __construct(private stdClass $counter) {}
-
-        public function generateText($provider, $model, $instructions, $messages = [], $tools = [], $schema = null, $options = null, $timeout = null): TextResponse
-        {
-            $this->counter->calls++;
-            $effective = $timeout ?? 60;
-
-            throw new ConnectionException(
-                "cURL error 28: Operation timed out after {$effective}000 milliseconds"
-            );
-        }
-
-        public function streamText(string $invocationId, $provider, $model, $instructions, $messages = [], $tools = [], $schema = null, $options = null, $timeout = null): Generator
-        {
-            yield from [];
-        }
-
-        public function onToolInvocation(Closure $invoking, Closure $invoked): self
-        {
-            return $this;
-        }
-    };
-
-    $aiManagerClass = 'Laravel\\Ai\\AiManager';
-    app()->resolving($aiManagerClass, function ($manager) use ($throwingGateway) {
-        $manager->textProvider('anthropic')->useTextGateway($throwingGateway);
-    });
+    $gateway = fakeAnthropicGateway(throws: new ConnectionException(
+        'cURL error 28: Operation timed out after 3000 milliseconds'
+    ));
+    bindFakeAnthropicProvider($gateway);
 
     $analyzer = app(AiErrorAnalyzerContract::class);
     $payload = ScrubbedErrorPayload::fromException(
@@ -99,21 +67,12 @@ it('returns FAILED with timeout reason when SDK throws ConnectionException, with
     expect($result->state)->toBe(AiSuggestionState::FAILED);
     expect($result->reason)->toBe('timeout');
     expect($elapsed)->toBeLessThan(0.5);
-    expect($counter->calls)->toBe(1);
+    expect($gateway->calls)->toBe(1);
 });
 
 it('threads the configured ai_timeout into the SDK prompt() call', function () {
-    $captured = new stdClass;
-    $captured->timeout = null;
-
-    $anonAgentClass = 'Laravel\\Ai\\AnonymousAgent';
-    $aiFacade = 'Laravel\\Ai\\Ai';
-
-    $aiFacade::fakeAgent($anonAgentClass, function ($prompt) use ($captured) {
-        $captured->timeout = $prompt->timeout ?? null;
-
-        return 'fake suggestion';
-    });
+    $gateway = fakeAnthropicGateway();
+    bindFakeAnthropicProvider($gateway);
 
     $settings = app(ErrorChannelSettings::class);
     $settings->ai_timeout = 7;
@@ -127,5 +86,5 @@ it('threads the configured ai_timeout into the SDK prompt() call', function () {
 
     $analyzer->analyze($payload);
 
-    expect($captured->timeout)->toBe(7);
+    expect($gateway->capturedTimeout)->toBe(7);
 });

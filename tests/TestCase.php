@@ -36,10 +36,16 @@ class TestCase extends Orchestra
 
     protected function getPackageProviders($app): array
     {
-        return [
+        $providers = [
             LaravelSettingsServiceProvider::class,
             FinSentinelServiceProvider::class,
         ];
+
+        if (class_exists('Laravel\\Ai\\AiServiceProvider')) {
+            $providers[] = 'Laravel\\Ai\\AiServiceProvider';
+        }
+
+        return $providers;
     }
 
     protected function getEnvironmentSetUp($app): void

@@ -9,8 +9,6 @@ use FinityLabs\FinSentinel\Support\AiSuggestionState;
 use FinityLabs\FinSentinel\Support\ScrubbedErrorPayload;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
-use Laravel\Ai\Contracts\Gateway\TextGateway;
-use Laravel\Ai\Responses\TextResponse;
 
 beforeEach(function () {
     if (! class_exists('Laravel\\Ai\\AnonymousAgent')) {
@@ -51,28 +49,7 @@ afterEach(function () {
 });
 
 it('opens the breaker after 3 consecutive failures and short-circuits the next call', function () {
-    $throwingGateway = new class implements TextGateway
-    {
-        public function generateText($provider, $model, $instructions, $messages = [], $tools = [], $schema = null, $options = null, $timeout = null): TextResponse
-        {
-            throw new ConnectionException('cURL error 28');
-        }
-
-        public function streamText(string $invocationId, $provider, $model, $instructions, $messages = [], $tools = [], $schema = null, $options = null, $timeout = null): Generator
-        {
-            yield from [];
-        }
-
-        public function onToolInvocation(Closure $invoking, Closure $invoked): self
-        {
-            return $this;
-        }
-    };
-
-    $aiManagerClass = 'Laravel\\Ai\\AiManager';
-    app()->resolving($aiManagerClass, function ($manager) use ($throwingGateway) {
-        $manager->textProvider('anthropic')->useTextGateway($throwingGateway);
-    });
+    bindFakeAnthropicProvider(fakeAnthropicGateway(throws: new ConnectionException('cURL error 28')));
 
     $analyzer = app(AiErrorAnalyzerContract::class);
     $scrubber = app(DataScrubber::class);

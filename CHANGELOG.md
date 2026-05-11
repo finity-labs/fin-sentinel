@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.4] - 2026-05-11
+
+### Fixed
+
+- **`tests-network-blocked` job killed the GitHub runner mid-execution** -- The v1.1.2 implementation set a blanket `iptables -A OUTPUT -j REJECT` after composer install, which also blocked the runner agent's heartbeat to GitHub's control plane. After ~45 minutes the hosted runner was force-terminated with "The hosted runner lost communication with the server." Replaced with a stateful rule that accepts ESTABLISHED/RELATED traffic (so the runner's existing WebSocket to GitHub keeps flowing) and only rejects NEW outbound connections — which is exactly the shape of an unmocked HTTP call from a test.
+
 ## [1.1.3] - 2026-05-11
 
 ### Fixed

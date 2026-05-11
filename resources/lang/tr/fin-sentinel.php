@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Ayarlar',
         'error_channel' => 'Hata Kanalı',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Günlük Dosyaları',
         'log_entries' => 'Günlük Kayıtları',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Hata Bildirimi',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Günlük Dosyası',
         ],
         'footer' => 'Fin-Sentinel tarafından gönderildi',
-
         'label' => [
             'error_message' => 'Hata Mesajı',
             'class' => 'Sınıf',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Konum',
             'trace_call' => 'Çağrı',
         ],
-
         'collection' => [
             'count' => ':count öğe|:count öğe',
             'more' => '... ve :count öğe daha',
         ],
-
         'error' => [
             'subject' => ':app - Bir hata oluştu',
             'guest' => 'Misafir',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Oturum Açmış Kullanıcı',
             'section_environment' => 'Ortam',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Misafir',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'İstek Bağlamı',
             'section_environment' => 'Ortam',
         ],
-
         'log_file' => [
             'subject' => ':app - Günlük dosyası: :file',
             'bulk_subject' => ':app - :count günlük dosyası eklendi',
             'body' => '<strong>:file</strong> günlük dosyası :app uygulamasından ekte gönderilmiştir.',
             'body_text' => ':file günlük dosyası :app uygulamasından ekte gönderilmiştir.',
         ],
+        'ai' => [
+            'heading' => 'AI Önerisi',
+            'footnote_prefix' => 'üzerinden',
+            'disclaimer' => 'AI tarafından oluşturuldu. Uygulamadan önce doğrulayın.',
+            'cached_badge' => 'önbellekte',
+            'failed_prefix' => 'AI analizi başarısız',
+            'skipped_prefix' => 'AI analizi atlandı',
+            'reason' => [
+                'timeout' => 'zaman aşımı',
+                'authentication_failed' => 'kimlik doğrulama başarısız',
+                'rate_limited' => 'hız sınırlandı',
+                'quota_exceeded' => 'kota aşıldı',
+                'unknown_error' => 'bilinmeyen hata',
+                'output_rejected_matched_injection_marker' => 'çıktı reddedildi (injection işareti)',
+                'hourly_cap_reached' => 'saatlik sınıra ulaşıldı',
+                'circuit_open' => 'devre açık',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Alıcılar',
         'throttling' => 'Hız Sınırlama',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Alıcı yapılandırılmadı — en az bir e-posta adresi eklenene kadar bildirimler gönderilmeyecektir.',
         'throttle_rate' => 'Hız sınırı',
         'minutes_suffix' => 'dakika',
-
         'error' => [
             'enabled' => 'Hata bildirimlerini etkinleştir',
             'enabled_helper' => 'Devre dışı bırakıldığında hata e-postaları gönderilmez.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'İstisna seçin',
             'add_exception' => 'İstisna ekle',
         ],
-
         'debug' => [
             'enabled' => 'Debug kanalını etkinleştir',
             'enabled_helper' => 'Devre dışı bırakıldığında Sentinel::debug() çağrıları sessizce yoksayılır.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Devre dışıyken her debug çağrısı e-posta gönderir. Etkinken tekrarlanan çağrılar sınırlanır.',
             'throttle_helper' => 'Aynı debug e-postaları arasındaki minimum dakika.',
         ],
-
         'test_email' => [
             'send' => 'Test E-postası Gönder',
             'sent' => ':count alıcıya test e-postası gönderildi',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Test e-postası gönderilemedi',
             'channel_disabled' => 'Bu kanal şu anda devre dışı. Test e-postası yine de gönderilecektir.',
         ],
+        'ai' => [
+            'test_connection' => 'Test Et',
+            'test_connection_success' => 'AI bağlantısı çalışıyor.',
+            'test_connection_failed' => 'AI bağlantısı başarısız.',
+            'test_connection_missing' => 'Bağlantıyı test etmek için sağlayıcı, model ve API anahtarı gerekli.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) yüklü değil.',
+            'section' => 'YZ Analizi',
+            'section_helper' => 'Yakalanan istisnaların olası nedenlerini önermek için bir LLM kullanın.',
+            'no_providers' => 'YZ sağlayıcısı tespit edilmedi. laravel/ai kurulumunuzu kontrol edin.',
+            'enabled' => 'YZ hata analizini etkinleştir',
+            'enabled_helper' => 'Etkinleştirildiğinde, hata e-postaları YZ tarafından oluşturulan bir öneri bölümü içerir.',
+            'provider' => 'Sağlayıcı',
+            'model' => 'Model',
+            'model_placeholder' => 'Önce bir sağlayıcı seçin',
+            'api_key' => 'API anahtarı',
+            'api_key_set' => 'Anahtar ayarlandı — mevcut anahtarı korumak için boş bırakın',
+            'api_key_enter' => 'Seçilen sağlayıcı için API anahtarını girin',
+            'timeout' => 'Zaman aşımı',
+            'timeout_helper' => 'YZ yanıtını beklemek için maksimum saniye (1-10).',
+            'max_tokens' => 'Maks. çıktı tokeni',
+            'hourly_cap' => 'Saatlik sınır',
+            'hourly_cap_helper' => 'Saat başına maksimum YZ çağrısı. Sınırı devre dışı bırakmak için 0 olarak ayarlayın.',
+            'cache_ttl' => 'Önbellek TTL',
+            'cache_ttl_helper' => 'Yeniden sorgulamadan önce başarılı YZ önerilerini önbelleğe alma dakikaları. Aralık: 5–1440 dakika (≥ daraltma penceresi önerilir; varsayılan 60 dakika).',
+            'strict_scrubbing' => 'Sıkı temizleme',
+            'strict_scrubbing_helper' => 'Etkinleştirildiğinde, YZ istemi yalnızca istisna sınıfı, mesajın ilk satırı ve file:line içerir — yığın izi yok.',
+            'prompt_template' => 'İstem şablonu',
+            'prompt_template_helper' => 'YZ sağlayıcısına gönderilen şablon. {{error}} yer tutucu temizlenmiş istisna ayrıntılarıyla değiştirilir. Dikkatli düzenleyin — {{error}} kaldırmak kaydetmeyi engeller.',
+            'prompt_template_placeholder' => 'Kıdemli Laravel mühendisisiniz. Analiz edin: {{error}}',
+            'template_missing_token' => 'İstem şablonu {{error}} yer tutucusunu içermelidir.',
+            'prompt_template_default' => 'Varsayılan şablonu kullan',
+            'usage_section' => 'Kullanım',
+            'usage_last_call_label' => 'Son çağrı',
+            'usage_month_label' => 'Bu ay',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'YZ: başarılı.',
+                'ai_cached' => 'YZ: önbellekten.',
+                'ai_failed' => 'YZ: başarısız (:reason).',
+                'ai_skipped' => 'YZ: atlandı (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Sistem Günlükleri',
         'heading' => 'Günlük Dosyaları',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Bu günlük dosyasını belirtilen alıcıya e-posta eki olarak gönderin.',
         'bulk_email_description' => 'Seçilen günlük dosyalarını belirtilen alıcıya ayrı e-posta ekleri olarak gönderin.',
         'bulk_email_files' => 'Seçilen Dosyalar',
-
         'filter' => [
             'date_from' => 'Başlangıç',
             'date_to' => 'Bitiş',
         ],
-
         'column' => [
             'filename' => 'Dosya Adı',
             'size' => 'Boyut',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Zaman Damgası',
             'message' => 'Mesaj',
         ],
-
         'action' => [
             'refresh' => 'Yenile',
             'view' => 'Görüntüle',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Günlük dosyası silindi',
             'bulk_deleted' => ':count günlük dosyası silindi',
         ],
-
         'confirm' => [
             'delete' => 'Bu günlük dosyasını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.',
             'bulk_delete' => 'Seçilen günlük dosyalarını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.',
         ],
-
         'entry' => [
             'detail' => 'Kayıt Detayı',
             'line' => 'Satır',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopyalandı!',
         ],
     ],
-
 ];

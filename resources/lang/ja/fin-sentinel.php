@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => '設定',
         'error_channel' => 'エラーチャンネル',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'ログファイル',
         'log_entries' => 'ログエントリー',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'エラー通知',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'ログファイル',
         ],
         'footer' => 'Fin-Sentinel から送信',
-
         'label' => [
             'error_message' => 'エラーメッセージ',
             'class' => 'クラス',
@@ -68,12 +64,10 @@ return [
             'trace_location' => '場所',
             'trace_call' => '呼び出し',
         ],
-
         'collection' => [
             'count' => ':count 件',
             'more' => '... 他 :count 件',
         ],
-
         'error' => [
             'subject' => ':app - エラーが発生しました',
             'guest' => 'ゲスト',
@@ -84,7 +78,6 @@ return [
             'section_user' => '認証済みユーザー',
             'section_environment' => '環境',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'ゲスト',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'リクエストコンテキスト',
             'section_environment' => '環境',
         ],
-
         'log_file' => [
             'subject' => ':app - ログファイル: :file',
             'bulk_subject' => ':app - :count 件のログファイルを添付',
             'body' => ':app のログファイル <strong>:file</strong> を添付しています。',
             'body_text' => ':app のログファイル :file を添付しています。',
         ],
+        'ai' => [
+            'heading' => 'AI による提案',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'AI 生成。実行前に確認してください。',
+            'cached_badge' => 'キャッシュ済み',
+            'failed_prefix' => 'AI 解析に失敗',
+            'skipped_prefix' => 'AI 解析をスキップ',
+            'reason' => [
+                'timeout' => 'タイムアウト',
+                'authentication_failed' => '認証エラー',
+                'rate_limited' => 'レート制限',
+                'quota_exceeded' => 'クォータ超過',
+                'unknown_error' => '不明なエラー',
+                'output_rejected_matched_injection_marker' => '出力を拒否（インジェクションマーカー検出）',
+                'hourly_cap_reached' => '1時間あたりの上限に到達',
+                'circuit_open' => 'サーキットオープン',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => '受信者',
         'throttling' => '送信制限',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => '受信者が設定されていません - メールアドレスを少なくとも1つ追加するまで、通知は送信されません。',
         'throttle_rate' => '制限頻度',
         'minutes_suffix' => '分',
-
         'error' => [
             'enabled' => 'エラー通知を有効にする',
             'enabled_helper' => '無効にすると、エラーメールは送信されません。',
@@ -131,7 +139,6 @@ return [
             'select_exception' => '例外を選択',
             'add_exception' => '例外を追加',
         ],
-
         'debug' => [
             'enabled' => 'Debug チャンネルを有効にする',
             'enabled_helper' => '無効にすると、Sentinel::debug() の呼び出しは無視されます。',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => '無効にすると、Debug の呼び出しごとにメールが送信されます。有効にすると、重複する呼び出しは制限されます。',
             'throttle_helper' => '重複する Debug メール間の最小間隔（分）。',
         ],
-
         'test_email' => [
             'send' => 'テストメールを送信',
             'sent' => ':count 件の受信者にテストメールを送信しました',
@@ -148,8 +154,50 @@ return [
             'failed' => 'テストメールの送信に失敗しました',
             'channel_disabled' => 'このチャンネルは現在無効です。テストメールは送信されます。',
         ],
+        'ai' => [
+            'test_connection' => 'テスト',
+            'test_connection_success' => 'AI接続は正常です。',
+            'test_connection_failed' => 'AI接続に失敗しました。',
+            'test_connection_missing' => '接続をテストするには、プロバイダー、モデル、APIキーが必要です。',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) がインストールされていません。',
+            'section' => 'AI 解析',
+            'section_helper' => 'LLM を使用して、捕捉された例外の考えられる原因を提案します。',
+            'no_providers' => 'AI プロバイダーが検出されませんでした。laravel/ai のインストールを確認してください。',
+            'enabled' => 'AI エラー解析を有効化',
+            'enabled_helper' => '有効にすると、エラーメールに AI が生成した提案セクションが含まれます。',
+            'provider' => 'プロバイダー',
+            'model' => 'モデル',
+            'model_placeholder' => '先にプロバイダーを選択してください',
+            'api_key' => 'API キー',
+            'api_key_set' => 'キー設定済み — 既存のキーを保持するには空欄のままにしてください',
+            'api_key_enter' => '選択したプロバイダーの API キーを入力してください',
+            'timeout' => 'タイムアウト',
+            'timeout_helper' => 'AI 応答の最大待機秒数 (1-10)。',
+            'max_tokens' => '最大出力トークン',
+            'hourly_cap' => '時間あたりの上限',
+            'hourly_cap_helper' => '1時間あたりの最大 AI 呼び出し回数。0 で上限を無効化します。',
+            'cache_ttl' => 'キャッシュ TTL',
+            'cache_ttl_helper' => '成功した AI 提案を再問い合わせ前にキャッシュする分数。範囲: 5–1440 分 (≥ スロットルウィンドウ推奨。デフォルト 60 分)。',
+            'strict_scrubbing' => '厳格なスクラブ',
+            'strict_scrubbing_helper' => '有効にすると、AI プロンプトには例外クラス、メッセージ最初の行、file:line のみが含まれ、スタックトレースは含まれません。',
+            'prompt_template' => 'プロンプトテンプレート',
+            'prompt_template_helper' => 'AI プロバイダーに送信されるテンプレート。{{error}} プレースホルダーはスクラブ済みの例外詳細に置換されます。慎重に編集してください — {{error}} を削除すると保存できません。',
+            'prompt_template_placeholder' => 'あなたはシニア Laravel エンジニアです。次を分析してください: {{error}}',
+            'template_missing_token' => 'プロンプトテンプレートには {{error}} プレースホルダーが必要です。',
+            'prompt_template_default' => 'デフォルトテンプレートを使用',
+            'usage_section' => '使用量',
+            'usage_last_call_label' => '最後の呼び出し',
+            'usage_month_label' => '今月',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'トークン',
+            'test_email' => [
+                'ai_success' => 'AI: 成功。',
+                'ai_cached' => 'AI: キャッシュから。',
+                'ai_failed' => 'AI: 失敗 (:reason)。',
+                'ai_skipped' => 'AI: スキップ (:reason)。',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'システムログ',
         'heading' => 'ログファイル',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'このログファイルをメールの添付ファイルとして指定の受信者に送信します。',
         'bulk_email_description' => '選択したログファイルを個別のメール添付ファイルとして指定の受信者に送信します。',
         'bulk_email_files' => '選択されたファイル',
-
         'filter' => [
             'date_from' => '開始日',
             'date_to' => '終了日',
         ],
-
         'column' => [
             'filename' => 'ファイル名',
             'size' => 'サイズ',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'タイムスタンプ',
             'message' => 'メッセージ',
         ],
-
         'action' => [
             'refresh' => '更新',
             'view' => '表示',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'ログファイルを削除しました',
             'bulk_deleted' => ':count 件のログファイルを削除しました',
         ],
-
         'confirm' => [
             'delete' => 'このログファイルを削除してよろしいですか？この操作は取り消せません。',
             'bulk_delete' => '選択したログファイルを削除してよろしいですか？この操作は取り消せません。',
         ],
-
         'entry' => [
             'detail' => 'エントリー詳細',
             'line' => '行',
@@ -206,5 +249,4 @@ return [
             'copied' => 'コピーしました！',
         ],
     ],
-
 ];

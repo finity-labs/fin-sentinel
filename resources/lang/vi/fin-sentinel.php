@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Cài đặt',
         'error_channel' => 'Kênh lỗi',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Tệp nhật ký',
         'log_entries' => 'Mục nhật ký',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Thông báo lỗi',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Tệp nhật ký',
         ],
         'footer' => 'Gửi bởi Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Thông báo lỗi',
             'class' => 'Lớp',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Vị trí',
             'trace_call' => 'Lời gọi',
         ],
-
         'collection' => [
             'count' => ':count mục',
             'more' => '... và :count mục nữa',
         ],
-
         'error' => [
             'subject' => ':app - Đã xảy ra lỗi',
             'guest' => 'Khách',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Người dùng đã xác thực',
             'section_environment' => 'Môi trường',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Khách',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Ngữ cảnh yêu cầu',
             'section_environment' => 'Môi trường',
         ],
-
         'log_file' => [
             'subject' => ':app - Tệp nhật ký: :file',
             'bulk_subject' => ':app - Đính kèm :count tệp nhật ký',
             'body' => 'Tệp nhật ký <strong>:file</strong> từ :app đã được đính kèm.',
             'body_text' => 'Tệp nhật ký :file từ :app đã được đính kèm.',
         ],
+        'ai' => [
+            'heading' => 'Gợi ý AI',
+            'footnote_prefix' => 'qua',
+            'disclaimer' => 'Do AI tạo. Xác minh trước khi thực hiện.',
+            'cached_badge' => 'từ cache',
+            'failed_prefix' => 'Phân tích AI thất bại',
+            'skipped_prefix' => 'Đã bỏ qua phân tích AI',
+            'reason' => [
+                'timeout' => 'hết thời gian',
+                'authentication_failed' => 'xác thực thất bại',
+                'rate_limited' => 'giới hạn tốc độ',
+                'quota_exceeded' => 'vượt hạn ngạch',
+                'unknown_error' => 'lỗi không xác định',
+                'output_rejected_matched_injection_marker' => 'đầu ra bị từ chối (dấu hiệu injection)',
+                'hourly_cap_reached' => 'đã đạt giới hạn theo giờ',
+                'circuit_open' => 'mạch hở',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Người nhận',
         'throttling' => 'Giới hạn tần suất',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Chưa cấu hình người nhận - thông báo sẽ không được gửi cho đến khi thêm ít nhất một địa chỉ email.',
         'throttle_rate' => 'Tần suất giới hạn',
         'minutes_suffix' => 'phút',
-
         'error' => [
             'enabled' => 'Bật thông báo lỗi',
             'enabled_helper' => 'Khi tắt, sẽ không gửi email lỗi nào.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Chọn ngoại lệ',
             'add_exception' => 'Thêm ngoại lệ',
         ],
-
         'debug' => [
             'enabled' => 'Bật kênh Debug',
             'enabled_helper' => 'Khi tắt, các lời gọi Sentinel::debug() sẽ bị bỏ qua.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Khi tắt, mỗi lời gọi Debug đều gửi email. Khi bật, các lời gọi trùng lặp sẽ bị giới hạn.',
             'throttle_helper' => 'Số phút tối thiểu giữa các email Debug trùng lặp.',
         ],
-
         'test_email' => [
             'send' => 'Gửi email thử nghiệm',
             'sent' => 'Đã gửi email thử nghiệm đến :count người nhận',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Gửi email thử nghiệm thất bại',
             'channel_disabled' => 'Kênh này hiện đang tắt. Email thử nghiệm vẫn sẽ được gửi.',
         ],
+        'ai' => [
+            'test_connection' => 'Kiểm tra',
+            'test_connection_success' => 'Kết nối AI hoạt động.',
+            'test_connection_failed' => 'Kết nối AI thất bại.',
+            'test_connection_missing' => 'Cần có nhà cung cấp, mô hình và khóa API để kiểm tra kết nối.',
+            'test_connection_no_sdk' => 'Chưa cài đặt AI SDK (laravel/ai).',
+            'section' => 'Phân tích AI',
+            'section_helper' => 'Sử dụng LLM để gợi ý nguyên nhân có thể của các ngoại lệ đã bắt được.',
+            'no_providers' => 'Không phát hiện nhà cung cấp AI nào. Kiểm tra cài đặt laravel/ai của bạn.',
+            'enabled' => 'Bật phân tích lỗi AI',
+            'enabled_helper' => 'Khi bật, email lỗi sẽ bao gồm phần gợi ý do AI tạo ra.',
+            'provider' => 'Nhà cung cấp',
+            'model' => 'Mô hình',
+            'model_placeholder' => 'Chọn nhà cung cấp trước',
+            'api_key' => 'Khóa API',
+            'api_key_set' => 'Đã đặt khóa — để trống để giữ khóa hiện tại',
+            'api_key_enter' => 'Nhập khóa API cho nhà cung cấp đã chọn',
+            'timeout' => 'Hết thời gian',
+            'timeout_helper' => 'Số giây tối đa chờ phản hồi AI (1-10).',
+            'max_tokens' => 'Token đầu ra tối đa',
+            'hourly_cap' => 'Giới hạn mỗi giờ',
+            'hourly_cap_helper' => 'Số lệnh gọi AI tối đa mỗi giờ. Đặt 0 để vô hiệu hóa giới hạn.',
+            'cache_ttl' => 'TTL bộ nhớ đệm',
+            'cache_ttl_helper' => 'Số phút lưu vào bộ nhớ đệm các gợi ý AI thành công trước khi truy vấn lại. Phạm vi: 5–1440 phút (≥ cửa sổ điều tiết được khuyến nghị; mặc định 60 phút).',
+            'strict_scrubbing' => 'Làm sạch nghiêm ngặt',
+            'strict_scrubbing_helper' => 'Khi bật, prompt AI chỉ chứa lớp ngoại lệ, dòng đầu tiên của thông báo và file:line — không có stack trace.',
+            'prompt_template' => 'Mẫu prompt',
+            'prompt_template_helper' => 'Mẫu được gửi đến nhà cung cấp AI. Trình giữ chỗ {{error}} được thay thế bằng chi tiết ngoại lệ đã làm sạch. Chỉnh sửa cẩn thận — xóa {{error}} sẽ chặn lưu.',
+            'prompt_template_placeholder' => 'Bạn là kỹ sư Laravel cấp cao. Phân tích: {{error}}',
+            'template_missing_token' => 'Mẫu prompt phải chứa trình giữ chỗ {{error}}.',
+            'prompt_template_default' => 'Sử dụng mẫu mặc định',
+            'usage_section' => 'Sử dụng',
+            'usage_last_call_label' => 'Lệnh gọi cuối',
+            'usage_month_label' => 'Tháng này',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: thành công.',
+                'ai_cached' => 'AI: từ bộ nhớ đệm.',
+                'ai_failed' => 'AI: thất bại (:reason).',
+                'ai_skipped' => 'AI: đã bỏ qua (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Nhật ký hệ thống',
         'heading' => 'Tệp nhật ký',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Gửi tệp nhật ký này dưới dạng tệp đính kèm email đến người nhận được chỉ định.',
         'bulk_email_description' => 'Gửi các tệp nhật ký đã chọn dưới dạng tệp đính kèm email riêng lẻ đến người nhận được chỉ định.',
         'bulk_email_files' => 'Tệp đã chọn',
-
         'filter' => [
             'date_from' => 'Từ',
             'date_to' => 'Đến',
         ],
-
         'column' => [
             'filename' => 'Tên tệp',
             'size' => 'Kích thước',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Thời gian',
             'message' => 'Thông điệp',
         ],
-
         'action' => [
             'refresh' => 'Làm mới',
             'view' => 'Xem',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Đã xóa tệp nhật ký',
             'bulk_deleted' => 'Đã xóa :count tệp nhật ký',
         ],
-
         'confirm' => [
             'delete' => 'Bạn có chắc chắn muốn xóa tệp nhật ký này? Hành động này không thể hoàn tác.',
             'bulk_delete' => 'Bạn có chắc chắn muốn xóa các tệp nhật ký đã chọn? Hành động này không thể hoàn tác.',
         ],
-
         'entry' => [
             'detail' => 'Chi tiết mục',
             'line' => 'Dòng',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Đã sao chép!',
         ],
     ],
-
 ];

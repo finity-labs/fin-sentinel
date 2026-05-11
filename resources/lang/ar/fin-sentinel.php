@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'الإعدادات',
         'error_channel' => 'قناة الأخطاء',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'ملفات السجلات',
         'log_entries' => 'سجلات الأحداث',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'إشعار بخطأ',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'ملف السجل',
         ],
         'footer' => 'أُرسل بواسطة Fin-Sentinel',
-
         'label' => [
             'error_message' => 'رسالة الخطأ',
             'class' => 'الفئة',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'الموقع',
             'trace_call' => 'الاستدعاء',
         ],
-
         'collection' => [
             'count' => ':count عنصر|:count عناصر',
             'more' => '... و :count عناصر أخرى',
         ],
-
         'error' => [
             'subject' => ':app - حدث خطأ',
             'guest' => 'زائر',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'المستخدم المُصادق',
             'section_environment' => 'البيئة',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'زائر',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'سياق الطلب',
             'section_environment' => 'البيئة',
         ],
-
         'log_file' => [
             'subject' => ':app - ملف سجل: :file',
             'bulk_subject' => ':app - :count ملفات سجل مرفقة',
             'body' => 'ملف السجل <strong>:file</strong> من :app مرفق طيّه.',
             'body_text' => 'ملف السجل :file من :app مرفق طيّه.',
         ],
+        'ai' => [
+            'heading' => 'اقتراح الذكاء الاصطناعي',
+            'footnote_prefix' => 'عبر',
+            'disclaimer' => 'مُولَّد بالذكاء الاصطناعي. تحقق قبل التنفيذ.',
+            'cached_badge' => 'مخزن مؤقتاً',
+            'failed_prefix' => 'فشل تحليل الذكاء الاصطناعي',
+            'skipped_prefix' => 'تم تخطي تحليل الذكاء الاصطناعي',
+            'reason' => [
+                'timeout' => 'انتهت المهلة',
+                'authentication_failed' => 'فشل التحقق',
+                'rate_limited' => 'تم تقييد المعدل',
+                'quota_exceeded' => 'تم تجاوز الحصة',
+                'unknown_error' => 'خطأ غير معروف',
+                'output_rejected_matched_injection_marker' => 'تم رفض المخرجات (علامة حقن)',
+                'hourly_cap_reached' => 'تم بلوغ الحد الساعي',
+                'circuit_open' => 'الدائرة مفتوحة',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'المستلمون',
         'throttling' => 'التحكم بالمعدل',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'لم يتم تحديد مستلمين — لن يتم إرسال الإشعارات حتى تتم إضافة عنوان بريد إلكتروني واحد على الأقل.',
         'throttle_rate' => 'معدل التحكم',
         'minutes_suffix' => 'دقائق',
-
         'error' => [
             'enabled' => 'تفعيل إشعارات الأخطاء',
             'enabled_helper' => 'عند التعطيل، لن يتم إرسال رسائل الخطأ عبر البريد.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'اختر استثناء',
             'add_exception' => 'إضافة استثناء',
         ],
-
         'debug' => [
             'enabled' => 'تفعيل قناة Debug',
             'enabled_helper' => 'عند التعطيل، سيتم تجاهل استدعاءات Sentinel::debug() بصمت.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'عند التعطيل، كل استدعاء debug يرسل بريداً. عند التفعيل، يتم تحديد معدل الاستدعاءات المكررة.',
             'throttle_helper' => 'الحد الأدنى من الدقائق بين رسائل debug المكررة.',
         ],
-
         'test_email' => [
             'send' => 'إرسال بريد تجريبي',
             'sent' => 'تم إرسال بريد تجريبي إلى :count مستلم(ين)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'فشل إرسال البريد التجريبي',
             'channel_disabled' => 'هذه القناة معطلة حالياً. سيتم إرسال البريد التجريبي رغم ذلك.',
         ],
+        'ai' => [
+            'test_connection' => 'اختبار',
+            'test_connection_success' => 'اتصال الذكاء الاصطناعي يعمل.',
+            'test_connection_failed' => 'فشل اتصال الذكاء الاصطناعي.',
+            'test_connection_missing' => 'يجب توفير المزوّد والنموذج ومفتاح الـ API لاختبار الاتصال.',
+            'test_connection_no_sdk' => 'لم يتم تثبيت SDK الذكاء الاصطناعي (laravel/ai).',
+            'section' => 'تحليل الذكاء الاصطناعي',
+            'section_helper' => 'استخدم نموذج لغة كبير لاقتراح الأسباب المحتملة للاستثناءات الملتقطة.',
+            'no_providers' => 'لم يتم اكتشاف موفري ذكاء اصطناعي. تحقق من تثبيت laravel/ai.',
+            'enabled' => 'تفعيل تحليل الأخطاء بالذكاء الاصطناعي',
+            'enabled_helper' => 'عند التفعيل، تتضمن رسائل الخطأ قسم اقتراح مُولَّد بالذكاء الاصطناعي.',
+            'provider' => 'الموفر',
+            'model' => 'النموذج',
+            'model_placeholder' => 'اختر الموفر أولاً',
+            'api_key' => 'مفتاح API',
+            'api_key_set' => 'تم تعيين المفتاح — اتركه فارغاً للاحتفاظ بالمفتاح الحالي',
+            'api_key_enter' => 'أدخل مفتاح API للموفر المحدد',
+            'timeout' => 'المهلة',
+            'timeout_helper' => 'الحد الأقصى من الثواني لانتظار رد الذكاء الاصطناعي (1-10).',
+            'max_tokens' => 'الحد الأقصى لرموز الإخراج',
+            'hourly_cap' => 'الحد الأقصى في الساعة',
+            'hourly_cap_helper' => 'الحد الأقصى لاستدعاءات الذكاء الاصطناعي في الساعة. اضبط على 0 لتعطيل الحد.',
+            'cache_ttl' => 'مدة بقاء التخزين المؤقت',
+            'cache_ttl_helper' => 'الدقائق التي يتم خلالها تخزين الاقتراحات الناجحة قبل الاستعلام مجدداً. النطاق: 5–1440 دقيقة (يُستحسن أن تكون ≥ نافذة التحكم في المعدل؛ الافتراضي 60 دقيقة).',
+            'strict_scrubbing' => 'تنقية صارمة',
+            'strict_scrubbing_helper' => 'عند التفعيل، يحتوي الموجه على فئة الاستثناء فقط، السطر الأول من الرسالة، و file:line — بدون أي تتبع.',
+            'prompt_template' => 'قالب الموجه',
+            'prompt_template_helper' => 'القالب المرسل إلى موفر الذكاء الاصطناعي. يتم استبدال {{error}} بتفاصيل الاستثناء المنقَّحة. عدِّل بحذر — إزالة {{error}} تمنع الحفظ.',
+            'prompt_template_placeholder' => 'أنت مهندس Laravel متمرس. حلِّل: {{error}}',
+            'template_missing_token' => 'يجب أن يحتوي قالب الموجه على العنصر النائب {{error}}.',
+            'prompt_template_default' => 'استخدام القالب الافتراضي',
+            'usage_section' => 'الاستخدام',
+            'usage_last_call_label' => 'آخر استدعاء',
+            'usage_month_label' => 'هذا الشهر',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'رمز',
+            'test_email' => [
+                'ai_success' => 'الذكاء الاصطناعي: نجح.',
+                'ai_cached' => 'الذكاء الاصطناعي: من الذاكرة المؤقتة.',
+                'ai_failed' => 'الذكاء الاصطناعي: فشل (:reason).',
+                'ai_skipped' => 'الذكاء الاصطناعي: تم التخطي (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'سجلات النظام',
         'heading' => 'ملفات السجلات',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'أرسل ملف السجل هذا كمرفق بريد إلكتروني إلى المستلم المحدد.',
         'bulk_email_description' => 'أرسل ملفات السجل المختارة كمرفقات بريد إلكتروني منفصلة إلى المستلم المحدد.',
         'bulk_email_files' => 'الملفات المختارة',
-
         'filter' => [
             'date_from' => 'من',
             'date_to' => 'إلى',
         ],
-
         'column' => [
             'filename' => 'اسم الملف',
             'size' => 'الحجم',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'الطابع الزمني',
             'message' => 'الرسالة',
         ],
-
         'action' => [
             'refresh' => 'تحديث',
             'view' => 'عرض',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'تم حذف ملف السجل',
             'bulk_deleted' => 'تم حذف :count ملف(ات) سجل',
         ],
-
         'confirm' => [
             'delete' => 'هل أنت متأكد من حذف ملف السجل هذا؟ لا يمكن التراجع عن هذا الإجراء.',
             'bulk_delete' => 'هل أنت متأكد من حذف ملفات السجل المختارة؟ لا يمكن التراجع عن هذا الإجراء.',
         ],
-
         'entry' => [
             'detail' => 'تفاصيل السجل',
             'line' => 'سطر',
@@ -206,5 +249,4 @@ return [
             'copied' => 'تم النسخ!',
         ],
     ],
-
 ];

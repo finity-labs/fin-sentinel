@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Поставки',
         'error_channel' => 'Канал за грешки',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Лог датотеки',
         'log_entries' => 'Записи во логот',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Известување за грешка',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Лог датотека',
         ],
         'footer' => 'Испратено од Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Порака за грешка',
             'class' => 'Класа',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Локација',
             'trace_call' => 'Повик',
         ],
-
         'collection' => [
             'count' => ':count ставка|:count ставки',
             'more' => '... и уште :count ставки',
         ],
-
         'error' => [
             'subject' => ':app — Настана грешка',
             'guest' => 'Гостин',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Автентициран корисник',
             'section_environment' => 'Околина',
         ],
-
         'debug' => [
             'subject' => ':app — Debug: :subject',
             'guest' => 'Гостин',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Контекст на барањето',
             'section_environment' => 'Околина',
         ],
-
         'log_file' => [
             'subject' => ':app — Лог датотека: :file',
             'bulk_subject' => ':app — :count лог датотеки во прилог',
             'body' => 'Лог датотеката <strong>:file</strong> од :app е во прилог.',
             'body_text' => 'Лог датотеката :file од :app е во прилог.',
         ],
+        'ai' => [
+            'heading' => 'AI предлог',
+            'footnote_prefix' => 'преку',
+            'disclaimer' => 'Генерирано од AI. Проверете пред да дејствувате.',
+            'cached_badge' => 'кеширано',
+            'failed_prefix' => 'AI анализата не успеа',
+            'skipped_prefix' => 'AI анализата е прескокната',
+            'reason' => [
+                'timeout' => 'времето истече',
+                'authentication_failed' => 'неуспешна автентикација',
+                'rate_limited' => 'ограничена брзина',
+                'quota_exceeded' => 'надмината квота',
+                'unknown_error' => 'непозната грешка',
+                'output_rejected_matched_injection_marker' => 'излезот е одбиен (маркер за инјекција)',
+                'hourly_cap_reached' => 'достигнат часовен лимит',
+                'circuit_open' => 'колото е отворено',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Приматели',
         'throttling' => 'Ограничување на честотата',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Нема поставени приматели — известувањата нема да се испраќаат додека не се додаде барем една email адреса.',
         'throttle_rate' => 'Стапка на ограничување',
         'minutes_suffix' => 'минути',
-
         'error' => [
             'enabled' => 'Вклучи известувања за грешки',
             'enabled_helper' => 'Кога е исклучено, email-ови за грешки нема да се испраќаат.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Изберете исклучок',
             'add_exception' => 'Додади исклучок',
         ],
-
         'debug' => [
             'enabled' => 'Вклучи канал за дебагирање',
             'enabled_helper' => 'Кога е исклучено, повиците на Sentinel::debug() ќе бидат игнорирани.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Кога е исклучено, секој debug повик испраќа email. Кога е вклучено, повторените повици се ограничуваат.',
             'throttle_helper' => 'Минимален интервал во минути помеѓу повторени debug email-ови.',
         ],
-
         'test_email' => [
             'send' => 'Испрати тест email',
             'sent' => 'Тест email испратен до :count примател(и)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Испраќањето на тест email-от не успеа',
             'channel_disabled' => 'Овој канал е моментално исклучен. Тест email-от сепак ќе биде испратен.',
         ],
+        'ai' => [
+            'test_connection' => 'Тестирај',
+            'test_connection_success' => 'AI врската работи.',
+            'test_connection_failed' => 'AI врската не успеа.',
+            'test_connection_missing' => 'За тестирање на врската се потребни провајдер, модел и API клуч.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) не е инсталиран.',
+            'section' => 'AI анализа',
+            'section_helper' => 'Користете LLM за да предложи веројатни причини за фатени исклучоци.',
+            'no_providers' => 'Не се откриени AI провајдери. Проверете ја вашата laravel/ai инсталација.',
+            'enabled' => 'Овозможи AI анализа на грешки',
+            'enabled_helper' => 'Кога е овозможено, имејлите за грешки вклучуваат AI генерирана секција со предлог.',
+            'provider' => 'Провајдер',
+            'model' => 'Модел',
+            'model_placeholder' => 'Прво изберете провајдер',
+            'api_key' => 'API клуч',
+            'api_key_set' => 'Клучот е поставен — оставете празно за да го задржите постојниот клуч',
+            'api_key_enter' => 'Внесете API клуч за избраниот провајдер',
+            'timeout' => 'Истек',
+            'timeout_helper' => 'Максимум секунди за чекање AI одговор (1-10).',
+            'max_tokens' => 'Макс. излезни токени',
+            'hourly_cap' => 'Лимит на час',
+            'hourly_cap_helper' => 'Максимум AI повици на час. Поставете 0 за да го оневозможите лимитот.',
+            'cache_ttl' => 'TTL на кеш',
+            'cache_ttl_helper' => 'Минути за кеширање на успешни AI предлози пред повторно барање. Опсег: 5–1440 минути (≥ прозорец на дроселирање препорачано; стандардно 60 минути).',
+            'strict_scrubbing' => 'Строго чистење',
+            'strict_scrubbing_helper' => 'Кога е овозможено, AI промптот содржи само класа на исклучок, прва линија на пораката и file:line — без stack trace.',
+            'prompt_template' => 'Шаблон на промпт',
+            'prompt_template_helper' => 'Шаблон испратен до AI провајдерот. Местодржачот {{error}} се заменува со исчистени детали за исклучокот. Уредувајте внимателно — отстранувањето на {{error}} го блокира зачувувањето.',
+            'prompt_template_placeholder' => 'Вие сте искусен Laravel инженер. Анализирајте: {{error}}',
+            'template_missing_token' => 'Шаблонот на промпт мора да го содржи местодржачот {{error}}.',
+            'prompt_template_default' => 'Користи стандарден шаблон',
+            'usage_section' => 'Користење',
+            'usage_last_call_label' => 'Последен повик',
+            'usage_month_label' => 'Овој месец',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'токени',
+            'test_email' => [
+                'ai_success' => 'AI: успех.',
+                'ai_cached' => 'AI: од кеш.',
+                'ai_failed' => 'AI: неуспех (:reason).',
+                'ai_skipped' => 'AI: прескокнато (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Системски логови',
         'heading' => 'Лог датотеки',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Испратете ја оваа лог датотека како прилог до наведената email адреса.',
         'bulk_email_description' => 'Испратете ги избраните лог датотеки како поединечни прилози до наведената email адреса.',
         'bulk_email_files' => 'Избрани датотеки',
-
         'filter' => [
             'date_from' => 'Од',
             'date_to' => 'До',
         ],
-
         'column' => [
             'filename' => 'Име на датотека',
             'size' => 'Големина',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Време',
             'message' => 'Порака',
         ],
-
         'action' => [
             'refresh' => 'Освежи',
             'view' => 'Прегледај',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Лог датотеката е избришана',
             'bulk_deleted' => ':count лог датотека(и) избришани',
         ],
-
         'confirm' => [
             'delete' => 'Дали сте сигурни дека сакате да ја избришете оваа лог датотека? Ова дејство не може да се поништи.',
             'bulk_delete' => 'Дали сте сигурни дека сакате да ги избришете избраните лог датотеки? Ова дејство не може да се поништи.',
         ],
-
         'entry' => [
             'detail' => 'Детали за записот',
             'line' => 'Линија',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Копирано!',
         ],
     ],
-
 ];

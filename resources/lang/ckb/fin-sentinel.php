@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'ڕێکخستنەکان',
         'error_channel' => 'کەناڵی هەڵە',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'فایلەکانی تۆمار',
         'log_entries' => 'تۆمارەکان',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'ئاگادارکردنەوەی هەڵە',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'فایلی تۆمار',
         ],
         'footer' => 'نێردراوە لەلایەن Fin-Sentinel',
-
         'label' => [
             'error_message' => 'پەیامی هەڵە',
             'class' => 'کلاس',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'شوێن',
             'trace_call' => 'بانگکردن',
         ],
-
         'collection' => [
             'count' => ':count دانە|:count دانە',
             'more' => '... و :count دانەی دیکە',
         ],
-
         'error' => [
             'subject' => ':app - هەڵەیەک ڕوویدا',
             'guest' => 'میوان',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'بەکارهێنەری پشتڕاستکراوە',
             'section_environment' => 'ژینگە',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'میوان',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'چوارچێوەی داواکاری',
             'section_environment' => 'ژینگە',
         ],
-
         'log_file' => [
             'subject' => ':app - فایلی تۆمار: :file',
             'bulk_subject' => ':app - :count فایلی تۆمار هاوپێچکراو',
             'body' => 'فایلی تۆمار <strong>:file</strong> لە :app هاوپێچکراوە.',
             'body_text' => 'فایلی تۆمار :file لە :app هاوپێچکراوە.',
         ],
+        'ai' => [
+            'heading' => 'پێشنیاری AI',
+            'footnote_prefix' => 'لەڕێگەی',
+            'disclaimer' => 'بە AI دروستکراوە. پێش کارپێکردن پشتڕاست بکەرەوە.',
+            'cached_badge' => 'کاش کراو',
+            'failed_prefix' => 'شیکاری AI سەرکەوتوو نەبوو',
+            'skipped_prefix' => 'شیکاری AI تێپەڕێنرا',
+            'reason' => [
+                'timeout' => 'کاتی تەواوبوو',
+                'authentication_failed' => 'پشتڕاستکردنەوە سەرکەوتوو نەبوو',
+                'rate_limited' => 'ڕێژە سنووردارکراوە',
+                'quota_exceeded' => 'کۆتا تێپەڕاند',
+                'unknown_error' => 'هەڵەی نەناسراو',
+                'output_rejected_matched_injection_marker' => 'دەرئەنجام ڕەتکرایەوە (نیشانەی دەرزی)',
+                'hourly_cap_reached' => 'سنووری کاتژمێر گەیشت',
+                'circuit_open' => 'بازنە کراوەیە',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'وەرگرەکان',
         'throttling' => 'کۆنترۆڵی خێرایی',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'هیچ وەرگرێک دیاری نەکراوە — ئاگادارکردنەوەکان نانێردرێن تا کەمی یەک ئیمەیڵ زیاد بکرێت.',
         'throttle_rate' => 'ڕێژەی سنوور',
         'minutes_suffix' => 'خولەک',
-
         'error' => [
             'enabled' => 'چالاککردنی ئاگادارکردنەوەکانی هەڵە',
             'enabled_helper' => 'کاتێک ناچالاکە، هیچ ئیمەیڵێکی هەڵە نانێردرێت.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'تەواوە هەڵبژێرە',
             'add_exception' => 'زیادکردنی جیاوازی',
         ],
-
         'debug' => [
             'enabled' => 'چالاککردنی کەناڵی Debug',
             'enabled_helper' => 'کاتێک ناچالاکە، بانگکردنەکانی Sentinel::debug() بێدەنگانە پشتگوێ دەخرێن.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'کاتێک ناچالاکە، هەر بانگکردنێکی debug ئیمەیڵ دەنێرێت. کاتێک چالاکە، بانگکردنە دووبارەکان سنوور دەکرێن.',
             'throttle_helper' => 'کەمترین خولەک لەنێوان ئیمەیڵە debug دووبارەکان.',
         ],
-
         'test_email' => [
             'send' => 'ئیمەیڵی تاقیکاری بنێرە',
             'sent' => 'ئیمەیڵی تاقیکاری نێردرا بۆ :count وەرگر',
@@ -148,8 +154,50 @@ return [
             'failed' => 'نەتوانرا ئیمەیڵی تاقیکاری بنێردرێت',
             'channel_disabled' => 'ئەم کەناڵە لە ئێستادا ناچالاکە. ئیمەیڵی تاقیکاری بەهەر حاڵ دەنێردرێت.',
         ],
+        'ai' => [
+            'test_connection' => 'تاقیکردنەوە',
+            'test_connection_success' => 'پەیوەندی AI کاردەکات.',
+            'test_connection_failed' => 'پەیوەندی AI سەرکەوتوو نەبوو.',
+            'test_connection_missing' => 'بۆ تاقیکردنەوەی پەیوەندی پێویستە دابینکار و مۆدێل و کلیلی API.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) دانەنراوە.',
+            'section' => 'شیکاری AI',
+            'section_helper' => 'LLM بەکاربهێنە بۆ پێشنیارکردنی هۆکارە ئەگەرەکانی نائاسایییە گیراوەکان.',
+            'no_providers' => 'هیچ دابینکەرێکی AI نەدۆزرایەوە. دامەزراندنی laravel/ai بپشکنە.',
+            'enabled' => 'چالاککردنی شیکاری هەڵەی AI',
+            'enabled_helper' => 'کاتێک چالاکە، ئیمەیڵەکانی هەڵە بەشێکی پێشنیار کە بە AI دروستکراوە لەخۆ دەگرن.',
+            'provider' => 'دابینکەر',
+            'model' => 'مۆدێل',
+            'model_placeholder' => 'یەکەم دابینکەرێک هەڵبژێرە',
+            'api_key' => 'کلیلی API',
+            'api_key_set' => 'کلیل دانراوە — بۆ هێشتنەوەی کلیلی ئێستا بەتاڵی بەجێبهێڵە',
+            'api_key_enter' => 'کلیلی API بۆ دابینکەری هەڵبژێردراو بنووسە',
+            'timeout' => 'کات تەواوبووە',
+            'timeout_helper' => 'زۆرترین چرکە بۆ چاوەڕێکردنی وەڵامی AI (1-10).',
+            'max_tokens' => 'زۆرترین تۆکنی دەرئەنجام',
+            'hourly_cap' => 'سنووری کاتژمێرانە',
+            'hourly_cap_helper' => 'زۆرترین بانگەوازی AI لە کاتژمێردا. بۆ ناچالاککردنی سنوور 0 دابنێ.',
+            'cache_ttl' => 'TTL ی کاش',
+            'cache_ttl_helper' => 'خولەکەکان بۆ کاشکردنی پێشنیارە سەرکەوتووەکانی AI پێش پرسیارکردنی دووبارە. مەودا: 5–1440 خولەک (≥ پەنجەرەی سنووردارکردن پێشنیار دەکرێت؛ بنەڕەت 60 خولەک).',
+            'strict_scrubbing' => 'پاکردنەوەی توند',
+            'strict_scrubbing_helper' => 'کاتێک چالاکە، پرۆمپتی AI تەنها پۆلی نائاسایی، یەکەم دێڕی پەیام و file:line لەخۆ دەگرێت — هیچ stack trace نییە.',
+            'prompt_template' => 'قاڵبی پرۆمپت',
+            'prompt_template_helper' => 'قاڵبی نێردراو بۆ دابینکەری AI. شوێنگری {{error}} بە وردەکارییە پاککراوەکانی نائاسایی جێگۆڕکێ دەکرێت. بە وریاییەوە دەستکاری بکە — لابردنی {{error}} پاشەکەوتکردن دەگرێت.',
+            'prompt_template_placeholder' => 'تۆ ئەندازیارێکی باڵای Laravel ی. شیکار بکە: {{error}}',
+            'template_missing_token' => 'قاڵبی پرۆمپت دەبێت شوێنگری {{error}} لەخۆ بگرێت.',
+            'prompt_template_default' => 'قاڵبی بنەڕەتی بەکاربهێنە',
+            'usage_section' => 'بەکارهێنان',
+            'usage_last_call_label' => 'دوایین بانگەواز',
+            'usage_month_label' => 'ئەم مانگە',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'تۆکن',
+            'test_email' => [
+                'ai_success' => 'AI: سەرکەوتوو.',
+                'ai_cached' => 'AI: لە کاشەوە.',
+                'ai_failed' => 'AI: شکستی هێنا (:reason).',
+                'ai_skipped' => 'AI: تێپەڕێنرا (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'تۆمارەکانی سیستەم',
         'heading' => 'فایلەکانی تۆمار',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'ئەم فایلی تۆمارە وەک هاوپێچی ئیمەیڵ بۆ وەرگری دیاریکراو بنێرە.',
         'bulk_email_description' => 'فایلەکانی تۆماری هەڵبژێردراو وەک هاوپێچی ئیمەیڵی جیاجیا بۆ وەرگری دیاریکراو بنێرە.',
         'bulk_email_files' => 'فایلە هەڵبژێردراوەکان',
-
         'filter' => [
             'date_from' => 'لە',
             'date_to' => 'بۆ',
         ],
-
         'column' => [
             'filename' => 'ناوی فایل',
             'size' => 'قەبارە',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'کاتنیشانە',
             'message' => 'پەیام',
         ],
-
         'action' => [
             'refresh' => 'نوێکردنەوە',
             'view' => 'بینین',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'فایلی تۆمار سڕایەوە',
             'bulk_deleted' => ':count فایلی تۆمار سڕانەوە',
         ],
-
         'confirm' => [
             'delete' => 'دڵنیایت لە سڕینەوەی ئەم فایلی تۆمارە؟ ئەم کارە ناگەڕێتەوە.',
             'bulk_delete' => 'دڵنیایت لە سڕینەوەی فایلە تۆمارییە هەڵبژێردراوەکان؟ ئەم کارە ناگەڕێتەوە.',
         ],
-
         'entry' => [
             'detail' => 'وردەکاری تۆمار',
             'line' => 'هێڵ',
@@ -206,5 +249,4 @@ return [
             'copied' => 'کۆپی کرا!',
         ],
     ],
-
 ];

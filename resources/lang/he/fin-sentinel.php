@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'הגדרות',
         'error_channel' => 'ערוץ שגיאות',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'קבצי יומן',
         'log_entries' => 'רשומות יומן',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'התראת שגיאה',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'קובץ יומן',
         ],
         'footer' => 'נשלח על ידי Fin-Sentinel',
-
         'label' => [
             'error_message' => 'הודעת שגיאה',
             'class' => 'מחלקה',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'מיקום',
             'trace_call' => 'קריאה',
         ],
-
         'collection' => [
             'count' => ':count פריט|:count פריטים',
             'more' => '... ועוד :count פריטים',
         ],
-
         'error' => [
             'subject' => ':app - אירעה שגיאה',
             'guest' => 'אורח',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'משתמש מאומת',
             'section_environment' => 'סביבה',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'אורח',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'הקשר בקשה',
             'section_environment' => 'סביבה',
         ],
-
         'log_file' => [
             'subject' => ':app - קובץ יומן: :file',
             'bulk_subject' => ':app - :count קבצי יומן מצורפים',
             'body' => 'קובץ היומן <strong>:file</strong> מ-:app מצורף.',
             'body_text' => 'קובץ היומן :file מ-:app מצורף.',
         ],
+        'ai' => [
+            'heading' => 'הצעת AI',
+            'footnote_prefix' => 'באמצעות',
+            'disclaimer' => 'נוצר על ידי AI. בדוק לפני ביצוע.',
+            'cached_badge' => 'במטמון',
+            'failed_prefix' => 'ניתוח ה-AI נכשל',
+            'skipped_prefix' => 'ניתוח ה-AI דולג',
+            'reason' => [
+                'timeout' => 'תם הזמן',
+                'authentication_failed' => 'אימות נכשל',
+                'rate_limited' => 'קצב מוגבל',
+                'quota_exceeded' => 'מכסה חרגה',
+                'unknown_error' => 'שגיאה לא ידועה',
+                'output_rejected_matched_injection_marker' => 'הפלט נדחה (סמן הזרקה)',
+                'hourly_cap_reached' => 'הגעת למגבלה השעתית',
+                'circuit_open' => 'מעגל פתוח',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'נמענים',
         'throttling' => 'הגבלת קצב',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'לא הוגדרו נמענים — לא יישלחו התראות עד שתתווסף לפחות כתובת דוא"ל אחת.',
         'throttle_rate' => 'קצב הגבלה',
         'minutes_suffix' => 'דקות',
-
         'error' => [
             'enabled' => 'הפעלת התראות שגיאה',
             'enabled_helper' => 'כאשר מושבת, לא יישלחו הודעות שגיאה בדוא"ל.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'בחר חריגה',
             'add_exception' => 'הוסף חריגה',
         ],
-
         'debug' => [
             'enabled' => 'הפעלת ערוץ Debug',
             'enabled_helper' => 'כאשר מושבת, קריאות Sentinel::debug() יתעלמו בשקט.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'כאשר מושבת, כל קריאת debug שולחת הודעה. כאשר מופעל, קריאות כפולות מוגבלות.',
             'throttle_helper' => 'מספר דקות מינימלי בין הודעות debug כפולות.',
         ],
-
         'test_email' => [
             'send' => 'שלח דוא"ל בדיקה',
             'sent' => 'דוא"ל בדיקה נשלח ל-:count נמען(ים)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'שליחת דוא"ל הבדיקה נכשלה',
             'channel_disabled' => 'ערוץ זה מושבת כעת. דוא"ל הבדיקה יישלח בכל זאת.',
         ],
+        'ai' => [
+            'test_connection' => 'בדוק',
+            'test_connection_success' => 'חיבור ה-AI פועל.',
+            'test_connection_failed' => 'חיבור ה-AI נכשל.',
+            'test_connection_missing' => 'נדרשים ספק, מודל ומפתח API כדי לבדוק את החיבור.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) אינו מותקן.',
+            'section' => 'ניתוח AI',
+            'section_helper' => 'השתמש ב-LLM כדי להציע סיבות סבירות לחריגות שנתפסו.',
+            'no_providers' => 'לא זוהו ספקי AI. בדוק את ההתקנה של laravel/ai.',
+            'enabled' => 'הפעל ניתוח שגיאות AI',
+            'enabled_helper' => 'כאשר מופעל, מיילי שגיאה כוללים חלק הצעה שנוצר על ידי AI.',
+            'provider' => 'ספק',
+            'model' => 'מודל',
+            'model_placeholder' => 'בחר תחילה ספק',
+            'api_key' => 'מפתח API',
+            'api_key_set' => 'המפתח הוגדר — השאר ריק כדי לשמור על המפתח הקיים',
+            'api_key_enter' => 'הזן את מפתח ה-API עבור הספק הנבחר',
+            'timeout' => 'פסק זמן',
+            'timeout_helper' => 'שניות מקסימליות להמתנה לתגובת AI (1-10).',
+            'max_tokens' => 'מקסימום אסימוני פלט',
+            'hourly_cap' => 'מגבלה לשעה',
+            'hourly_cap_helper' => 'מקסימום קריאות AI לשעה. הגדר 0 כדי לבטל את המגבלה.',
+            'cache_ttl' => 'TTL של מטמון',
+            'cache_ttl_helper' => 'דקות למטמון הצעות AI מוצלחות לפני שאילתה מחודשת. טווח: 5–1440 דקות (≥ חלון ויסות מומלץ; ברירת מחדל 60 דקות).',
+            'strict_scrubbing' => 'ניקוי מחמיר',
+            'strict_scrubbing_helper' => 'כאשר מופעל, ההנחיה ל-AI מכילה רק מחלקת חריגה, שורת ההודעה הראשונה ו-file:line — ללא מעקב מחסנית.',
+            'prompt_template' => 'תבנית הנחיה',
+            'prompt_template_helper' => 'תבנית הנשלחת לספק ה-AI. הסמן {{error}} מוחלף בפרטי החריגה המנוקים. ערוך בזהירות — הסרת {{error}} חוסמת שמירה.',
+            'prompt_template_placeholder' => 'אתה מהנדס Laravel בכיר. נתח: {{error}}',
+            'template_missing_token' => 'תבנית ההנחיה חייבת להכיל את הסמן {{error}}.',
+            'prompt_template_default' => 'השתמש בתבנית ברירת המחדל',
+            'usage_section' => 'שימוש',
+            'usage_last_call_label' => 'קריאה אחרונה',
+            'usage_month_label' => 'החודש',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'אסימונים',
+            'test_email' => [
+                'ai_success' => 'AI: הצלחה.',
+                'ai_cached' => 'AI: מהמטמון.',
+                'ai_failed' => 'AI: נכשל (:reason).',
+                'ai_skipped' => 'AI: דולג (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'יומני מערכת',
         'heading' => 'קבצי יומן',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'שלח קובץ יומן זה כקובץ מצורף בדוא"ל לנמען המצוין.',
         'bulk_email_description' => 'שלח את קבצי היומן שנבחרו כקבצים מצורפים נפרדים בדוא"ל לנמען המצוין.',
         'bulk_email_files' => 'קבצים נבחרים',
-
         'filter' => [
             'date_from' => 'מ',
             'date_to' => 'עד',
         ],
-
         'column' => [
             'filename' => 'שם קובץ',
             'size' => 'גודל',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'חותמת זמן',
             'message' => 'הודעה',
         ],
-
         'action' => [
             'refresh' => 'רענן',
             'view' => 'הצג',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'קובץ היומן נמחק',
             'bulk_deleted' => ':count קבצי יומן נמחקו',
         ],
-
         'confirm' => [
             'delete' => 'האם אתה בטוח שברצונך למחוק קובץ יומן זה? לא ניתן לבטל פעולה זו.',
             'bulk_delete' => 'האם אתה בטוח שברצונך למחוק את קבצי היומן שנבחרו? לא ניתן לבטל פעולה זו.',
         ],
-
         'entry' => [
             'detail' => 'פרטי רשומה',
             'line' => 'שורה',
@@ -206,5 +249,4 @@ return [
             'copied' => 'הועתק!',
         ],
     ],
-
 ];

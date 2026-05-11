@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Sozlamalar',
         'error_channel' => 'Xatolik kanali',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Jurnal fayllari',
         'log_entries' => 'Jurnal yozuvlari',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Xatolik xabarnomasi',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Jurnal fayli',
         ],
         'footer' => 'Fin-Sentinel tomonidan yuborilgan',
-
         'label' => [
             'error_message' => 'Xatolik xabari',
             'class' => 'Klass',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Joylashuv',
             'trace_call' => 'Chaqiruv',
         ],
-
         'collection' => [
             'count' => ':count element|:count elementlar',
             'more' => '... va yana :count element',
         ],
-
         'error' => [
             'subject' => ':app - Xatolik yuz berdi',
             'guest' => 'Mehmon',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Tasdiqlangan foydalanuvchi',
             'section_environment' => 'Muhit',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Mehmon',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'So\'rov konteksti',
             'section_environment' => 'Muhit',
         ],
-
         'log_file' => [
             'subject' => ':app - Jurnal fayli: :file',
             'bulk_subject' => ':app - :count jurnal fayli biriktirilgan',
             'body' => ':app dan jurnal fayli <strong>:file</strong> biriktirilgan.',
             'body_text' => ':app dan jurnal fayli :file biriktirilgan.',
         ],
+        'ai' => [
+            'heading' => 'AI taklifi',
+            'footnote_prefix' => 'orqali',
+            'disclaimer' => 'AI tomonidan yaratilgan. Bajarishdan oldin tekshiring.',
+            'cached_badge' => 'keshlangan',
+            'failed_prefix' => 'AI tahlili muvaffaqiyatsiz',
+            'skipped_prefix' => 'AI tahlili o\'tkazib yuborildi',
+            'reason' => [
+                'timeout' => 'vaqt tugadi',
+                'authentication_failed' => 'autentifikatsiya muvaffaqiyatsiz',
+                'rate_limited' => 'tezlik cheklangan',
+                'quota_exceeded' => 'kvota oshib ketdi',
+                'unknown_error' => 'noma\'lum xato',
+                'output_rejected_matched_injection_marker' => 'chiqish rad etildi (injection belgisi)',
+                'hourly_cap_reached' => 'soatlik chegaraga yetildi',
+                'circuit_open' => 'davra ochiq',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Qabul qiluvchilar',
         'throttling' => 'Cheklash',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Qabul qiluvchilar sozlanmagan — kamida bitta elektron pochta qo\'shilmaguncha xabarnomalar yuborilmaydi.',
         'throttle_rate' => 'Cheklash tezligi',
         'minutes_suffix' => 'daqiqa',
-
         'error' => [
             'enabled' => 'Xatolik xabarnomalarini yoqish',
             'enabled_helper' => 'O\'chirilganda, xatolik elektron pochtalari yuborilmaydi.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Istisno tanlang',
             'add_exception' => 'Istisno qo\'shish',
         ],
-
         'debug' => [
             'enabled' => 'Debug kanalini yoqish',
             'enabled_helper' => 'O\'chirilganda, Sentinel::debug() chaqiruvlari jimgina e\'tiborsiz qoldiriladi.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'O\'chirilganda, har bir Debug chaqiruv elektron pochta yuboradi. Yoqilganda, takroriy chaqiruvlar cheklanadi.',
             'throttle_helper' => 'Takroriy Debug elektron pochtalari orasidagi minimal daqiqalar.',
         ],
-
         'test_email' => [
             'send' => 'Sinov elektron pochta yuborish',
             'sent' => ':count qabul qiluvchiga sinov elektron pochta yuborildi',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Sinov elektron pochtani yuborib bo\'lmadi',
             'channel_disabled' => 'Bu kanal hozirda o\'chirilgan. Sinov elektron pochta baribir yuboriladi.',
         ],
+        'ai' => [
+            'test_connection' => 'Sinab ko\'rish',
+            'test_connection_success' => 'AI ulanishi ishlamoqda.',
+            'test_connection_failed' => 'AI ulanishi muvaffaqiyatsiz.',
+            'test_connection_missing' => 'Ulanishni sinab ko\'rish uchun provayder, model va API kalit kerak.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) o\'rnatilmagan.',
+            'section' => 'AI tahlili',
+            'section_helper' => 'Tutilgan istisnolarning ehtimoliy sabablarini taklif qilish uchun LLM dan foydalaning.',
+            'no_providers' => 'AI provayderlari aniqlanmadi. laravel/ai oʻrnatilishini tekshiring.',
+            'enabled' => 'AI xatolik tahlilini yoqish',
+            'enabled_helper' => 'Yoqilgan boʻlsa, xato e-mailingizga AI tomonidan yaratilgan taklif boʻlimi qoʻshiladi.',
+            'provider' => 'Provayder',
+            'model' => 'Model',
+            'model_placeholder' => 'Avval provayderni tanlang',
+            'api_key' => 'API kaliti',
+            'api_key_set' => 'Kalit oʻrnatildi — mavjud kalitni saqlash uchun boʻsh qoldiring',
+            'api_key_enter' => 'Tanlangan provayder uchun API kalitini kiriting',
+            'timeout' => 'Vaqt tugadi',
+            'timeout_helper' => 'AI javobini kutish uchun maksimal soniyalar (1-10).',
+            'max_tokens' => 'Maks. chiqish tokenlari',
+            'hourly_cap' => 'Soatlik chegara',
+            'hourly_cap_helper' => 'Soatiga maksimal AI chaqiruvlari. Chegarani oʻchirish uchun 0 qoʻying.',
+            'cache_ttl' => 'Kesh TTL',
+            'cache_ttl_helper' => 'Qayta soʻrov oldidan muvaffaqiyatli AI takliflarini keshlash daqiqalari. Diapazon: 5–1440 daqiqa (≥ cheklash oynasi tavsiya etiladi; standart 60 daqiqa).',
+            'strict_scrubbing' => 'Qattiq tozalash',
+            'strict_scrubbing_helper' => 'Yoqilganda, AI promptida faqat istisno klassi, xabarning birinchi qatori va file:line boʻladi — stack trace yoʻq.',
+            'prompt_template' => 'Prompt shabloni',
+            'prompt_template_helper' => 'AI provayderiga yuboriladigan shablon. {{error}} oʻrindosh tozalangan istisno tafsilotlari bilan almashtiriladi. Ehtiyotkorlik bilan tahrirlang — {{error}} olib tashlash saqlashni bloklaydi.',
+            'prompt_template_placeholder' => 'Siz Laravel boʻyicha katta muhandissiz. Tahlil qiling: {{error}}',
+            'template_missing_token' => 'Prompt shabloni {{error}} oʻrindoshini oʻz ichiga olishi shart.',
+            'prompt_template_default' => 'Standart shablondan foydalanish',
+            'usage_section' => 'Foydalanish',
+            'usage_last_call_label' => 'Soʻnggi chaqiruv',
+            'usage_month_label' => 'Shu oyda',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: muvaffaqiyatli.',
+                'ai_cached' => 'AI: keshdan.',
+                'ai_failed' => 'AI: muvaffaqiyatsiz (:reason).',
+                'ai_skipped' => 'AI: oʻtkazib yuborildi (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Tizim jurnallari',
         'heading' => 'Jurnal fayllari',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Ushbu jurnal faylini belgilangan qabul qiluvchiga elektron pochta birikma sifatida yuboring.',
         'bulk_email_description' => 'Tanlangan jurnal fayllarini belgilangan qabul qiluvchiga alohida elektron pochta birikmalari sifatida yuboring.',
         'bulk_email_files' => 'Tanlangan fayllar',
-
         'filter' => [
             'date_from' => 'Dan',
             'date_to' => 'Gacha',
         ],
-
         'column' => [
             'filename' => 'Fayl nomi',
             'size' => 'Hajmi',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Vaqt belgisi',
             'message' => 'Xabar',
         ],
-
         'action' => [
             'refresh' => 'Yangilash',
             'view' => 'Ko\'rish',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Jurnal fayli o\'chirildi',
             'bulk_deleted' => ':count jurnal fayl(lar)i o\'chirildi',
         ],
-
         'confirm' => [
             'delete' => 'Bu jurnal faylini o\'chirishga ishonchingiz komilmi? Bu amalni qaytarib bo\'lmaydi.',
             'bulk_delete' => 'Tanlangan jurnal fayllarini o\'chirishga ishonchingiz komilmi? Bu amalni qaytarib bo\'lmaydi.',
         ],
-
         'entry' => [
             'detail' => 'Yozuv tafsilotlari',
             'line' => 'Qator',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Nusxalandi!',
         ],
     ],
-
 ];

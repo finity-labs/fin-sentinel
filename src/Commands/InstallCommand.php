@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace FinityLabs\FinSentinel\Commands;
 
+use Composer\InstalledVersions;
 use FinityLabs\FinSentinel\Commands\Concerns\CanRegisterPlugin;
 use FinityLabs\FinSentinel\Commands\Concerns\DiscoversPanelProviders;
+use FinityLabs\FinSentinel\Settings\ErrorChannelSettings;
+use FinityLabs\FinSentinel\Support\Ai\AiProviderLabels;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
+use function Laravel\Prompts\password;
+use function Laravel\Prompts\select;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Process\Process;
@@ -24,12 +30,16 @@ class InstallCommand extends Command
 
     protected bool $shieldConfigured = false;
 
-    protected $signature = 'fin-sentinel:install {panels?*} {--force : Overwrite existing config file}';
+    protected $signature = 'fin-sentinel:install {panels?*} {--force : Overwrite existing config file} {--ai : Skip the AI prompt and proceed with AI install} {--ai-only : Run only the AI install step (skips config publish, migrations, panels, Shield)}';
 
     protected $description = 'Install the FinSentinel plugin.';
 
     public function handle(): int
     {
+        if ($this->option('ai-only')) {
+            return $this->runAiInstall();
+        }
+
         $this->info('Installing FinSentinel plugin...');
         $this->newLine();
 
@@ -79,7 +89,208 @@ class InstallCommand extends Command
 
         $this->table(['Next Steps', 'Details'], $nextSteps);
 
+        $this->runAiInstall();
+
         return self::SUCCESS;
+    }
+
+    protected function runAiInstall(): int
+    {
+        $this->newLine();
+        $this->info('AI Setup');
+
+        if (! $this->checkAiVersionRequirements()) {
+            return self::SUCCESS;
+        }
+
+        // explicit AI invocation (--ai or --ai-only) is implicit yes; bare install still asks.
+        $shouldEnable = $this->option('ai')
+            || $this->option('ai-only')
+            || confirm(label: 'Enable AI error analysis?', default: false);
+
+        if (! $shouldEnable) {
+            return self::SUCCESS;
+        }
+
+        $sdkAlreadyInstalled = InstalledVersions::isInstalled('laravel/ai');
+
+        if (! $sdkAlreadyInstalled) {
+            if (! $this->runComposerRequire('laravel/ai:^0.6')) {
+                return self::SUCCESS;
+            }
+
+            // Parent process autoloader can't see the freshly-installed SDK; defer the test call
+            // to the next process invocation via the documented --ai-only retry.
+            $this->components->info('AI SDK installed.');
+            $this->line('  Re-run `php artisan fin-sentinel:install --ai-only` to provide credentials and validate.');
+
+            return self::SUCCESS;
+        }
+
+        $this->promptAndValidateAiCredentials();
+
+        return self::SUCCESS;
+    }
+
+    protected function checkAiVersionRequirements(): bool
+    {
+        $phpOk = PHP_VERSION_ID >= 80300;
+        $laravelMajor = (int) explode('.', app()->version())[0];
+        $laravelOk = $laravelMajor >= 12;
+
+        if ($phpOk && $laravelOk) {
+            return true;
+        }
+
+        $this->components->warn(sprintf(
+            "AI requires PHP 8.3+ and Laravel 12+. You're on PHP %s / Laravel %s.",
+            PHP_VERSION,
+            app()->version(),
+        ));
+        $this->line('  Skipping AI install. The plugin will work without AI features.');
+        $this->line('  To enable AI later: upgrade PHP/Laravel and re-run `php artisan fin-sentinel:install --ai-only`.');
+
+        return false;
+    }
+
+    protected function runComposerRequire(string $package): bool
+    {
+        $args = ['composer', 'require', $package, '--no-interaction', '--ansi'];
+        $process = new Process($args, base_path());
+        $process->setTimeout(120);
+
+        $process->run(function ($type, $buffer): void {
+            $this->output->write($buffer);
+        });
+
+        if (! $process->isSuccessful()) {
+            $stderr = $process->getErrorOutput();
+            $firstLine = strtok($stderr, "\n") ?: 'unknown error';
+            $this->components->error("Composer require failed: {$firstLine}");
+            $this->line("  Re-run after fixing: composer require {$package}");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function promptAndValidateAiCredentials(): void
+    {
+        $providerOptions = AiProviderLabels::all();
+
+        if (empty($providerOptions)) {
+            $this->components->error('No AI providers detected from the SDK.');
+            $this->line('  This usually means laravel/ai is installed but the Lab enum is unavailable.');
+
+            return;
+        }
+
+        $provider = (string) select(
+            label: 'Choose AI provider:',
+            options: $providerOptions,
+            default: array_key_first($providerOptions),
+        );
+
+        $tier = (string) select(
+            label: 'Choose model tier:',
+            options: ['default' => 'Default', 'cheapest' => 'Cheapest', 'smartest' => 'Smartest'],
+            default: 'default',
+        );
+
+        $model = $this->resolveModelForTier($provider, $tier);
+
+        $apiKey = password(
+            label: "Enter API key for {$provider}:",
+            required: true,
+        );
+
+        $this->testAndSaveAiConnection($provider, $model, $apiKey);
+    }
+
+    protected function resolveModelForTier(string $provider, string $tier): string
+    {
+        $aiFacadeClass = '\\Laravel\\Ai\\Ai';
+        $instance = $aiFacadeClass::textProvider($provider);
+
+        return match ($tier) {
+            'cheapest' => $instance->cheapestTextModel(),
+            'smartest' => $instance->smartestTextModel(),
+            default => $instance->defaultTextModel(),
+        };
+    }
+
+    protected function testAndSaveAiConnection(string $provider, string $model, string $apiKey): void
+    {
+        $names = $this->sdkNames();
+        $agentFn = $names['agent'];
+        $labFqcn = $names['lab'];
+
+        try {
+            $providerEnum = $labFqcn::from($provider);
+
+            $response = $this->withProviderKey(
+                $provider,
+                $apiKey,
+                fn () => $agentFn('', [], [])->prompt(
+                    'Reply with the single word OK.',
+                    provider: $providerEnum,
+                    model: $model,
+                    timeout: 10,
+                ),
+            );
+
+            (string) $response;
+
+            $settings = app(ErrorChannelSettings::class);
+            $settings->ai_provider = $provider;
+            $settings->ai_model = $model;
+            $settings->ai_api_key = $apiKey;
+            $settings->ai_enabled = true;
+            $settings->save();
+
+            $this->components->info('AI validated and configured.');
+        } catch (\Throwable $e) {
+            $this->components->error('AI validation failed.');
+            $this->line('  Provider error: '.$e->getMessage());
+            $this->newLine();
+            $this->line('  Re-run with `php artisan fin-sentinel:install --ai-only` to retry,');
+            $this->line('  or configure manually in the Filament settings page.');
+        }
+    }
+
+    /**
+     * Inject the DB-stored API key into the SDK config for one call, then restore.
+     * `Ai::forgetInstance()` invalidates the cached provider so it re-reads config.
+     */
+    protected function withProviderKey(string $provider, string $apiKey, callable $fn): mixed
+    {
+        $configKey = "ai.providers.{$provider}.key";
+        $previousKey = config($configKey);
+        $aiFacade = '\\Laravel\\Ai\\Ai';
+
+        config([$configKey => $apiKey]);
+        $aiFacade::forgetInstance($provider);
+
+        try {
+            return $fn();
+        } finally {
+            config([$configKey => $previousKey]);
+            $aiFacade::forgetInstance($provider);
+        }
+    }
+
+    /**
+     * @return array{agent: string, lab: string}
+     */
+    protected function sdkNames(): array
+    {
+        $ns = trim('\Laravel\Ai', '\\');
+
+        return [
+            'agent' => $ns.'\\agent',
+            'lab' => $ns.'\\Enums\\Lab',
+        ];
     }
 
     protected function ensureSettingsTableExists(): void

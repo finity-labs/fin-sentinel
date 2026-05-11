@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Inställningar',
         'error_channel' => 'Felkanal',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Loggfiler',
         'log_entries' => 'Loggposter',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Felnotifiering',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Loggfil',
         ],
         'footer' => 'Skickat av Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Felmeddelande',
             'class' => 'Klass',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Plats',
             'trace_call' => 'Anrop',
         ],
-
         'collection' => [
             'count' => ':count objekt|:count objekt',
             'more' => '... och :count objekt till',
         ],
-
         'error' => [
             'subject' => ':app - Ett fel har inträffat',
             'guest' => 'Gäst',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Autentiserad användare',
             'section_environment' => 'Miljö',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Gäst',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Förfrågningskontext',
             'section_environment' => 'Miljö',
         ],
-
         'log_file' => [
             'subject' => ':app - Loggfil: :file',
             'bulk_subject' => ':app - :count loggfiler bifogade',
             'body' => 'Loggfilen <strong>:file</strong> från :app är bifogad.',
             'body_text' => 'Loggfilen :file från :app är bifogad.',
         ],
+        'ai' => [
+            'heading' => 'AI-förslag',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'AI-genererat. Verifiera innan du agerar.',
+            'cached_badge' => 'från cache',
+            'failed_prefix' => 'AI-analys misslyckades',
+            'skipped_prefix' => 'AI-analys hoppades över',
+            'reason' => [
+                'timeout' => 'tidsgräns uppnådd',
+                'authentication_failed' => 'autentisering misslyckades',
+                'rate_limited' => 'hastighet begränsad',
+                'quota_exceeded' => 'kvot överskriden',
+                'unknown_error' => 'okänt fel',
+                'output_rejected_matched_injection_marker' => 'utdata avvisad (injection-markör)',
+                'hourly_cap_reached' => 'timgräns uppnådd',
+                'circuit_open' => 'kretsen öppen',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Mottagare',
         'throttling' => 'Begränsning',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Inga mottagare konfigurerade — notifieringar skickas inte förrän minst en e-postadress har lagts till.',
         'throttle_rate' => 'Begränsningsfrekvens',
         'minutes_suffix' => 'minuter',
-
         'error' => [
             'enabled' => 'Aktivera felnotifieringar',
             'enabled_helper' => 'När inaktiverad skickas inga fel-e-postmeddelanden.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Välj undantag',
             'add_exception' => 'Lägg till undantag',
         ],
-
         'debug' => [
             'enabled' => 'Aktivera Debug-kanal',
             'enabled_helper' => 'När inaktiverad ignoreras Sentinel::debug()-anrop tyst.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'När inaktiverad skickar varje Debug-anrop ett e-postmeddelande. När aktiverad begränsas duplicerade anrop.',
             'throttle_helper' => 'Minsta antal minuter mellan duplicerade Debug-e-postmeddelanden.',
         ],
-
         'test_email' => [
             'send' => 'Skicka test-e-post',
             'sent' => 'Test-e-post skickat till :count mottagare',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Kunde inte skicka test-e-post',
             'channel_disabled' => 'Denna kanal är för närvarande inaktiverad. Test-e-posten skickas ändå.',
         ],
+        'ai' => [
+            'test_connection' => 'Testa',
+            'test_connection_success' => 'AI-anslutningen fungerar.',
+            'test_connection_failed' => 'AI-anslutningen misslyckades.',
+            'test_connection_missing' => 'Leverantör, modell och API-nyckel krävs för att testa anslutningen.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) är inte installerat.',
+            'section' => 'AI-analys',
+            'section_helper' => 'Använd en LLM för att föreslå troliga orsaker till fångade undantag.',
+            'no_providers' => 'Inga AI-leverantörer upptäcktes. Kontrollera din laravel/ai-installation.',
+            'enabled' => 'Aktivera AI-felanalys',
+            'enabled_helper' => 'När aktiverat innehåller felmeddelanden en AI-genererad förslagssektion.',
+            'provider' => 'Leverantör',
+            'model' => 'Modell',
+            'model_placeholder' => 'Välj först en leverantör',
+            'api_key' => 'API-nyckel',
+            'api_key_set' => 'Nyckel angiven — lämna tomt för att behålla den befintliga nyckeln',
+            'api_key_enter' => 'Ange API-nyckeln för vald leverantör',
+            'timeout' => 'Tidsgräns',
+            'timeout_helper' => 'Maximalt antal sekunder att vänta på AI-svar (1-10).',
+            'max_tokens' => 'Max. utdata-tokens',
+            'hourly_cap' => 'Gräns per timme',
+            'hourly_cap_helper' => 'Max. AI-anrop per timme. Sätt till 0 för att inaktivera gränsen.',
+            'cache_ttl' => 'Cache-TTL',
+            'cache_ttl_helper' => 'Minuter för att cacha lyckade AI-förslag innan ny förfrågan. Intervall: 5–1440 minuter (≥ throttlingsfönster rekommenderas; standard 60 minuter).',
+            'strict_scrubbing' => 'Strikt rensning',
+            'strict_scrubbing_helper' => 'När aktiverat innehåller AI-prompten endast undantagsklass, första meddelanderaden och file:line — ingen stack trace.',
+            'prompt_template' => 'Promptmall',
+            'prompt_template_helper' => 'Mall som skickas till AI-leverantören. Platshållaren {{error}} ersätts med rensade undantagsdetaljer. Redigera försiktigt — att ta bort {{error}} blockerar sparande.',
+            'prompt_template_placeholder' => 'Du är en senior Laravel-ingenjör. Analysera: {{error}}',
+            'template_missing_token' => 'Promptmallen måste innehålla platshållaren {{error}}.',
+            'prompt_template_default' => 'Använd standardmall',
+            'usage_section' => 'Användning',
+            'usage_last_call_label' => 'Senaste anrop',
+            'usage_month_label' => 'Denna månad',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'AI: lyckades.',
+                'ai_cached' => 'AI: från cache.',
+                'ai_failed' => 'AI: misslyckades (:reason).',
+                'ai_skipped' => 'AI: hoppades över (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Systemloggar',
         'heading' => 'Loggfiler',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Skicka denna loggfil som e-postbilaga till den angivna mottagaren.',
         'bulk_email_description' => 'Skicka de valda loggfilerna som enskilda e-postbilagor till den angivna mottagaren.',
         'bulk_email_files' => 'Valda filer',
-
         'filter' => [
             'date_from' => 'Från',
             'date_to' => 'Till',
         ],
-
         'column' => [
             'filename' => 'Filnamn',
             'size' => 'Storlek',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Tidsstämpel',
             'message' => 'Meddelande',
         ],
-
         'action' => [
             'refresh' => 'Uppdatera',
             'view' => 'Visa',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Loggfil raderad',
             'bulk_deleted' => ':count loggfil(er) raderade',
         ],
-
         'confirm' => [
             'delete' => 'Är du säker på att du vill radera denna loggfil? Denna åtgärd kan inte ångras.',
             'bulk_delete' => 'Är du säker på att du vill radera de valda loggfilerna? Denna åtgärd kan inte ångras.',
         ],
-
         'entry' => [
             'detail' => 'Postdetalj',
             'line' => 'Rad',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopierat!',
         ],
     ],
-
 ];

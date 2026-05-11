@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'সেটিংস',
         'error_channel' => 'ত্রুটি চ্যানেল',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'লগ ফাইল',
         'log_entries' => 'লগ এন্ট্রি',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'ত্রুটি বিজ্ঞপ্তি',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'লগ ফাইল',
         ],
         'footer' => 'Fin-Sentinel দ্বারা প্রেরিত',
-
         'label' => [
             'error_message' => 'ত্রুটি বার্তা',
             'class' => 'ক্লাস',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'অবস্থান',
             'trace_call' => 'কল',
         ],
-
         'collection' => [
             'count' => ':count আইটেম|:count আইটেম',
             'more' => '... এবং আরও :count আইটেম',
         ],
-
         'error' => [
             'subject' => ':app - একটি ত্রুটি ঘটেছে',
             'guest' => 'অতিথি',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'প্রমাণীকৃত ব্যবহারকারী',
             'section_environment' => 'এনভায়রনমেন্ট',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'অতিথি',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'রিকুয়েস্ট প্রসঙ্গ',
             'section_environment' => 'এনভায়রনমেন্ট',
         ],
-
         'log_file' => [
             'subject' => ':app - লগ ফাইল: :file',
             'bulk_subject' => ':app - :count লগ ফাইল সংযুক্ত',
             'body' => ':app থেকে লগ ফাইল <strong>:file</strong> সংযুক্ত আছে।',
             'body_text' => ':app থেকে লগ ফাইল :file সংযুক্ত আছে।',
         ],
+        'ai' => [
+            'heading' => 'AI পরামর্শ',
+            'footnote_prefix' => 'মাধ্যমে',
+            'disclaimer' => 'AI দ্বারা তৈরি। কাজ করার আগে যাচাই করুন।',
+            'cached_badge' => 'ক্যাশ করা',
+            'failed_prefix' => 'AI বিশ্লেষণ ব্যর্থ',
+            'skipped_prefix' => 'AI বিশ্লেষণ এড়ানো হয়েছে',
+            'reason' => [
+                'timeout' => 'সময় শেষ',
+                'authentication_failed' => 'প্রমাণীকরণ ব্যর্থ',
+                'rate_limited' => 'হার সীমিত',
+                'quota_exceeded' => 'কোটা অতিক্রান্ত',
+                'unknown_error' => 'অজানা ত্রুটি',
+                'output_rejected_matched_injection_marker' => 'আউটপুট প্রত্যাখ্যাত (ইনজেকশন চিহ্ন)',
+                'hourly_cap_reached' => 'ঘণ্টার সীমায় পৌঁছেছে',
+                'circuit_open' => 'সার্কিট খোলা',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'প্রাপক',
         'throttling' => 'থ্রটলিং',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'কোনো প্রাপক কনফিগার করা হয়নি — কমপক্ষে একটি ইমেইল যোগ না করা পর্যন্ত বিজ্ঞপ্তি পাঠানো হবে না।',
         'throttle_rate' => 'থ্রটল হার',
         'minutes_suffix' => 'মিনিট',
-
         'error' => [
             'enabled' => 'ত্রুটি বিজ্ঞপ্তি সক্রিয় করুন',
             'enabled_helper' => 'নিষ্ক্রিয় থাকলে, কোনো ত্রুটি ইমেইল পাঠানো হবে না।',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'ব্যতিক্রম নির্বাচন করুন',
             'add_exception' => 'ব্যতিক্রম যোগ করুন',
         ],
-
         'debug' => [
             'enabled' => 'Debug চ্যানেল সক্রিয় করুন',
             'enabled_helper' => 'নিষ্ক্রিয় থাকলে, Sentinel::debug() কলগুলো নীরবে উপেক্ষা করা হবে।',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'নিষ্ক্রিয় থাকলে, প্রতিটি Debug কল একটি ইমেইল পাঠাবে। সক্রিয় থাকলে, ডুপ্লিকেট কল থ্রটল করা হবে।',
             'throttle_helper' => 'ডুপ্লিকেট Debug ইমেইলের মধ্যে সর্বনিম্ন মিনিট।',
         ],
-
         'test_email' => [
             'send' => 'টেস্ট ইমেইল পাঠান',
             'sent' => ':count প্রাপককে টেস্ট ইমেইল পাঠানো হয়েছে',
@@ -148,8 +154,50 @@ return [
             'failed' => 'টেস্ট ইমেইল পাঠাতে ব্যর্থ',
             'channel_disabled' => 'এই চ্যানেলটি বর্তমানে নিষ্ক্রিয়। তবুও টেস্ট ইমেইল পাঠানো হবে।',
         ],
+        'ai' => [
+            'test_connection' => 'পরীক্ষা',
+            'test_connection_success' => 'AI সংযোগ কাজ করছে।',
+            'test_connection_failed' => 'AI সংযোগ ব্যর্থ হয়েছে।',
+            'test_connection_missing' => 'সংযোগ পরীক্ষা করতে প্রদানকারী, মডেল এবং API কী প্রয়োজন।',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) ইনস্টল করা নেই।',
+            'section' => 'AI বিশ্লেষণ',
+            'section_helper' => 'ধরা পড়া এক্সসেপশনগুলির সম্ভাব্য কারণ প্রস্তাব করতে একটি LLM ব্যবহার করুন।',
+            'no_providers' => 'কোনো AI প্রোভাইডার পাওয়া যায়নি। আপনার laravel/ai ইনস্টলেশন পরীক্ষা করুন।',
+            'enabled' => 'AI ত্রুটি বিশ্লেষণ সক্রিয় করুন',
+            'enabled_helper' => 'সক্রিয় হলে, ত্রুটি ইমেইলে একটি AI-জেনারেটেড পরামর্শ বিভাগ অন্তর্ভুক্ত হয়।',
+            'provider' => 'প্রোভাইডার',
+            'model' => 'মডেল',
+            'model_placeholder' => 'প্রথমে একটি প্রোভাইডার নির্বাচন করুন',
+            'api_key' => 'API কী',
+            'api_key_set' => 'কী সেট করা আছে — বিদ্যমান কী রাখতে ফাঁকা রাখুন',
+            'api_key_enter' => 'নির্বাচিত প্রোভাইডারের API কী লিখুন',
+            'timeout' => 'টাইমআউট',
+            'timeout_helper' => 'AI প্রতিক্রিয়ার জন্য অপেক্ষার সর্বাধিক সেকেন্ড (1-10)।',
+            'max_tokens' => 'সর্বাধিক আউটপুট টোকেন',
+            'hourly_cap' => 'ঘণ্টায় সীমা',
+            'hourly_cap_helper' => 'প্রতি ঘণ্টায় সর্বাধিক AI কল। সীমা নিষ্ক্রিয় করতে 0 সেট করুন।',
+            'cache_ttl' => 'ক্যাশ TTL',
+            'cache_ttl_helper' => 'পুনরায় কোয়েরির আগে সফল AI পরামর্শ ক্যাশ করার মিনিট। পরিসর: 5–1440 মিনিট (≥ থ্রটল উইন্ডো প্রস্তাবিত; ডিফল্ট 60 মিনিট)।',
+            'strict_scrubbing' => 'কঠোর স্ক্রাবিং',
+            'strict_scrubbing_helper' => 'সক্রিয় হলে, AI প্রম্পটে শুধু এক্সসেপশন ক্লাস, বার্তার প্রথম লাইন এবং file:line থাকে — কোনো স্ট্যাক ট্রেস নয়।',
+            'prompt_template' => 'প্রম্পট টেমপ্লেট',
+            'prompt_template_helper' => 'AI প্রোভাইডারে পাঠানো টেমপ্লেট। {{error}} প্লেসহোল্ডার পরিষ্কৃত এক্সসেপশন বিবরণ দিয়ে প্রতিস্থাপিত হয়। সাবধানে সম্পাদনা করুন — {{error}} সরালে সংরক্ষণ আটকে যাবে।',
+            'prompt_template_placeholder' => 'আপনি একজন সিনিয়র Laravel ইঞ্জিনিয়ার। বিশ্লেষণ করুন: {{error}}',
+            'template_missing_token' => 'প্রম্পট টেমপ্লেটে অবশ্যই {{error}} প্লেসহোল্ডার থাকতে হবে।',
+            'prompt_template_default' => 'ডিফল্ট টেমপ্লেট ব্যবহার করুন',
+            'usage_section' => 'ব্যবহার',
+            'usage_last_call_label' => 'শেষ কল',
+            'usage_month_label' => 'এই মাসে',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'টোকেন',
+            'test_email' => [
+                'ai_success' => 'AI: সফল।',
+                'ai_cached' => 'AI: ক্যাশ থেকে।',
+                'ai_failed' => 'AI: ব্যর্থ (:reason)।',
+                'ai_skipped' => 'AI: এড়ানো হয়েছে (:reason)।',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'সিস্টেম লগ',
         'heading' => 'লগ ফাইল',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'নির্দিষ্ট প্রাপককে এই লগ ফাইলটি ইমেইল অ্যাটাচমেন্ট হিসেবে পাঠান।',
         'bulk_email_description' => 'নির্বাচিত লগ ফাইলগুলো নির্দিষ্ট প্রাপককে পৃথক ইমেইল অ্যাটাচমেন্ট হিসেবে পাঠান।',
         'bulk_email_files' => 'নির্বাচিত ফাইল',
-
         'filter' => [
             'date_from' => 'থেকে',
             'date_to' => 'পর্যন্ত',
         ],
-
         'column' => [
             'filename' => 'ফাইলের নাম',
             'size' => 'আকার',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'সময়',
             'message' => 'বার্তা',
         ],
-
         'action' => [
             'refresh' => 'রিফ্রেশ',
             'view' => 'দেখুন',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'লগ ফাইল মুছে ফেলা হয়েছে',
             'bulk_deleted' => ':count লগ ফাইল মুছে ফেলা হয়েছে',
         ],
-
         'confirm' => [
             'delete' => 'আপনি কি এই লগ ফাইলটি মুছে ফেলতে চান? এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।',
             'bulk_delete' => 'আপনি কি নির্বাচিত লগ ফাইলগুলো মুছে ফেলতে চান? এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।',
         ],
-
         'entry' => [
             'detail' => 'এন্ট্রি বিবরণ',
             'line' => 'লাইন',
@@ -206,5 +249,4 @@ return [
             'copied' => 'কপি হয়েছে!',
         ],
     ],
-
 ];

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Beállítások',
         'error_channel' => 'Hibacsatorna',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Naplófájlok',
         'log_entries' => 'Naplóbejegyzések',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Hibaértesítés',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Naplófájl',
         ],
         'footer' => 'Küldte a Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Hibaüzenet',
             'class' => 'Osztály',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Hely',
             'trace_call' => 'Hívás',
         ],
-
         'collection' => [
             'count' => ':count elem|:count elem',
             'more' => '... és még :count elem',
         ],
-
         'error' => [
             'subject' => ':app - Hiba történt',
             'guest' => 'Vendég',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Bejelentkezett felhasználó',
             'section_environment' => 'Környezet',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Vendég',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Kérés kontextusa',
             'section_environment' => 'Környezet',
         ],
-
         'log_file' => [
             'subject' => ':app - Naplófájl: :file',
             'bulk_subject' => ':app - :count naplófájl csatolva',
             'body' => 'A(z) :app alkalmazás <strong>:file</strong> naplófájlja csatolva van.',
             'body_text' => 'A(z) :app alkalmazás :file naplófájlja csatolva van.',
         ],
+        'ai' => [
+            'heading' => 'AI javaslat',
+            'footnote_prefix' => 'forrás',
+            'disclaimer' => 'AI által generált. Művelet előtt ellenőrizze.',
+            'cached_badge' => 'gyorsítótárból',
+            'failed_prefix' => 'AI-elemzés sikertelen',
+            'skipped_prefix' => 'AI-elemzés kihagyva',
+            'reason' => [
+                'timeout' => 'időtúllépés',
+                'authentication_failed' => 'hitelesítés sikertelen',
+                'rate_limited' => 'sebesség korlátozva',
+                'quota_exceeded' => 'kvóta túllépve',
+                'unknown_error' => 'ismeretlen hiba',
+                'output_rejected_matched_injection_marker' => 'kimenet elutasítva (injekciós jel)',
+                'hourly_cap_reached' => 'óránkénti korlát elérve',
+                'circuit_open' => 'áramkör nyitva',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Címzettek',
         'throttling' => 'Korlátozás',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Nincsenek beállított címzettek — az értesítések nem lesznek elküldve, amíg legalább egy email cím nincs megadva.',
         'throttle_rate' => 'Korlátozási arány',
         'minutes_suffix' => 'perc',
-
         'error' => [
             'enabled' => 'Hibaértesítések bekapcsolása',
             'enabled_helper' => 'Kikapcsolt állapotban nem lesznek hibaüzenetek elküldve.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Kivétel kiválasztása',
             'add_exception' => 'Kivétel hozzáadása',
         ],
-
         'debug' => [
             'enabled' => 'Debug csatorna bekapcsolása',
             'enabled_helper' => 'Kikapcsolt állapotban a Sentinel::debug() hívások csendben figyelmen kívül lesznek hagyva.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Kikapcsolt állapotban minden debug hívás emailt küld. Bekapcsolt állapotban az ismétlődő hívások korlátozva vannak.',
             'throttle_helper' => 'Minimális percek száma az ismétlődő Debug emailek között.',
         ],
-
         'test_email' => [
             'send' => 'Teszt email küldése',
             'sent' => 'Teszt email elküldve :count címzettnek',
@@ -148,8 +154,50 @@ return [
             'failed' => 'A teszt email küldése sikertelen',
             'channel_disabled' => 'Ez a csatorna jelenleg ki van kapcsolva. A teszt email ennek ellenére el lesz küldve.',
         ],
+        'ai' => [
+            'test_connection' => 'Tesztelés',
+            'test_connection_success' => 'AI-kapcsolat működik.',
+            'test_connection_failed' => 'AI-kapcsolat sikertelen.',
+            'test_connection_missing' => 'A kapcsolat teszteléséhez szolgáltató, modell és API-kulcs szükséges.',
+            'test_connection_no_sdk' => 'Az AI SDK (laravel/ai) nincs telepítve.',
+            'section' => 'AI elemzés',
+            'section_helper' => 'Használjon LLM-et a kapott kivételek valószínű okainak javasolásához.',
+            'no_providers' => 'Nem található AI szolgáltató. Ellenőrizze a laravel/ai telepítést.',
+            'enabled' => 'AI hibaelemzés engedélyezése',
+            'enabled_helper' => 'Engedélyezve a hiba e-mailek AI által generált javaslat szakaszt tartalmaznak.',
+            'provider' => 'Szolgáltató',
+            'model' => 'Modell',
+            'model_placeholder' => 'Először válasszon szolgáltatót',
+            'api_key' => 'API kulcs',
+            'api_key_set' => 'Kulcs beállítva — hagyja üresen a meglévő kulcs megtartásához',
+            'api_key_enter' => 'Adja meg a kiválasztott szolgáltató API kulcsát',
+            'timeout' => 'Időtúllépés',
+            'timeout_helper' => 'Az AI válaszra való várakozás maximális másodpercei (1-10).',
+            'max_tokens' => 'Maximális kimeneti tokenek',
+            'hourly_cap' => 'Óránkénti korlát',
+            'hourly_cap_helper' => 'Maximum AI hívások óránként. Állítsa 0-ra a korlát kikapcsolásához.',
+            'cache_ttl' => 'Gyorsítótár TTL',
+            'cache_ttl_helper' => 'Sikeres AI javaslatok gyorsítótárazási percei újabb lekérdezés előtt. Tartomány: 5–1440 perc (≥ throttle ablak ajánlott; alapértelmezett 60 perc).',
+            'strict_scrubbing' => 'Szigorú tisztítás',
+            'strict_scrubbing_helper' => 'Engedélyezve az AI prompt csak a kivétel osztályát, az üzenet első sorát és a file:line értéket tartalmazza — nincs stack trace.',
+            'prompt_template' => 'Prompt sablon',
+            'prompt_template_helper' => 'Az AI szolgáltatónak küldött sablon. A {{error}} helyőrzőt a megtisztított kivétel részletei helyettesítik. Óvatosan szerkessze — a {{error}} eltávolítása blokkolja a mentést.',
+            'prompt_template_placeholder' => 'Ön egy senior Laravel mérnök. Elemezze: {{error}}',
+            'template_missing_token' => 'A prompt sablonnak tartalmaznia kell a {{error}} helyőrzőt.',
+            'prompt_template_default' => 'Alapértelmezett sablon használata',
+            'usage_section' => 'Használat',
+            'usage_last_call_label' => 'Utolsó hívás',
+            'usage_month_label' => 'Ebben a hónapban',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: sikeres.',
+                'ai_cached' => 'AI: gyorsítótárból.',
+                'ai_failed' => 'AI: sikertelen (:reason).',
+                'ai_skipped' => 'AI: kihagyva (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Rendszernaplók',
         'heading' => 'Naplófájlok',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Naplófájl küldése email mellékletként a megadott címzettnek.',
         'bulk_email_description' => 'A kiválasztott naplófájlok küldése egyedi email mellékletekként a megadott címzettnek.',
         'bulk_email_files' => 'Kiválasztott fájlok',
-
         'filter' => [
             'date_from' => 'Ettől',
             'date_to' => 'Eddig',
         ],
-
         'column' => [
             'filename' => 'Fájlnév',
             'size' => 'Méret',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Időbélyeg',
             'message' => 'Üzenet',
         ],
-
         'action' => [
             'refresh' => 'Frissítés',
             'view' => 'Megtekintés',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Naplófájl törölve',
             'bulk_deleted' => ':count naplófájl törölve',
         ],
-
         'confirm' => [
             'delete' => 'Biztosan törölni szeretné ezt a naplófájlt? Ez a művelet nem vonható vissza.',
             'bulk_delete' => 'Biztosan törölni szeretné a kiválasztott naplófájlokat? Ez a művelet nem vonható vissza.',
         ],
-
         'entry' => [
             'detail' => 'Bejegyzés részletei',
             'line' => 'Sor',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Másolva!',
         ],
     ],
-
 ];

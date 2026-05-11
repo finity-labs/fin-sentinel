@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Ustawienia',
         'error_channel' => 'Kanał błędów',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Pliki logów',
         'log_entries' => 'Wpisy logów',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Powiadomienie o błędzie',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Plik logu',
         ],
         'footer' => 'Wysłano przez Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Komunikat błędu',
             'class' => 'Klasa',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Lokalizacja',
             'trace_call' => 'Wywołanie',
         ],
-
         'collection' => [
             'count' => ':count element|:count elementów',
             'more' => '... i :count więcej elementów',
         ],
-
         'error' => [
             'subject' => ':app - Wystąpił błąd',
             'guest' => 'Gość',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Zalogowany użytkownik',
             'section_environment' => 'Środowisko',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Gość',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Kontekst żądania',
             'section_environment' => 'Środowisko',
         ],
-
         'log_file' => [
             'subject' => ':app - Plik logu: :file',
             'bulk_subject' => ':app - :count plików logów w załączniku',
             'body' => 'Plik logu <strong>:file</strong> z :app znajduje się w załączniku.',
             'body_text' => 'Plik logu :file z :app znajduje się w załączniku.',
         ],
+        'ai' => [
+            'heading' => 'Sugestia AI',
+            'footnote_prefix' => 'przez',
+            'disclaimer' => 'Wygenerowano przez AI. Zweryfikuj przed użyciem.',
+            'cached_badge' => 'z pamięci podręcznej',
+            'failed_prefix' => 'Analiza AI nie powiodła się',
+            'skipped_prefix' => 'Analiza AI pominięta',
+            'reason' => [
+                'timeout' => 'przekroczono czas',
+                'authentication_failed' => 'uwierzytelnianie nie powiodło się',
+                'rate_limited' => 'ograniczona częstotliwość',
+                'quota_exceeded' => 'przekroczono limit',
+                'unknown_error' => 'nieznany błąd',
+                'output_rejected_matched_injection_marker' => 'wyjście odrzucone (znacznik injection)',
+                'hourly_cap_reached' => 'osiągnięto limit godzinowy',
+                'circuit_open' => 'obwód otwarty',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Odbiorcy',
         'throttling' => 'Ograniczanie',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Brak skonfigurowanych odbiorców — powiadomienia nie będą wysyłane, dopóki nie zostanie dodany przynajmniej jeden adres email.',
         'throttle_rate' => 'Częstotliwość ograniczania',
         'minutes_suffix' => 'minut',
-
         'error' => [
             'enabled' => 'Włącz powiadomienia o błędach',
             'enabled_helper' => 'Po wyłączeniu żadne e-maile o błędach nie będą wysyłane.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Wybierz wyjątek',
             'add_exception' => 'Dodaj wyjątek',
         ],
-
         'debug' => [
             'enabled' => 'Włącz kanał Debug',
             'enabled_helper' => 'Po wyłączeniu wywołania Sentinel::debug() będą cicho ignorowane.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Po wyłączeniu każde wywołanie debug wysyła e-mail. Po włączeniu zduplikowane wywołania są ograniczane.',
             'throttle_helper' => 'Minimalny czas w minutach między duplikatami e-maili Debug.',
         ],
-
         'test_email' => [
             'send' => 'Wyślij testowy e-mail',
             'sent' => 'Testowy e-mail wysłany do :count odbiorców',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Nie udało się wysłać testowego e-maila',
             'channel_disabled' => 'Ten kanał jest obecnie wyłączony. Testowy e-mail zostanie mimo to wysłany.',
         ],
+        'ai' => [
+            'test_connection' => 'Testuj',
+            'test_connection_success' => 'Połączenie AI działa.',
+            'test_connection_failed' => 'Błąd połączenia AI.',
+            'test_connection_missing' => 'Dostawca, model i klucz API są wymagane do przetestowania połączenia.',
+            'test_connection_no_sdk' => 'SDK AI (laravel/ai) nie jest zainstalowany.',
+            'section' => 'Analiza AI',
+            'section_helper' => 'Użyj LLM do sugerowania prawdopodobnych przyczyn przechwyconych wyjątków.',
+            'no_providers' => 'Nie wykryto żadnych dostawców AI. Sprawdź instalację laravel/ai.',
+            'enabled' => 'Włącz analizę błędów AI',
+            'enabled_helper' => 'Po włączeniu e-maile o błędach zawierają sekcję sugestii wygenerowaną przez AI.',
+            'provider' => 'Dostawca',
+            'model' => 'Model',
+            'model_placeholder' => 'Najpierw wybierz dostawcę',
+            'api_key' => 'Klucz API',
+            'api_key_set' => 'Klucz ustawiony — pozostaw puste, aby zachować istniejący klucz',
+            'api_key_enter' => 'Wprowadź klucz API dla wybranego dostawcy',
+            'timeout' => 'Limit czasu',
+            'timeout_helper' => 'Maksymalna liczba sekund oczekiwania na odpowiedź AI (1-10).',
+            'max_tokens' => 'Maks. tokenów wyjścia',
+            'hourly_cap' => 'Limit na godzinę',
+            'hourly_cap_helper' => 'Maksymalna liczba wywołań AI na godzinę. Ustaw 0, aby wyłączyć limit.',
+            'cache_ttl' => 'TTL pamięci podręcznej',
+            'cache_ttl_helper' => 'Minuty buforowania udanych sugestii AI przed ponownym zapytaniem. Zakres: 5–1440 minut (≥ okno ograniczania zalecane; domyślnie 60 minut).',
+            'strict_scrubbing' => 'Ścisłe oczyszczanie',
+            'strict_scrubbing_helper' => 'Po włączeniu prompt AI zawiera tylko klasę wyjątku, pierwszą linię wiadomości i file:line — bez śladu stosu.',
+            'prompt_template' => 'Szablon promptu',
+            'prompt_template_helper' => 'Szablon wysyłany do dostawcy AI. Symbol zastępczy {{error}} jest zastępowany oczyszczonymi szczegółami wyjątku. Edytuj ostrożnie — usunięcie {{error}} blokuje zapis.',
+            'prompt_template_placeholder' => 'Jesteś starszym inżynierem Laravel. Przeanalizuj: {{error}}',
+            'template_missing_token' => 'Szablon promptu musi zawierać symbol zastępczy {{error}}.',
+            'prompt_template_default' => 'Użyj szablonu domyślnego',
+            'usage_section' => 'Użycie',
+            'usage_last_call_label' => 'Ostatnie wywołanie',
+            'usage_month_label' => 'W tym miesiącu',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokeny',
+            'test_email' => [
+                'ai_success' => 'AI: sukces.',
+                'ai_cached' => 'AI: z pamięci podręcznej.',
+                'ai_failed' => 'AI: niepowodzenie (:reason).',
+                'ai_skipped' => 'AI: pominięto (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Logi systemowe',
         'heading' => 'Pliki logów',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Wyślij ten plik logu jako załącznik e-mail do wskazanego odbiorcy.',
         'bulk_email_description' => 'Wyślij wybrane pliki logów jako indywidualne załączniki e-mail do wskazanego odbiorcy.',
         'bulk_email_files' => 'Wybrane pliki',
-
         'filter' => [
             'date_from' => 'Od',
             'date_to' => 'Do',
         ],
-
         'column' => [
             'filename' => 'Nazwa pliku',
             'size' => 'Rozmiar',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Znacznik czasu',
             'message' => 'Wiadomość',
         ],
-
         'action' => [
             'refresh' => 'Odśwież',
             'view' => 'Podgląd',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Plik logu usunięty',
             'bulk_deleted' => ':count plików logów usunięte',
         ],
-
         'confirm' => [
             'delete' => 'Czy na pewno chcesz usunąć ten plik logu? Tej operacji nie można cofnąć.',
             'bulk_delete' => 'Czy na pewno chcesz usunąć wybrane pliki logów? Tej operacji nie można cofnąć.',
         ],
-
         'entry' => [
             'detail' => 'Szczegóły wpisu',
             'line' => 'Linia',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Skopiowano!',
         ],
     ],
-
 ];

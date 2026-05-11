@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Iestatījumi',
         'error_channel' => 'Kļūdu kanāls',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Žurnāla faili',
         'log_entries' => 'Žurnāla ieraksti',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Kļūdas paziņojums',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Žurnāla fails',
         ],
         'footer' => 'Nosūtīts ar Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Kļūdas ziņojums',
             'class' => 'Klase',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Atrašanās vieta',
             'trace_call' => 'Izsaukums',
         ],
-
         'collection' => [
             'count' => ':count elements|:count elementi',
             'more' => '... un vēl :count elementi',
         ],
-
         'error' => [
             'subject' => ':app — Radās kļūda',
             'guest' => 'Viesis',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Autentificēts lietotājs',
             'section_environment' => 'Vide',
         ],
-
         'debug' => [
             'subject' => ':app — Debug: :subject',
             'guest' => 'Viesis',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Pieprasījuma konteksts',
             'section_environment' => 'Vide',
         ],
-
         'log_file' => [
             'subject' => ':app — Žurnāla fails: :file',
             'bulk_subject' => ':app — :count žurnāla faili pievienoti',
             'body' => 'Žurnāla fails <strong>:file</strong> no :app ir pievienots.',
             'body_text' => 'Žurnāla fails :file no :app ir pievienots.',
         ],
+        'ai' => [
+            'heading' => 'MI ieteikums',
+            'footnote_prefix' => 'caur',
+            'disclaimer' => 'MI ģenerēts. Pārbaudiet pirms rīkošanās.',
+            'cached_badge' => 'no kešatmiņas',
+            'failed_prefix' => 'MI analīze neizdevās',
+            'skipped_prefix' => 'MI analīze izlaista',
+            'reason' => [
+                'timeout' => 'laiks beidzies',
+                'authentication_failed' => 'autentifikācija neizdevās',
+                'rate_limited' => 'biežums ierobežots',
+                'quota_exceeded' => 'kvota pārsniegta',
+                'unknown_error' => 'nezināma kļūda',
+                'output_rejected_matched_injection_marker' => 'izvade noraidīta (injekcijas marķieris)',
+                'hourly_cap_reached' => 'sasniegts stundas limits',
+                'circuit_open' => 'ķēde atvērta',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Saņēmēji',
         'throttling' => 'Biežuma ierobežošana',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Nav konfigurēti saņēmēji — paziņojumi netiks sūtīti, kamēr nebūs pievienota vismaz viena email adrese.',
         'throttle_rate' => 'Ierobežošanas biežums',
         'minutes_suffix' => 'minūtes',
-
         'error' => [
             'enabled' => 'Ieslēgt kļūdu paziņojumus',
             'enabled_helper' => 'Kad izslēgts, kļūdu email-i netiks sūtīti.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Izvēlieties izņēmumu',
             'add_exception' => 'Pievienot izņēmumu',
         ],
-
         'debug' => [
             'enabled' => 'Ieslēgt atkļūdošanas kanālu',
             'enabled_helper' => 'Kad izslēgts, Sentinel::debug() izsaukumi tiks ignorēti.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Kad izslēgts, katrs debug izsaukums sūta email. Kad ieslēgts, atkārtoti izsaukumi tiek ierobežoti.',
             'throttle_helper' => 'Minimālais intervāls minūtēs starp atkārtotiem debug email-iem.',
         ],
-
         'test_email' => [
             'send' => 'Nosūtīt testa email',
             'sent' => 'Testa email nosūtīts :count saņēmējam(-iem)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Neizdevās nosūtīt testa email',
             'channel_disabled' => 'Šis kanāls pašlaik ir izslēgts. Testa email tik un tā tiks nosūtīts.',
         ],
+        'ai' => [
+            'test_connection' => 'Pārbaudīt',
+            'test_connection_success' => 'AI savienojums darbojas.',
+            'test_connection_failed' => 'AI savienojums neizdevās.',
+            'test_connection_missing' => 'Lai pārbaudītu savienojumu, ir nepieciešams pakalpojumu sniedzējs, modelis un API atslēga.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) nav instalēts.',
+            'section' => 'MI analīze',
+            'section_helper' => 'Izmantojiet LLM, lai ieteiktu iespējamos noķerto izņēmumu cēloņus.',
+            'no_providers' => 'Nav atrasts neviens MI pakalpojumu sniedzējs. Pārbaudiet laravel/ai instalāciju.',
+            'enabled' => 'Iespējot MI kļūdu analīzi',
+            'enabled_helper' => 'Ja iespējots, kļūdu e-pastos ir MI ģenerēts ieteikuma sadaļa.',
+            'provider' => 'Pakalpojumu sniedzējs',
+            'model' => 'Modelis',
+            'model_placeholder' => 'Vispirms izvēlieties pakalpojumu sniedzēju',
+            'api_key' => 'API atslēga',
+            'api_key_set' => 'Atslēga iestatīta — atstājiet tukšu, lai saglabātu esošo atslēgu',
+            'api_key_enter' => 'Ievadiet izvēlētā pakalpojumu sniedzēja API atslēgu',
+            'timeout' => 'Noildze',
+            'timeout_helper' => 'Maksimālais sekunžu skaits MI atbildes gaidīšanai (1-10).',
+            'max_tokens' => 'Maks. izejas marķieri',
+            'hourly_cap' => 'Stundas limits',
+            'hourly_cap_helper' => 'Maks. MI izsaukumi stundā. Iestatiet 0, lai atspējotu limitu.',
+            'cache_ttl' => 'Kešatmiņas TTL',
+            'cache_ttl_helper' => 'Minūtes veiksmīgu MI ieteikumu kešēšanai pirms atkārtota pieprasījuma. Diapazons: 5–1440 min. (≥ ierobežojuma logs ieteicams; noklusējums 60 min.).',
+            'strict_scrubbing' => 'Strikta tīrīšana',
+            'strict_scrubbing_helper' => 'Ja iespējots, MI uzvedne satur tikai izņēmuma klasi, ziņojuma pirmo rindu un file:line — bez steka izsekošanas.',
+            'prompt_template' => 'Uzvednes veidne',
+            'prompt_template_helper' => 'Veidne, ko nosūta MI pakalpojumu sniedzējam. {{error}} vietturis tiek aizstāts ar notīrītām izņēmuma detaļām. Rediģējiet uzmanīgi — {{error}} noņemšana bloķē saglabāšanu.',
+            'prompt_template_placeholder' => 'Jūs esat vecākais Laravel inženieris. Analizējiet: {{error}}',
+            'template_missing_token' => 'Uzvednes veidnei jāsatur {{error}} vietturis.',
+            'prompt_template_default' => 'Lietot noklusējuma veidni',
+            'usage_section' => 'Lietojums',
+            'usage_last_call_label' => 'Pēdējais izsaukums',
+            'usage_month_label' => 'Šajā mēnesī',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'marķieri',
+            'test_email' => [
+                'ai_success' => 'MI: veiksme.',
+                'ai_cached' => 'MI: no kešatmiņas.',
+                'ai_failed' => 'MI: neveiksme (:reason).',
+                'ai_skipped' => 'MI: izlaists (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Sistēmas žurnāli',
         'heading' => 'Žurnāla faili',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Nosūtīt šo žurnāla failu kā pielikumu uz norādīto adresi.',
         'bulk_email_description' => 'Nosūtīt izvēlētos žurnāla failus kā atsevišķus pielikumus uz norādīto adresi.',
         'bulk_email_files' => 'Izvēlētie faili',
-
         'filter' => [
             'date_from' => 'No',
             'date_to' => 'Līdz',
         ],
-
         'column' => [
             'filename' => 'Faila nosaukums',
             'size' => 'Izmērs',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Laiks',
             'message' => 'Ziņojums',
         ],
-
         'action' => [
             'refresh' => 'Atsvaidzināt',
             'view' => 'Skatīt',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Žurnāla fails dzēsts',
             'bulk_deleted' => ':count žurnāla fails(-i) dzēsts(-i)',
         ],
-
         'confirm' => [
             'delete' => 'Vai tiešām vēlaties dzēst šo žurnāla failu? Šo darbību nevar atsaukt.',
             'bulk_delete' => 'Vai tiešām vēlaties dzēst izvēlētos žurnāla failus? Šo darbību nevar atsaukt.',
         ],
-
         'entry' => [
             'detail' => 'Ieraksta detaļas',
             'line' => 'Rinda',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Nokopēts!',
         ],
     ],
-
 ];

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'ការកំណត់',
         'error_channel' => 'ឆានែលកំហុស',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'ឯកសារកំណត់ត្រា',
         'log_entries' => 'ធាតុកំណត់ត្រា',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'ការជូនដំណឹងកំហុស',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'ឯកសារកំណត់ត្រា',
         ],
         'footer' => 'ផ្ញើដោយ Fin-Sentinel',
-
         'label' => [
             'error_message' => 'សារកំហុស',
             'class' => 'ថ្នាក់',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'ទីតាំង',
             'trace_call' => 'ការហៅ',
         ],
-
         'collection' => [
             'count' => ':count ធាតុ',
             'more' => '... និង :count ធាតុទៀត',
         ],
-
         'error' => [
             'subject' => ':app - មានកំហុសកើតឡើង',
             'guest' => 'ភ្ញៀវ',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'អ្នកប្រើប្រាស់ដែលបានផ្ទៀងផ្ទាត់',
             'section_environment' => 'បរិស្ថាន',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'ភ្ញៀវ',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'បរិបទសំណើ',
             'section_environment' => 'បរិស្ថាន',
         ],
-
         'log_file' => [
             'subject' => ':app - ឯកសារកំណត់ត្រា: :file',
             'bulk_subject' => ':app - ភ្ជាប់ឯកសារកំណត់ត្រា :count ឯកសារ',
             'body' => 'ឯកសារកំណត់ត្រា <strong>:file</strong> ពី :app ត្រូវបានភ្ជាប់មកជាមួយ។',
             'body_text' => 'ឯកសារកំណត់ត្រា :file ពី :app ត្រូវបានភ្ជាប់មកជាមួយ។',
         ],
+        'ai' => [
+            'heading' => 'ការណែនាំពី AI',
+            'footnote_prefix' => 'តាមរយៈ',
+            'disclaimer' => 'បង្កើតដោយ AI។ សូមផ្ទៀងផ្ទាត់មុនពេលអនុវត្ត។',
+            'cached_badge' => 'ក្នុងឃ្លាំងសម្ងាត់',
+            'failed_prefix' => 'ការវិភាគ AI បរាជ័យ',
+            'skipped_prefix' => 'បានរំលងការវិភាគ AI',
+            'reason' => [
+                'timeout' => 'អស់ពេល',
+                'authentication_failed' => 'ការផ្ទៀងផ្ទាត់បានបរាជ័យ',
+                'rate_limited' => 'អត្រាត្រូវបានកំណត់',
+                'quota_exceeded' => 'លើសកូតា',
+                'unknown_error' => 'កំហុសមិនស្គាល់',
+                'output_rejected_matched_injection_marker' => 'លទ្ធផលត្រូវបានបដិសេធ (សញ្ញាចាក់បញ្ចូល)',
+                'hourly_cap_reached' => 'ដល់ដែនកំណត់ក្នុងមួយម៉ោង',
+                'circuit_open' => 'សៀគ្វីបើកចំហ',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'អ្នកទទួល',
         'throttling' => 'ការកំណត់ប្រេកង់',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'មិនទាន់មានអ្នកទទួលទេ - ការជូនដំណឹងនឹងមិនត្រូវបានផ្ញើរហូតដល់បន្ថែមអ៊ីមែលយ៉ាងហោចណាស់មួយ។',
         'throttle_rate' => 'អត្រាកំណត់',
         'minutes_suffix' => 'នាទី',
-
         'error' => [
             'enabled' => 'បើកការជូនដំណឹងកំហុស',
             'enabled_helper' => 'នៅពេលបិទ អ៊ីមែលកំហុសនឹងមិនត្រូវបានផ្ញើទេ។',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'ជ្រើសរើសករណីលើកលែង',
             'add_exception' => 'បន្ថែមការលើកលែង',
         ],
-
         'debug' => [
             'enabled' => 'បើកឆានែល Debug',
             'enabled_helper' => 'នៅពេលបិទ ការហៅ Sentinel::debug() នឹងត្រូវបានមិនអើពើ។',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'នៅពេលបិទ ការហៅ Debug នីមួយៗនឹងផ្ញើអ៊ីមែល។ នៅពេលបើក ការហៅស្ទួននឹងត្រូវបានកំណត់។',
             'throttle_helper' => 'រយៈពេលនាទីអប្បបរមារវាងអ៊ីមែល Debug ដែលស្ទួន។',
         ],
-
         'test_email' => [
             'send' => 'ផ្ញើអ៊ីមែលសាកល្បង',
             'sent' => 'អ៊ីមែលសាកល្បងត្រូវបានផ្ញើទៅអ្នកទទួល :count នាក់',
@@ -148,8 +154,50 @@ return [
             'failed' => 'បរាជ័យក្នុងការផ្ញើអ៊ីមែលសាកល្បង',
             'channel_disabled' => 'ឆានែលនេះបច្ចុប្បន្នត្រូវបានបិទ។ អ៊ីមែលសាកល្បងនឹងនៅតែត្រូវបានផ្ញើ។',
         ],
+        'ai' => [
+            'test_connection' => 'សាកល្បង',
+            'test_connection_success' => 'ការតភ្ជាប់ AI ដំណើរការ។',
+            'test_connection_failed' => 'ការតភ្ជាប់ AI បានបរាជ័យ។',
+            'test_connection_missing' => 'ត្រូវការអ្នកផ្គត់ផ្គង់ ម៉ូដែល និងសោ API ដើម្បីសាកល្បងការតភ្ជាប់។',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) មិនបានដំឡើង។',
+            'section' => 'ការវិភាគ AI',
+            'section_helper' => 'ប្រើ LLM ដើម្បីស្នើមូលហេតុដែលអាចមានសម្រាប់ការលើកលែងដែលចាប់បាន។',
+            'no_providers' => 'រកមិនឃើញអ្នកផ្តល់ AI ទេ។ ពិនិត្យការដំឡើង laravel/ai របស់អ្នក។',
+            'enabled' => 'បើកការវិភាគកំហុស AI',
+            'enabled_helper' => 'នៅពេលបើក សារកំហុសមានផ្នែកសំណើបង្កើតដោយ AI។',
+            'provider' => 'អ្នកផ្តល់',
+            'model' => 'ម៉ូដែល',
+            'model_placeholder' => 'ជ្រើសរើសអ្នកផ្តល់ជាមុនសិន',
+            'api_key' => 'លេខកូដ API',
+            'api_key_set' => 'បានកំណត់លេខកូដ — ទុកឱ្យទទេដើម្បីរក្សាលេខកូដបច្ចុប្បន្ន',
+            'api_key_enter' => 'បញ្ចូលលេខកូដ API សម្រាប់អ្នកផ្តល់ដែលបានជ្រើស',
+            'timeout' => 'អស់ពេល',
+            'timeout_helper' => 'វិនាទីអតិបរមាក្នុងការរង់ចាំការឆ្លើយតប AI (1-10)។',
+            'max_tokens' => 'ថូខឹនលទ្ធផលអតិបរមា',
+            'hourly_cap' => 'ដែនកំណត់ក្នុងមួយម៉ោង',
+            'hourly_cap_helper' => 'ការហៅ AI អតិបរមាក្នុងមួយម៉ោង។ កំណត់ 0 ដើម្បីបិទដែនកំណត់។',
+            'cache_ttl' => 'TTL ឃ្លាំងសម្ងាត់',
+            'cache_ttl_helper' => 'នាទីសម្រាប់ឃ្លាំងសម្ងាត់សំណើ AI ជោគជ័យ មុនពេលសួរម្តងទៀត។ ជួរ: 5–1440 នាទី (≥ បង្អួចបិទផ្លូវ ត្រូវបានណែនាំ; លំនាំដើម 60 នាទី)។',
+            'strict_scrubbing' => 'ការសម្អាតយ៉ាងតឹងរ៉ឹង',
+            'strict_scrubbing_helper' => 'នៅពេលបើក សំណើ AI មានតែថ្នាក់លើកលែង បន្ទាត់ដំបូងនៃសារ និង file:line — គ្មានដាន stack។',
+            'prompt_template' => 'គំរូសំណើ',
+            'prompt_template_helper' => 'គំរូផ្ញើទៅអ្នកផ្តល់ AI។ កន្លែងដាក់ {{error}} ត្រូវបានជំនួសដោយព័ត៌មានលម្អិតលើកលែងដែលបានសម្អាត។ កែសម្រួលដោយប្រុងប្រយ័ត្ន — ការដកចេញ {{error}} រារាំងការរក្សាទុក។',
+            'prompt_template_placeholder' => 'អ្នកគឺជាវិស្វករ Laravel ជាន់ខ្ពស់។ វិភាគ: {{error}}',
+            'template_missing_token' => 'គំរូសំណើត្រូវតែមានកន្លែងដាក់ {{error}}។',
+            'prompt_template_default' => 'ប្រើគំរូលំនាំដើម',
+            'usage_section' => 'ការប្រើប្រាស់',
+            'usage_last_call_label' => 'ការហៅចុងក្រោយ',
+            'usage_month_label' => 'ខែនេះ',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'ថូខឹន',
+            'test_email' => [
+                'ai_success' => 'AI: ជោគជ័យ។',
+                'ai_cached' => 'AI: ពីឃ្លាំងសម្ងាត់។',
+                'ai_failed' => 'AI: បរាជ័យ (:reason)។',
+                'ai_skipped' => 'AI: រំលង (:reason)។',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'កំណត់ត្រាប្រព័ន្ធ',
         'heading' => 'ឯកសារកំណត់ត្រា',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'ផ្ញើឯកសារកំណត់ត្រានេះជាឯកសារភ្ជាប់អ៊ីមែលទៅអ្នកទទួលដែលបានបញ្ជាក់។',
         'bulk_email_description' => 'ផ្ញើឯកសារកំណត់ត្រាដែលបានជ្រើសរើសជាឯកសារភ្ជាប់អ៊ីមែលដោយឡែកទៅអ្នកទទួលដែលបានបញ្ជាក់។',
         'bulk_email_files' => 'ឯកសារដែលបានជ្រើសរើស',
-
         'filter' => [
             'date_from' => 'ពី',
             'date_to' => 'ដល់',
         ],
-
         'column' => [
             'filename' => 'ឈ្មោះឯកសារ',
             'size' => 'ទំហំ',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'ពេលវេលា',
             'message' => 'សារ',
         ],
-
         'action' => [
             'refresh' => 'ផ្ទុកឡើងវិញ',
             'view' => 'មើល',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'ឯកសារកំណត់ត្រាត្រូវបានលុប',
             'bulk_deleted' => 'ឯកសារកំណត់ត្រា :count ត្រូវបានលុប',
         ],
-
         'confirm' => [
             'delete' => 'តើអ្នកប្រាកដថាចង់លុបឯកសារកំណត់ត្រានេះមែនទេ? សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។',
             'bulk_delete' => 'តើអ្នកប្រាកដថាចង់លុបឯកសារកំណត់ត្រាដែលបានជ្រើសរើសមែនទេ? សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។',
         ],
-
         'entry' => [
             'detail' => 'ព័ត៌មានលម្អិតធាតុ',
             'line' => 'បន្ទាត់',
@@ -206,5 +249,4 @@ return [
             'copied' => 'បានចម្លង!',
         ],
     ],
-
 ];

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Podešavanja',
         'error_channel' => 'Kanal grešaka',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Log fajlovi',
         'log_entries' => 'Zapisi u logu',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Obaveštenje o grešci',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Log fajl',
         ],
         'footer' => 'Poslato od strane Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Poruka o grešci',
             'class' => 'Klasa',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Lokacija',
             'trace_call' => 'Poziv',
         ],
-
         'collection' => [
             'count' => ':count stavka|:count stavki',
             'more' => '... i još :count stavki',
         ],
-
         'error' => [
             'subject' => ':app — Došlo je do greške',
             'guest' => 'Gost',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Autentifikovani korisnik',
             'section_environment' => 'Okruženje',
         ],
-
         'debug' => [
             'subject' => ':app — Debug: :subject',
             'guest' => 'Gost',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Kontekst zahteva',
             'section_environment' => 'Okruženje',
         ],
-
         'log_file' => [
             'subject' => ':app — Log fajl: :file',
             'bulk_subject' => ':app — :count log fajlova u prilogu',
             'body' => 'Log fajl <strong>:file</strong> iz :app je u prilogu.',
             'body_text' => 'Log fajl :file iz :app je u prilogu.',
         ],
+        'ai' => [
+            'heading' => 'AI predlog',
+            'footnote_prefix' => 'preko',
+            'disclaimer' => 'Generisano od AI. Proverite pre primene.',
+            'cached_badge' => 'iz keša',
+            'failed_prefix' => 'AI analiza nije uspela',
+            'skipped_prefix' => 'AI analiza je preskočena',
+            'reason' => [
+                'timeout' => 'vreme isteklo',
+                'authentication_failed' => 'autentikacija nije uspela',
+                'rate_limited' => 'brzina ograničena',
+                'quota_exceeded' => 'kvota prekoračena',
+                'unknown_error' => 'nepoznata greška',
+                'output_rejected_matched_injection_marker' => 'izlaz odbačen (oznaka injekcije)',
+                'hourly_cap_reached' => 'dostignut satni limit',
+                'circuit_open' => 'kolo otvoreno',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Primaoci',
         'throttling' => 'Ograničavanje učestalosti',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Primaoci nisu podešeni — obaveštenja neće biti slata dok se ne doda bar jedna email adresa.',
         'throttle_rate' => 'Stopa ograničavanja',
         'minutes_suffix' => 'minuta',
-
         'error' => [
             'enabled' => 'Uključi obaveštenja o greškama',
             'enabled_helper' => 'Ako je isključeno, email-ovi o greškama neće biti slati.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Izaberite izuzetak',
             'add_exception' => 'Dodaj izuzetak',
         ],
-
         'debug' => [
             'enabled' => 'Uključi kanal za otklanjanje grešaka',
             'enabled_helper' => 'Ako je isključeno, pozivi Sentinel::debug() će biti ignorisani.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Ako je isključeno, svaki debug poziv šalje email. Ako je uključeno, ponovljeni pozivi se ograničavaju.',
             'throttle_helper' => 'Minimalni interval u minutima između ponovljenih debug email-ova.',
         ],
-
         'test_email' => [
             'send' => 'Pošalji test email',
             'sent' => 'Test email poslat na :count primaoca',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Slanje test email-a nije uspelo',
             'channel_disabled' => 'Ovaj kanal je trenutno isključen. Test email će ipak biti poslat.',
         ],
+        'ai' => [
+            'test_connection' => 'Testiraj',
+            'test_connection_success' => 'AI veza radi.',
+            'test_connection_failed' => 'AI veza nije uspela.',
+            'test_connection_missing' => 'Provajder, model i API ključ su obavezni za testiranje veze.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) nije instaliran.',
+            'section' => 'AI analiza',
+            'section_helper' => 'Koristite LLM za predlaganje verovatnih uzroka uhvaćenih izuzetaka.',
+            'no_providers' => 'Nije pronađen nijedan AI provajder. Proverite instalaciju laravel/ai.',
+            'enabled' => 'Omogući AI analizu grešaka',
+            'enabled_helper' => 'Kada je omogućeno, imejlovi o greškama uključuju odeljak predloga koji generiše AI.',
+            'provider' => 'Provajder',
+            'model' => 'Model',
+            'model_placeholder' => 'Prvo izaberite provajdera',
+            'api_key' => 'API ključ',
+            'api_key_set' => 'Ključ postavljen — ostavite prazno da zadržite postojeći ključ',
+            'api_key_enter' => 'Unesite API ključ za izabranog provajdera',
+            'timeout' => 'Istek vremena',
+            'timeout_helper' => 'Maksimum sekundi za čekanje AI odgovora (1-10).',
+            'max_tokens' => 'Maks. izlaznih tokena',
+            'hourly_cap' => 'Limit na sat',
+            'hourly_cap_helper' => 'Maksimum AI poziva na sat. Postavite 0 za isključivanje limita.',
+            'cache_ttl' => 'TTL keša',
+            'cache_ttl_helper' => 'Minuti za keširanje uspešnih AI predloga pre ponovnog upita. Opseg: 5–1440 minuta (≥ prozor prigušivanja preporučeno; podrazumevano 60 minuta).',
+            'strict_scrubbing' => 'Strogo čišćenje',
+            'strict_scrubbing_helper' => 'Kada je omogućeno, AI prompt sadrži samo klasu izuzetka, prvu liniju poruke i file:line — bez stack trace.',
+            'prompt_template' => 'Šablon prompt-a',
+            'prompt_template_helper' => 'Šablon poslat AI provajderu. Mestodržač {{error}} se zamenjuje očišćenim detaljima izuzetka. Uređujte oprezno — uklanjanje {{error}} blokira čuvanje.',
+            'prompt_template_placeholder' => 'Vi ste senior Laravel inženjer. Analizirajte: {{error}}',
+            'template_missing_token' => 'Šablon prompt-a mora sadržati mestodržač {{error}}.',
+            'prompt_template_default' => 'Koristi podrazumevani šablon',
+            'usage_section' => 'Korišćenje',
+            'usage_last_call_label' => 'Poslednji poziv',
+            'usage_month_label' => 'Ovog meseca',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokeni',
+            'test_email' => [
+                'ai_success' => 'AI: uspeh.',
+                'ai_cached' => 'AI: iz keša.',
+                'ai_failed' => 'AI: neuspeh (:reason).',
+                'ai_skipped' => 'AI: preskočeno (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Sistemski logovi',
         'heading' => 'Log fajlovi',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Pošaljite ovaj log fajl kao prilog na navedenu email adresu.',
         'bulk_email_description' => 'Pošaljite izabrane log fajlove kao pojedinačne priloge na navedenu email adresu.',
         'bulk_email_files' => 'Izabrani fajlovi',
-
         'filter' => [
             'date_from' => 'Od',
             'date_to' => 'Do',
         ],
-
         'column' => [
             'filename' => 'Naziv fajla',
             'size' => 'Veličina',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Vreme',
             'message' => 'Poruka',
         ],
-
         'action' => [
             'refresh' => 'Osveži',
             'view' => 'Pregledaj',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Log fajl obrisan',
             'bulk_deleted' => ':count log fajl(ova) obrisano',
         ],
-
         'confirm' => [
             'delete' => 'Da li ste sigurni da želite da obrišete ovaj log fajl? Ova radnja se ne može poništiti.',
             'bulk_delete' => 'Da li ste sigurni da želite da obrišete izabrane log fajlove? Ova radnja se ne može poništiti.',
         ],
-
         'entry' => [
             'detail' => 'Detalji zapisa',
             'line' => 'Linija',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopirano!',
         ],
     ],
-
 ];

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => '设置',
         'error_channel' => '错误通道',
@@ -14,7 +13,6 @@ return [
         'log_files' => '日志文件',
         'log_entries' => '日志条目',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => '错误通知',
@@ -38,7 +35,6 @@ return [
             'log_file' => '日志文件',
         ],
         'footer' => '由 Fin-Sentinel 发送',
-
         'label' => [
             'error_message' => '错误信息',
             'class' => '类',
@@ -68,12 +64,10 @@ return [
             'trace_location' => '位置',
             'trace_call' => '调用',
         ],
-
         'collection' => [
             'count' => ':count 项',
             'more' => '... 还有 :count 项',
         ],
-
         'error' => [
             'subject' => ':app - 发生了一个错误',
             'guest' => '访客',
@@ -84,7 +78,6 @@ return [
             'section_user' => '已认证用户',
             'section_environment' => '环境',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => '访客',
@@ -94,15 +87,31 @@ return [
             'section_request' => '请求上下文',
             'section_environment' => '环境',
         ],
-
         'log_file' => [
             'subject' => ':app - 日志文件: :file',
             'bulk_subject' => ':app - 附带 :count 个日志文件',
             'body' => '来自 :app 的日志文件 <strong>:file</strong> 已附在邮件中。',
             'body_text' => '来自 :app 的日志文件 :file 已附在邮件中。',
         ],
+        'ai' => [
+            'heading' => 'AI 建议',
+            'footnote_prefix' => '来自',
+            'disclaimer' => 'AI 生成。执行前请核实。',
+            'cached_badge' => '已缓存',
+            'failed_prefix' => 'AI 分析失败',
+            'skipped_prefix' => '已跳过 AI 分析',
+            'reason' => [
+                'timeout' => '超时',
+                'authentication_failed' => '认证失败',
+                'rate_limited' => '速率受限',
+                'quota_exceeded' => '配额已用完',
+                'unknown_error' => '未知错误',
+                'output_rejected_matched_injection_marker' => '输出被拒绝（注入标记）',
+                'hourly_cap_reached' => '已达每小时上限',
+                'circuit_open' => '熔断器已开启',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => '收件人',
         'throttling' => '频率限制',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => '尚未配置收件人 - 在添加至少一个邮箱地址之前，通知将不会发送。',
         'throttle_rate' => '限制频率',
         'minutes_suffix' => '分钟',
-
         'error' => [
             'enabled' => '启用错误通知',
             'enabled_helper' => '禁用后，将不会发送任何错误邮件。',
@@ -131,7 +139,6 @@ return [
             'select_exception' => '选择异常',
             'add_exception' => '添加例外',
         ],
-
         'debug' => [
             'enabled' => '启用 Debug 通道',
             'enabled_helper' => '禁用后，Sentinel::debug() 调用将被静默忽略。',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => '禁用后，每次 Debug 调用都会发送邮件。启用后，重复调用将受到频率限制。',
             'throttle_helper' => '重复 Debug 邮件之间的最小间隔分钟数。',
         ],
-
         'test_email' => [
             'send' => '发送测试邮件',
             'sent' => '测试邮件已发送给 :count 位收件人',
@@ -148,8 +154,50 @@ return [
             'failed' => '测试邮件发送失败',
             'channel_disabled' => '此通道当前已禁用。测试邮件仍会发送。',
         ],
+        'ai' => [
+            'test_connection' => '测试',
+            'test_connection_success' => 'AI 连接正常。',
+            'test_connection_failed' => 'AI 连接失败。',
+            'test_connection_missing' => '需要提供商、模型和 API 密钥才能测试连接。',
+            'test_connection_no_sdk' => '未安装 AI SDK (laravel/ai)。',
+            'section' => 'AI 分析',
+            'section_helper' => '使用 LLM 为捕获的异常建议可能的原因。',
+            'no_providers' => '未检测到 AI 提供方。请检查您的 laravel/ai 安装。',
+            'enabled' => '启用 AI 错误分析',
+            'enabled_helper' => '启用后，错误邮件将包含 AI 生成的建议部分。',
+            'provider' => '提供方',
+            'model' => '模型',
+            'model_placeholder' => '请先选择提供方',
+            'api_key' => 'API 密钥',
+            'api_key_set' => '密钥已设置 — 留空可保留现有密钥',
+            'api_key_enter' => '输入所选提供方的 API 密钥',
+            'timeout' => '超时',
+            'timeout_helper' => '等待 AI 响应的最大秒数 (1-10)。',
+            'max_tokens' => '最大输出 token 数',
+            'hourly_cap' => '每小时上限',
+            'hourly_cap_helper' => '每小时最大 AI 调用数。设为 0 禁用上限。',
+            'cache_ttl' => '缓存 TTL',
+            'cache_ttl_helper' => '在重新查询之前缓存成功 AI 建议的分钟数。范围：5–1440 分钟 (推荐 ≥ 节流窗口；默认 60 分钟)。',
+            'strict_scrubbing' => '严格清理',
+            'strict_scrubbing_helper' => '启用后，AI 提示仅包含异常类、消息首行和 file:line — 不含堆栈跟踪。',
+            'prompt_template' => '提示模板',
+            'prompt_template_helper' => '发送到 AI 提供方的模板。占位符 {{error}} 将被替换为清理后的异常详情。请谨慎编辑 — 移除 {{error}} 将阻止保存。',
+            'prompt_template_placeholder' => '您是一名高级 Laravel 工程师。分析：{{error}}',
+            'template_missing_token' => '提示模板必须包含占位符 {{error}}。',
+            'prompt_template_default' => '使用默认模板',
+            'usage_section' => '使用情况',
+            'usage_last_call_label' => '上次调用',
+            'usage_month_label' => '本月',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'AI：成功。',
+                'ai_cached' => 'AI：来自缓存。',
+                'ai_failed' => 'AI：失败 (:reason)。',
+                'ai_skipped' => 'AI：已跳过 (:reason)。',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => '系统日志',
         'heading' => '日志文件',
@@ -163,12 +211,10 @@ return [
         'email_description' => '将此日志文件作为邮件附件发送给指定收件人。',
         'bulk_email_description' => '将选中的日志文件作为单独的邮件附件发送给指定收件人。',
         'bulk_email_files' => '已选文件',
-
         'filter' => [
             'date_from' => '从',
             'date_to' => '至',
         ],
-
         'column' => [
             'filename' => '文件名',
             'size' => '大小',
@@ -178,7 +224,6 @@ return [
             'timestamp' => '时间戳',
             'message' => '消息',
         ],
-
         'action' => [
             'refresh' => '刷新',
             'view' => '查看',
@@ -191,12 +236,10 @@ return [
             'deleted' => '日志文件已删除',
             'bulk_deleted' => ':count 个日志文件已删除',
         ],
-
         'confirm' => [
             'delete' => '确定要删除此日志文件吗？此操作无法撤销。',
             'bulk_delete' => '确定要删除选中的日志文件吗？此操作无法撤销。',
         ],
-
         'entry' => [
             'detail' => '条目详情',
             'line' => '行',
@@ -206,5 +249,4 @@ return [
             'copied' => '已复制！',
         ],
     ],
-
 ];

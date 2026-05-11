@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => '設定',
         'error_channel' => '錯誤頻道',
@@ -14,7 +13,6 @@ return [
         'log_files' => '日誌檔案',
         'log_entries' => '日誌條目',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => '錯誤通知',
@@ -38,7 +35,6 @@ return [
             'log_file' => '日誌檔案',
         ],
         'footer' => '由 Fin-Sentinel 發送',
-
         'label' => [
             'error_message' => '錯誤訊息',
             'class' => '類別',
@@ -68,12 +64,10 @@ return [
             'trace_location' => '位置',
             'trace_call' => '呼叫',
         ],
-
         'collection' => [
             'count' => ':count 項',
             'more' => '... 仲有 :count 項',
         ],
-
         'error' => [
             'subject' => ':app - 發生咗一個錯誤',
             'guest' => '訪客',
@@ -84,7 +78,6 @@ return [
             'section_user' => '已驗證用戶',
             'section_environment' => '環境',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => '訪客',
@@ -94,15 +87,31 @@ return [
             'section_request' => '請求上下文',
             'section_environment' => '環境',
         ],
-
         'log_file' => [
             'subject' => ':app - 日誌檔案: :file',
             'bulk_subject' => ':app - 附帶 :count 個日誌檔案',
             'body' => '來自 :app 嘅日誌檔案 <strong>:file</strong> 已附喺郵件中。',
             'body_text' => '來自 :app 嘅日誌檔案 :file 已附喺郵件中。',
         ],
+        'ai' => [
+            'heading' => 'AI 建議',
+            'footnote_prefix' => '來自',
+            'disclaimer' => 'AI 生成。執行前請核實。',
+            'cached_badge' => '已快取',
+            'failed_prefix' => 'AI 分析失敗',
+            'skipped_prefix' => '已略過 AI 分析',
+            'reason' => [
+                'timeout' => '逾時',
+                'authentication_failed' => '驗證失敗',
+                'rate_limited' => '速率受限',
+                'quota_exceeded' => '配額已用完',
+                'unknown_error' => '未知錯誤',
+                'output_rejected_matched_injection_marker' => '輸出被拒絕（注入標記）',
+                'hourly_cap_reached' => '已達每小時上限',
+                'circuit_open' => '熔斷器已開啟',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => '收件人',
         'throttling' => '頻率限制',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => '未設定收件人 - 喺加入至少一個電郵地址之前，通知唔會發送。',
         'throttle_rate' => '限制頻率',
         'minutes_suffix' => '分鐘',
-
         'error' => [
             'enabled' => '啟用錯誤通知',
             'enabled_helper' => '停用後，唔會發送任何錯誤郵件。',
@@ -131,7 +139,6 @@ return [
             'select_exception' => '選擇例外',
             'add_exception' => '新增例外',
         ],
-
         'debug' => [
             'enabled' => '啟用 Debug 頻道',
             'enabled_helper' => '停用後，Sentinel::debug() 呼叫會被靜默忽略。',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => '停用後，每次 Debug 呼叫都會發送郵件。啟用後，重複呼叫會受到頻率限制。',
             'throttle_helper' => '重複 Debug 郵件之間嘅最小間隔分鐘數。',
         ],
-
         'test_email' => [
             'send' => '發送測試郵件',
             'sent' => '測試郵件已發送畀 :count 位收件人',
@@ -148,8 +154,50 @@ return [
             'failed' => '測試郵件發送失敗',
             'channel_disabled' => '呢個頻道目前已停用。測試郵件仍然會發送。',
         ],
+        'ai' => [
+            'test_connection' => '測試',
+            'test_connection_success' => 'AI 連線正常。',
+            'test_connection_failed' => 'AI 連線失敗。',
+            'test_connection_missing' => '需要提供者、模型及 API 金鑰才能測試連線。',
+            'test_connection_no_sdk' => '未安裝 AI SDK (laravel/ai)。',
+            'section' => 'AI 分析',
+            'section_helper' => '使用 LLM 為捕獲的異常建議可能的原因。',
+            'no_providers' => '未檢測到 AI 供應商。請檢查您的 laravel/ai 安裝。',
+            'enabled' => '啟用 AI 錯誤分析',
+            'enabled_helper' => '啟用後，錯誤電郵將包含 AI 生成的建議部分。',
+            'provider' => '供應商',
+            'model' => '模型',
+            'model_placeholder' => '請先選擇供應商',
+            'api_key' => 'API 金鑰',
+            'api_key_set' => '金鑰已設定 — 留空可保留現有金鑰',
+            'api_key_enter' => '輸入所選供應商的 API 金鑰',
+            'timeout' => '逾時',
+            'timeout_helper' => '等待 AI 回應的最大秒數 (1-10)。',
+            'max_tokens' => '最大輸出 token 數',
+            'hourly_cap' => '每小時上限',
+            'hourly_cap_helper' => '每小時最大 AI 呼叫數。設為 0 停用上限。',
+            'cache_ttl' => '快取 TTL',
+            'cache_ttl_helper' => '在重新查詢之前快取成功 AI 建議的分鐘數。範圍：5–1440 分鐘 (建議 ≥ 節流窗口；預設 60 分鐘)。',
+            'strict_scrubbing' => '嚴格清理',
+            'strict_scrubbing_helper' => '啟用後，AI 提示僅包含異常類、訊息首行和 file:line — 不含堆疊追蹤。',
+            'prompt_template' => '提示範本',
+            'prompt_template_helper' => '傳送到 AI 供應商的範本。佔位符 {{error}} 將被替換為清理後的異常詳情。請小心編輯 — 移除 {{error}} 將阻止儲存。',
+            'prompt_template_placeholder' => '您是一名資深 Laravel 工程師。分析：{{error}}',
+            'template_missing_token' => '提示範本必須包含佔位符 {{error}}。',
+            'prompt_template_default' => '使用預設範本',
+            'usage_section' => '使用情況',
+            'usage_last_call_label' => '上次呼叫',
+            'usage_month_label' => '本月',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'AI：成功。',
+                'ai_cached' => 'AI：來自快取。',
+                'ai_failed' => 'AI：失敗 (:reason)。',
+                'ai_skipped' => 'AI：已略過 (:reason)。',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => '系統日誌',
         'heading' => '日誌檔案',
@@ -163,12 +211,10 @@ return [
         'email_description' => '將呢個日誌檔案作為郵件附件發送畀指定收件人。',
         'bulk_email_description' => '將揀選嘅日誌檔案作為個別郵件附件發送畀指定收件人。',
         'bulk_email_files' => '已揀檔案',
-
         'filter' => [
             'date_from' => '由',
             'date_to' => '至',
         ],
-
         'column' => [
             'filename' => '檔案名稱',
             'size' => '大小',
@@ -178,7 +224,6 @@ return [
             'timestamp' => '時間戳記',
             'message' => '訊息',
         ],
-
         'action' => [
             'refresh' => '重新整理',
             'view' => '檢視',
@@ -191,12 +236,10 @@ return [
             'deleted' => '日誌檔案已刪除',
             'bulk_deleted' => ':count 個日誌檔案已刪除',
         ],
-
         'confirm' => [
             'delete' => '確定要刪除呢個日誌檔案？呢個操作無法復原。',
             'bulk_delete' => '確定要刪除揀選嘅日誌檔案？呢個操作無法復原。',
         ],
-
         'entry' => [
             'detail' => '條目詳情',
             'line' => '行',
@@ -206,5 +249,4 @@ return [
             'copied' => '已複製！',
         ],
     ],
-
 ];

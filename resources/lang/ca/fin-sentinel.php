@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Configuració',
         'error_channel' => 'Canal d\'errors',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Fitxers de registre',
         'log_entries' => 'Entrades de registre',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Notificació d\'error',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Fitxer de registre',
         ],
         'footer' => 'Enviat per Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Missatge d\'error',
             'class' => 'Classe',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Ubicació',
             'trace_call' => 'Crida',
         ],
-
         'collection' => [
             'count' => ':count element|:count elements',
             'more' => '... i :count elements més',
         ],
-
         'error' => [
             'subject' => ':app - S\'ha produït un error',
             'guest' => 'Convidat',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Usuari autenticat',
             'section_environment' => 'Entorn',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Convidat',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Context de la sol·licitud',
             'section_environment' => 'Entorn',
         ],
-
         'log_file' => [
             'subject' => ':app - Fitxer de registre: :file',
             'bulk_subject' => ':app - :count fitxers de registre adjunts',
             'body' => 'El fitxer de registre <strong>:file</strong> de :app està adjunt.',
             'body_text' => 'El fitxer de registre :file de :app està adjunt.',
         ],
+        'ai' => [
+            'heading' => 'Suggeriment de l\'IA',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'Generat per IA. Verifica abans d\'actuar.',
+            'cached_badge' => 'en memòria cau',
+            'failed_prefix' => 'Anàlisi d\'IA fallida',
+            'skipped_prefix' => 'Anàlisi d\'IA omesa',
+            'reason' => [
+                'timeout' => 'temps esgotat',
+                'authentication_failed' => 'autenticació fallida',
+                'rate_limited' => 'taxa limitada',
+                'quota_exceeded' => 'quota superada',
+                'unknown_error' => 'error desconegut',
+                'output_rejected_matched_injection_marker' => 'sortida rebutjada (marcador d\'injecció)',
+                'hourly_cap_reached' => 'límit per hora assolit',
+                'circuit_open' => 'circuit obert',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Destinataris',
         'throttling' => 'Limitació',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'No s\'han configurat destinataris — les notificacions no s\'enviaran fins que s\'afegeixi almenys un correu electrònic.',
         'throttle_rate' => 'Taxa de limitació',
         'minutes_suffix' => 'minuts',
-
         'error' => [
             'enabled' => 'Activar notificacions d\'error',
             'enabled_helper' => 'Quan estigui desactivat, no s\'enviaran correus d\'error.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Seleccionar excepció',
             'add_exception' => 'Afegir excepció',
         ],
-
         'debug' => [
             'enabled' => 'Activar canal de Debug',
             'enabled_helper' => 'Quan estigui desactivat, les crides a Sentinel::debug() s\'ignoraran silenciosament.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Quan estigui desactivat, cada crida de Debug enviarà un correu. Quan estigui activat, les crides duplicades es limitaran.',
             'throttle_helper' => 'Minuts mínims entre correus de Debug duplicats.',
         ],
-
         'test_email' => [
             'send' => 'Enviar correu de prova',
             'sent' => 'Correu de prova enviat a :count destinatari(s)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'No s\'ha pogut enviar el correu de prova',
             'channel_disabled' => 'Aquest canal està desactivat. El correu de prova s\'enviarà igualment.',
         ],
+        'ai' => [
+            'test_connection' => 'Prova',
+            'test_connection_success' => 'La connexió IA funciona.',
+            'test_connection_failed' => 'La connexió IA ha fallat.',
+            'test_connection_missing' => 'Cal proveïdor, model i clau API per provar la connexió.',
+            'test_connection_no_sdk' => 'El SDK d\'IA (laravel/ai) no està instal·lat.',
+            'section' => 'Anàlisi amb IA',
+            'section_helper' => 'Utilitza un LLM per suggerir causes probables d\'excepcions capturades.',
+            'no_providers' => 'No s\'han detectat proveïdors d\'IA. Comprova la instal·lació de laravel/ai.',
+            'enabled' => 'Activa l\'anàlisi d\'errors amb IA',
+            'enabled_helper' => 'Quan està activat, els correus d\'error inclouen una secció amb un suggeriment generat per IA.',
+            'provider' => 'Proveïdor',
+            'model' => 'Model',
+            'model_placeholder' => 'Selecciona primer un proveïdor',
+            'api_key' => 'Clau API',
+            'api_key_set' => 'Clau definida — deixa-ho en blanc per mantenir la clau existent',
+            'api_key_enter' => 'Introdueix la clau API per al proveïdor seleccionat',
+            'timeout' => 'Temps d\'espera',
+            'timeout_helper' => 'Segons màxims per esperar la resposta de la IA (1-10).',
+            'max_tokens' => 'Tokens de sortida màxims',
+            'hourly_cap' => 'Límit per hora',
+            'hourly_cap_helper' => 'Trucades a la IA màximes per hora. Posa-ho a 0 per desactivar el límit.',
+            'cache_ttl' => 'TTL de la memòria cau',
+            'cache_ttl_helper' => 'Minuts per emmagatzemar suggeriments d\'IA reeixits abans de tornar a consultar. Rang: 5–1440 minuts (≥ finestra d\'estrangulació recomanada; per defecte 60 minuts).',
+            'strict_scrubbing' => 'Neteja estricta',
+            'strict_scrubbing_helper' => 'Quan està activat, el prompt de la IA conté només la classe d\'excepció, la primera línia del missatge i file:line — sense traça de pila.',
+            'prompt_template' => 'Plantilla del prompt',
+            'prompt_template_helper' => 'Plantilla enviada al proveïdor d\'IA. El marcador {{error}} es reemplaça amb els detalls de l\'excepció netejats. Edita amb cura — eliminar {{error}} bloqueja desar.',
+            'prompt_template_placeholder' => 'Ets un enginyer Laravel sènior. Analitza: {{error}}',
+            'template_missing_token' => 'La plantilla del prompt ha de contenir el marcador {{error}}.',
+            'prompt_template_default' => 'Utilitza la plantilla per defecte',
+            'usage_section' => 'Ús',
+            'usage_last_call_label' => 'Última trucada',
+            'usage_month_label' => 'Aquest mes',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'IA: èxit.',
+                'ai_cached' => 'IA: de memòria cau.',
+                'ai_failed' => 'IA: error (:reason).',
+                'ai_skipped' => 'IA: omès (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Registres del sistema',
         'heading' => 'Fitxers de registre',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Envia aquest fitxer de registre com a adjunt de correu electrònic al destinatari especificat.',
         'bulk_email_description' => 'Envia els fitxers de registre seleccionats com a adjunts individuals de correu electrònic al destinatari especificat.',
         'bulk_email_files' => 'Fitxers seleccionats',
-
         'filter' => [
             'date_from' => 'Des de',
             'date_to' => 'Fins a',
         ],
-
         'column' => [
             'filename' => 'Nom del fitxer',
             'size' => 'Mida',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Marca de temps',
             'message' => 'Missatge',
         ],
-
         'action' => [
             'refresh' => 'Actualitzar',
             'view' => 'Veure',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Fitxer de registre eliminat',
             'bulk_deleted' => ':count fitxer(s) de registre eliminat(s)',
         ],
-
         'confirm' => [
             'delete' => 'Esteu segur que voleu eliminar aquest fitxer de registre? Aquesta acció no es pot desfer.',
             'bulk_delete' => 'Esteu segur que voleu eliminar els fitxers de registre seleccionats? Aquesta acció no es pot desfer.',
         ],
-
         'entry' => [
             'detail' => 'Detall de l\'entrada',
             'line' => 'Línia',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Copiat!',
         ],
     ],
-
 ];

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => '설정',
         'error_channel' => '오류 채널',
@@ -14,7 +13,6 @@ return [
         'log_files' => '로그 파일',
         'log_entries' => '로그 항목',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => '오류 알림',
@@ -38,7 +35,6 @@ return [
             'log_file' => '로그 파일',
         ],
         'footer' => 'Fin-Sentinel 에서 발송',
-
         'label' => [
             'error_message' => '오류 메시지',
             'class' => '클래스',
@@ -68,12 +64,10 @@ return [
             'trace_location' => '위치',
             'trace_call' => '호출',
         ],
-
         'collection' => [
             'count' => ':count 개',
             'more' => '... 외 :count 개',
         ],
-
         'error' => [
             'subject' => ':app - 오류가 발생했습니다',
             'guest' => '게스트',
@@ -84,7 +78,6 @@ return [
             'section_user' => '인증된 사용자',
             'section_environment' => '환경',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => '게스트',
@@ -94,15 +87,31 @@ return [
             'section_request' => '요청 컨텍스트',
             'section_environment' => '환경',
         ],
-
         'log_file' => [
             'subject' => ':app - 로그 파일: :file',
             'bulk_subject' => ':app - :count 개의 로그 파일 첨부',
             'body' => ':app 의 로그 파일 <strong>:file</strong> 이 첨부되어 있습니다.',
             'body_text' => ':app 의 로그 파일 :file 이 첨부되어 있습니다.',
         ],
+        'ai' => [
+            'heading' => 'AI 제안',
+            'footnote_prefix' => '제공',
+            'disclaimer' => 'AI 생성. 실행 전 확인하세요.',
+            'cached_badge' => '캐시됨',
+            'failed_prefix' => 'AI 분석 실패',
+            'skipped_prefix' => 'AI 분석 건너뜀',
+            'reason' => [
+                'timeout' => '시간 초과',
+                'authentication_failed' => '인증 실패',
+                'rate_limited' => '요청 제한',
+                'quota_exceeded' => '할당량 초과',
+                'unknown_error' => '알 수 없는 오류',
+                'output_rejected_matched_injection_marker' => '출력 거부됨 (인젝션 마커)',
+                'hourly_cap_reached' => '시간당 한도 도달',
+                'circuit_open' => '서킷 오픈',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => '수신자',
         'throttling' => '발송 제한',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => '수신자가 설정되지 않았습니다 - 이메일 주소를 하나 이상 추가해야 알림이 발송됩니다.',
         'throttle_rate' => '제한 빈도',
         'minutes_suffix' => '분',
-
         'error' => [
             'enabled' => '오류 알림 활성화',
             'enabled_helper' => '비활성화하면 오류 이메일이 발송되지 않습니다.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => '예외 선택',
             'add_exception' => '예외 추가',
         ],
-
         'debug' => [
             'enabled' => 'Debug 채널 활성화',
             'enabled_helper' => '비활성화하면 Sentinel::debug() 호출이 무시됩니다.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => '비활성화하면 모든 Debug 호출마다 이메일이 발송됩니다. 활성화하면 중복 호출이 제한됩니다.',
             'throttle_helper' => '중복 Debug 이메일 간 최소 간격(분).',
         ],
-
         'test_email' => [
             'send' => '테스트 이메일 발송',
             'sent' => ':count 명의 수신자에게 테스트 이메일을 발송했습니다',
@@ -148,8 +154,50 @@ return [
             'failed' => '테스트 이메일 발송에 실패했습니다',
             'channel_disabled' => '이 채널은 현재 비활성화되어 있습니다. 테스트 이메일은 발송됩니다.',
         ],
+        'ai' => [
+            'test_connection' => '테스트',
+            'test_connection_success' => 'AI 연결이 정상입니다.',
+            'test_connection_failed' => 'AI 연결에 실패했습니다.',
+            'test_connection_missing' => '연결을 테스트하려면 공급자, 모델, API 키가 필요합니다.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai)가 설치되어 있지 않습니다.',
+            'section' => 'AI 분석',
+            'section_helper' => 'LLM을 사용하여 잡힌 예외의 가능한 원인을 제안합니다.',
+            'no_providers' => 'AI 공급자가 감지되지 않았습니다. laravel/ai 설치를 확인하세요.',
+            'enabled' => 'AI 오류 분석 활성화',
+            'enabled_helper' => '활성화하면 오류 이메일에 AI가 생성한 제안 섹션이 포함됩니다.',
+            'provider' => '공급자',
+            'model' => '모델',
+            'model_placeholder' => '먼저 공급자를 선택하세요',
+            'api_key' => 'API 키',
+            'api_key_set' => '키 설정됨 — 기존 키를 유지하려면 비워두세요',
+            'api_key_enter' => '선택한 공급자의 API 키를 입력하세요',
+            'timeout' => '타임아웃',
+            'timeout_helper' => 'AI 응답을 기다리는 최대 초 (1-10).',
+            'max_tokens' => '최대 출력 토큰',
+            'hourly_cap' => '시간당 한도',
+            'hourly_cap_helper' => '시간당 최대 AI 호출. 한도를 비활성화하려면 0으로 설정하세요.',
+            'cache_ttl' => '캐시 TTL',
+            'cache_ttl_helper' => '재쿼리 전 성공한 AI 제안을 캐시할 분 수. 범위: 5–1440분 (≥ 스로틀 윈도우 권장; 기본값 60분).',
+            'strict_scrubbing' => '엄격한 스크러빙',
+            'strict_scrubbing_helper' => '활성화하면 AI 프롬프트에 예외 클래스, 메시지 첫 줄, file:line만 포함되며 스택 트레이스는 없습니다.',
+            'prompt_template' => '프롬프트 템플릿',
+            'prompt_template_helper' => 'AI 공급자에게 전송되는 템플릿. {{error}} 자리표시자는 정리된 예외 세부 정보로 대체됩니다. 신중하게 편집하세요 — {{error}}를 제거하면 저장이 차단됩니다.',
+            'prompt_template_placeholder' => '당신은 시니어 Laravel 엔지니어입니다. 분석하세요: {{error}}',
+            'template_missing_token' => '프롬프트 템플릿에는 {{error}} 자리표시자가 포함되어야 합니다.',
+            'prompt_template_default' => '기본 템플릿 사용',
+            'usage_section' => '사용량',
+            'usage_last_call_label' => '마지막 호출',
+            'usage_month_label' => '이번 달',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => '토큰',
+            'test_email' => [
+                'ai_success' => 'AI: 성공.',
+                'ai_cached' => 'AI: 캐시에서.',
+                'ai_failed' => 'AI: 실패 (:reason).',
+                'ai_skipped' => 'AI: 건너뜀 (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => '시스템 로그',
         'heading' => '로그 파일',
@@ -163,12 +211,10 @@ return [
         'email_description' => '이 로그 파일을 이메일 첨부 파일로 지정된 수신자에게 발송합니다.',
         'bulk_email_description' => '선택한 로그 파일을 개별 이메일 첨부 파일로 지정된 수신자에게 발송합니다.',
         'bulk_email_files' => '선택된 파일',
-
         'filter' => [
             'date_from' => '시작일',
             'date_to' => '종료일',
         ],
-
         'column' => [
             'filename' => '파일명',
             'size' => '크기',
@@ -178,7 +224,6 @@ return [
             'timestamp' => '타임스탬프',
             'message' => '메시지',
         ],
-
         'action' => [
             'refresh' => '새로고침',
             'view' => '보기',
@@ -191,12 +236,10 @@ return [
             'deleted' => '로그 파일이 삭제되었습니다',
             'bulk_deleted' => ':count 개의 로그 파일이 삭제되었습니다',
         ],
-
         'confirm' => [
             'delete' => '이 로그 파일을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
             'bulk_delete' => '선택한 로그 파일을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
         ],
-
         'entry' => [
             'detail' => '항목 상세',
             'line' => '줄',
@@ -206,5 +249,4 @@ return [
             'copied' => '복사되었습니다!',
         ],
     ],
-
 ];

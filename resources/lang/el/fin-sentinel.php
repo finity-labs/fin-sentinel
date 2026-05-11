@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Ρυθμίσεις',
         'error_channel' => 'Κανάλι σφαλμάτων',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Αρχεία καταγραφής',
         'log_entries' => 'Εγγραφές καταγραφής',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Ειδοποίηση σφάλματος',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Αρχείο καταγραφής',
         ],
         'footer' => 'Στάλθηκε από το Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Μήνυμα σφάλματος',
             'class' => 'Κλάση',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Τοποθεσία',
             'trace_call' => 'Κλήση',
         ],
-
         'collection' => [
             'count' => ':count στοιχείο|:count στοιχεία',
             'more' => '... και ακόμη :count στοιχεία',
         ],
-
         'error' => [
             'subject' => ':app — Παρουσιάστηκε σφάλμα',
             'guest' => 'Επισκέπτης',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Πιστοποιημένος χρήστης',
             'section_environment' => 'Περιβάλλον',
         ],
-
         'debug' => [
             'subject' => ':app — Debug: :subject',
             'guest' => 'Επισκέπτης',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Πλαίσιο αιτήματος',
             'section_environment' => 'Περιβάλλον',
         ],
-
         'log_file' => [
             'subject' => ':app — Αρχείο καταγραφής: :file',
             'bulk_subject' => ':app — :count αρχεία καταγραφής επισυνάπτονται',
             'body' => 'Το αρχείο καταγραφής <strong>:file</strong> από το :app επισυνάπτεται.',
             'body_text' => 'Το αρχείο καταγραφής :file από το :app επισυνάπτεται.',
         ],
+        'ai' => [
+            'heading' => 'Πρόταση AI',
+            'footnote_prefix' => 'μέσω',
+            'disclaimer' => 'Δημιουργήθηκε από AI. Επαληθεύστε πριν την εφαρμογή.',
+            'cached_badge' => 'από cache',
+            'failed_prefix' => 'Η ανάλυση AI απέτυχε',
+            'skipped_prefix' => 'Η ανάλυση AI παραλείφθηκε',
+            'reason' => [
+                'timeout' => 'λήξη χρόνου',
+                'authentication_failed' => 'αποτυχία ταυτοποίησης',
+                'rate_limited' => 'περιορισμένος ρυθμός',
+                'quota_exceeded' => 'υπέρβαση ορίου',
+                'unknown_error' => 'άγνωστο σφάλμα',
+                'output_rejected_matched_injection_marker' => 'απόρριψη εξόδου (δείκτης injection)',
+                'hourly_cap_reached' => 'συμπληρώθηκε το ωριαίο όριο',
+                'circuit_open' => 'το κύκλωμα είναι ανοιχτό',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Παραλήπτες',
         'throttling' => 'Περιορισμός συχνότητας',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Δεν έχουν ρυθμιστεί παραλήπτες — οι ειδοποιήσεις δεν θα αποστέλλονται μέχρι να προστεθεί τουλάχιστον ένα email.',
         'throttle_rate' => 'Ρυθμός περιορισμού',
         'minutes_suffix' => 'λεπτά',
-
         'error' => [
             'enabled' => 'Ενεργοποίηση ειδοποιήσεων σφαλμάτων',
             'enabled_helper' => 'Όταν είναι απενεργοποιημένο, δεν θα αποστέλλονται email σφαλμάτων.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Επιλέξτε εξαίρεση',
             'add_exception' => 'Προσθήκη εξαίρεσης',
         ],
-
         'debug' => [
             'enabled' => 'Ενεργοποίηση καναλιού αποσφαλμάτωσης',
             'enabled_helper' => 'Όταν είναι απενεργοποιημένο, οι κλήσεις Sentinel::debug() θα αγνοούνται.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Όταν είναι απενεργοποιημένο, κάθε κλήση debug στέλνει email. Όταν είναι ενεργοποιημένο, οι επαναλαμβανόμενες κλήσεις περιορίζονται.',
             'throttle_helper' => 'Ελάχιστα λεπτά μεταξύ επαναλαμβανόμενων debug email.',
         ],
-
         'test_email' => [
             'send' => 'Αποστολή δοκιμαστικού email',
             'sent' => 'Δοκιμαστικό email στάλθηκε σε :count παραλήπτη(-ες)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Αποτυχία αποστολής δοκιμαστικού email',
             'channel_disabled' => 'Αυτό το κανάλι είναι προς το παρόν απενεργοποιημένο. Το δοκιμαστικό email θα σταλεί παρόλα αυτά.',
         ],
+        'ai' => [
+            'test_connection' => 'Δοκιμή',
+            'test_connection_success' => 'Η σύνδεση AI λειτουργεί.',
+            'test_connection_failed' => 'Η σύνδεση AI απέτυχε.',
+            'test_connection_missing' => 'Απαιτούνται πάροχος, μοντέλο και κλειδί API για τη δοκιμή της σύνδεσης.',
+            'test_connection_no_sdk' => 'Το AI SDK (laravel/ai) δεν είναι εγκατεστημένο.',
+            'section' => 'Ανάλυση AI',
+            'section_helper' => 'Χρησιμοποιήστε ένα LLM για να προτείνει πιθανές αιτίες για συλληφθείσες εξαιρέσεις.',
+            'no_providers' => 'Δεν εντοπίστηκαν πάροχοι AI. Ελέγξτε την εγκατάσταση laravel/ai.',
+            'enabled' => 'Ενεργοποίηση ανάλυσης σφαλμάτων AI',
+            'enabled_helper' => 'Όταν είναι ενεργό, τα email σφαλμάτων περιλαμβάνουν ενότητα πρότασης παραγόμενης από AI.',
+            'provider' => 'Πάροχος',
+            'model' => 'Μοντέλο',
+            'model_placeholder' => 'Επιλέξτε πρώτα πάροχο',
+            'api_key' => 'Κλειδί API',
+            'api_key_set' => 'Κλειδί ορίστηκε — αφήστε κενό για να διατηρήσετε το υπάρχον',
+            'api_key_enter' => 'Εισαγάγετε το κλειδί API για τον επιλεγμένο πάροχο',
+            'timeout' => 'Χρονικό όριο',
+            'timeout_helper' => 'Μέγιστα δευτερόλεπτα αναμονής για απόκριση AI (1-10).',
+            'max_tokens' => 'Μέγιστα tokens εξόδου',
+            'hourly_cap' => 'Όριο ανά ώρα',
+            'hourly_cap_helper' => 'Μέγιστες κλήσεις AI ανά ώρα. Ορίστε 0 για απενεργοποίηση του ορίου.',
+            'cache_ttl' => 'TTL προσωρινής μνήμης',
+            'cache_ttl_helper' => 'Λεπτά για cache επιτυχημένων προτάσεων AI πριν από νέο ερώτημα. Εύρος: 5–1440 λεπτά (≥ παράθυρο ρύθμισης συνιστάται· προεπιλογή 60 λεπτά).',
+            'strict_scrubbing' => 'Αυστηρός καθαρισμός',
+            'strict_scrubbing_helper' => 'Όταν είναι ενεργό, το prompt AI περιέχει μόνο κλάση εξαίρεσης, πρώτη γραμμή μηνύματος και file:line — χωρίς stack trace.',
+            'prompt_template' => 'Πρότυπο prompt',
+            'prompt_template_helper' => 'Πρότυπο που αποστέλλεται στον πάροχο AI. Το placeholder {{error}} αντικαθίσταται με τις καθαρισμένες λεπτομέρειες της εξαίρεσης. Επεξεργαστείτε προσεκτικά — αφαίρεση του {{error}} αποκλείει την αποθήκευση.',
+            'prompt_template_placeholder' => 'Είστε έμπειρος μηχανικός Laravel. Αναλύστε: {{error}}',
+            'template_missing_token' => 'Το πρότυπο prompt πρέπει να περιέχει το placeholder {{error}}.',
+            'prompt_template_default' => 'Χρήση προεπιλεγμένου προτύπου',
+            'usage_section' => 'Χρήση',
+            'usage_last_call_label' => 'Τελευταία κλήση',
+            'usage_month_label' => 'Αυτόν τον μήνα',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'AI: επιτυχία.',
+                'ai_cached' => 'AI: από cache.',
+                'ai_failed' => 'AI: αποτυχία (:reason).',
+                'ai_skipped' => 'AI: παραλείφθηκε (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Αρχεία καταγραφής συστήματος',
         'heading' => 'Αρχεία καταγραφής',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Αποστολή αυτού του αρχείου καταγραφής ως συνημμένο στην καθορισμένη διεύθυνση.',
         'bulk_email_description' => 'Αποστολή των επιλεγμένων αρχείων καταγραφής ως μεμονωμένα συνημμένα στην καθορισμένη διεύθυνση.',
         'bulk_email_files' => 'Επιλεγμένα αρχεία',
-
         'filter' => [
             'date_from' => 'Από',
             'date_to' => 'Έως',
         ],
-
         'column' => [
             'filename' => 'Όνομα αρχείου',
             'size' => 'Μέγεθος',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Χρονοσήμανση',
             'message' => 'Μήνυμα',
         ],
-
         'action' => [
             'refresh' => 'Ανανέωση',
             'view' => 'Προβολή',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Το αρχείο καταγραφής διαγράφηκε',
             'bulk_deleted' => ':count αρχείο(-α) καταγραφής διαγράφηκαν',
         ],
-
         'confirm' => [
             'delete' => 'Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το αρχείο καταγραφής; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
             'bulk_delete' => 'Είστε σίγουροι ότι θέλετε να διαγράψετε τα επιλεγμένα αρχεία καταγραφής; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
         ],
-
         'entry' => [
             'detail' => 'Λεπτομέρειες εγγραφής',
             'line' => 'Γραμμή',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Αντιγράφηκε!',
         ],
     ],
-
 ];

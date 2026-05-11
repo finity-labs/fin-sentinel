@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Tetapan',
         'error_channel' => 'Saluran Ralat',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Fail Log',
         'log_entries' => 'Entri Log',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Pemberitahuan Ralat',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Fail Log',
         ],
         'footer' => 'Dihantar oleh Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Mesej Ralat',
             'class' => 'Kelas',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Lokasi',
             'trace_call' => 'Panggilan',
         ],
-
         'collection' => [
             'count' => ':count item',
             'more' => '... dan :count item lagi',
         ],
-
         'error' => [
             'subject' => ':app - Ralat telah berlaku',
             'guest' => 'Tetamu',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Pengguna Disahkan',
             'section_environment' => 'Persekitaran',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Tetamu',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Konteks Permintaan',
             'section_environment' => 'Persekitaran',
         ],
-
         'log_file' => [
             'subject' => ':app - Fail log: :file',
             'bulk_subject' => ':app - :count fail log dilampirkan',
             'body' => 'Fail log <strong>:file</strong> daripada :app telah dilampirkan.',
             'body_text' => 'Fail log :file daripada :app telah dilampirkan.',
         ],
+        'ai' => [
+            'heading' => 'Cadangan AI',
+            'footnote_prefix' => 'melalui',
+            'disclaimer' => 'Dijana oleh AI. Sahkan sebelum bertindak.',
+            'cached_badge' => 'dari cache',
+            'failed_prefix' => 'Analisis AI gagal',
+            'skipped_prefix' => 'Analisis AI dilangkau',
+            'reason' => [
+                'timeout' => 'masa tamat',
+                'authentication_failed' => 'pengesahan gagal',
+                'rate_limited' => 'kadar dihadkan',
+                'quota_exceeded' => 'kuota terlampau',
+                'unknown_error' => 'ralat tidak diketahui',
+                'output_rejected_matched_injection_marker' => 'output ditolak (penanda injection)',
+                'hourly_cap_reached' => 'had sejam dicapai',
+                'circuit_open' => 'litar terbuka',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Penerima',
         'throttling' => 'Had Frekuensi',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Tiada penerima dikonfigurasi - pemberitahuan tidak akan dihantar sehingga sekurang-kurangnya satu alamat emel ditambah.',
         'throttle_rate' => 'Kadar had',
         'minutes_suffix' => 'minit',
-
         'error' => [
             'enabled' => 'Aktifkan pemberitahuan ralat',
             'enabled_helper' => 'Jika dinyahaktifkan, tiada emel ralat akan dihantar.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Pilih exception',
             'add_exception' => 'Tambah pengecualian',
         ],
-
         'debug' => [
             'enabled' => 'Aktifkan saluran Debug',
             'enabled_helper' => 'Jika dinyahaktifkan, panggilan Sentinel::debug() akan diabaikan.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Jika dinyahaktifkan, setiap panggilan Debug akan menghantar emel. Jika diaktifkan, panggilan berulang akan dihadkan.',
             'throttle_helper' => 'Jumlah minit minimum antara emel Debug yang berulang.',
         ],
-
         'test_email' => [
             'send' => 'Hantar Emel Ujian',
             'sent' => 'Emel ujian dihantar kepada :count penerima',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Gagal menghantar emel ujian',
             'channel_disabled' => 'Saluran ini sedang dinyahaktifkan. Emel ujian tetap akan dihantar.',
         ],
+        'ai' => [
+            'test_connection' => 'Uji',
+            'test_connection_success' => 'Sambungan AI berfungsi.',
+            'test_connection_failed' => 'Sambungan AI gagal.',
+            'test_connection_missing' => 'Pembekal, model, dan kunci API diperlukan untuk menguji sambungan.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) belum dipasang.',
+            'section' => 'Analisis AI',
+            'section_helper' => 'Gunakan LLM untuk mencadangkan kemungkinan penyebab pengecualian yang ditangkap.',
+            'no_providers' => 'Tiada penyedia AI dikesan. Periksa pemasangan laravel/ai anda.',
+            'enabled' => 'Aktifkan analisis ralat AI',
+            'enabled_helper' => 'Apabila diaktifkan, e-mel ralat menyertakan bahagian cadangan yang dijana AI.',
+            'provider' => 'Penyedia',
+            'model' => 'Model',
+            'model_placeholder' => 'Pilih penyedia terlebih dahulu',
+            'api_key' => 'Kunci API',
+            'api_key_set' => 'Kunci ditetapkan — biarkan kosong untuk mengekalkan kunci sedia ada',
+            'api_key_enter' => 'Masukkan kunci API untuk penyedia yang dipilih',
+            'timeout' => 'Tamat masa',
+            'timeout_helper' => 'Saat maksimum untuk menunggu respons AI (1-10).',
+            'max_tokens' => 'Token output maks.',
+            'hourly_cap' => 'Had sejam',
+            'hourly_cap_helper' => 'Panggilan AI maksimum sejam. Tetapkan 0 untuk melumpuhkan had.',
+            'cache_ttl' => 'TTL cache',
+            'cache_ttl_helper' => 'Minit untuk cache cadangan AI yang berjaya sebelum pertanyaan semula. Julat: 5–1440 minit (≥ tetingkap pendikit disyorkan; lalai 60 minit).',
+            'strict_scrubbing' => 'Pembersihan ketat',
+            'strict_scrubbing_helper' => 'Apabila diaktifkan, prompt AI hanya mengandungi kelas pengecualian, baris pertama mesej, dan file:line — tiada stack trace.',
+            'prompt_template' => 'Templat prompt',
+            'prompt_template_helper' => 'Templat dihantar kepada penyedia AI. Pemegang tempat {{error}} digantikan dengan butiran pengecualian yang dibersihkan. Sunting dengan berhati-hati — mengeluarkan {{error}} menyekat penyimpanan.',
+            'prompt_template_placeholder' => 'Anda jurutera Laravel kanan. Analisis: {{error}}',
+            'template_missing_token' => 'Templat prompt mesti mengandungi pemegang tempat {{error}}.',
+            'prompt_template_default' => 'Guna templat lalai',
+            'usage_section' => 'Penggunaan',
+            'usage_last_call_label' => 'Panggilan terakhir',
+            'usage_month_label' => 'Bulan ini',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: berjaya.',
+                'ai_cached' => 'AI: dari cache.',
+                'ai_failed' => 'AI: gagal (:reason).',
+                'ai_skipped' => 'AI: dilangkau (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Log Sistem',
         'heading' => 'Fail Log',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Hantar fail log ini sebagai lampiran emel kepada penerima yang ditetapkan.',
         'bulk_email_description' => 'Hantar fail log yang dipilih sebagai lampiran emel berasingan kepada penerima yang ditetapkan.',
         'bulk_email_files' => 'Fail Terpilih',
-
         'filter' => [
             'date_from' => 'Dari',
             'date_to' => 'Hingga',
         ],
-
         'column' => [
             'filename' => 'Nama Fail',
             'size' => 'Saiz',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Cap Masa',
             'message' => 'Mesej',
         ],
-
         'action' => [
             'refresh' => 'Muat Semula',
             'view' => 'Lihat',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Fail log dipadam',
             'bulk_deleted' => ':count fail log dipadam',
         ],
-
         'confirm' => [
             'delete' => 'Adakah anda pasti mahu memadamkan fail log ini? Tindakan ini tidak boleh dibatalkan.',
             'bulk_delete' => 'Adakah anda pasti mahu memadamkan fail log yang dipilih? Tindakan ini tidak boleh dibatalkan.',
         ],
-
         'entry' => [
             'detail' => 'Butiran Entri',
             'line' => 'Baris',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Disalin!',
         ],
     ],
-
 ];

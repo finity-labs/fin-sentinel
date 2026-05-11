@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Cilësimet',
         'error_channel' => 'Kanali i gabimeve',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Skedarët e regjistrit',
         'log_entries' => 'Hyrjet e regjistrit',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Njoftim gabimi',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Skedar regjistri',
         ],
         'footer' => 'Dërguar nga Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Mesazhi i gabimit',
             'class' => 'Klasë',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Vendndodhja',
             'trace_call' => 'Thirrja',
         ],
-
         'collection' => [
             'count' => ':count element|:count elemente',
             'more' => '... dhe :count elemente të tjera',
         ],
-
         'error' => [
             'subject' => ':app - Ndodhi një gabim',
             'guest' => 'Vizitor',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Përdoruesi i identifikuar',
             'section_environment' => 'Mjedisi',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Vizitor',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Konteksti i kërkesës',
             'section_environment' => 'Mjedisi',
         ],
-
         'log_file' => [
             'subject' => ':app - Skedar regjistri: :file',
             'bulk_subject' => ':app - :count skedarë regjistri të bashkangjitur',
             'body' => 'Skedari i regjistrit <strong>:file</strong> nga :app është i bashkangjitur.',
             'body_text' => 'Skedari i regjistrit :file nga :app është i bashkangjitur.',
         ],
+        'ai' => [
+            'heading' => 'Sugjerim i IA',
+            'footnote_prefix' => 'përmes',
+            'disclaimer' => 'Gjeneruar nga IA. Verifikoni përpara veprimit.',
+            'cached_badge' => 'i ruajtur',
+            'failed_prefix' => 'Analiza e IA dështoi',
+            'skipped_prefix' => 'Analiza e IA u anashkalua',
+            'reason' => [
+                'timeout' => 'koha skadoi',
+                'authentication_failed' => 'vërtetimi dështoi',
+                'rate_limited' => 'shpejtësi e kufizuar',
+                'quota_exceeded' => 'kuota u tejkalua',
+                'unknown_error' => 'gabim i panjohur',
+                'output_rejected_matched_injection_marker' => 'dalja u refuzua (shenjë injection)',
+                'hourly_cap_reached' => 'kufiri orar u arrit',
+                'circuit_open' => 'qarku është i hapur',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Marrësit',
         'throttling' => 'Kufizimi',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Nuk ka marrës të konfiguruar — njoftimet nuk do të dërgohen derisa të shtohet të paktën një adresë email.',
         'throttle_rate' => 'Shkalla e kufizimit',
         'minutes_suffix' => 'minuta',
-
         'error' => [
             'enabled' => 'Aktivizo njoftimet e gabimeve',
             'enabled_helper' => 'Kur është çaktivizuar, nuk do të dërgohen email-e gabimesh.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Zgjidhni përjashtimin',
             'add_exception' => 'Shto përjashtim',
         ],
-
         'debug' => [
             'enabled' => 'Aktivizo kanalin Debug',
             'enabled_helper' => 'Kur është çaktivizuar, thirrjet Sentinel::debug() do të shpërfillen në heshtje.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Kur është çaktivizuar, çdo thirrje debug dërgon një email. Kur është aktivizuar, thirrjet e dyfishta kufizohen.',
             'throttle_helper' => 'Minutat minimale midis email-eve të dyfishta Debug.',
         ],
-
         'test_email' => [
             'send' => 'Dërgo email provë',
             'sent' => 'Email-i provë u dërgua te :count marrës',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Dërgimi i email-it provë dështoi',
             'channel_disabled' => 'Ky kanal është aktualisht i çaktivizuar. Email-i provë do të dërgohet gjithsesi.',
         ],
+        'ai' => [
+            'test_connection' => 'Testo',
+            'test_connection_success' => 'Lidhja e AI funksionon.',
+            'test_connection_failed' => 'Lidhja e AI dështoi.',
+            'test_connection_missing' => 'Ofruesi, modeli dhe çelësi API janë të nevojshëm për të testuar lidhjen.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) nuk është i instaluar.',
+            'section' => 'Analizë me IA',
+            'section_helper' => 'Përdorni një LLM për të sugjeruar shkaqet e mundshme të përjashtimeve të kapura.',
+            'no_providers' => 'Nuk u zbulua asnjë ofrues IA. Kontrolloni instalimin tuaj laravel/ai.',
+            'enabled' => 'Aktivizo analizën e gabimeve me IA',
+            'enabled_helper' => 'Kur aktivizohet, e-mailet e gabimit përmbajnë një seksion sugjerimi të krijuar nga IA.',
+            'provider' => 'Ofruesi',
+            'model' => 'Modeli',
+            'model_placeholder' => 'Zgjidhni fillimisht një ofrues',
+            'api_key' => 'Çelësi API',
+            'api_key_set' => 'Çelësi është vendosur — lëreni bosh për të mbajtur çelësin ekzistues',
+            'api_key_enter' => 'Vendosni çelësin API për ofruesin e zgjedhur',
+            'timeout' => 'Koha e skadimit',
+            'timeout_helper' => 'Sekondat maksimale të pritjes për përgjigjen e IA (1-10).',
+            'max_tokens' => 'Tokenët maksimalë të daljes',
+            'hourly_cap' => 'Kufiri për orë',
+            'hourly_cap_helper' => 'Maksimumi i thirrjeve IA për orë. Vendosni 0 për të çaktivizuar kufirin.',
+            'cache_ttl' => 'TTL e memories',
+            'cache_ttl_helper' => 'Minutat për të vendosur në memorie sugjerimet e suksesshme të IA përpara një kërkese të re. Diapazoni: 5–1440 minuta (≥ dritarja e ngufatjes rekomandohet; parazgjedhja 60 minuta).',
+            'strict_scrubbing' => 'Pastrim i rreptë',
+            'strict_scrubbing_helper' => 'Kur aktivizohet, prompti i IA përmban vetëm klasën e përjashtimit, rreshtin e parë të mesazhit dhe file:line — pa stack trace.',
+            'prompt_template' => 'Modeli i promptit',
+            'prompt_template_helper' => 'Modeli i dërguar tek ofruesi i IA. Mbajtësi i vendit {{error}} zëvendësohet me detajet e pastruara të përjashtimit. Redaktoni me kujdes — heqja e {{error}} bllokon ruajtjen.',
+            'prompt_template_placeholder' => 'Ju jeni inxhinier Laravel i lartë. Analizoni: {{error}}',
+            'template_missing_token' => 'Modeli i promptit duhet të përmbajë mbajtësin {{error}}.',
+            'prompt_template_default' => 'Përdor modelin e parazgjedhur',
+            'usage_section' => 'Përdorimi',
+            'usage_last_call_label' => 'Thirrja e fundit',
+            'usage_month_label' => 'Këtë muaj',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokenë',
+            'test_email' => [
+                'ai_success' => 'IA: sukses.',
+                'ai_cached' => 'IA: nga memoria.',
+                'ai_failed' => 'IA: dështoi (:reason).',
+                'ai_skipped' => 'IA: u anashkalua (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Regjistrat e sistemit',
         'heading' => 'Skedarët e regjistrit',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Dërgoni këtë skedar regjistri si bashkëngjitje email-i te marrësi i specifikuar.',
         'bulk_email_description' => 'Dërgoni skedarët e zgjedhur të regjistrit si bashkëngjitje individuale email-i te marrësi i specifikuar.',
         'bulk_email_files' => 'Skedarët e zgjedhur',
-
         'filter' => [
             'date_from' => 'Nga',
             'date_to' => 'Deri',
         ],
-
         'column' => [
             'filename' => 'Emri i skedarit',
             'size' => 'Madhësia',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Vula kohore',
             'message' => 'Mesazhi',
         ],
-
         'action' => [
             'refresh' => 'Rifresko',
             'view' => 'Shiko',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Skedari i regjistrit u fshi',
             'bulk_deleted' => ':count skedar(ë) regjistri u fshinë',
         ],
-
         'confirm' => [
             'delete' => 'Jeni i sigurt që dëshironi të fshini këtë skedar regjistri? Ky veprim nuk mund të zhbëhet.',
             'bulk_delete' => 'Jeni i sigurt që dëshironi të fshini skedarët e zgjedhur të regjistrit? Ky veprim nuk mund të zhbëhet.',
         ],
-
         'entry' => [
             'detail' => 'Detajet e hyrjes',
             'line' => 'Rreshti',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopjuar!',
         ],
     ],
-
 ];

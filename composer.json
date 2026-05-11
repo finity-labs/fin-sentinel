@@ -26,6 +26,9 @@
         "pestphp/pest": "^2.0|^3.0",
         "pestphp/pest-plugin-laravel": "^2.0|^3.0"
     },
+    "suggest": {
+        "laravel/ai": "Enables AI-assisted error analysis in failure emails. Requires PHP 8.3 and Laravel 12+."
+    },
     "autoload": {
         "psr-4": {
             "FinityLabs\\FinSentinel\\": "src/"

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Einstellungen',
         'error_channel' => 'Fehlerkanal',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Protokolldateien',
         'log_entries' => 'Protokolleinträge',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Fehlerbenachrichtigung',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Protokolldatei',
         ],
         'footer' => 'Gesendet von Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Fehlermeldung',
             'class' => 'Klasse',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Ort',
             'trace_call' => 'Aufruf',
         ],
-
         'collection' => [
             'count' => ':count Element|:count Elemente',
             'more' => '... und :count weitere Elemente',
         ],
-
         'error' => [
             'subject' => ':app - Ein Fehler ist aufgetreten',
             'guest' => 'Gast',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Authentifizierter Benutzer',
             'section_environment' => 'Umgebung',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Gast',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Anfragekontext',
             'section_environment' => 'Umgebung',
         ],
-
         'log_file' => [
             'subject' => ':app - Protokolldatei: :file',
             'bulk_subject' => ':app - :count Protokolldateien angehängt',
             'body' => 'Die Protokolldatei <strong>:file</strong> von :app ist angehängt.',
             'body_text' => 'Die Protokolldatei :file von :app ist angehängt.',
         ],
+        'ai' => [
+            'heading' => 'KI-Vorschlag',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'KI-generiert. Vor dem Handeln prüfen.',
+            'cached_badge' => 'aus Cache',
+            'failed_prefix' => 'KI-Analyse fehlgeschlagen',
+            'skipped_prefix' => 'KI-Analyse übersprungen',
+            'reason' => [
+                'timeout' => 'Zeitüberschreitung',
+                'authentication_failed' => 'Authentifizierung fehlgeschlagen',
+                'rate_limited' => 'Rate begrenzt',
+                'quota_exceeded' => 'Kontingent überschritten',
+                'unknown_error' => 'unbekannter Fehler',
+                'output_rejected_matched_injection_marker' => 'Ausgabe abgelehnt (Injection-Marker)',
+                'hourly_cap_reached' => 'Stundenlimit erreicht',
+                'circuit_open' => 'Stromkreis offen',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Empfänger',
         'throttling' => 'Drosselung',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Keine Empfänger konfiguriert — Benachrichtigungen werden erst gesendet, wenn mindestens eine E-Mail-Adresse hinzugefügt wurde.',
         'throttle_rate' => 'Drosselungsrate',
         'minutes_suffix' => 'Minuten',
-
         'error' => [
             'enabled' => 'Fehlerbenachrichtigungen aktivieren',
             'enabled_helper' => 'Wenn deaktiviert, werden keine Fehler-E-Mails gesendet.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Ausnahme auswählen',
             'add_exception' => 'Ausnahme hinzufügen',
         ],
-
         'debug' => [
             'enabled' => 'Debug-Kanal aktivieren',
             'enabled_helper' => 'Wenn deaktiviert, werden Sentinel::debug()-Aufrufe stillschweigend ignoriert.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Wenn deaktiviert, sendet jeder Debug-Aufruf eine E-Mail. Wenn aktiviert, werden doppelte Aufrufe gedrosselt.',
             'throttle_helper' => 'Mindestanzahl Minuten zwischen doppelten Debug-E-Mails.',
         ],
-
         'test_email' => [
             'send' => 'Test-E-Mail senden',
             'sent' => 'Test-E-Mail an :count Empfänger gesendet',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Test-E-Mail konnte nicht gesendet werden',
             'channel_disabled' => 'Dieser Kanal ist derzeit deaktiviert. Die Test-E-Mail wird trotzdem gesendet.',
         ],
+        'ai' => [
+            'test_connection' => 'Testen',
+            'test_connection_success' => 'KI-Verbindung funktioniert.',
+            'test_connection_failed' => 'KI-Verbindung fehlgeschlagen.',
+            'test_connection_missing' => 'Anbieter, Modell und API-Schlüssel sind zum Testen der Verbindung erforderlich.',
+            'test_connection_no_sdk' => 'KI-SDK (laravel/ai) ist nicht installiert.',
+            'section' => 'KI-Analyse',
+            'section_helper' => 'Lassen Sie ein LLM mögliche Ursachen für abgefangene Ausnahmen vorschlagen.',
+            'no_providers' => 'Keine KI-Anbieter erkannt. Prüfen Sie Ihre laravel/ai-Installation.',
+            'enabled' => 'KI-Fehleranalyse aktivieren',
+            'enabled_helper' => 'Wenn aktiviert, enthalten Fehler-E-Mails einen KI-generierten Vorschlagsabschnitt.',
+            'provider' => 'Anbieter',
+            'model' => 'Modell',
+            'model_placeholder' => 'Zuerst Anbieter auswählen',
+            'api_key' => 'API-Schlüssel',
+            'api_key_set' => 'Schlüssel gesetzt — leer lassen, um den vorhandenen Schlüssel zu behalten',
+            'api_key_enter' => 'API-Schlüssel für den ausgewählten Anbieter eingeben',
+            'timeout' => 'Zeitüberschreitung',
+            'timeout_helper' => 'Maximale Sekunden für die KI-Antwort (1-10).',
+            'max_tokens' => 'Max. Ausgabe-Tokens',
+            'hourly_cap' => 'Stundenlimit',
+            'hourly_cap_helper' => 'Maximale KI-Aufrufe pro Stunde. Auf 0 setzen, um das Limit zu deaktivieren.',
+            'cache_ttl' => 'Cache-TTL',
+            'cache_ttl_helper' => 'Minuten zum Zwischenspeichern erfolgreicher KI-Vorschläge vor erneuter Abfrage. Bereich: 5–1440 Minuten (≥ Drosselungsfenster empfohlen; Standard 60 Minuten).',
+            'strict_scrubbing' => 'Strikte Bereinigung',
+            'strict_scrubbing_helper' => 'Wenn aktiviert, enthält der KI-Prompt nur die Ausnahmeklasse, die erste Meldungszeile und file:line — keinen Stack-Trace.',
+            'prompt_template' => 'Prompt-Vorlage',
+            'prompt_template_helper' => 'An den KI-Anbieter gesendete Vorlage. Der Platzhalter {{error}} wird durch die bereinigten Ausnahmedetails ersetzt. Vorsichtig bearbeiten — Entfernen von {{error}} blockiert das Speichern.',
+            'prompt_template_placeholder' => 'Sie sind ein erfahrener Laravel-Entwickler. Analysieren Sie: {{error}}',
+            'template_missing_token' => 'Die Prompt-Vorlage muss den Platzhalter {{error}} enthalten.',
+            'prompt_template_default' => 'Standardvorlage verwenden',
+            'usage_section' => 'Nutzung',
+            'usage_last_call_label' => 'Letzter Aufruf',
+            'usage_month_label' => 'Dieser Monat',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'Tokens',
+            'test_email' => [
+                'ai_success' => 'KI: Erfolg.',
+                'ai_cached' => 'KI: aus Cache.',
+                'ai_failed' => 'KI: fehlgeschlagen (:reason).',
+                'ai_skipped' => 'KI: übersprungen (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Systemprotokolle',
         'heading' => 'Protokolldateien',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Diese Protokolldatei als E-Mail-Anhang an den angegebenen Empfänger senden.',
         'bulk_email_description' => 'Die ausgewählten Protokolldateien als einzelne E-Mail-Anhänge an den angegebenen Empfänger senden.',
         'bulk_email_files' => 'Ausgewählte Dateien',
-
         'filter' => [
             'date_from' => 'Von',
             'date_to' => 'Bis',
         ],
-
         'column' => [
             'filename' => 'Dateiname',
             'size' => 'Größe',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Zeitstempel',
             'message' => 'Nachricht',
         ],
-
         'action' => [
             'refresh' => 'Aktualisieren',
             'view' => 'Anzeigen',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Protokolldatei gelöscht',
             'bulk_deleted' => ':count Protokolldatei(en) gelöscht',
         ],
-
         'confirm' => [
             'delete' => 'Möchten Sie diese Protokolldatei wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.',
             'bulk_delete' => 'Möchten Sie die ausgewählten Protokolldateien wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.',
         ],
-
         'entry' => [
             'detail' => 'Eintragsdetail',
             'line' => 'Zeile',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopiert!',
         ],
     ],
-
 ];

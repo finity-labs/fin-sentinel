@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Siamṭhatna',
         'error_channel' => 'Dikthleng Channel',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Log File-te',
         'log_entries' => 'Log Ziakluh-te',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Dikthleng Hriatṭhiahna',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Log File',
         ],
         'footer' => 'Fin-Sentinel hian a thawn',
-
         'label' => [
             'error_message' => 'Dikthleng Thu',
             'class' => 'Class',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Hmun',
             'trace_call' => 'Koh',
         ],
-
         'collection' => [
             'count' => ':count thil|:count thilte',
             'more' => '... leh :count dang',
         ],
-
         'error' => [
             'subject' => ':app - Dikthleng a awm',
             'guest' => 'Lengzual',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Hmangtu Pahnih',
             'section_environment' => 'Chhuahsan Ṭan',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Lengzual',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Request Thufing',
             'section_environment' => 'Chhuahsan Ṭan',
         ],
-
         'log_file' => [
             'subject' => ':app - Log file: :file',
             'bulk_subject' => ':app - Log file :count a tel',
             'body' => ':app aṭangin log file <strong>:file</strong> a tel a ni.',
             'body_text' => ':app aṭangin log file :file a tel a ni.',
         ],
+        'ai' => [
+            'heading' => 'AI rawtna',
+            'footnote_prefix' => 'atang',
+            'disclaimer' => 'AI siam. Hman hmaa enfiah la.',
+            'cached_badge' => 'cache-a awm',
+            'failed_prefix' => 'AI zirchianna a hlawhtling lo',
+            'skipped_prefix' => 'AI zirchianna paih a ni',
+            'reason' => [
+                'timeout' => 'hun a ral ta',
+                'authentication_failed' => 'enchiantirna a hlawhtling lo',
+                'rate_limited' => 'rate limit a awm',
+                'quota_exceeded' => 'quota a chuak ta',
+                'unknown_error' => 'hriat loh dik lohna',
+                'output_rejected_matched_injection_marker' => 'output hnawl a ni (injection marker)',
+                'hourly_cap_reached' => 'darkar tin tawpna a thleng',
+                'circuit_open' => 'circuit a hawng',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Dawngtu',
         'throttling' => 'Throttling',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Dawngtu siamṭhat a ni lo — email pakhat tal a siam phawt loh chuan hriatṭhiahna thawn a ni lovang.',
         'throttle_rate' => 'Throttle sang zat',
         'minutes_suffix' => 'minit',
-
         'error' => [
             'enabled' => 'Dikthleng hriatṭhiahna on rawh',
             'enabled_helper' => 'Off a nih chuan dikthleng email thawn a ni lovang.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Exception thlang rawh',
             'add_exception' => 'Exception dah belh',
         ],
-
         'debug' => [
             'enabled' => 'Debug channel on rawh',
             'enabled_helper' => 'Off a nih chuan Sentinel::debug() kohna te hi ngaihdamchhuah a ni ang.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Off a nih chuan Debug kohna tin hian email a thawn ang. On a nih chuan kohna bangbang te hi throttle a ni ang.',
             'throttle_helper' => 'Debug email bangbang inkar minit tlem ber.',
         ],
-
         'test_email' => [
             'send' => 'Test Email Thawn Rawh',
             'sent' => 'Dawngtu :count hnena test email thawn a ni',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Test email thawn theih a ni lo',
             'channel_disabled' => 'He channel hi tun ah off a ni. Test email thawn a ni ngei ang.',
         ],
+        'ai' => [
+            'test_connection' => 'Sai',
+            'test_connection_success' => 'AI inkawmna a thawk a.',
+            'test_connection_failed' => 'AI inkawmna a chhuahsuak.',
+            'test_connection_missing' => 'Inkawmna sai nan provider, model leh API key a ngai.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) install lo.',
+            'section' => 'AI Chhinchhiahna',
+            'section_helper' => 'Exception man tawhte chhan theih chuan LLM hmangin sawi rawh.',
+            'no_providers' => 'AI provider hmuhchhuah a ni lo. I laravel/ai installation chu i en chiang dawn.',
+            'enabled' => 'AI thlawhte chhinchhiahna hmang theihtir',
+            'enabled_helper' => 'A hmang theih hian, thlawhte email ah AI siam suggestion section a awm dawn.',
+            'provider' => 'Provider',
+            'model' => 'Model',
+            'model_placeholder' => 'Provider hmasa berin thlang rawh',
+            'api_key' => 'API key',
+            'api_key_set' => 'Key set tawh — key tlangpui awm reng tur chuan ruak rawh',
+            'api_key_enter' => 'Provider thlan tan API key chu lut rawh',
+            'timeout' => 'Hun tawp',
+            'timeout_helper' => 'AI chhanna nghah tur second ngahna (1-10).',
+            'max_tokens' => 'Output token zauhna',
+            'hourly_cap' => 'Darkar tin tihhrenna',
+            'hourly_cap_helper' => 'Darkar khat chhunga AI call zauhna. Tihhrenna chu thlahthlam tur chuan 0 dah rawh.',
+            'cache_ttl' => 'Cache TTL',
+            'cache_ttl_helper' => 'Zawh leh hmaa AI suggestion hlawhtling cache nan minute. Range: 5–1440 minute (≥ throttle window pawmpui; default 60 minute).',
+            'strict_scrubbing' => 'Tha taka tlinglehna',
+            'strict_scrubbing_helper' => 'A hmang theih hian, AI prompt chu exception class, message line hmasa, leh file:line bak chu a awm lo — stack trace a awm lo.',
+            'prompt_template' => 'Prompt template',
+            'prompt_template_helper' => 'AI provider hnena thawn template. {{error}} placeholder chu exception kawngro tha taka tihah ah a thlak ang. Fimkhur takin siam dan rawh — {{error}} laksak chuan save a hrenna ang.',
+            'prompt_template_placeholder' => 'Nang chu Laravel engineer ho lalpa i ni. Chhinchhiah rawh: {{error}}',
+            'template_missing_token' => 'Prompt template-ah {{error}} placeholder a awm ngei tur a ni.',
+            'prompt_template_default' => 'Default template hmang rawh',
+            'usage_section' => 'Hmanna',
+            'usage_last_call_label' => 'Call hnuhnung ber',
+            'usage_month_label' => 'He thla hi',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: hlawhtling.',
+                'ai_cached' => 'AI: cache atangin.',
+                'ai_failed' => 'AI: a hlawhtling lo (:reason).',
+                'ai_skipped' => 'AI: hmun lo (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'System Rawn Ziak',
         'heading' => 'Log File-te',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'He log file hi dawngtu sawh hnena email attachment a thawn rawh.',
         'bulk_email_description' => 'Log file thlang te hi dawngtu sawh hnena email attachment hrang hrangin thawn rawh.',
         'bulk_email_files' => 'File Thlang Te',
-
         'filter' => [
             'date_from' => 'Aṭang',
             'date_to' => 'Thleng',
         ],
-
         'column' => [
             'filename' => 'File Hming',
             'size' => 'Pui Zat',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Hun',
             'message' => 'Thu',
         ],
-
         'action' => [
             'refresh' => 'Thar Thlak',
             'view' => 'En Rawh',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Log file paih a ni',
             'bulk_deleted' => 'Log file :count paih a ni',
         ],
-
         'confirm' => [
             'delete' => 'He log file hi paih i duh em? He thil tih hi thlak leh theih a ni lo.',
             'bulk_delete' => 'Log file thlang te hi paih i duh em? He thil tih hi thlak leh theih a ni lo.',
         ],
-
         'entry' => [
             'detail' => 'Ziakluh Chiang Zawk',
             'line' => 'Line',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Dawr zo!',
         ],
     ],
-
 ];

@@ -29,6 +29,40 @@
                     </td>
                 </tr>
 
+                @if($aiSuggestion && $aiSuggestion->state !== \FinityLabs\FinSentinel\Support\AiSuggestionState::DISABLED)
+                <tr>
+                    <td style="padding: 20px 24px; border-bottom: 1px solid #e9ecef;">
+                        <div style="font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #555555;">
+                            {{ __('fin-sentinel::fin-sentinel.email.ai.heading') }}
+                            @if($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::CACHED)
+                                <span style="display: inline-block; margin-left: 6px; padding: 2px 8px; background-color: #e9ecef; color: #666666; font-size: 11px; font-weight: normal; border-radius: 10px; vertical-align: middle;">{{ __('fin-sentinel::fin-sentinel.email.ai.cached_badge') }}</span>
+                            @endif
+                        </div>
+                        @if($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::SUCCESS || $aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::CACHED)
+                            <div style="background-color: #f8f9fa; padding: 12px 16px; font-size: 13px; line-height: 1.5; color: #333333;">
+                                {!! nl2br(e($aiSuggestion->suggestion)) !!}
+                            </div>
+                            @if($aiProvider !== '' || $aiModel !== '')
+                                <div style="margin-top: 8px; font-size: 12px; color: #666666;">
+                                    {{ __('fin-sentinel::fin-sentinel.email.ai.footnote_prefix') }} {{ $aiProvider }}@if($aiProvider !== '' && $aiModel !== '') &mdash; @endif{{ $aiModel }}
+                                </div>
+                            @endif
+                            <div style="margin-top: 4px; font-size: 11px; color: #999999; font-style: italic;">
+                                {{ __('fin-sentinel::fin-sentinel.email.ai.disclaimer') }}
+                            </div>
+                        @elseif($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::FAILED)
+                            <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; font-size: 13px; color: #555555;">
+                                {{ __('fin-sentinel::fin-sentinel.email.ai.failed_prefix') }}: @lang('fin-sentinel::fin-sentinel.email.ai.reason.' . str_replace([' ', ':'], ['_', ''], $aiSuggestion->reason ?? 'unknown_error'))
+                            </div>
+                        @elseif($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::SKIPPED)
+                            <div style="background-color: #f8f9fa; padding: 12px 16px; font-size: 13px; color: #666666;">
+                                {{ __('fin-sentinel::fin-sentinel.email.ai.skipped_prefix') }}: @lang('fin-sentinel::fin-sentinel.email.ai.reason.' . str_replace([' ', ':'], ['_', ''], $aiSuggestion->reason ?? 'unknown_error'))
+                            </div>
+                        @endif
+                    </td>
+                </tr>
+                @endif
+
                 {{-- Exception Details --}}
                 @if($exceptionClass)
                 <tr>

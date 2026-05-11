@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Instellingen',
         'error_channel' => 'Foutenkanaal',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Logbestanden',
         'log_entries' => 'Logvermeldingen',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Foutmelding',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Logbestand',
         ],
         'footer' => 'Verzonden door Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Foutmelding',
             'class' => 'Klasse',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Locatie',
             'trace_call' => 'Aanroep',
         ],
-
         'collection' => [
             'count' => ':count item|:count items',
             'more' => '... en nog :count items',
         ],
-
         'error' => [
             'subject' => ':app - Er is een fout opgetreden',
             'guest' => 'Gast',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Ingelogde gebruiker',
             'section_environment' => 'Omgeving',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Gast',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Verzoekcontext',
             'section_environment' => 'Omgeving',
         ],
-
         'log_file' => [
             'subject' => ':app - Logbestand: :file',
             'bulk_subject' => ':app - :count logbestanden bijgevoegd',
             'body' => 'Het logbestand <strong>:file</strong> van :app is bijgevoegd.',
             'body_text' => 'Het logbestand :file van :app is bijgevoegd.',
         ],
+        'ai' => [
+            'heading' => 'AI-suggestie',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'AI-gegenereerd. Controleer voor gebruik.',
+            'cached_badge' => 'uit cache',
+            'failed_prefix' => 'AI-analyse mislukt',
+            'skipped_prefix' => 'AI-analyse overgeslagen',
+            'reason' => [
+                'timeout' => 'time-out',
+                'authentication_failed' => 'authenticatie mislukt',
+                'rate_limited' => 'snelheid beperkt',
+                'quota_exceeded' => 'quotum overschreden',
+                'unknown_error' => 'onbekende fout',
+                'output_rejected_matched_injection_marker' => 'uitvoer geweigerd (injectie-markering)',
+                'hourly_cap_reached' => 'uurlimiet bereikt',
+                'circuit_open' => 'circuit open',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Ontvangers',
         'throttling' => 'Beperking',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Geen ontvangers geconfigureerd — meldingen worden pas verzonden als er minstens één e-mailadres is toegevoegd.',
         'throttle_rate' => 'Beperkingsfrequentie',
         'minutes_suffix' => 'minuten',
-
         'error' => [
             'enabled' => 'Foutmeldingen inschakelen',
             'enabled_helper' => 'Wanneer uitgeschakeld, worden er geen fout-e-mails verzonden.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Uitzondering selecteren',
             'add_exception' => 'Uitzondering toevoegen',
         ],
-
         'debug' => [
             'enabled' => 'Debug-kanaal inschakelen',
             'enabled_helper' => 'Wanneer uitgeschakeld, worden Sentinel::debug()-aanroepen stilzwijgend genegeerd.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Wanneer uitgeschakeld, verstuurt elke Debug-aanroep een e-mail. Wanneer ingeschakeld, worden dubbele aanroepen beperkt.',
             'throttle_helper' => 'Minimaal aantal minuten tussen dubbele Debug-e-mails.',
         ],
-
         'test_email' => [
             'send' => 'Test-e-mail versturen',
             'sent' => 'Test-e-mail verzonden naar :count ontvanger(s)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Verzenden van test-e-mail mislukt',
             'channel_disabled' => 'Dit kanaal is momenteel uitgeschakeld. De test-e-mail wordt alsnog verzonden.',
         ],
+        'ai' => [
+            'test_connection' => 'Testen',
+            'test_connection_success' => 'AI-verbinding werkt.',
+            'test_connection_failed' => 'AI-verbinding mislukt.',
+            'test_connection_missing' => 'Provider, model en API-sleutel zijn vereist om de verbinding te testen.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) is niet geïnstalleerd.',
+            'section' => 'AI-analyse',
+            'section_helper' => 'Gebruik een LLM om waarschijnlijke oorzaken voor opgevangen excepties voor te stellen.',
+            'no_providers' => 'Geen AI-providers gedetecteerd. Controleer je laravel/ai-installatie.',
+            'enabled' => 'AI-foutanalyse inschakelen',
+            'enabled_helper' => 'Indien ingeschakeld bevatten foutmails een AI-gegenereerde suggestiesectie.',
+            'provider' => 'Provider',
+            'model' => 'Model',
+            'model_placeholder' => 'Selecteer eerst een provider',
+            'api_key' => 'API-sleutel',
+            'api_key_set' => 'Sleutel ingesteld — laat leeg om de bestaande sleutel te behouden',
+            'api_key_enter' => 'Voer de API-sleutel in voor de geselecteerde provider',
+            'timeout' => 'Time-out',
+            'timeout_helper' => 'Maximum seconden wachten op AI-respons (1-10).',
+            'max_tokens' => 'Max. uitvoertokens',
+            'hourly_cap' => 'Limiet per uur',
+            'hourly_cap_helper' => 'Maximum AI-aanroepen per uur. Stel 0 in om de limiet uit te schakelen.',
+            'cache_ttl' => 'Cache-TTL',
+            'cache_ttl_helper' => 'Minuten om geslaagde AI-suggesties te cachen vóór een nieuwe query. Bereik: 5–1440 minuten (≥ throttle-venster aanbevolen; standaard 60 minuten).',
+            'strict_scrubbing' => 'Strikte opschoning',
+            'strict_scrubbing_helper' => 'Indien ingeschakeld bevat de AI-prompt alleen exception class, eerste regel van bericht en file:line — geen stack trace.',
+            'prompt_template' => 'Prompt-sjabloon',
+            'prompt_template_helper' => 'Sjabloon dat naar de AI-provider wordt verzonden. De plaatsaanduiding {{error}} wordt vervangen door opgeschoonde exceptiedetails. Bewerk voorzichtig — verwijderen van {{error}} blokkeert opslaan.',
+            'prompt_template_placeholder' => 'Je bent een senior Laravel-engineer. Analyseer: {{error}}',
+            'template_missing_token' => 'Het prompt-sjabloon moet de plaatsaanduiding {{error}} bevatten.',
+            'prompt_template_default' => 'Standaardsjabloon gebruiken',
+            'usage_section' => 'Gebruik',
+            'usage_last_call_label' => 'Laatste aanroep',
+            'usage_month_label' => 'Deze maand',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'AI: succes.',
+                'ai_cached' => 'AI: uit cache.',
+                'ai_failed' => 'AI: mislukt (:reason).',
+                'ai_skipped' => 'AI: overgeslagen (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Systeemlogboeken',
         'heading' => 'Logbestanden',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Dit logbestand als e-mailbijlage naar de opgegeven ontvanger sturen.',
         'bulk_email_description' => 'De geselecteerde logbestanden als afzonderlijke e-mailbijlagen naar de opgegeven ontvanger sturen.',
         'bulk_email_files' => 'Geselecteerde bestanden',
-
         'filter' => [
             'date_from' => 'Van',
             'date_to' => 'Tot',
         ],
-
         'column' => [
             'filename' => 'Bestandsnaam',
             'size' => 'Grootte',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Tijdstempel',
             'message' => 'Bericht',
         ],
-
         'action' => [
             'refresh' => 'Vernieuwen',
             'view' => 'Bekijken',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Logbestand verwijderd',
             'bulk_deleted' => ':count logbestand(en) verwijderd',
         ],
-
         'confirm' => [
             'delete' => 'Weet u zeker dat u dit logbestand wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.',
             'bulk_delete' => 'Weet u zeker dat u de geselecteerde logbestanden wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.',
         ],
-
         'entry' => [
             'detail' => 'Vermeldingsdetail',
             'line' => 'Regel',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Gekopieerd!',
         ],
     ],
-
 ];

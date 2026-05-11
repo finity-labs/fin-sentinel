@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Configuración',
         'error_channel' => 'Canal de errores',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Archivos de registro',
         'log_entries' => 'Entradas de registro',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Notificación de error',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Archivo de registro',
         ],
         'footer' => 'Enviado por Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Mensaje de error',
             'class' => 'Clase',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Ubicación',
             'trace_call' => 'Llamada',
         ],
-
         'collection' => [
             'count' => ':count elemento|:count elementos',
             'more' => '... y :count elementos más',
         ],
-
         'error' => [
             'subject' => ':app - Ha ocurrido un error',
             'guest' => 'Invitado',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Usuario autenticado',
             'section_environment' => 'Entorno',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Invitado',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Contexto de la solicitud',
             'section_environment' => 'Entorno',
         ],
-
         'log_file' => [
             'subject' => ':app - Archivo de registro: :file',
             'bulk_subject' => ':app - :count archivos de registro adjuntos',
             'body' => 'El archivo de registro <strong>:file</strong> de :app está adjunto.',
             'body_text' => 'El archivo de registro :file de :app está adjunto.',
         ],
+        'ai' => [
+            'heading' => 'Sugerencia de IA',
+            'footnote_prefix' => 'vía',
+            'disclaimer' => 'Generado por IA. Verifica antes de actuar.',
+            'cached_badge' => 'en caché',
+            'failed_prefix' => 'Falló el análisis de IA',
+            'skipped_prefix' => 'Se omitió el análisis de IA',
+            'reason' => [
+                'timeout' => 'tiempo agotado',
+                'authentication_failed' => 'autenticación fallida',
+                'rate_limited' => 'tasa limitada',
+                'quota_exceeded' => 'cuota superada',
+                'unknown_error' => 'error desconocido',
+                'output_rejected_matched_injection_marker' => 'salida rechazada (marcador de inyección)',
+                'hourly_cap_reached' => 'límite por hora alcanzado',
+                'circuit_open' => 'circuito abierto',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Destinatarios',
         'throttling' => 'Limitación',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'No hay destinatarios configurados — las notificaciones no se enviarán hasta que se agregue al menos una dirección de correo electrónico.',
         'throttle_rate' => 'Tasa de limitación',
         'minutes_suffix' => 'minutos',
-
         'error' => [
             'enabled' => 'Activar notificaciones de error',
             'enabled_helper' => 'Cuando está desactivado, no se enviarán correos de error.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Seleccionar excepción',
             'add_exception' => 'Añadir excepción',
         ],
-
         'debug' => [
             'enabled' => 'Activar canal Debug',
             'enabled_helper' => 'Cuando está desactivado, las llamadas a Sentinel::debug() se ignorarán silenciosamente.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Cuando está desactivado, cada llamada Debug envía un correo. Cuando está activado, las llamadas duplicadas se limitan.',
             'throttle_helper' => 'Minutos mínimos entre correos Debug duplicados.',
         ],
-
         'test_email' => [
             'send' => 'Enviar correo de prueba',
             'sent' => 'Correo de prueba enviado a :count destinatario(s)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Error al enviar el correo de prueba',
             'channel_disabled' => 'Este canal está actualmente desactivado. El correo de prueba se enviará de todas formas.',
         ],
+        'ai' => [
+            'test_connection' => 'Probar',
+            'test_connection_success' => 'La conexión de IA funciona.',
+            'test_connection_failed' => 'La conexión de IA falló.',
+            'test_connection_missing' => 'Se requieren proveedor, modelo y clave API para probar la conexión.',
+            'test_connection_no_sdk' => 'El SDK de IA (laravel/ai) no está instalado.',
+            'section' => 'Análisis con IA',
+            'section_helper' => 'Usa un LLM para sugerir causas probables de las excepciones capturadas.',
+            'no_providers' => 'No se detectaron proveedores de IA. Verifica tu instalación de laravel/ai.',
+            'enabled' => 'Activar análisis de errores con IA',
+            'enabled_helper' => 'Cuando está activado, los correos de error incluyen una sección con sugerencia generada por IA.',
+            'provider' => 'Proveedor',
+            'model' => 'Modelo',
+            'model_placeholder' => 'Selecciona primero un proveedor',
+            'api_key' => 'Clave API',
+            'api_key_set' => 'Clave establecida — deja en blanco para mantener la clave existente',
+            'api_key_enter' => 'Introduce la clave API para el proveedor seleccionado',
+            'timeout' => 'Tiempo de espera',
+            'timeout_helper' => 'Segundos máximos de espera para la respuesta de la IA (1-10).',
+            'max_tokens' => 'Tokens máximos de salida',
+            'hourly_cap' => 'Límite por hora',
+            'hourly_cap_helper' => 'Llamadas máximas a la IA por hora. Establece 0 para desactivar el límite.',
+            'cache_ttl' => 'TTL de caché',
+            'cache_ttl_helper' => 'Minutos para almacenar en caché sugerencias exitosas antes de volver a consultar. Rango: 5–1440 minutos (≥ ventana de throttle recomendado; predeterminado 60 minutos).',
+            'strict_scrubbing' => 'Limpieza estricta',
+            'strict_scrubbing_helper' => 'Cuando está activado, el prompt contiene solo la clase de excepción, la primera línea del mensaje y file:line — sin stack trace.',
+            'prompt_template' => 'Plantilla del prompt',
+            'prompt_template_helper' => 'Plantilla enviada al proveedor de IA. El marcador {{error}} se reemplaza con los detalles limpios de la excepción. Edita con cuidado — eliminar {{error}} bloquea guardar.',
+            'prompt_template_placeholder' => 'Eres un ingeniero senior de Laravel. Analiza: {{error}}',
+            'template_missing_token' => 'La plantilla del prompt debe contener el marcador {{error}}.',
+            'prompt_template_default' => 'Usar plantilla predeterminada',
+            'usage_section' => 'Uso',
+            'usage_last_call_label' => 'Última llamada',
+            'usage_month_label' => 'Este mes',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'IA: éxito.',
+                'ai_cached' => 'IA: desde caché.',
+                'ai_failed' => 'IA: fallo (:reason).',
+                'ai_skipped' => 'IA: omitido (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Registros del sistema',
         'heading' => 'Archivos de registro',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Enviar este archivo de registro como adjunto al destinatario especificado.',
         'bulk_email_description' => 'Enviar los archivos de registro seleccionados como adjuntos individuales al destinatario especificado.',
         'bulk_email_files' => 'Archivos seleccionados',
-
         'filter' => [
             'date_from' => 'Desde',
             'date_to' => 'Hasta',
         ],
-
         'column' => [
             'filename' => 'Nombre de archivo',
             'size' => 'Tamaño',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Marca de tiempo',
             'message' => 'Mensaje',
         ],
-
         'action' => [
             'refresh' => 'Actualizar',
             'view' => 'Ver',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Archivo de registro eliminado',
             'bulk_deleted' => ':count archivo(s) de registro eliminado(s)',
         ],
-
         'confirm' => [
             'delete' => '¿Está seguro de que desea eliminar este archivo de registro? Esta acción no se puede deshacer.',
             'bulk_delete' => '¿Está seguro de que desea eliminar los archivos de registro seleccionados? Esta acción no se puede deshacer.',
         ],
-
         'entry' => [
             'detail' => 'Detalle de la entrada',
             'line' => 'Línea',
@@ -206,5 +249,4 @@ return [
             'copied' => '¡Copiado!',
         ],
     ],
-
 ];

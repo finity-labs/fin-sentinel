@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'सेटिंग्स',
         'error_channel' => 'त्रुटि चैनल',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'लॉग फ़ाइलें',
         'log_entries' => 'लॉग प्रविष्टियाँ',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'त्रुटि सूचना',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'लॉग फ़ाइल',
         ],
         'footer' => 'Fin-Sentinel द्वारा भेजा गया',
-
         'label' => [
             'error_message' => 'त्रुटि संदेश',
             'class' => 'क्लास',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'स्थान',
             'trace_call' => 'कॉल',
         ],
-
         'collection' => [
             'count' => ':count आइटम|:count आइटम',
             'more' => '... और :count अन्य आइटम',
         ],
-
         'error' => [
             'subject' => ':app - एक त्रुटि हुई है',
             'guest' => 'अतिथि',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'प्रमाणित उपयोगकर्ता',
             'section_environment' => 'एनवायरनमेंट',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'अतिथि',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'रिक्वेस्ट संदर्भ',
             'section_environment' => 'एनवायरनमेंट',
         ],
-
         'log_file' => [
             'subject' => ':app - लॉग फ़ाइल: :file',
             'bulk_subject' => ':app - :count लॉग फ़ाइलें संलग्न',
             'body' => ':app से लॉग फ़ाइल <strong>:file</strong> संलग्न है।',
             'body_text' => ':app से लॉग फ़ाइल :file संलग्न है।',
         ],
+        'ai' => [
+            'heading' => 'AI सुझाव',
+            'footnote_prefix' => 'द्वारा',
+            'disclaimer' => 'AI द्वारा निर्मित। कार्रवाई से पहले सत्यापित करें।',
+            'cached_badge' => 'कैश किया गया',
+            'failed_prefix' => 'AI विश्लेषण विफल',
+            'skipped_prefix' => 'AI विश्लेषण छोड़ा गया',
+            'reason' => [
+                'timeout' => 'समय समाप्त',
+                'authentication_failed' => 'प्रमाणीकरण विफल',
+                'rate_limited' => 'दर सीमित',
+                'quota_exceeded' => 'कोटा पार',
+                'unknown_error' => 'अज्ञात त्रुटि',
+                'output_rejected_matched_injection_marker' => 'आउटपुट अस्वीकृत (इंजेक्शन मार्कर)',
+                'hourly_cap_reached' => 'घंटा सीमा पूरी',
+                'circuit_open' => 'सर्किट खुला',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'प्राप्तकर्ता',
         'throttling' => 'थ्रॉटलिंग',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'कोई प्राप्तकर्ता कॉन्फ़िगर नहीं किया गया है — जब तक कम से कम एक ईमेल नहीं जोड़ा जाता, सूचनाएँ नहीं भेजी जाएँगी।',
         'throttle_rate' => 'थ्रॉटल दर',
         'minutes_suffix' => 'मिनट',
-
         'error' => [
             'enabled' => 'त्रुटि सूचनाएँ सक्रिय करें',
             'enabled_helper' => 'निष्क्रिय होने पर, कोई त्रुटि ईमेल नहीं भेजा जाएगा।',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'अपवाद चुनें',
             'add_exception' => 'अपवाद जोड़ें',
         ],
-
         'debug' => [
             'enabled' => 'Debug चैनल सक्रिय करें',
             'enabled_helper' => 'निष्क्रिय होने पर, Sentinel::debug() कॉल चुपचाप अनदेखी कर दिए जाएँगे।',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'निष्क्रिय होने पर, हर Debug कॉल एक ईमेल भेजेगा। सक्रिय होने पर, डुप्लिकेट कॉल थ्रॉटल किए जाएँगे।',
             'throttle_helper' => 'डुप्लिकेट Debug ईमेल के बीच न्यूनतम मिनट।',
         ],
-
         'test_email' => [
             'send' => 'टेस्ट ईमेल भेजें',
             'sent' => ':count प्राप्तकर्ता(ओं) को टेस्ट ईमेल भेजा गया',
@@ -148,8 +154,50 @@ return [
             'failed' => 'टेस्ट ईमेल भेजने में विफल',
             'channel_disabled' => 'यह चैनल वर्तमान में निष्क्रिय है। टेस्ट ईमेल फिर भी भेजा जाएगा।',
         ],
+        'ai' => [
+            'test_connection' => 'परीक्षण',
+            'test_connection_success' => 'AI कनेक्शन काम कर रहा है।',
+            'test_connection_failed' => 'AI कनेक्शन विफल हुआ।',
+            'test_connection_missing' => 'कनेक्शन का परीक्षण करने के लिए प्रदाता, मॉडल और API कुंजी आवश्यक हैं।',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) स्थापित नहीं है।',
+            'section' => 'AI विश्लेषण',
+            'section_helper' => 'पकड़े गए अपवादों के संभावित कारण सुझाने के लिए LLM का उपयोग करें।',
+            'no_providers' => 'कोई AI प्रदाता नहीं मिला। अपनी laravel/ai स्थापना जाँचें।',
+            'enabled' => 'AI त्रुटि विश्लेषण सक्षम करें',
+            'enabled_helper' => 'सक्षम होने पर, त्रुटि ईमेल में AI द्वारा उत्पन्न सुझाव अनुभाग शामिल होता है।',
+            'provider' => 'प्रदाता',
+            'model' => 'मॉडल',
+            'model_placeholder' => 'पहले एक प्रदाता चुनें',
+            'api_key' => 'API कुंजी',
+            'api_key_set' => 'कुंजी सेट है — मौजूदा कुंजी रखने के लिए खाली छोड़ें',
+            'api_key_enter' => 'चयनित प्रदाता के लिए API कुंजी दर्ज करें',
+            'timeout' => 'टाइमआउट',
+            'timeout_helper' => 'AI प्रतिक्रिया के लिए अधिकतम सेकंड (1-10)।',
+            'max_tokens' => 'अधिकतम आउटपुट टोकन',
+            'hourly_cap' => 'प्रति घंटा सीमा',
+            'hourly_cap_helper' => 'प्रति घंटा अधिकतम AI कॉल। सीमा अक्षम करने के लिए 0 सेट करें।',
+            'cache_ttl' => 'कैश TTL',
+            'cache_ttl_helper' => 'पुनः क्वेरी से पहले सफल AI सुझावों को कैश करने के मिनट। सीमा: 5–1440 मिनट (≥ थ्रॉटल विंडो अनुशंसित; डिफ़ॉल्ट 60 मिनट)।',
+            'strict_scrubbing' => 'सख्त स्क्रबिंग',
+            'strict_scrubbing_helper' => 'सक्षम होने पर, AI प्रॉम्प्ट में केवल अपवाद वर्ग, संदेश की पहली पंक्ति और file:line होती है — कोई स्टैक ट्रेस नहीं।',
+            'prompt_template' => 'प्रॉम्प्ट टेम्पलेट',
+            'prompt_template_helper' => 'AI प्रदाता को भेजा गया टेम्पलेट। {{error}} प्लेसहोल्डर को साफ किए गए अपवाद विवरण से बदला जाता है। सावधानी से संपादित करें — {{error}} हटाने से सहेजना अवरुद्ध हो जाता है।',
+            'prompt_template_placeholder' => 'आप एक वरिष्ठ Laravel इंजीनियर हैं। विश्लेषण करें: {{error}}',
+            'template_missing_token' => 'प्रॉम्प्ट टेम्पलेट में {{error}} प्लेसहोल्डर होना चाहिए।',
+            'prompt_template_default' => 'डिफ़ॉल्ट टेम्पलेट का उपयोग करें',
+            'usage_section' => 'उपयोग',
+            'usage_last_call_label' => 'अंतिम कॉल',
+            'usage_month_label' => 'इस महीने',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'टोकन',
+            'test_email' => [
+                'ai_success' => 'AI: सफल।',
+                'ai_cached' => 'AI: कैश से।',
+                'ai_failed' => 'AI: विफल (:reason)।',
+                'ai_skipped' => 'AI: छोड़ा गया (:reason)।',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'सिस्टम लॉग',
         'heading' => 'लॉग फ़ाइलें',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'यह लॉग फ़ाइल निर्दिष्ट प्राप्तकर्ता को ईमेल अटैचमेंट के रूप में भेजें।',
         'bulk_email_description' => 'चयनित लॉग फ़ाइलें निर्दिष्ट प्राप्तकर्ता को अलग-अलग ईमेल अटैचमेंट के रूप में भेजें।',
         'bulk_email_files' => 'चयनित फ़ाइलें',
-
         'filter' => [
             'date_from' => 'से',
             'date_to' => 'तक',
         ],
-
         'column' => [
             'filename' => 'फ़ाइल का नाम',
             'size' => 'आकार',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'समय',
             'message' => 'संदेश',
         ],
-
         'action' => [
             'refresh' => 'रिफ़्रेश',
             'view' => 'देखें',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'लॉग फ़ाइल हटा दी गई',
             'bulk_deleted' => ':count लॉग फ़ाइल(लें) हटा दी गईं',
         ],
-
         'confirm' => [
             'delete' => 'क्या आप वाकई इस लॉग फ़ाइल को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।',
             'bulk_delete' => 'क्या आप वाकई चयनित लॉग फ़ाइलों को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।',
         ],
-
         'entry' => [
             'detail' => 'प्रविष्टि विवरण',
             'line' => 'पंक्ति',
@@ -206,5 +249,4 @@ return [
             'copied' => 'कॉपी हो गया!',
         ],
     ],
-
 ];

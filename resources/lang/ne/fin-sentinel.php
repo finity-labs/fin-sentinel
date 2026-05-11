@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'सेटिङ्स',
         'error_channel' => 'त्रुटि च्यानल',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'लग फाइलहरू',
         'log_entries' => 'लग प्रविष्टिहरू',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'त्रुटि सूचना',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'लग फाइल',
         ],
         'footer' => 'Fin-Sentinel द्वारा पठाइएको',
-
         'label' => [
             'error_message' => 'त्रुटि सन्देश',
             'class' => 'क्लास',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'स्थान',
             'trace_call' => 'कल',
         ],
-
         'collection' => [
             'count' => ':count वस्तु|:count वस्तुहरू',
             'more' => '... र :count थप वस्तुहरू',
         ],
-
         'error' => [
             'subject' => ':app - एक त्रुटि भएको छ',
             'guest' => 'अतिथि',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'प्रमाणीकृत प्रयोगकर्ता',
             'section_environment' => 'वातावरण',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'अतिथि',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'अनुरोध सन्दर्भ',
             'section_environment' => 'वातावरण',
         ],
-
         'log_file' => [
             'subject' => ':app - लग फाइल: :file',
             'bulk_subject' => ':app - :count लग फाइलहरू संलग्न',
             'body' => ':app बाट लग फाइल <strong>:file</strong> संलग्न छ।',
             'body_text' => ':app बाट लग फाइल :file संलग्न छ।',
         ],
+        'ai' => [
+            'heading' => 'AI सुझाव',
+            'footnote_prefix' => 'मार्फत',
+            'disclaimer' => 'AI द्वारा निर्मित। काम गर्नु अघि प्रमाणित गर्नुहोस्।',
+            'cached_badge' => 'क्यास गरिएको',
+            'failed_prefix' => 'AI विश्लेषण असफल',
+            'skipped_prefix' => 'AI विश्लेषण छोडियो',
+            'reason' => [
+                'timeout' => 'समय सकियो',
+                'authentication_failed' => 'प्रमाणीकरण असफल',
+                'rate_limited' => 'दर सीमित',
+                'quota_exceeded' => 'कोटा सकियो',
+                'unknown_error' => 'अज्ञात त्रुटि',
+                'output_rejected_matched_injection_marker' => 'आउटपुट अस्वीकृत (इन्जेक्शन मार्कर)',
+                'hourly_cap_reached' => 'घन्टाको सीमा पुग्यो',
+                'circuit_open' => 'सर्किट खुला',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'प्राप्तकर्ता',
         'throttling' => 'थ्रटलिङ',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'कुनै प्राप्तकर्ता कन्फिगर गरिएको छैन — कम्तीमा एउटा इमेल नथपेसम्म सूचनाहरू पठाइने छैन।',
         'throttle_rate' => 'थ्रटल दर',
         'minutes_suffix' => 'मिनेट',
-
         'error' => [
             'enabled' => 'त्रुटि सूचनाहरू सक्रिय गर्नुहोस्',
             'enabled_helper' => 'निष्क्रिय हुँदा, कुनै त्रुटि इमेल पठाइने छैन।',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'अपवाद छान्नुहोस्',
             'add_exception' => 'अपवाद थप्नुहोस्',
         ],
-
         'debug' => [
             'enabled' => 'Debug च्यानल सक्रिय गर्नुहोस्',
             'enabled_helper' => 'निष्क्रिय हुँदा, Sentinel::debug() कलहरू चुपचाप बेवास्ता गरिनेछन्।',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'निष्क्रिय हुँदा, हरेक Debug कलले इमेल पठाउँछ। सक्रिय हुँदा, डुप्लिकेट कलहरू थ्रटल गरिन्छन्।',
             'throttle_helper' => 'डुप्लिकेट Debug इमेलहरू बीचको न्यूनतम मिनेट।',
         ],
-
         'test_email' => [
             'send' => 'टेस्ट इमेल पठाउनुहोस्',
             'sent' => ':count प्राप्तकर्ता(हरू)लाई टेस्ट इमेल पठाइयो',
@@ -148,8 +154,50 @@ return [
             'failed' => 'टेस्ट इमेल पठाउन असफल',
             'channel_disabled' => 'यो च्यानल हाल निष्क्रिय छ। टेस्ट इमेल फेरि पनि पठाइनेछ।',
         ],
+        'ai' => [
+            'test_connection' => 'परीक्षण',
+            'test_connection_success' => 'AI जडान काम गरिरहेको छ।',
+            'test_connection_failed' => 'AI जडान असफल भयो।',
+            'test_connection_missing' => 'जडान परीक्षण गर्न प्रदायक, मोडेल र API कुञ्जी आवश्यक छ।',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) स्थापित छैन।',
+            'section' => 'AI विश्लेषण',
+            'section_helper' => 'समातिएका अपवादहरूको सम्भावित कारणहरू सुझाव दिन LLM प्रयोग गर्नुहोस्।',
+            'no_providers' => 'कुनै AI प्रदायक फेला परेन। तपाईंको laravel/ai स्थापना जाँच्नुहोस्।',
+            'enabled' => 'AI त्रुटि विश्लेषण सक्षम पार्नुहोस्',
+            'enabled_helper' => 'सक्षम गर्दा, त्रुटि इमेलहरूमा AI द्वारा उत्पन्न सुझाव खण्ड समावेश हुन्छ।',
+            'provider' => 'प्रदायक',
+            'model' => 'मोडेल',
+            'model_placeholder' => 'पहिले प्रदायक चयन गर्नुहोस्',
+            'api_key' => 'API कुञ्जी',
+            'api_key_set' => 'कुञ्जी सेट गरिएको — विद्यमान कुञ्जी राख्न खाली छोड्नुहोस्',
+            'api_key_enter' => 'चयन गरिएको प्रदायकको लागि API कुञ्जी प्रविष्ट गर्नुहोस्',
+            'timeout' => 'समय सीमा',
+            'timeout_helper' => 'AI प्रतिक्रिया कुर्ने अधिकतम सेकेन्ड (1-10)।',
+            'max_tokens' => 'अधिकतम आउटपुट टोकन',
+            'hourly_cap' => 'घण्टाको सीमा',
+            'hourly_cap_helper' => 'प्रति घण्टा अधिकतम AI कलहरू। सीमा निष्क्रिय पार्न 0 सेट गर्नुहोस्।',
+            'cache_ttl' => 'क्यास TTL',
+            'cache_ttl_helper' => 'पुन: सोध्नु अघि सफल AI सुझावहरू क्यास गर्ने मिनेट। दायरा: 5–1440 मिनेट (≥ थ्रोटल विन्डो सिफारिस; पूर्वनिर्धारित 60 मिनेट)।',
+            'strict_scrubbing' => 'कडा सफाइ',
+            'strict_scrubbing_helper' => 'सक्षम गर्दा, AI प्रम्प्टमा अपवाद कक्षा, सन्देशको पहिलो लाइन र file:line मात्र हुन्छ — कुनै स्ट्याक ट्रेस छैन।',
+            'prompt_template' => 'प्रम्प्ट टेम्प्लेट',
+            'prompt_template_helper' => 'AI प्रदायकलाई पठाइने टेम्प्लेट। {{error}} प्लेसहोल्डर सफा गरिएको अपवाद विवरणसँग प्रतिस्थापन हुन्छ। सावधानीपूर्वक सम्पादन गर्नुहोस् — {{error}} हटाउँदा सेभ अवरुद्ध हुन्छ।',
+            'prompt_template_placeholder' => 'तपाईं एक वरिष्ठ Laravel इन्जिनियर हुनुहुन्छ। विश्लेषण गर्नुहोस्: {{error}}',
+            'template_missing_token' => 'प्रम्प्ट टेम्प्लेटमा {{error}} प्लेसहोल्डर हुनुपर्छ।',
+            'prompt_template_default' => 'पूर्वनिर्धारित टेम्प्लेट प्रयोग गर्नुहोस्',
+            'usage_section' => 'प्रयोग',
+            'usage_last_call_label' => 'अन्तिम कल',
+            'usage_month_label' => 'यो महिना',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'टोकन',
+            'test_email' => [
+                'ai_success' => 'AI: सफल।',
+                'ai_cached' => 'AI: क्यासबाट।',
+                'ai_failed' => 'AI: असफल (:reason)।',
+                'ai_skipped' => 'AI: छोडियो (:reason)।',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'सिस्टम लग',
         'heading' => 'लग फाइलहरू',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'यो लग फाइल निर्दिष्ट प्राप्तकर्तालाई इमेल संलग्नकको रूपमा पठाउनुहोस्।',
         'bulk_email_description' => 'चयन गरिएका लग फाइलहरू निर्दिष्ट प्राप्तकर्तालाई अलग-अलग इमेल संलग्नकको रूपमा पठाउनुहोस्।',
         'bulk_email_files' => 'चयन गरिएका फाइलहरू',
-
         'filter' => [
             'date_from' => 'देखि',
             'date_to' => 'सम्म',
         ],
-
         'column' => [
             'filename' => 'फाइल नाम',
             'size' => 'आकार',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'समय',
             'message' => 'सन्देश',
         ],
-
         'action' => [
             'refresh' => 'रिफ्रेस',
             'view' => 'हेर्नुहोस्',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'लग फाइल मेटियो',
             'bulk_deleted' => ':count लग फाइल(हरू) मेटियो',
         ],
-
         'confirm' => [
             'delete' => 'के तपाईं यो लग फाइल मेट्न निश्चित हुनुहुन्छ? यो कार्य पूर्ववत गर्न सकिँदैन।',
             'bulk_delete' => 'के तपाईं चयन गरिएका लग फाइलहरू मेट्न निश्चित हुनुहुन्छ? यो कार्य पूर्ववत गर्न सकिँदैन।',
         ],
-
         'entry' => [
             'detail' => 'प्रविष्टि विवरण',
             'line' => 'लाइन',
@@ -206,5 +249,4 @@ return [
             'copied' => 'कपी भयो!',
         ],
     ],
-
 ];

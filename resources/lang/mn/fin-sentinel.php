@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Тохиргоо',
         'error_channel' => 'Алдааны суваг',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Лог файлууд',
         'log_entries' => 'Лог бичилтүүд',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Алдааны мэдэгдэл',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Лог файл',
         ],
         'footer' => 'Fin-Sentinel-ээс илгээсэн',
-
         'label' => [
             'error_message' => 'Алдааны мэдэгдэл',
             'class' => 'Класс',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Байршил',
             'trace_call' => 'Дуудлага',
         ],
-
         'collection' => [
             'count' => ':count зүйл|:count зүйл',
             'more' => '... ба нэмж :count зүйл',
         ],
-
         'error' => [
             'subject' => ':app - Алдаа гарлаа',
             'guest' => 'Зочин',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Нэвтэрсэн хэрэглэгч',
             'section_environment' => 'Орчин',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Зочин',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Хүсэлтийн контекст',
             'section_environment' => 'Орчин',
         ],
-
         'log_file' => [
             'subject' => ':app - Лог файл: :file',
             'bulk_subject' => ':app - :count лог файл хавсаргасан',
             'body' => ':app-ын лог файл <strong>:file</strong> хавсаргасан байна.',
             'body_text' => ':app-ын лог файл :file хавсаргасан байна.',
         ],
+        'ai' => [
+            'heading' => 'AI санал',
+            'footnote_prefix' => 'эх сурвалж',
+            'disclaimer' => 'AI үүсгэсэн. Гүйцэтгэхийн өмнө шалгана уу.',
+            'cached_badge' => 'кэшлэгдсэн',
+            'failed_prefix' => 'AI шинжилгээ амжилтгүй',
+            'skipped_prefix' => 'AI шинжилгээг алгассан',
+            'reason' => [
+                'timeout' => 'хугацаа дууссан',
+                'authentication_failed' => 'баталгаажуулалт амжилтгүй',
+                'rate_limited' => 'хязгаарлагдсан хурд',
+                'quota_exceeded' => 'квот хэтэрсэн',
+                'unknown_error' => 'тодорхойгүй алдаа',
+                'output_rejected_matched_injection_marker' => 'үр дүнг татгалзсан (тарих тэмдэглэгээ)',
+                'hourly_cap_reached' => 'цагийн хязгаарт хүрсэн',
+                'circuit_open' => 'хэлхээ нээлттэй',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Хүлээн авагчид',
         'throttling' => 'Хязгаарлалт',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Хүлээн авагч тохируулаагүй байна — хамгийн багадаа нэг имэйл нэмэх хүртэл мэдэгдэл илгээгдэхгүй.',
         'throttle_rate' => 'Хязгаарлах хурд',
         'minutes_suffix' => 'минут',
-
         'error' => [
             'enabled' => 'Алдааны мэдэгдэл идэвхжүүлэх',
             'enabled_helper' => 'Идэвхгүй үед алдааны имэйл илгээгдэхгүй.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Онцгой тохиолдол сонгох',
             'add_exception' => 'Үл хамаарах зүйл нэмэх',
         ],
-
         'debug' => [
             'enabled' => 'Debug суваг идэвхжүүлэх',
             'enabled_helper' => 'Идэвхгүй үед Sentinel::debug() дуудлагууд чимээгүй үл тоомсорлогдоно.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Идэвхгүй үед Debug дуудлага бүр имэйл илгээнэ. Идэвхтэй үед давхардсан дуудлагуудыг хязгаарлана.',
             'throttle_helper' => 'Давхардсан Debug имэйлүүдийн хоорондох хамгийн бага минут.',
         ],
-
         'test_email' => [
             'send' => 'Туршилтын имэйл илгээх',
             'sent' => ':count хүлээн авагчид туршилтын имэйл илгээсэн',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Туршилтын имэйл илгээж чадсангүй',
             'channel_disabled' => 'Энэ суваг одоогоор идэвхгүй байна. Туршилтын имэйл илгээгдэх болно.',
         ],
+        'ai' => [
+            'test_connection' => 'Туршиx',
+            'test_connection_success' => 'ИИ холболт ажиллаж байна.',
+            'test_connection_failed' => 'ИИ холболт амжилтгүй.',
+            'test_connection_missing' => 'Холболтыг шалгахын тулд үйлчилгээ үзүүлэгч, загвар, API түлхүүр шаардлагатай.',
+            'test_connection_no_sdk' => 'ИИ SDK (laravel/ai) суулгаагүй байна.',
+            'section' => 'AI шинжилгээ',
+            'section_helper' => 'Барьцалдсан онцгой тохиолдлуудын магадлалт шалтгааныг санал болгохын тулд LLM ашиглана уу.',
+            'no_providers' => 'AI үйлчилгээ үзүүлэгч олдсонгүй. laravel/ai суулгацаа шалгана уу.',
+            'enabled' => 'AI алдааны шинжилгээг идэвхжүүлэх',
+            'enabled_helper' => 'Идэвхжүүлсэн үед алдааны имэйлд AI үүсгэсэн санал хэсэг багтана.',
+            'provider' => 'Үйлчилгээ үзүүлэгч',
+            'model' => 'Загвар',
+            'model_placeholder' => 'Эхлээд үйлчилгээ үзүүлэгчээ сонгоно уу',
+            'api_key' => 'API түлхүүр',
+            'api_key_set' => 'Түлхүүр тохируулсан — одоогийн түлхүүрийг хадгалахын тулд хоосон үлдээнэ үү',
+            'api_key_enter' => 'Сонгосон үйлчилгээ үзүүлэгчийн API түлхүүрийг оруулна уу',
+            'timeout' => 'Хүлээх хугацаа',
+            'timeout_helper' => 'AI хариулт хүлээх дээд секунд (1-10).',
+            'max_tokens' => 'Гаралтын токены дээд хязгаар',
+            'hourly_cap' => 'Цагийн хязгаар',
+            'hourly_cap_helper' => 'Цагт хийх AI дуудлагын дээд тоо. Хязгаар идэвхгүй болгохын тулд 0 болгоно уу.',
+            'cache_ttl' => 'Кэшийн TTL',
+            'cache_ttl_helper' => 'Дахин асуухын өмнө амжилттай AI саналыг кэшлэх минут. Хүрээ: 5–1440 минут (≥ хязгаарлалтын цонх санал болгоно; өгөгдмөл 60 минут).',
+            'strict_scrubbing' => 'Хатуу цэвэрлэгээ',
+            'strict_scrubbing_helper' => 'Идэвхжүүлсэн үед AI prompt-д зөвхөн онцгой тохиолдлын анги, мессежийн эхний мөр, file:line багтах ба stack trace байхгүй.',
+            'prompt_template' => 'Prompt загвар',
+            'prompt_template_helper' => 'AI үйлчилгээ үзүүлэгчид илгээх загвар. {{error}} орлуулагч нь цэвэрлэгдсэн онцгой тохиолдлын дэлгэрэнгүй мэдээллээр солигдоно. Болгоомжтой засаарай — {{error}}-г устгавал хадгалалт хаагдана.',
+            'prompt_template_placeholder' => 'Та ахлах Laravel инженер. Шинжлэнэ үү: {{error}}',
+            'template_missing_token' => 'Prompt загварт {{error}} орлуулагч заавал байх ёстой.',
+            'prompt_template_default' => 'Өгөгдмөл загвар ашиглах',
+            'usage_section' => 'Хэрэглээ',
+            'usage_last_call_label' => 'Сүүлийн дуудлага',
+            'usage_month_label' => 'Энэ сард',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'токен',
+            'test_email' => [
+                'ai_success' => 'AI: амжилттай.',
+                'ai_cached' => 'AI: кэшээс.',
+                'ai_failed' => 'AI: бүтэлгүйтсэн (:reason).',
+                'ai_skipped' => 'AI: алгассан (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Системийн лог',
         'heading' => 'Лог файлууд',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Энэ лог файлыг заасан хүлээн авагчид имэйл хавсралт болгон илгээх.',
         'bulk_email_description' => 'Сонгосон лог файлуудыг заасан хүлээн авагчид тус тусад нь имэйл хавсралт болгон илгээх.',
         'bulk_email_files' => 'Сонгосон файлууд',
-
         'filter' => [
             'date_from' => 'Эхлэх',
             'date_to' => 'Дуусах',
         ],
-
         'column' => [
             'filename' => 'Файлын нэр',
             'size' => 'Хэмжээ',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Цагийн тэмдэг',
             'message' => 'Мэдэгдэл',
         ],
-
         'action' => [
             'refresh' => 'Шинэчлэх',
             'view' => 'Харах',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Лог файл устгагдсан',
             'bulk_deleted' => ':count лог файл устгагдсан',
         ],
-
         'confirm' => [
             'delete' => 'Энэ лог файлыг устгахдаа итгэлтэй байна уу? Энэ үйлдлийг буцаах боломжгүй.',
             'bulk_delete' => 'Сонгосон лог файлуудыг устгахдаа итгэлтэй байна уу? Энэ үйлдлийг буцаах боломжгүй.',
         ],
-
         'entry' => [
             'detail' => 'Бичилтийн дэлгэрэнгүй',
             'line' => 'Мөр',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Хуулагдсан!',
         ],
     ],
-
 ];

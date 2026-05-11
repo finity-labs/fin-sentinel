@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Pengaturan',
         'error_channel' => 'Saluran Error',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'File Log',
         'log_entries' => 'Entri Log',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Notifikasi Error',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'File Log',
         ],
         'footer' => 'Dikirim oleh Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Pesan Error',
             'class' => 'Kelas',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Lokasi',
             'trace_call' => 'Panggilan',
         ],
-
         'collection' => [
             'count' => ':count item',
             'more' => '... dan :count item lainnya',
         ],
-
         'error' => [
             'subject' => ':app - Terjadi error',
             'guest' => 'Tamu',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Pengguna Terautentikasi',
             'section_environment' => 'Lingkungan',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Tamu',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Konteks Request',
             'section_environment' => 'Lingkungan',
         ],
-
         'log_file' => [
             'subject' => ':app - File log: :file',
             'bulk_subject' => ':app - :count file log terlampir',
             'body' => 'File log <strong>:file</strong> dari :app telah dilampirkan.',
             'body_text' => 'File log :file dari :app telah dilampirkan.',
         ],
+        'ai' => [
+            'heading' => 'Saran AI',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'Dibuat oleh AI. Periksa sebelum bertindak.',
+            'cached_badge' => 'dari cache',
+            'failed_prefix' => 'Analisis AI gagal',
+            'skipped_prefix' => 'Analisis AI dilewati',
+            'reason' => [
+                'timeout' => 'waktu habis',
+                'authentication_failed' => 'autentikasi gagal',
+                'rate_limited' => 'laju dibatasi',
+                'quota_exceeded' => 'kuota terlampaui',
+                'unknown_error' => 'kesalahan tidak diketahui',
+                'output_rejected_matched_injection_marker' => 'output ditolak (penanda injeksi)',
+                'hourly_cap_reached' => 'batas per jam tercapai',
+                'circuit_open' => 'sirkuit terbuka',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Penerima',
         'throttling' => 'Pembatasan Frekuensi',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Belum ada penerima yang dikonfigurasi - notifikasi tidak akan dikirim sampai setidaknya satu alamat email ditambahkan.',
         'throttle_rate' => 'Tingkat pembatasan',
         'minutes_suffix' => 'menit',
-
         'error' => [
             'enabled' => 'Aktifkan notifikasi error',
             'enabled_helper' => 'Jika dinonaktifkan, tidak ada email error yang akan dikirim.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Pilih exception',
             'add_exception' => 'Tambah pengecualian',
         ],
-
         'debug' => [
             'enabled' => 'Aktifkan saluran Debug',
             'enabled_helper' => 'Jika dinonaktifkan, panggilan Sentinel::debug() akan diabaikan.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Jika dinonaktifkan, setiap panggilan Debug akan mengirim email. Jika diaktifkan, panggilan duplikat akan dibatasi.',
             'throttle_helper' => 'Jumlah menit minimum antara email Debug yang duplikat.',
         ],
-
         'test_email' => [
             'send' => 'Kirim Email Percobaan',
             'sent' => 'Email percobaan terkirim ke :count penerima',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Gagal mengirim email percobaan',
             'channel_disabled' => 'Saluran ini sedang nonaktif. Email percobaan tetap akan dikirim.',
         ],
+        'ai' => [
+            'test_connection' => 'Uji',
+            'test_connection_success' => 'Koneksi AI berfungsi.',
+            'test_connection_failed' => 'Koneksi AI gagal.',
+            'test_connection_missing' => 'Penyedia, model, dan kunci API diperlukan untuk menguji koneksi.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) belum terpasang.',
+            'section' => 'Analisis AI',
+            'section_helper' => 'Gunakan LLM untuk menyarankan kemungkinan penyebab pengecualian yang tertangkap.',
+            'no_providers' => 'Tidak ada penyedia AI yang terdeteksi. Periksa instalasi laravel/ai Anda.',
+            'enabled' => 'Aktifkan analisis kesalahan AI',
+            'enabled_helper' => 'Saat diaktifkan, email kesalahan menyertakan bagian saran yang dihasilkan AI.',
+            'provider' => 'Penyedia',
+            'model' => 'Model',
+            'model_placeholder' => 'Pilih penyedia terlebih dahulu',
+            'api_key' => 'Kunci API',
+            'api_key_set' => 'Kunci telah diatur — biarkan kosong untuk mempertahankan kunci yang ada',
+            'api_key_enter' => 'Masukkan kunci API untuk penyedia yang dipilih',
+            'timeout' => 'Batas waktu',
+            'timeout_helper' => 'Detik maksimum menunggu respons AI (1-10).',
+            'max_tokens' => 'Maks. token keluaran',
+            'hourly_cap' => 'Batas per jam',
+            'hourly_cap_helper' => 'Maksimum panggilan AI per jam. Atur 0 untuk menonaktifkan batas.',
+            'cache_ttl' => 'TTL cache',
+            'cache_ttl_helper' => 'Menit untuk men-cache saran AI yang berhasil sebelum kueri ulang. Rentang: 5–1440 menit (≥ jendela throttle direkomendasikan; default 60 menit).',
+            'strict_scrubbing' => 'Pembersihan ketat',
+            'strict_scrubbing_helper' => 'Saat diaktifkan, prompt AI hanya berisi kelas pengecualian, baris pertama pesan, dan file:line — tanpa stack trace.',
+            'prompt_template' => 'Templat prompt',
+            'prompt_template_helper' => 'Templat yang dikirim ke penyedia AI. Placeholder {{error}} diganti dengan detail pengecualian yang dibersihkan. Edit dengan hati-hati — menghapus {{error}} memblokir penyimpanan.',
+            'prompt_template_placeholder' => 'Anda adalah insinyur Laravel senior. Analisis: {{error}}',
+            'template_missing_token' => 'Templat prompt harus berisi placeholder {{error}}.',
+            'prompt_template_default' => 'Gunakan templat default',
+            'usage_section' => 'Penggunaan',
+            'usage_last_call_label' => 'Panggilan terakhir',
+            'usage_month_label' => 'Bulan ini',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: berhasil.',
+                'ai_cached' => 'AI: dari cache.',
+                'ai_failed' => 'AI: gagal (:reason).',
+                'ai_skipped' => 'AI: dilewati (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Log Sistem',
         'heading' => 'File Log',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Kirim file log ini sebagai lampiran email ke penerima yang ditentukan.',
         'bulk_email_description' => 'Kirim file log yang dipilih sebagai lampiran email terpisah ke penerima yang ditentukan.',
         'bulk_email_files' => 'File Terpilih',
-
         'filter' => [
             'date_from' => 'Dari',
             'date_to' => 'Sampai',
         ],
-
         'column' => [
             'filename' => 'Nama File',
             'size' => 'Ukuran',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Waktu',
             'message' => 'Pesan',
         ],
-
         'action' => [
             'refresh' => 'Segarkan',
             'view' => 'Lihat',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'File log dihapus',
             'bulk_deleted' => ':count file log dihapus',
         ],
-
         'confirm' => [
             'delete' => 'Apakah Anda yakin ingin menghapus file log ini? Tindakan ini tidak dapat dibatalkan.',
             'bulk_delete' => 'Apakah Anda yakin ingin menghapus file log yang dipilih? Tindakan ini tidak dapat dibatalkan.',
         ],
-
         'entry' => [
             'detail' => 'Detail Entri',
             'line' => 'Baris',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Tersalin!',
         ],
     ],
-
 ];

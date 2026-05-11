@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Innstillinger',
         'error_channel' => 'Feilkanal',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Loggfiler',
         'log_entries' => 'Loggoppføringer',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Feilvarsel',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Loggfil',
         ],
         'footer' => 'Sendt av Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Feilmelding',
             'class' => 'Klasse',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Plassering',
             'trace_call' => 'Kall',
         ],
-
         'collection' => [
             'count' => ':count element|:count elementer',
             'more' => '... og :count elementer til',
         ],
-
         'error' => [
             'subject' => ':app - Det har oppstått en feil',
             'guest' => 'Gjest',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Autentisert bruker',
             'section_environment' => 'Miljø',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Gjest',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Forespørselskontekst',
             'section_environment' => 'Miljø',
         ],
-
         'log_file' => [
             'subject' => ':app - Loggfil: :file',
             'bulk_subject' => ':app - :count loggfiler vedlagt',
             'body' => 'Loggfilen <strong>:file</strong> fra :app er vedlagt.',
             'body_text' => 'Loggfilen :file fra :app er vedlagt.',
         ],
+        'ai' => [
+            'heading' => 'KI-forslag',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'Generert av KI. Verifiser før du handler.',
+            'cached_badge' => 'fra cache',
+            'failed_prefix' => 'KI-analyse mislyktes',
+            'skipped_prefix' => 'KI-analyse hoppet over',
+            'reason' => [
+                'timeout' => 'tidsavbrudd',
+                'authentication_failed' => 'autentisering mislyktes',
+                'rate_limited' => 'frekvens begrenset',
+                'quota_exceeded' => 'kvote overskredet',
+                'unknown_error' => 'ukjent feil',
+                'output_rejected_matched_injection_marker' => 'utdata avvist (injection-markør)',
+                'hourly_cap_reached' => 'timegrense nådd',
+                'circuit_open' => 'krets åpen',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Mottakere',
         'throttling' => 'Begrensning',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Ingen mottakere konfigurert — varsler sendes ikke før minst én e-postadresse er lagt til.',
         'throttle_rate' => 'Begrensningsfrekvens',
         'minutes_suffix' => 'minutter',
-
         'error' => [
             'enabled' => 'Aktiver feilvarsler',
             'enabled_helper' => 'Når deaktivert, sendes ingen feil-e-poster.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Velg unntak',
             'add_exception' => 'Legg til unntak',
         ],
-
         'debug' => [
             'enabled' => 'Aktiver Debug-kanal',
             'enabled_helper' => 'Når deaktivert, ignoreres Sentinel::debug()-kall stille.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Når deaktivert, sender hvert Debug-kall en e-post. Når aktivert, begrenses dupliserte kall.',
             'throttle_helper' => 'Minimum antall minutter mellom dupliserte Debug-e-poster.',
         ],
-
         'test_email' => [
             'send' => 'Send test-e-post',
             'sent' => 'Test-e-post sendt til :count mottaker(e)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Kunne ikke sende test-e-post',
             'channel_disabled' => 'Denne kanalen er for øyeblikket deaktivert. Test-e-posten sendes likevel.',
         ],
+        'ai' => [
+            'test_connection' => 'Test',
+            'test_connection_success' => 'AI-tilkoblingen fungerer.',
+            'test_connection_failed' => 'AI-tilkoblingen mislyktes.',
+            'test_connection_missing' => 'Leverandør, modell og API-nøkkel kreves for å teste tilkoblingen.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) er ikke installert.',
+            'section' => 'AI-analyse',
+            'section_helper' => 'Bruk en LLM til å foreslå sannsynlige årsaker til fangede unntak.',
+            'no_providers' => 'Ingen AI-leverandører oppdaget. Sjekk laravel/ai-installasjonen.',
+            'enabled' => 'Aktiver AI-feilanalyse',
+            'enabled_helper' => 'Når aktivert inneholder feil-e-poster en AI-generert forslagseksjon.',
+            'provider' => 'Leverandør',
+            'model' => 'Modell',
+            'model_placeholder' => 'Velg leverandør først',
+            'api_key' => 'API-nøkkel',
+            'api_key_set' => 'Nøkkel angitt — la stå tom for å beholde eksisterende nøkkel',
+            'api_key_enter' => 'Skriv inn API-nøkkelen for valgt leverandør',
+            'timeout' => 'Tidsavbrudd',
+            'timeout_helper' => 'Maksimalt antall sekunder å vente på AI-svar (1-10).',
+            'max_tokens' => 'Maks. utdatatokens',
+            'hourly_cap' => 'Grense per time',
+            'hourly_cap_helper' => 'Maks. AI-kall per time. Sett til 0 for å deaktivere grensen.',
+            'cache_ttl' => 'Buffer-TTL',
+            'cache_ttl_helper' => 'Minutter for å bufre vellykkede AI-forslag før ny forespørsel. Område: 5–1440 minutter (≥ throttle-vindu anbefales; standard 60 minutter).',
+            'strict_scrubbing' => 'Streng rensing',
+            'strict_scrubbing_helper' => 'Når aktivert inneholder AI-prompten kun unntaksklasse, første meldingslinje og file:line — ingen stack trace.',
+            'prompt_template' => 'Prompt-mal',
+            'prompt_template_helper' => 'Mal som sendes til AI-leverandøren. Plassholderen {{error}} erstattes med rensede unntaksdetaljer. Rediger forsiktig — fjerning av {{error}} blokkerer lagring.',
+            'prompt_template_placeholder' => 'Du er en senior Laravel-ingeniør. Analyser: {{error}}',
+            'template_missing_token' => 'Prompt-malen må inneholde plassholderen {{error}}.',
+            'prompt_template_default' => 'Bruk standardmal',
+            'usage_section' => 'Bruk',
+            'usage_last_call_label' => 'Siste kall',
+            'usage_month_label' => 'Denne måneden',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'AI: vellykket.',
+                'ai_cached' => 'AI: fra buffer.',
+                'ai_failed' => 'AI: mislyktes (:reason).',
+                'ai_skipped' => 'AI: hoppet over (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Systemlogger',
         'heading' => 'Loggfiler',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Send denne loggfilen som e-postvedlegg til den angitte mottakeren.',
         'bulk_email_description' => 'Send de valgte loggfilene som individuelle e-postvedlegg til den angitte mottakeren.',
         'bulk_email_files' => 'Valgte filer',
-
         'filter' => [
             'date_from' => 'Fra',
             'date_to' => 'Til',
         ],
-
         'column' => [
             'filename' => 'Filnavn',
             'size' => 'Størrelse',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Tidsstempel',
             'message' => 'Melding',
         ],
-
         'action' => [
             'refresh' => 'Oppdater',
             'view' => 'Vis',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Loggfil slettet',
             'bulk_deleted' => ':count loggfil(er) slettet',
         ],
-
         'confirm' => [
             'delete' => 'Er du sikker på at du vil slette denne loggfilen? Denne handlingen kan ikke angres.',
             'bulk_delete' => 'Er du sikker på at du vil slette de valgte loggfilene? Denne handlingen kan ikke angres.',
         ],
-
         'entry' => [
             'detail' => 'Oppføringsdetalj',
             'line' => 'Linje',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopiert!',
         ],
     ],
-
 ];

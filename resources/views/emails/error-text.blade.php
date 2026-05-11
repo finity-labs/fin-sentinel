@@ -5,6 +5,24 @@
 -------------
 {{ $errorMessage }}
 
+@if($aiSuggestion && $aiSuggestion->state !== \FinityLabs\FinSentinel\Support\AiSuggestionState::DISABLED)
+{{ __('fin-sentinel::fin-sentinel.email.ai.heading') }}@if($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::CACHED) [{{ __('fin-sentinel::fin-sentinel.email.ai.cached_badge') }}]@endif
+-------------
+@if($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::SUCCESS || $aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::CACHED)
+{{ $aiSuggestion->suggestion }}
+@if($aiProvider !== '' || $aiModel !== '')
+
+{{ __('fin-sentinel::fin-sentinel.email.ai.footnote_prefix') }} {{ $aiProvider }}@if($aiProvider !== '' && $aiModel !== '') -- @endif{{ $aiModel }}
+@endif
+
+{{ __('fin-sentinel::fin-sentinel.email.ai.disclaimer') }}
+@elseif($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::FAILED)
+{{ __('fin-sentinel::fin-sentinel.email.ai.failed_prefix') }}: @lang('fin-sentinel::fin-sentinel.email.ai.reason.' . str_replace([' ', ':'], ['_', ''], $aiSuggestion->reason ?? 'unknown_error'))
+@elseif($aiSuggestion->state === \FinityLabs\FinSentinel\Support\AiSuggestionState::SKIPPED)
+{{ __('fin-sentinel::fin-sentinel.email.ai.skipped_prefix') }}: @lang('fin-sentinel::fin-sentinel.email.ai.reason.' . str_replace([' ', ':'], ['_', ''], $aiSuggestion->reason ?? 'unknown_error'))
+@endif
+
+@endif
 @if($exceptionClass)
 {{ __('fin-sentinel::fin-sentinel.email.error.section_exception') }}
 ---------------------

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Mîheng',
         'error_channel' => 'Kanala Çewtiyê',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Pelên Tomaran',
         'log_entries' => 'Tomarên Têketinê',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Agahdariya Çewtiyê',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Pelê Tomarê',
         ],
         'footer' => 'Ji aliyê Fin-Sentinel ve hatiye şandin',
-
         'label' => [
             'error_message' => 'Peyama Çewtiyê',
             'class' => 'Çîn',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Cih',
             'trace_call' => 'Bang',
         ],
-
         'collection' => [
             'count' => ':count hêman|:count hêman',
             'more' => '... û :count hêmanên din',
         ],
-
         'error' => [
             'subject' => ':app - Çewtiyekê çêbû',
             'guest' => 'Mêvan',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Bikarhênerê Pejirandî',
             'section_environment' => 'Jîngehê',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Mêvan',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Çarçoveya Daxwazê',
             'section_environment' => 'Jîngehê',
         ],
-
         'log_file' => [
             'subject' => ':app - Pelê tomarê: :file',
             'bulk_subject' => ':app - :count pelên tomarê hatine pêvekirin',
             'body' => 'Pelê tomarê <strong>:file</strong> ji :app hatiye pêvekirin.',
             'body_text' => 'Pelê tomarê :file ji :app hatiye pêvekirin.',
         ],
+        'ai' => [
+            'heading' => 'Pêşniyara AI',
+            'footnote_prefix' => 'bi rêya',
+            'disclaimer' => 'Ji aliyê AI ve hatiye çêkirin. Berî kirinê piştrast bike.',
+            'cached_badge' => 'di cache de',
+            'failed_prefix' => 'Analîza AI bi ser neket',
+            'skipped_prefix' => 'Analîza AI hate derbaskirin',
+            'reason' => [
+                'timeout' => 'dem temam bû',
+                'authentication_failed' => 'piştrastkirin bi ser neket',
+                'rate_limited' => 'rêje sînordar e',
+                'quota_exceeded' => 'kota derbas bû',
+                'unknown_error' => 'çewtiya nenas',
+                'output_rejected_matched_injection_marker' => 'derketin hate red kirin (nîşana injection)',
+                'hourly_cap_reached' => 'sînorê demjimêrî gihîşt',
+                'circuit_open' => 'çerx vekirî',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Wergir',
         'throttling' => 'Kontrola Rêjeyê',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Tu wergir nehatiye diyarkirin — agahdarî nayên şandin heta ku herî kêm yek e-peyam were zêdekirin.',
         'throttle_rate' => 'Rêjeya sînor',
         'minutes_suffix' => 'deqîqe',
-
         'error' => [
             'enabled' => 'Agahdariyên çewtiyê çalak bike',
             'enabled_helper' => 'Dema neçalak be, e-peyamên çewtiyê nayên şandin.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Vegotinê hilbijêre',
             'add_exception' => 'Awarte lê zêde bike',
         ],
-
         'debug' => [
             'enabled' => 'Kanala Debug çalak bike',
             'enabled_helper' => 'Dema neçalak be, bangên Sentinel::debug() bêdeng tên paşguhkirin.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Dema neçalak be, her banga debug e-peyamek dişîne. Dema çalak be, bangên dubare tên sînorkirin.',
             'throttle_helper' => 'Herî kêm deqîqe di navbera e-peyamên debug ên dubare de.',
         ],
-
         'test_email' => [
             'send' => 'E-peyama ceribandinê bişîne',
             'sent' => 'E-peyama ceribandinê ji :count wergir re hat şandin',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Şandina e-peyama ceribandinê têk çû',
             'channel_disabled' => 'Ev kanal niha neçalak e. E-peyama ceribandinê dê bê guman bê şandin.',
         ],
+        'ai' => [
+            'test_connection' => 'Tîst',
+            'test_connection_success' => 'Girêdana AI dixebite.',
+            'test_connection_failed' => 'Girêdana AI têk çû.',
+            'test_connection_missing' => 'Dabînker, model û mifteya API ji bo testkirina girêdanê pêwîst in.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) nehatiye sazkirin.',
+            'section' => 'Analîza AI',
+            'section_helper' => 'LLM bikar bînin ji bo pêşniyarkirina sedemên muhtemel ên îstîsnayên girtî.',
+            'no_providers' => 'Tu peydakirên AI nehatin tespîtkirin. Sazkirina laravel/ai xwe kontrol bikin.',
+            'enabled' => 'Analîza xeletiyên AI çalak bike',
+            'enabled_helper' => 'Dema çalak be, e-peyamên xeletiyê beşek pêşniyara ku bi AI hatî çêkirin dihewîne.',
+            'provider' => 'Peydaker',
+            'model' => 'Model',
+            'model_placeholder' => 'Pêşî peydakerek hilbijêre',
+            'api_key' => 'Mifteya API',
+            'api_key_set' => 'Mifte hatî danîn — vala bihêle da ku mifteya heyî biparêze',
+            'api_key_enter' => 'Mifteya API ji bo peydakera hilbijartî binivîse',
+            'timeout' => 'Wext qediya',
+            'timeout_helper' => 'Çirkeyên herî zêde ji bo bendewariya bersiva AI (1-10).',
+            'max_tokens' => 'Tokenên derketinê yên herî zêde',
+            'hourly_cap' => 'Sînorê demjimêrî',
+            'hourly_cap_helper' => 'Bangên AI yên herî zêde di demjimêrê de. 0 saz bikin ji bo neçalakkirina sînor.',
+            'cache_ttl' => 'TTL ya cache',
+            'cache_ttl_helper' => 'Xulekên cache kirina pêşniyarên AI yên serketî berî pirsekê ya nû. Rêz: 5–1440 xulek (≥ paceya kêmkirinê tê pêşniyarkirin; standard 60 xulek).',
+            'strict_scrubbing' => 'Paqijkirina hişk',
+            'strict_scrubbing_helper' => 'Dema çalak be, prompta AI tenê çîna îstîsnayê, rêza yekem a peyamê û file:line dihewîne — tu stack trace tune.',
+            'prompt_template' => 'Şablona prompt',
+            'prompt_template_helper' => 'Şablona ku ji peydakera AI re tê şandin. Cihgir {{error}} bi hûrgiliyên îstîsnaya paqijkirî tê guhertin. Bi baldarî biguhêre — rakirina {{error}} xilaskirinê asteng dike.',
+            'prompt_template_placeholder' => 'Tu endezyarekî Laravel yî payebilind î. Analîz bike: {{error}}',
+            'template_missing_token' => 'Şablona prompt divê cihgir {{error}} bihewîne.',
+            'prompt_template_default' => 'Şablona standard bikar bîne',
+            'usage_section' => 'Bikaranîn',
+            'usage_last_call_label' => 'Banga dawî',
+            'usage_month_label' => 'Vê mehê',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: serkeftî.',
+                'ai_cached' => 'AI: ji cache.',
+                'ai_failed' => 'AI: têk çû (:reason).',
+                'ai_skipped' => 'AI: hate derbaskirin (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Tomarên Sîstemê',
         'heading' => 'Pelên Tomaran',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Vê pelê tomarê wekî pêveka e-peyamê ji wergirê diyarkirî re bişîne.',
         'bulk_email_description' => 'Pelên tomarê yên bijartî wekî pêvekên e-peyamê yên cuda ji wergirê diyarkirî re bişîne.',
         'bulk_email_files' => 'Pelên Bijartî',
-
         'filter' => [
             'date_from' => 'Ji',
             'date_to' => 'Heta',
         ],
-
         'column' => [
             'filename' => 'Navê Pelê',
             'size' => 'Mezinahî',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Demnîşan',
             'message' => 'Peyam',
         ],
-
         'action' => [
             'refresh' => 'Nûkirin',
             'view' => 'Bibîne',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Pelê tomarê hat jêbirin',
             'bulk_deleted' => ':count pelê tomarê hatin jêbirin',
         ],
-
         'confirm' => [
             'delete' => 'Tu bawer î ku dixwazî vê pelê tomarê jê bibî? Ev kirinê naşê veger.',
             'bulk_delete' => 'Tu bawer î ku dixwazî pelên tomarê yên bijartî jê bibî? Ev kirinê naşê veger.',
         ],
-
         'entry' => [
             'detail' => 'Hûrguliyên Tomarê',
             'line' => 'Rêz',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Hat kopîkirin!',
         ],
     ],
-
 ];

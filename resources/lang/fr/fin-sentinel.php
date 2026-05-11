@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Paramètres',
         'error_channel' => 'Canal d\'erreurs',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Fichiers journaux',
         'log_entries' => 'Entrées de journal',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Notification d\'erreur',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Fichier journal',
         ],
         'footer' => 'Envoyé par Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Message d\'erreur',
             'class' => 'Classe',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Emplacement',
             'trace_call' => 'Appel',
         ],
-
         'collection' => [
             'count' => ':count élément|:count éléments',
             'more' => '... et :count éléments supplémentaires',
         ],
-
         'error' => [
             'subject' => ':app - Une erreur est survenue',
             'guest' => 'Invité',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Utilisateur authentifié',
             'section_environment' => 'Environnement',
         ],
-
         'debug' => [
             'subject' => ':app - Debug : :subject',
             'guest' => 'Invité',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Contexte de la requête',
             'section_environment' => 'Environnement',
         ],
-
         'log_file' => [
             'subject' => ':app - Fichier journal : :file',
             'bulk_subject' => ':app - :count fichiers journaux joints',
             'body' => 'Le fichier journal <strong>:file</strong> de :app est en pièce jointe.',
             'body_text' => 'Le fichier journal :file de :app est en pièce jointe.',
         ],
+        'ai' => [
+            'heading' => 'Suggestion IA',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'Généré par IA. Vérifiez avant d\'agir.',
+            'cached_badge' => 'en cache',
+            'failed_prefix' => 'Échec de l\'analyse IA',
+            'skipped_prefix' => 'Analyse IA ignorée',
+            'reason' => [
+                'timeout' => 'délai dépassé',
+                'authentication_failed' => 'échec de l\'authentification',
+                'rate_limited' => 'débit limité',
+                'quota_exceeded' => 'quota dépassé',
+                'unknown_error' => 'erreur inconnue',
+                'output_rejected_matched_injection_marker' => 'sortie rejetée (marqueur d\'injection)',
+                'hourly_cap_reached' => 'limite horaire atteinte',
+                'circuit_open' => 'circuit ouvert',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Destinataires',
         'throttling' => 'Limitation',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Aucun destinataire configuré — les notifications ne seront pas envoyées tant qu\'au moins une adresse e-mail n\'aura pas été ajoutée.',
         'throttle_rate' => 'Taux de limitation',
         'minutes_suffix' => 'minutes',
-
         'error' => [
             'enabled' => 'Activer les notifications d\'erreur',
             'enabled_helper' => 'Lorsque désactivé, aucun e-mail d\'erreur ne sera envoyé.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Sélectionner une exception',
             'add_exception' => 'Ajouter une exception',
         ],
-
         'debug' => [
             'enabled' => 'Activer le canal Debug',
             'enabled_helper' => 'Lorsque désactivé, les appels à Sentinel::debug() seront silencieusement ignorés.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Lorsque désactivé, chaque appel Debug envoie un e-mail. Lorsque activé, les appels en double sont limités.',
             'throttle_helper' => 'Minutes minimum entre les e-mails Debug en double.',
         ],
-
         'test_email' => [
             'send' => 'Envoyer un e-mail de test',
             'sent' => 'E-mail de test envoyé à :count destinataire(s)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Échec de l\'envoi de l\'e-mail de test',
             'channel_disabled' => 'Ce canal est actuellement désactivé. L\'e-mail de test sera quand même envoyé.',
         ],
+        'ai' => [
+            'test_connection' => 'Tester',
+            'test_connection_success' => 'La connexion IA fonctionne.',
+            'test_connection_failed' => 'Échec de la connexion IA.',
+            'test_connection_missing' => 'Fournisseur, modèle et clé API sont requis pour tester la connexion.',
+            'test_connection_no_sdk' => 'Le SDK IA (laravel/ai) n\'est pas installé.',
+            'section' => 'Analyse IA',
+            'section_helper' => 'Utilisez un LLM pour suggérer les causes probables des exceptions capturées.',
+            'no_providers' => 'Aucun fournisseur IA détecté. Vérifiez votre installation laravel/ai.',
+            'enabled' => 'Activer l\'analyse IA des erreurs',
+            'enabled_helper' => 'Lorsque activé, les e-mails d\'erreur incluent une section de suggestion générée par IA.',
+            'provider' => 'Fournisseur',
+            'model' => 'Modèle',
+            'model_placeholder' => 'Sélectionnez d\'abord un fournisseur',
+            'api_key' => 'Clé API',
+            'api_key_set' => 'Clé définie — laissez vide pour conserver la clé existante',
+            'api_key_enter' => 'Saisissez la clé API du fournisseur sélectionné',
+            'timeout' => 'Délai d\'attente',
+            'timeout_helper' => 'Secondes maximales d\'attente de la réponse IA (1-10).',
+            'max_tokens' => 'Jetons de sortie max.',
+            'hourly_cap' => 'Plafond horaire',
+            'hourly_cap_helper' => 'Appels IA maximum par heure. Mettez 0 pour désactiver le plafond.',
+            'cache_ttl' => 'TTL du cache',
+            'cache_ttl_helper' => 'Minutes de mise en cache des suggestions IA réussies avant nouvelle requête. Plage : 5–1440 minutes (≥ fenêtre de limitation recommandée ; par défaut 60 minutes).',
+            'strict_scrubbing' => 'Nettoyage strict',
+            'strict_scrubbing_helper' => 'Lorsque activé, le prompt IA contient uniquement la classe d\'exception, la première ligne du message et file:line — sans trace de pile.',
+            'prompt_template' => 'Modèle de prompt',
+            'prompt_template_helper' => 'Modèle envoyé au fournisseur IA. Le marqueur {{error}} est remplacé par les détails nettoyés de l\'exception. Modifiez avec prudence — supprimer {{error}} bloque la sauvegarde.',
+            'prompt_template_placeholder' => 'Vous êtes un ingénieur Laravel sénior. Analysez : {{error}}',
+            'template_missing_token' => 'Le modèle de prompt doit contenir le marqueur {{error}}.',
+            'prompt_template_default' => 'Utiliser le modèle par défaut',
+            'usage_section' => 'Utilisation',
+            'usage_last_call_label' => 'Dernier appel',
+            'usage_month_label' => 'Ce mois-ci',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'jetons',
+            'test_email' => [
+                'ai_success' => 'IA : succès.',
+                'ai_cached' => 'IA : depuis le cache.',
+                'ai_failed' => 'IA : échec (:reason).',
+                'ai_skipped' => 'IA : ignorée (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Journaux système',
         'heading' => 'Fichiers journaux',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Envoyer ce fichier journal en pièce jointe au destinataire spécifié.',
         'bulk_email_description' => 'Envoyer les fichiers journaux sélectionnés en pièces jointes individuelles au destinataire spécifié.',
         'bulk_email_files' => 'Fichiers sélectionnés',
-
         'filter' => [
             'date_from' => 'Du',
             'date_to' => 'Au',
         ],
-
         'column' => [
             'filename' => 'Nom de fichier',
             'size' => 'Taille',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Horodatage',
             'message' => 'Message',
         ],
-
         'action' => [
             'refresh' => 'Actualiser',
             'view' => 'Afficher',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Fichier journal supprimé',
             'bulk_deleted' => ':count fichier(s) journal supprimé(s)',
         ],
-
         'confirm' => [
             'delete' => 'Êtes-vous sûr de vouloir supprimer ce fichier journal ? Cette action est irréversible.',
             'bulk_delete' => 'Êtes-vous sûr de vouloir supprimer les fichiers journaux sélectionnés ? Cette action est irréversible.',
         ],
-
         'entry' => [
             'detail' => 'Détail de l\'entrée',
             'line' => 'Ligne',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Copié !',
         ],
     ],
-
 ];

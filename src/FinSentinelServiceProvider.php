@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace FinityLabs\FinSentinel;
 
+use Composer\InstalledVersions;
+use FinityLabs\FinSentinel\Contracts\AiErrorAnalyzerContract;
 use FinityLabs\FinSentinel\Events\SentinelDebug;
 use FinityLabs\FinSentinel\Listeners\MessageLoggedListener;
 use FinityLabs\FinSentinel\Listeners\SentinelDebugListener;
+use FinityLabs\FinSentinel\Services\Ai\AiErrorAnalyzer;
+use FinityLabs\FinSentinel\Services\Ai\NullAiErrorAnalyzer;
 use FinityLabs\FinSentinel\Services\DebugService;
+use FinityLabs\FinSentinel\Services\FinSentinelManager;
 use FinityLabs\FinSentinel\Settings\DebugChannelSettings;
 use FinityLabs\FinSentinel\Settings\ErrorChannelSettings;
 use Illuminate\Log\Events\MessageLogged;
@@ -30,6 +35,7 @@ class FinSentinelServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasMigrations([
                 '../settings/create_fin_sentinel_settings',
+                '../settings/add_fin_sentinel_ai_settings',
             ])
             ->hasCommands([
                 Commands\InstallCommand::class,
@@ -44,6 +50,26 @@ class FinSentinelServiceProvider extends PackageServiceProvider
         $this->app->singleton('fin-sentinel.debug', fn () => new DebugService);
 
         $this->app->bind(Services\LogEntryParser::class, fn () => new Services\LogEntryParser(storage_path('logs')));
+
+        $this->app->singleton('fin-sentinel.ai-available', function (): bool {
+            return InstalledVersions::isInstalled('laravel/ai');
+        });
+
+        $this->app->bind(
+            AiErrorAnalyzerContract::class,
+            function ($app) {
+                return $app->make('fin-sentinel.ai-available')
+                    ? $app->make(AiErrorAnalyzer::class)
+                    : new NullAiErrorAnalyzer;
+            }
+        );
+
+        $this->app->singleton('fin-sentinel.manager', function ($app) {
+            return new FinSentinelManager(
+                $app->make('fin-sentinel.debug'),
+                $app->make('fin-sentinel.ai-available'),
+            );
+        });
     }
 
     public function packageBooted(): void

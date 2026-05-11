@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'ترتیبات',
         'error_channel' => 'خرابی کا چینل',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'لاگ فائلیں',
         'log_entries' => 'لاگ اندراجات',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'خرابی کی اطلاع',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'لاگ فائل',
         ],
         'footer' => 'Fin-Sentinel کی طرف سے بھیجا گیا',
-
         'label' => [
             'error_message' => 'خرابی کا پیغام',
             'class' => 'کلاس',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'مقام',
             'trace_call' => 'کال',
         ],
-
         'collection' => [
             'count' => ':count آئٹم|:count آئٹمز',
             'more' => '... اور :count مزید آئٹمز',
         ],
-
         'error' => [
             'subject' => ':app - ایک خرابی واقع ہوئی',
             'guest' => 'مہمان',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'تصدیق شدہ صارف',
             'section_environment' => 'ماحول',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'مہمان',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'درخواست کا سیاق',
             'section_environment' => 'ماحول',
         ],
-
         'log_file' => [
             'subject' => ':app - لاگ فائل: :file',
             'bulk_subject' => ':app - :count لاگ فائلیں منسلک',
             'body' => 'لاگ فائل <strong>:file</strong> بذریعہ :app منسلک ہے۔',
             'body_text' => 'لاگ فائل :file بذریعہ :app منسلک ہے۔',
         ],
+        'ai' => [
+            'heading' => 'AI تجویز',
+            'footnote_prefix' => 'بذریعہ',
+            'disclaimer' => 'AI سے تیار شدہ۔ عمل سے پہلے تصدیق کریں۔',
+            'cached_badge' => 'کیش شدہ',
+            'failed_prefix' => 'AI تجزیہ ناکام',
+            'skipped_prefix' => 'AI تجزیہ چھوڑ دیا گیا',
+            'reason' => [
+                'timeout' => 'وقت ختم',
+                'authentication_failed' => 'تصدیق ناکام',
+                'rate_limited' => 'شرح محدود',
+                'quota_exceeded' => 'کوٹا ختم',
+                'unknown_error' => 'نامعلوم خرابی',
+                'output_rejected_matched_injection_marker' => 'آؤٹ پٹ مسترد (انجیکشن مارکر)',
+                'hourly_cap_reached' => 'فی گھنٹہ حد پوری',
+                'circuit_open' => 'سرکٹ کھلا',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'وصول کنندگان',
         'throttling' => 'شرح کی حد بندی',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'کوئی وصول کنندہ مقرر نہیں — جب تک کم از کم ایک ای میل ایڈریس شامل نہ کیا جائے، اطلاعات نہیں بھیجی جائیں گی۔',
         'throttle_rate' => 'حد بندی کی شرح',
         'minutes_suffix' => 'منٹ',
-
         'error' => [
             'enabled' => 'خرابی کی اطلاعات فعال کریں',
             'enabled_helper' => 'غیر فعال ہونے پر، خرابی کی ای میلز نہیں بھیجی جائیں گی۔',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'استثناء منتخب کریں',
             'add_exception' => 'استثناء شامل کریں',
         ],
-
         'debug' => [
             'enabled' => 'Debug چینل فعال کریں',
             'enabled_helper' => 'غیر فعال ہونے پر، Sentinel::debug() کالز خاموشی سے نظرانداز کر دی جائیں گی۔',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'غیر فعال ہونے پر، ہر debug کال ای میل بھیجتی ہے۔ فعال ہونے پر، دہرائی جانے والی کالز محدود ہوتی ہیں۔',
             'throttle_helper' => 'ایک جیسی debug ای میلز کے درمیان کم از کم منٹ۔',
         ],
-
         'test_email' => [
             'send' => 'ٹیسٹ ای میل بھیجیں',
             'sent' => ':count وصول کنندہ(وں) کو ٹیسٹ ای میل بھیجی گئی',
@@ -148,8 +154,50 @@ return [
             'failed' => 'ٹیسٹ ای میل بھیجنے میں ناکامی',
             'channel_disabled' => 'یہ چینل فی الحال غیر فعال ہے۔ ٹیسٹ ای میل پھر بھی بھیجی جائے گی۔',
         ],
+        'ai' => [
+            'test_connection' => 'ٹیسٹ کریں',
+            'test_connection_success' => 'AI کنکشن کام کر رہا ہے۔',
+            'test_connection_failed' => 'AI کنکشن ناکام ہو گیا۔',
+            'test_connection_missing' => 'کنکشن ٹیسٹ کرنے کے لیے فراہم کنندہ، ماڈل، اور API کلید درکار ہیں۔',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) انسٹال نہیں ہے۔',
+            'section' => 'AI تجزیہ',
+            'section_helper' => 'پکڑے گئے استثناء کی ممکنہ وجوہات تجویز کرنے کے لیے LLM استعمال کریں۔',
+            'no_providers' => 'کوئی AI فراہم کنندہ نہیں ملا۔ اپنی laravel/ai تنصیب چیک کریں۔',
+            'enabled' => 'AI خرابی تجزیہ فعال کریں',
+            'enabled_helper' => 'فعال ہونے پر، خرابی کی ای میلز میں AI سے تیار کردہ تجویز کا حصہ شامل ہوتا ہے۔',
+            'provider' => 'فراہم کنندہ',
+            'model' => 'ماڈل',
+            'model_placeholder' => 'پہلے فراہم کنندہ منتخب کریں',
+            'api_key' => 'API کلید',
+            'api_key_set' => 'کلید سیٹ ہے — موجودہ کلید رکھنے کے لیے خالی چھوڑیں',
+            'api_key_enter' => 'منتخب فراہم کنندہ کے لیے API کلید درج کریں',
+            'timeout' => 'وقت ختم',
+            'timeout_helper' => 'AI جواب کے انتظار کے زیادہ سے زیادہ سیکنڈ (1-10)۔',
+            'max_tokens' => 'زیادہ سے زیادہ آؤٹ پٹ ٹوکن',
+            'hourly_cap' => 'فی گھنٹہ حد',
+            'hourly_cap_helper' => 'فی گھنٹہ زیادہ سے زیادہ AI کالز۔ حد غیر فعال کرنے کے لیے 0 سیٹ کریں۔',
+            'cache_ttl' => 'کیش TTL',
+            'cache_ttl_helper' => 'دوبارہ استفسار سے پہلے کامیاب AI تجاویز کیش کرنے کے منٹ۔ رینج: 5–1440 منٹ (≥ تھروٹل ونڈو تجویز کردہ؛ پہلے سے طے شدہ 60 منٹ)۔',
+            'strict_scrubbing' => 'سخت صفائی',
+            'strict_scrubbing_helper' => 'فعال ہونے پر، AI پرامپٹ میں صرف استثناء کلاس، پیغام کی پہلی لائن اور file:line ہوتا ہے — کوئی اسٹیک ٹریس نہیں۔',
+            'prompt_template' => 'پرامپٹ ٹیمپلیٹ',
+            'prompt_template_helper' => 'AI فراہم کنندہ کو بھیجا گیا ٹیمپلیٹ۔ {{error}} پلیس ہولڈر کو صاف شدہ استثناء تفصیلات سے تبدیل کیا جاتا ہے۔ احتیاط سے ترمیم کریں — {{error}} کو ہٹانا محفوظ کرنا روکتا ہے۔',
+            'prompt_template_placeholder' => 'آپ ایک سینئر Laravel انجینئر ہیں۔ تجزیہ کریں: {{error}}',
+            'template_missing_token' => 'پرامپٹ ٹیمپلیٹ میں {{error}} پلیس ہولڈر ہونا چاہیے۔',
+            'prompt_template_default' => 'پہلے سے طے شدہ ٹیمپلیٹ استعمال کریں',
+            'usage_section' => 'استعمال',
+            'usage_last_call_label' => 'آخری کال',
+            'usage_month_label' => 'اس ماہ',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'ٹوکن',
+            'test_email' => [
+                'ai_success' => 'AI: کامیاب۔',
+                'ai_cached' => 'AI: کیش سے۔',
+                'ai_failed' => 'AI: ناکام (:reason)۔',
+                'ai_skipped' => 'AI: چھوڑ دیا گیا (:reason)۔',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'سسٹم لاگز',
         'heading' => 'لاگ فائلیں',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'یہ لاگ فائل مخصوص وصول کنندہ کو ای میل منسلکہ کے طور پر بھیجیں۔',
         'bulk_email_description' => 'منتخب لاگ فائلیں مخصوص وصول کنندہ کو الگ الگ ای میل منسلکات کے طور پر بھیجیں۔',
         'bulk_email_files' => 'منتخب فائلیں',
-
         'filter' => [
             'date_from' => 'سے',
             'date_to' => 'تک',
         ],
-
         'column' => [
             'filename' => 'فائل کا نام',
             'size' => 'سائز',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'ٹائم اسٹیمپ',
             'message' => 'پیغام',
         ],
-
         'action' => [
             'refresh' => 'ریفریش',
             'view' => 'دیکھیں',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'لاگ فائل حذف ہو گئی',
             'bulk_deleted' => ':count لاگ فائل(یں) حذف ہو گئیں',
         ],
-
         'confirm' => [
             'delete' => 'کیا آپ واقعی یہ لاگ فائل حذف کرنا چاہتے ہیں؟ یہ عمل واپس نہیں ہو سکتا۔',
             'bulk_delete' => 'کیا آپ واقعی منتخب لاگ فائلیں حذف کرنا چاہتے ہیں؟ یہ عمل واپس نہیں ہو سکتا۔',
         ],
-
         'entry' => [
             'detail' => 'اندراج کی تفصیل',
             'line' => 'لائن',
@@ -206,5 +249,4 @@ return [
             'copied' => 'کاپی ہو گیا!',
         ],
     ],
-
 ];

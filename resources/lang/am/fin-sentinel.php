@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'ቅንብሮች',
         'error_channel' => 'የስህተት ቻናል',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'የሎግ ፋይሎች',
         'log_entries' => 'የሎግ ግቤቶች',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'የስህተት ማሳወቂያ',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'የሎግ ፋይል',
         ],
         'footer' => 'በ Fin-Sentinel የተላከ',
-
         'label' => [
             'error_message' => 'የስህተት መልእክት',
             'class' => 'ክላስ',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'ቦታ',
             'trace_call' => 'ጥሪ',
         ],
-
         'collection' => [
             'count' => ':count ንጥል|:count ንጥሎች',
             'more' => '... እና :count ተጨማሪ ንጥሎች',
         ],
-
         'error' => [
             'subject' => ':app - ስህተት ተከስቷል',
             'guest' => 'እንግዳ',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'የተረጋገጠ ተጠቃሚ',
             'section_environment' => 'አካባቢ',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'እንግዳ',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'የጥያቄ ዐውድ',
             'section_environment' => 'አካባቢ',
         ],
-
         'log_file' => [
             'subject' => ':app - የሎግ ፋይል: :file',
             'bulk_subject' => ':app - :count የሎግ ፋይሎች ተያይዘዋል',
             'body' => 'የሎግ ፋይል <strong>:file</strong> ከ :app ተያይዟል።',
             'body_text' => 'የሎግ ፋይል :file ከ :app ተያይዟል።',
         ],
+        'ai' => [
+            'heading' => 'የAI ጥቆማ',
+            'footnote_prefix' => 'በ',
+            'disclaimer' => 'በAI የተፈጠረ። ከመተግበርዎ በፊት ያረጋግጡ።',
+            'cached_badge' => 'ካሽ የተደረገ',
+            'failed_prefix' => 'የAI ትንተና አልተሳካም',
+            'skipped_prefix' => 'የAI ትንተና ተዘሏል',
+            'reason' => [
+                'timeout' => 'ጊዜ አልፏል',
+                'authentication_failed' => 'ማረጋገጫ አልተሳካም',
+                'rate_limited' => 'መጠን ተገድቧል',
+                'quota_exceeded' => 'ኮታ አልፏል',
+                'unknown_error' => 'ያልታወቀ ስህተት',
+                'output_rejected_matched_injection_marker' => 'ውጤት ውድቅ ተደርጓል (የመርፌ ምልክት)',
+                'hourly_cap_reached' => 'የሰዓት ገደብ ደርሷል',
+                'circuit_open' => 'ወረዳ ክፍት',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'ተቀባዮች',
         'throttling' => 'ገደብ መጣል',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'ምንም ተቀባዮች አልተዋቀሩም — ቢያንስ አንድ ኢሜይል እስኪጨመር ማሳወቂያዎች አይላኩም።',
         'throttle_rate' => 'የገደብ መጠን',
         'minutes_suffix' => 'ደቂቃዎች',
-
         'error' => [
             'enabled' => 'የስህተት ማሳወቂያዎችን አንቃ',
             'enabled_helper' => 'ሲሰናከል፣ ምንም የስህተት ኢሜይሎች አይላኩም።',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'ልዩ ሁኔታ ይምረጡ',
             'add_exception' => 'ልዩ ሁኔታ ያክሉ',
         ],
-
         'debug' => [
             'enabled' => 'Debug ቻናልን አንቃ',
             'enabled_helper' => 'ሲሰናከል፣ Sentinel::debug() ጥሪዎች በጸጥታ ይተዋሉ።',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'ሲሰናከል፣ እያንዳንዱ debug ጥሪ ኢሜይል ይልካል። ሲነቃ፣ ተደጋጋሚ ጥሪዎች ይገደባሉ።',
             'throttle_helper' => 'በተደጋጋሚ debug ኢሜይሎች መካከል ዝቅተኛ ደቂቃዎች።',
         ],
-
         'test_email' => [
             'send' => 'የሙከራ ኢሜይል ላክ',
             'sent' => 'የሙከራ ኢሜይል ለ :count ተቀባይ(ዎች) ተልኳል',
@@ -148,8 +154,50 @@ return [
             'failed' => 'የሙከራ ኢሜይል መላክ አልተሳካም',
             'channel_disabled' => 'ይህ ቻናል በአሁኑ ጊዜ ተሰናክሏል። የሙከራ ኢሜይሉ አሁንም ይላካል።',
         ],
+        'ai' => [
+            'test_connection' => 'ሙከራ',
+            'test_connection_success' => 'የAI ግንኙነት ይሰራል።',
+            'test_connection_failed' => 'የAI ግንኙነት አልተሳካም።',
+            'test_connection_missing' => 'ግንኙነቱን ለመሞከር አቅራቢ፣ ሞዴል እና API ቁልፍ ያስፈልጋሉ።',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) አልተጫነም።',
+            'section' => 'የ AI ትንተና',
+            'section_helper' => 'ለተያዙ ልዩ ሁኔታዎች ሊከሰቱ የሚችሉ ምክንያቶችን ለመጠቆም LLM ይጠቀሙ።',
+            'no_providers' => 'ምንም የ AI አቅራቢዎች አልተገኙም። የእርስዎን laravel/ai ጭነት ያረጋግጡ።',
+            'enabled' => 'የ AI ስህተት ትንተናን አንቃ',
+            'enabled_helper' => 'ሲነቃ፣ የስህተት ኢሜይሎች በ AI የተፈጠረ የጥቆማ ክፍልን ያካትታሉ።',
+            'provider' => 'አቅራቢ',
+            'model' => 'ሞዴል',
+            'model_placeholder' => 'መጀመሪያ አቅራቢ ይምረጡ',
+            'api_key' => 'API ቁልፍ',
+            'api_key_set' => 'ቁልፍ ተዘጋጅቷል — ያለውን ቁልፍ ለማቆየት ባዶ ይተዉት',
+            'api_key_enter' => 'ለተመረጠው አቅራቢ የ API ቁልፍ ያስገቡ',
+            'timeout' => 'ጊዜ አልፎበታል',
+            'timeout_helper' => 'ለ AI ምላሽ መጠበቂያ ከፍተኛ ሰከንዶች (1-10)።',
+            'max_tokens' => 'ከፍተኛ የውጤት ቶከኖች',
+            'hourly_cap' => 'የሰዓት ገደብ',
+            'hourly_cap_helper' => 'በሰዓት ከፍተኛ የ AI ጥሪዎች። ገደቡን ለማሰናከል 0 ያዘጋጁ።',
+            'cache_ttl' => 'የመሸጎጫ TTL',
+            'cache_ttl_helper' => 'ከተደጋገመ ጥያቄ በፊት የተሳካ የ AI ጥቆማዎችን ለመሸጎጥ ደቂቃዎች። ክልል: 5–1440 ደቂቃዎች (≥ የማነቆ መስኮት ይመከራል፤ ነባሪ 60 ደቂቃዎች)።',
+            'strict_scrubbing' => 'ጥብቅ ጽዳት',
+            'strict_scrubbing_helper' => 'ሲነቃ፣ የ AI ፕሮምፕት የልዩ ሁኔታ ክፍል፣ የመልዕክት መጀመሪያ መስመር እና file:line ብቻ ይይዛል — ምንም stack trace የለም።',
+            'prompt_template' => 'የፕሮምፕት ቅርጸት',
+            'prompt_template_helper' => 'ለ AI አቅራቢ የተላከ ቅርጸት። የ {{error}} ቦታ ያዥ በተጸዳ የልዩ ሁኔታ ዝርዝሮች ይተካል። በጥንቃቄ ያርትዑ — {{error}} ማስወገድ ማስቀመጥን ይከለክላል።',
+            'prompt_template_placeholder' => 'እርስዎ ከፍተኛ የ Laravel መሐንዲስ ነዎት። ይተንትኑ: {{error}}',
+            'template_missing_token' => 'የፕሮምፕት ቅርጸት የ {{error}} ቦታ ያዥ መያዝ አለበት።',
+            'prompt_template_default' => 'ነባሪ ቅርጸት ተጠቀም',
+            'usage_section' => 'አጠቃቀም',
+            'usage_last_call_label' => 'የመጨረሻ ጥሪ',
+            'usage_month_label' => 'በዚህ ወር',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'ቶከኖች',
+            'test_email' => [
+                'ai_success' => 'AI: ተሳክቷል።',
+                'ai_cached' => 'AI: ከመሸጎጫ።',
+                'ai_failed' => 'AI: አልተሳካም (:reason)።',
+                'ai_skipped' => 'AI: ተዘሏል (:reason)።',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'የስርዓት ሎጎች',
         'heading' => 'የሎግ ፋይሎች',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'ይህን የሎግ ፋይል ለተጠቀሰው ተቀባይ እንደ ኢሜይል አባሪ ይላኩ።',
         'bulk_email_description' => 'የተመረጡትን የሎግ ፋይሎች ለተጠቀሰው ተቀባይ እንደ ነጠላ ኢሜይል አባሪዎች ይላኩ።',
         'bulk_email_files' => 'የተመረጡ ፋይሎች',
-
         'filter' => [
             'date_from' => 'ከ',
             'date_to' => 'እስከ',
         ],
-
         'column' => [
             'filename' => 'የፋይል ስም',
             'size' => 'መጠን',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'የጊዜ ማህተም',
             'message' => 'መልእክት',
         ],
-
         'action' => [
             'refresh' => 'አድስ',
             'view' => 'ይመልከቱ',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'የሎግ ፋይል ተሰርዟል',
             'bulk_deleted' => ':count የሎግ ፋይል(ዎች) ተሰርዘዋል',
         ],
-
         'confirm' => [
             'delete' => 'ይህን የሎግ ፋይል መሰረዝ እንደሚፈልጉ እርግጠኛ ነዎት? ይህ ድርጊት ሊቀለበስ አይችልም።',
             'bulk_delete' => 'የተመረጡትን የሎግ ፋይሎች መሰረዝ እንደሚፈልጉ እርግጠኛ ነዎት? ይህ ድርጊት ሊቀለበስ አይችልም።',
         ],
-
         'entry' => [
             'detail' => 'የግቤት ዝርዝር',
             'line' => 'መስመር',
@@ -206,5 +249,4 @@ return [
             'copied' => 'ተቀድቷል!',
         ],
     ],
-
 ];

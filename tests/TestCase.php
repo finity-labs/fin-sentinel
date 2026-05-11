@@ -6,6 +6,7 @@ namespace FinityLabs\FinSentinel\Tests;
 
 use FinityLabs\FinSentinel\FinSentinelServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\LaravelSettings\LaravelSettingsServiceProvider;
@@ -27,6 +28,10 @@ class TestCase extends Orchestra
         });
 
         $this->loadMigrationsFrom(__DIR__.'/../database/settings');
+
+        // preventStrayRequests() requires fake() first; pass [] (not no-args, which installs a catch-all 200 stub).
+        Http::fake([]);
+        Http::preventStrayRequests();
     }
 
     protected function getPackageProviders($app): array

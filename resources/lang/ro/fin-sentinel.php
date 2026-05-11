@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Setări',
         'error_channel' => 'Canal de erori',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Fișiere jurnal',
         'log_entries' => 'Intrări jurnal',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Notificare de eroare',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Fișier jurnal',
         ],
         'footer' => 'Trimis de Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Mesaj de eroare',
             'class' => 'Clasă',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Locație',
             'trace_call' => 'Apel',
         ],
-
         'collection' => [
             'count' => ':count element|:count elemente',
             'more' => '... și încă :count elemente',
         ],
-
         'error' => [
             'subject' => ':app - A apărut o eroare',
             'guest' => 'Vizitator',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Utilizator autentificat',
             'section_environment' => 'Mediu',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Vizitator',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Context cerere',
             'section_environment' => 'Mediu',
         ],
-
         'log_file' => [
             'subject' => ':app - Fișier jurnal: :file',
             'bulk_subject' => ':app - :count fișiere jurnal atașate',
             'body' => 'Fișierul jurnal <strong>:file</strong> din :app este atașat.',
             'body_text' => 'Fișierul jurnal :file din :app este atașat.',
         ],
+        'ai' => [
+            'heading' => 'Sugestie AI',
+            'footnote_prefix' => 'prin',
+            'disclaimer' => 'Generat de AI. Verificați înainte de a acționa.',
+            'cached_badge' => 'din cache',
+            'failed_prefix' => 'Analiza AI a eșuat',
+            'skipped_prefix' => 'Analiza AI a fost omisă',
+            'reason' => [
+                'timeout' => 'timp expirat',
+                'authentication_failed' => 'autentificare eșuată',
+                'rate_limited' => 'rată limitată',
+                'quota_exceeded' => 'cotă depășită',
+                'unknown_error' => 'eroare necunoscută',
+                'output_rejected_matched_injection_marker' => 'ieșire respinsă (marcaj de injection)',
+                'hourly_cap_reached' => 'limită orară atinsă',
+                'circuit_open' => 'circuit deschis',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Destinatari',
         'throttling' => 'Limitare',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Nu sunt configurați destinatari — notificările nu vor fi trimise până când nu este adăugată cel puțin o adresă de email.',
         'throttle_rate' => 'Rata de limitare',
         'minutes_suffix' => 'minute',
-
         'error' => [
             'enabled' => 'Activare notificări de erori',
             'enabled_helper' => 'Când este dezactivat, nu vor fi trimise email-uri de eroare.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Selectați excepția',
             'add_exception' => 'Adaugă excepție',
         ],
-
         'debug' => [
             'enabled' => 'Activare canal Debug',
             'enabled_helper' => 'Când este dezactivat, apelurile Sentinel::debug() vor fi ignorate silențios.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Când este dezactivat, fiecare apel debug trimite un email. Când este activat, apelurile duplicate sunt limitate.',
             'throttle_helper' => 'Minute minime între email-urile Debug duplicate.',
         ],
-
         'test_email' => [
             'send' => 'Trimite email de test',
             'sent' => 'Email de test trimis la :count destinatar(i)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Trimiterea email-ului de test a eșuat',
             'channel_disabled' => 'Acest canal este momentan dezactivat. Email-ul de test va fi trimis oricum.',
         ],
+        'ai' => [
+            'test_connection' => 'Testează',
+            'test_connection_success' => 'Conexiunea AI funcționează.',
+            'test_connection_failed' => 'Conexiunea AI a eșuat.',
+            'test_connection_missing' => 'Furnizorul, modelul și cheia API sunt necesare pentru a testa conexiunea.',
+            'test_connection_no_sdk' => 'SDK-ul AI (laravel/ai) nu este instalat.',
+            'section' => 'Analiză AI',
+            'section_helper' => 'Folosește un LLM pentru a sugera cauze probabile ale excepțiilor capturate.',
+            'no_providers' => 'Nu au fost detectați furnizori AI. Verifică instalarea laravel/ai.',
+            'enabled' => 'Activează analiza erorilor cu AI',
+            'enabled_helper' => 'Când este activat, e-mailurile de eroare includ o secțiune de sugestie generată de AI.',
+            'provider' => 'Furnizor',
+            'model' => 'Model',
+            'model_placeholder' => 'Selectează mai întâi un furnizor',
+            'api_key' => 'Cheie API',
+            'api_key_set' => 'Cheia setată — lasă gol pentru a păstra cheia existentă',
+            'api_key_enter' => 'Introdu cheia API pentru furnizorul selectat',
+            'timeout' => 'Timp expirat',
+            'timeout_helper' => 'Secunde maxime de așteptare a răspunsului AI (1-10).',
+            'max_tokens' => 'Tokenuri de ieșire max.',
+            'hourly_cap' => 'Limită orară',
+            'hourly_cap_helper' => 'Apeluri AI maxime pe oră. Setează 0 pentru a dezactiva limita.',
+            'cache_ttl' => 'TTL cache',
+            'cache_ttl_helper' => 'Minute pentru a memora în cache sugestiile AI reușite înainte de noua interogare. Interval: 5–1440 minute (≥ fereastră throttle recomandat; implicit 60 minute).',
+            'strict_scrubbing' => 'Curățare strictă',
+            'strict_scrubbing_helper' => 'Când este activat, promptul AI conține doar clasa excepției, prima linie a mesajului și file:line — fără urmă de stivă.',
+            'prompt_template' => 'Șablon prompt',
+            'prompt_template_helper' => 'Șablon trimis furnizorului AI. Substituentul {{error}} este înlocuit cu detaliile curățate ale excepției. Editează cu grijă — eliminarea {{error}} blochează salvarea.',
+            'prompt_template_placeholder' => 'Ești un inginer Laravel senior. Analizează: {{error}}',
+            'template_missing_token' => 'Șablonul de prompt trebuie să conțină substituentul {{error}}.',
+            'prompt_template_default' => 'Folosește șablonul implicit',
+            'usage_section' => 'Utilizare',
+            'usage_last_call_label' => 'Ultimul apel',
+            'usage_month_label' => 'Luna aceasta',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokenuri',
+            'test_email' => [
+                'ai_success' => 'AI: succes.',
+                'ai_cached' => 'AI: din cache.',
+                'ai_failed' => 'AI: eșec (:reason).',
+                'ai_skipped' => 'AI: omis (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Jurnale de sistem',
         'heading' => 'Fișiere jurnal',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Trimiteți acest fișier jurnal ca atașament email destinatarului specificat.',
         'bulk_email_description' => 'Trimiteți fișierele jurnal selectate ca atașamente email individuale destinatarului specificat.',
         'bulk_email_files' => 'Fișiere selectate',
-
         'filter' => [
             'date_from' => 'De la',
             'date_to' => 'Până la',
         ],
-
         'column' => [
             'filename' => 'Nume fișier',
             'size' => 'Dimensiune',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Marcaj temporal',
             'message' => 'Mesaj',
         ],
-
         'action' => [
             'refresh' => 'Reîmprospătare',
             'view' => 'Vizualizare',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Fișier jurnal șters',
             'bulk_deleted' => ':count fișier(e) jurnal șterse',
         ],
-
         'confirm' => [
             'delete' => 'Sigur doriți să ștergeți acest fișier jurnal? Această acțiune nu poate fi anulată.',
             'bulk_delete' => 'Sigur doriți să ștergeți fișierele jurnal selectate? Această acțiune nu poate fi anulată.',
         ],
-
         'entry' => [
             'detail' => 'Detalii intrare',
             'line' => 'Linie',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Copiat!',
         ],
     ],
-
 ];

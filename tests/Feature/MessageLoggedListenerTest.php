@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+use FinityLabs\FinSentinel\Contracts\AiErrorAnalyzerContract;
 use FinityLabs\FinSentinel\FinSentinelServiceProvider;
 use FinityLabs\FinSentinel\Listeners\MessageLoggedListener;
 use FinityLabs\FinSentinel\Mail\ErrorMail;
 use FinityLabs\FinSentinel\Settings\ErrorChannelSettings;
+use FinityLabs\FinSentinel\Support\AiSuggestionResult;
+use FinityLabs\FinSentinel\Support\AiSuggestionState;
+use FinityLabs\FinSentinel\Support\ScrubbedErrorPayload;
 use Illuminate\Log\Events\MessageLogged;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
@@ -29,6 +33,10 @@ beforeEach(function () {
 
     // Clear throttle cache
     Cache::flush();
+
+    app()->forgetInstance('fin-sentinel.ai-available');
+    app()->forgetInstance('fin-sentinel.manager');
+    app()->forgetInstance(AiErrorAnalyzerContract::class);
 });
 
 it('sends ErrorMail when error-level log has exception context', function () {
@@ -153,4 +161,78 @@ it('does not throttle plain log messages when error_throttle_log_messages is off
     $listener->handle($event);
 
     Mail::assertSentCount(2);
+});
+
+it('passes the AI result into ErrorMail when AI is available', function () {
+    Mail::fake();
+
+    app()->instance('fin-sentinel.ai-available', true);
+    app()->forgetInstance('fin-sentinel.manager');
+
+    app()->instance(AiErrorAnalyzerContract::class, new class implements AiErrorAnalyzerContract
+    {
+        public function analyze(ScrubbedErrorPayload $payload): AiSuggestionResult
+        {
+            return AiSuggestionResult::success('fake suggestion body');
+        }
+    });
+
+    $listener = app(MessageLoggedListener::class);
+    $event = new MessageLogged('error', 'boom', ['exception' => new RuntimeException('boom')]);
+
+    $listener->handle($event);
+
+    Mail::assertSent(ErrorMail::class, function (ErrorMail $mail) {
+        return $mail->aiSuggestion?->state === AiSuggestionState::SUCCESS
+            && $mail->aiSuggestion?->suggestion === 'fake suggestion body';
+    });
+});
+
+it('passes null AI result into ErrorMail when AI is unavailable and never invokes the analyzer', function () {
+    Mail::fake();
+
+    app()->instance('fin-sentinel.ai-available', false);
+    app()->forgetInstance('fin-sentinel.manager');
+
+    app()->instance(AiErrorAnalyzerContract::class, new class implements AiErrorAnalyzerContract
+    {
+        public function analyze(ScrubbedErrorPayload $payload): AiSuggestionResult
+        {
+            throw new LogicException('analyzer should not be called when SDK is unavailable');
+        }
+    });
+
+    $listener = app(MessageLoggedListener::class);
+    $event = new MessageLogged('error', 'boom', ['exception' => new RuntimeException('boom')]);
+
+    $listener->handle($event);
+
+    Mail::assertSent(ErrorMail::class, function (ErrorMail $mail) {
+        return $mail->aiSuggestion === null;
+    });
+});
+
+it('sends the email even if AI prep throws', function () {
+    Mail::fake();
+
+    app()->instance('fin-sentinel.ai-available', true);
+    app()->forgetInstance('fin-sentinel.manager');
+
+    app()->instance(AiErrorAnalyzerContract::class, new class implements AiErrorAnalyzerContract
+    {
+        public function analyze(ScrubbedErrorPayload $payload): AiSuggestionResult
+        {
+            throw new RuntimeException('simulated AI prep failure');
+        }
+    });
+
+    $listener = app(MessageLoggedListener::class);
+    $event = new MessageLogged('error', 'boom', ['exception' => new RuntimeException('boom')]);
+
+    $listener->handle($event);
+
+    Mail::assertSent(ErrorMail::class, function (ErrorMail $mail) {
+        return $mail->aiSuggestion === null;
+    });
+    Mail::assertSentCount(1);
 });

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Nastavení',
         'error_channel' => 'Kanál chyb',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Soubory logů',
         'log_entries' => 'Záznamy logů',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Oznámení o chybě',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Soubor logu',
         ],
         'footer' => 'Odesláno pomocí Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Chybová zpráva',
             'class' => 'Třída',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Umístění',
             'trace_call' => 'Volání',
         ],
-
         'collection' => [
             'count' => ':count položka|:count položek',
             'more' => '... a dalších :count položek',
         ],
-
         'error' => [
             'subject' => ':app - Došlo k chybě',
             'guest' => 'Host',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Přihlášený uživatel',
             'section_environment' => 'Prostředí',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Host',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Kontext požadavku',
             'section_environment' => 'Prostředí',
         ],
-
         'log_file' => [
             'subject' => ':app - Soubor logu: :file',
             'bulk_subject' => ':app - :count souborů logů v příloze',
             'body' => 'Soubor logu <strong>:file</strong> z :app je v příloze.',
             'body_text' => 'Soubor logu :file z :app je v příloze.',
         ],
+        'ai' => [
+            'heading' => 'Návrh AI',
+            'footnote_prefix' => 'přes',
+            'disclaimer' => 'Vygenerováno AI. Před použitím ověřte.',
+            'cached_badge' => 'z cache',
+            'failed_prefix' => 'Analýza AI selhala',
+            'skipped_prefix' => 'Analýza AI přeskočena',
+            'reason' => [
+                'timeout' => 'vypršel časový limit',
+                'authentication_failed' => 'autentizace selhala',
+                'rate_limited' => 'omezená frekvence',
+                'quota_exceeded' => 'překročena kvóta',
+                'unknown_error' => 'neznámá chyba',
+                'output_rejected_matched_injection_marker' => 'výstup zamítnut (značka injekce)',
+                'hourly_cap_reached' => 'dosažen hodinový limit',
+                'circuit_open' => 'okruh otevřen',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Příjemci',
         'throttling' => 'Omezování',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Nejsou nastaveni žádní příjemci — oznámení nebudou odesílána, dokud nebude přidána alespoň jedna emailová adresa.',
         'throttle_rate' => 'Frekvence omezení',
         'minutes_suffix' => 'minut',
-
         'error' => [
             'enabled' => 'Zapnout oznámení o chybách',
             'enabled_helper' => 'Při vypnutí nebudou odesílány žádné chybové e-maily.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Vyberte výjimku',
             'add_exception' => 'Přidat výjimku',
         ],
-
         'debug' => [
             'enabled' => 'Zapnout Debug kanál',
             'enabled_helper' => 'Při vypnutí budou volání Sentinel::debug() tiše ignorována.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Při vypnutí každé debug volání odešle e-mail. Při zapnutí jsou duplicitní volání omezena.',
             'throttle_helper' => 'Minimální doba v minutách mezi duplicitními Debug e-maily.',
         ],
-
         'test_email' => [
             'send' => 'Odeslat testovací e-mail',
             'sent' => 'Testovací e-mail odeslán :count příjemcům',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Odeslání testovacího e-mailu se nezdařilo',
             'channel_disabled' => 'Tento kanál je momentálně vypnutý. Testovací e-mail bude přesto odeslán.',
         ],
+        'ai' => [
+            'test_connection' => 'Otestovat',
+            'test_connection_success' => 'Spojení s AI funguje.',
+            'test_connection_failed' => 'Spojení s AI selhalo.',
+            'test_connection_missing' => 'Pro otestování spojení jsou vyžadováni poskytovatel, model a klíč API.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) není nainstalován.',
+            'section' => 'AI analýza',
+            'section_helper' => 'Použijte LLM k navržení pravděpodobných příčin zachycených výjimek.',
+            'no_providers' => 'Nebyli detekováni žádní AI poskytovatelé. Zkontrolujte instalaci laravel/ai.',
+            'enabled' => 'Povolit AI analýzu chyb',
+            'enabled_helper' => 'Pokud je povoleno, chybové e-maily obsahují sekci s návrhem generovaným AI.',
+            'provider' => 'Poskytovatel',
+            'model' => 'Model',
+            'model_placeholder' => 'Nejprve vyberte poskytovatele',
+            'api_key' => 'API klíč',
+            'api_key_set' => 'Klíč nastaven — ponechte prázdné pro zachování stávajícího',
+            'api_key_enter' => 'Zadejte API klíč pro vybraného poskytovatele',
+            'timeout' => 'Časový limit',
+            'timeout_helper' => 'Maximální počet sekund čekání na AI odpověď (1-10).',
+            'max_tokens' => 'Maximum výstupních tokenů',
+            'hourly_cap' => 'Limit za hodinu',
+            'hourly_cap_helper' => 'Maximum AI volání za hodinu. Nastavte 0 pro vypnutí limitu.',
+            'cache_ttl' => 'TTL mezipaměti',
+            'cache_ttl_helper' => 'Minuty pro mezipaměť úspěšných AI návrhů před opětovným dotazem. Rozsah: 5–1440 minut (≥ throttle okno doporučeno; výchozí 60 minut).',
+            'strict_scrubbing' => 'Striktní čištění',
+            'strict_scrubbing_helper' => 'Pokud je povoleno, AI prompt obsahuje pouze třídu výjimky, první řádek zprávy a file:line — žádný stack trace.',
+            'prompt_template' => 'Šablona promptu',
+            'prompt_template_helper' => 'Šablona odesílaná poskytovateli AI. Zástupný symbol {{error}} je nahrazen vyčištěnými detaily výjimky. Upravujte opatrně — odstranění {{error}} blokuje uložení.',
+            'prompt_template_placeholder' => 'Jste zkušený Laravel inženýr. Analyzujte: {{error}}',
+            'template_missing_token' => 'Šablona promptu musí obsahovat zástupný symbol {{error}}.',
+            'prompt_template_default' => 'Použít výchozí šablonu',
+            'usage_section' => 'Použití',
+            'usage_last_call_label' => 'Poslední volání',
+            'usage_month_label' => 'Tento měsíc',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokenů',
+            'test_email' => [
+                'ai_success' => 'AI: úspěch.',
+                'ai_cached' => 'AI: z mezipaměti.',
+                'ai_failed' => 'AI: selhání (:reason).',
+                'ai_skipped' => 'AI: přeskočeno (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Systémové logy',
         'heading' => 'Soubory logů',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Odeslat tento soubor logu jako přílohu e-mailu určenému příjemci.',
         'bulk_email_description' => 'Odeslat vybrané soubory logů jako jednotlivé přílohy e-mailu určenému příjemci.',
         'bulk_email_files' => 'Vybrané soubory',
-
         'filter' => [
             'date_from' => 'Od',
             'date_to' => 'Do',
         ],
-
         'column' => [
             'filename' => 'Název souboru',
             'size' => 'Velikost',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Časové razítko',
             'message' => 'Zpráva',
         ],
-
         'action' => [
             'refresh' => 'Obnovit',
             'view' => 'Zobrazit',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Soubor logu smazán',
             'bulk_deleted' => ':count souborů logů smazáno',
         ],
-
         'confirm' => [
             'delete' => 'Opravdu chcete smazat tento soubor logu? Tuto akci nelze vrátit zpět.',
             'bulk_delete' => 'Opravdu chcete smazat vybrané soubory logů? Tuto akci nelze vrátit zpět.',
         ],
-
         'entry' => [
             'detail' => 'Detail záznamu',
             'line' => 'Řádek',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Zkopírováno!',
         ],
     ],
-
 ];

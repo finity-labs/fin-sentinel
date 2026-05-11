@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Configurações',
         'error_channel' => 'Canal de erros',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Arquivos de log',
         'log_entries' => 'Entradas de log',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Notificação de erro',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Arquivo de log',
         ],
         'footer' => 'Enviado por Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Mensagem de erro',
             'class' => 'Classe',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Localização',
             'trace_call' => 'Chamada',
         ],
-
         'collection' => [
             'count' => ':count item|:count itens',
             'more' => '... e mais :count itens',
         ],
-
         'error' => [
             'subject' => ':app - Ocorreu um erro',
             'guest' => 'Visitante',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Usuário autenticado',
             'section_environment' => 'Ambiente',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Visitante',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Contexto da requisição',
             'section_environment' => 'Ambiente',
         ],
-
         'log_file' => [
             'subject' => ':app - Arquivo de log: :file',
             'bulk_subject' => ':app - :count arquivos de log anexados',
             'body' => 'O arquivo de log <strong>:file</strong> do :app está em anexo.',
             'body_text' => 'O arquivo de log :file do :app está em anexo.',
         ],
+        'ai' => [
+            'heading' => 'Sugestão da IA',
+            'footnote_prefix' => 'via',
+            'disclaimer' => 'Gerado por IA. Verifique antes de agir.',
+            'cached_badge' => 'em cache',
+            'failed_prefix' => 'Análise de IA falhou',
+            'skipped_prefix' => 'Análise de IA ignorada',
+            'reason' => [
+                'timeout' => 'tempo esgotado',
+                'authentication_failed' => 'falha na autenticação',
+                'rate_limited' => 'taxa limitada',
+                'quota_exceeded' => 'cota excedida',
+                'unknown_error' => 'erro desconhecido',
+                'output_rejected_matched_injection_marker' => 'saída rejeitada (marcador de injeção)',
+                'hourly_cap_reached' => 'limite por hora atingido',
+                'circuit_open' => 'circuito aberto',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Destinatários',
         'throttling' => 'Limitação',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Nenhum destinatário configurado — as notificações não serão enviadas até que pelo menos um endereço de e-mail seja adicionado.',
         'throttle_rate' => 'Taxa de limitação',
         'minutes_suffix' => 'minutos',
-
         'error' => [
             'enabled' => 'Ativar notificações de erro',
             'enabled_helper' => 'Quando desativado, nenhum e-mail de erro será enviado.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Selecionar exceção',
             'add_exception' => 'Adicionar exceção',
         ],
-
         'debug' => [
             'enabled' => 'Ativar canal Debug',
             'enabled_helper' => 'Quando desativado, as chamadas a Sentinel::debug() serão silenciosamente ignoradas.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Quando desativado, cada chamada Debug envia um e-mail. Quando ativado, chamadas duplicadas são limitadas.',
             'throttle_helper' => 'Minutos mínimos entre e-mails Debug duplicados.',
         ],
-
         'test_email' => [
             'send' => 'Enviar e-mail de teste',
             'sent' => 'E-mail de teste enviado para :count destinatário(s)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Falha ao enviar e-mail de teste',
             'channel_disabled' => 'Este canal está atualmente desativado. O e-mail de teste será enviado mesmo assim.',
         ],
+        'ai' => [
+            'test_connection' => 'Testar',
+            'test_connection_success' => 'A conexão de IA funciona.',
+            'test_connection_failed' => 'Falha na conexão de IA.',
+            'test_connection_missing' => 'Fornecedor, modelo e chave da API são obrigatórios para testar a conexão.',
+            'test_connection_no_sdk' => 'O SDK de IA (laravel/ai) não está instalado.',
+            'section' => 'Análise por IA',
+            'section_helper' => 'Use um LLM para sugerir causas prováveis para exceções capturadas.',
+            'no_providers' => 'Nenhum provedor de IA detectado. Verifique sua instalação do laravel/ai.',
+            'enabled' => 'Ativar análise de erros por IA',
+            'enabled_helper' => 'Quando ativado, os e-mails de erro incluem uma seção de sugestão gerada por IA.',
+            'provider' => 'Provedor',
+            'model' => 'Modelo',
+            'model_placeholder' => 'Selecione primeiro um provedor',
+            'api_key' => 'Chave API',
+            'api_key_set' => 'Chave definida — deixe em branco para manter a chave existente',
+            'api_key_enter' => 'Insira a chave API para o provedor selecionado',
+            'timeout' => 'Tempo limite',
+            'timeout_helper' => 'Segundos máximos de espera pela resposta da IA (1-10).',
+            'max_tokens' => 'Tokens de saída máx.',
+            'hourly_cap' => 'Limite por hora',
+            'hourly_cap_helper' => 'Máximo de chamadas de IA por hora. Defina 0 para desativar o limite.',
+            'cache_ttl' => 'TTL do cache',
+            'cache_ttl_helper' => 'Minutos para armazenar em cache sugestões de IA bem-sucedidas antes de nova consulta. Intervalo: 5–1440 minutos (≥ janela de throttle recomendado; padrão 60 minutos).',
+            'strict_scrubbing' => 'Limpeza estrita',
+            'strict_scrubbing_helper' => 'Quando ativado, o prompt da IA contém apenas a classe da exceção, a primeira linha da mensagem e file:line — sem stack trace.',
+            'prompt_template' => 'Modelo de prompt',
+            'prompt_template_helper' => 'Modelo enviado ao provedor de IA. O marcador {{error}} é substituído pelos detalhes limpos da exceção. Edite com cuidado — remover {{error}} bloqueia o salvamento.',
+            'prompt_template_placeholder' => 'Você é um engenheiro Laravel sênior. Analise: {{error}}',
+            'template_missing_token' => 'O modelo de prompt deve conter o marcador {{error}}.',
+            'prompt_template_default' => 'Usar modelo padrão',
+            'usage_section' => 'Uso',
+            'usage_last_call_label' => 'Última chamada',
+            'usage_month_label' => 'Este mês',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokens',
+            'test_email' => [
+                'ai_success' => 'IA: sucesso.',
+                'ai_cached' => 'IA: do cache.',
+                'ai_failed' => 'IA: falhou (:reason).',
+                'ai_skipped' => 'IA: pulado (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Logs do sistema',
         'heading' => 'Arquivos de log',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Enviar este arquivo de log como anexo de e-mail para o destinatário especificado.',
         'bulk_email_description' => 'Enviar os arquivos de log selecionados como anexos individuais para o destinatário especificado.',
         'bulk_email_files' => 'Arquivos selecionados',
-
         'filter' => [
             'date_from' => 'De',
             'date_to' => 'Até',
         ],
-
         'column' => [
             'filename' => 'Nome do arquivo',
             'size' => 'Tamanho',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Data e hora',
             'message' => 'Mensagem',
         ],
-
         'action' => [
             'refresh' => 'Atualizar',
             'view' => 'Visualizar',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Arquivo de log excluído',
             'bulk_deleted' => ':count arquivo(s) de log excluído(s)',
         ],
-
         'confirm' => [
             'delete' => 'Tem certeza de que deseja excluir este arquivo de log? Esta ação não pode ser desfeita.',
             'bulk_delete' => 'Tem certeza de que deseja excluir os arquivos de log selecionados? Esta ação não pode ser desfeita.',
         ],
-
         'entry' => [
             'detail' => 'Detalhe da entrada',
             'line' => 'Linha',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Copiado!',
         ],
     ],
-
 ];

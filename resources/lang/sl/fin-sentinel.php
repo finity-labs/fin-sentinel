@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Nastavitve',
         'error_channel' => 'Kanal napak',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Dnevniške datoteke',
         'log_entries' => 'Dnevniški zapisi',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Obvestilo o napaki',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Dnevniška datoteka',
         ],
         'footer' => 'Poslano prek Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Sporočilo o napaki',
             'class' => 'Razred',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Lokacija',
             'trace_call' => 'Klic',
         ],
-
         'collection' => [
             'count' => ':count element|:count elementov',
             'more' => '... in še :count elementov',
         ],
-
         'error' => [
             'subject' => ':app - Prišlo je do napake',
             'guest' => 'Gost',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Prijavljen uporabnik',
             'section_environment' => 'Okolje',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Gost',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Kontekst zahteve',
             'section_environment' => 'Okolje',
         ],
-
         'log_file' => [
             'subject' => ':app - Dnevniška datoteka: :file',
             'bulk_subject' => ':app - :count dnevniških datotek v priponki',
             'body' => 'Dnevniška datoteka <strong>:file</strong> iz :app je v priponki.',
             'body_text' => 'Dnevniška datoteka :file iz :app je v priponki.',
         ],
+        'ai' => [
+            'heading' => 'Predlog UI',
+            'footnote_prefix' => 'preko',
+            'disclaimer' => 'Generirano z UI. Pred uporabo preverite.',
+            'cached_badge' => 'iz predpomnilnika',
+            'failed_prefix' => 'Analiza UI ni uspela',
+            'skipped_prefix' => 'Analiza UI preskočena',
+            'reason' => [
+                'timeout' => 'čas potekel',
+                'authentication_failed' => 'overjanje ni uspelo',
+                'rate_limited' => 'hitrost omejena',
+                'quota_exceeded' => 'kvota presežena',
+                'unknown_error' => 'neznana napaka',
+                'output_rejected_matched_injection_marker' => 'izhod zavrnjen (oznaka injekcije)',
+                'hourly_cap_reached' => 'urna omejitev dosežena',
+                'circuit_open' => 'tokokrog odprt',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Prejemniki',
         'throttling' => 'Omejevanje',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Ni nastavljenih prejemnikov — obvestila ne bodo poslana, dokler ni dodan vsaj en e-poštni naslov.',
         'throttle_rate' => 'Pogostost omejevanja',
         'minutes_suffix' => 'minut',
-
         'error' => [
             'enabled' => 'Vključi obvestila o napakah',
             'enabled_helper' => 'Ko je izključeno, e-poštna sporočila o napakah ne bodo poslana.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Izberite izjemo',
             'add_exception' => 'Dodaj izjemo',
         ],
-
         'debug' => [
             'enabled' => 'Vključi Debug kanal',
             'enabled_helper' => 'Ko je izključeno, bodo klici Sentinel::debug() tiho prezrti.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Ko je izključeno, vsak debug klic pošlje e-pošto. Ko je vključeno, so podvojeni klici omejeni.',
             'throttle_helper' => 'Najmanjše število minut med podvojenimi Debug e-poštnimi sporočili.',
         ],
-
         'test_email' => [
             'send' => 'Pošlji testno e-pošto',
             'sent' => 'Testna e-pošta poslana :count prejemniku(-om)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Pošiljanje testne e-pošte ni uspelo',
             'channel_disabled' => 'Ta kanal je trenutno izključen. Testna e-pošta bo kljub temu poslana.',
         ],
+        'ai' => [
+            'test_connection' => 'Testiraj',
+            'test_connection_success' => 'AI povezava deluje.',
+            'test_connection_failed' => 'AI povezava ni uspela.',
+            'test_connection_missing' => 'Za testiranje povezave so potrebni ponudnik, model in API ključ.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) ni nameščen.',
+            'section' => 'Analiza UI',
+            'section_helper' => 'Uporabite LLM za predlaganje verjetnih vzrokov ujetih izjem.',
+            'no_providers' => 'Ni zaznanih ponudnikov UI. Preverite namestitev laravel/ai.',
+            'enabled' => 'Omogoči analizo napak z UI',
+            'enabled_helper' => 'Ko je omogočeno, e-poštna sporočila o napakah vsebujejo razdelek s predlogom, ki ga ustvari UI.',
+            'provider' => 'Ponudnik',
+            'model' => 'Model',
+            'model_placeholder' => 'Najprej izberite ponudnika',
+            'api_key' => 'API ključ',
+            'api_key_set' => 'Ključ nastavljen — pustite prazno za ohranitev obstoječega ključa',
+            'api_key_enter' => 'Vnesite API ključ za izbranega ponudnika',
+            'timeout' => 'Časovna omejitev',
+            'timeout_helper' => 'Največje število sekund čakanja na odziv UI (1-10).',
+            'max_tokens' => 'Maks. izhodnih žetonov',
+            'hourly_cap' => 'Omejitev na uro',
+            'hourly_cap_helper' => 'Maks. klicev UI na uro. Nastavite 0 za onemogočenje omejitve.',
+            'cache_ttl' => 'TTL predpomnilnika',
+            'cache_ttl_helper' => 'Minute za predpomnenje uspešnih predlogov UI pred ponovno poizvedbo. Razpon: 5–1440 minut (≥ okno omejevanja priporočeno; privzeto 60 minut).',
+            'strict_scrubbing' => 'Strogo čiščenje',
+            'strict_scrubbing_helper' => 'Ko je omogočeno, prompt UI vsebuje samo razred izjeme, prvo vrstico sporočila in file:line — brez sledi sklada.',
+            'prompt_template' => 'Predloga prompta',
+            'prompt_template_helper' => 'Predloga, poslana ponudniku UI. Ograda {{error}} se nadomesti s počiščenimi podrobnostmi izjeme. Urejajte previdno — odstranitev {{error}} blokira shranjevanje.',
+            'prompt_template_placeholder' => 'Ste višji inženir Laravel. Analizirajte: {{error}}',
+            'template_missing_token' => 'Predloga prompta mora vsebovati ogrado {{error}}.',
+            'prompt_template_default' => 'Uporabi privzeto predlogo',
+            'usage_section' => 'Uporaba',
+            'usage_last_call_label' => 'Zadnji klic',
+            'usage_month_label' => 'Ta mesec',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'žetoni',
+            'test_email' => [
+                'ai_success' => 'UI: uspeh.',
+                'ai_cached' => 'UI: iz predpomnilnika.',
+                'ai_failed' => 'UI: neuspeh (:reason).',
+                'ai_skipped' => 'UI: preskočeno (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Sistemski dnevniki',
         'heading' => 'Dnevniške datoteke',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Pošljite to dnevniško datoteko kot priponko e-pošte navedenemu prejemniku.',
         'bulk_email_description' => 'Pošljite izbrane dnevniške datoteke kot posamezne priponke e-pošte navedenemu prejemniku.',
         'bulk_email_files' => 'Izbrane datoteke',
-
         'filter' => [
             'date_from' => 'Od',
             'date_to' => 'Do',
         ],
-
         'column' => [
             'filename' => 'Ime datoteke',
             'size' => 'Velikost',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Časovni žig',
             'message' => 'Sporočilo',
         ],
-
         'action' => [
             'refresh' => 'Osveži',
             'view' => 'Ogled',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Dnevniška datoteka izbrisana',
             'bulk_deleted' => ':count dnevniških datotek izbrisanih',
         ],
-
         'confirm' => [
             'delete' => 'Ali ste prepričani, da želite izbrisati to dnevniško datoteko? Tega dejanja ni mogoče razveljaviti.',
             'bulk_delete' => 'Ali ste prepričani, da želite izbrisati izbrane dnevniške datoteke? Tega dejanja ni mogoče razveljaviti.',
         ],
-
         'entry' => [
             'detail' => 'Podrobnosti zapisa',
             'line' => 'Vrstica',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopirano!',
         ],
     ],
-
 ];

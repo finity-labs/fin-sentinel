@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Asetukset',
         'error_channel' => 'Virheilmoitukset',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Lokitiedostot',
         'log_entries' => 'Lokimerkinnät',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Virheilmoitus',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Lokitiedosto',
         ],
         'footer' => 'Lähettäjä Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Virheilmoitus',
             'class' => 'Luokka',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Sijainti',
             'trace_call' => 'Kutsu',
         ],
-
         'collection' => [
             'count' => ':count kohde|:count kohdetta',
             'more' => '... ja :count kohdetta lisää',
         ],
-
         'error' => [
             'subject' => ':app - Virhe havaittu',
             'guest' => 'Vieras',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Kirjautunut käyttäjä',
             'section_environment' => 'Ympäristö',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Vieras',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Pyyntökonteksti',
             'section_environment' => 'Ympäristö',
         ],
-
         'log_file' => [
             'subject' => ':app - Lokitiedosto: :file',
             'bulk_subject' => ':app - :count lokitiedostoa liitteenä',
             'body' => 'Lokitiedosto <strong>:file</strong> sovelluksesta :app on liitteenä.',
             'body_text' => 'Lokitiedosto :file sovelluksesta :app on liitteenä.',
         ],
+        'ai' => [
+            'heading' => 'Tekoälyehdotus',
+            'footnote_prefix' => 'lähde',
+            'disclaimer' => 'Tekoälyn luoma. Tarkista ennen toimimista.',
+            'cached_badge' => 'välimuistissa',
+            'failed_prefix' => 'Tekoälyanalyysi epäonnistui',
+            'skipped_prefix' => 'Tekoälyanalyysi ohitettiin',
+            'reason' => [
+                'timeout' => 'aikakatkaisu',
+                'authentication_failed' => 'todennus epäonnistui',
+                'rate_limited' => 'pyyntötaajuus rajoitettu',
+                'quota_exceeded' => 'kiintiö ylitetty',
+                'unknown_error' => 'tuntematon virhe',
+                'output_rejected_matched_injection_marker' => 'tuloste hylätty (injektiomerkki)',
+                'hourly_cap_reached' => 'tuntirajaan päästy',
+                'circuit_open' => 'piiri auki',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Vastaanottajat',
         'throttling' => 'Rajoitus',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Vastaanottajia ei ole määritetty — ilmoituksia ei lähetetä ennen kuin vähintään yksi sähköpostiosoite on lisätty.',
         'throttle_rate' => 'Rajoitusnopeus',
         'minutes_suffix' => 'minuuttia',
-
         'error' => [
             'enabled' => 'Ota virheilmoitukset käyttöön',
             'enabled_helper' => 'Kun pois käytöstä, virhesähköposteja ei lähetetä.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Valitse poikkeus',
             'add_exception' => 'Lisää poikkeus',
         ],
-
         'debug' => [
             'enabled' => 'Ota debug-kanava käyttöön',
             'enabled_helper' => 'Kun pois käytöstä, Sentinel::debug()-kutsut ohitetaan hiljaisesti.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Kun pois käytöstä, jokainen debug-kutsu lähettää sähköpostin. Kun käytössä, toistuvat kutsut rajoitetaan.',
             'throttle_helper' => 'Vähimmäisaika minuutteina samojen debug-sähköpostien välillä.',
         ],
-
         'test_email' => [
             'send' => 'Lähetä testisähköposti',
             'sent' => 'Testisähköposti lähetetty :count vastaanottajalle',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Testisähköpostin lähetys epäonnistui',
             'channel_disabled' => 'Tämä kanava on tällä hetkellä pois käytöstä. Testisähköposti lähetetään silti.',
         ],
+        'ai' => [
+            'test_connection' => 'Testaa',
+            'test_connection_success' => 'Tekoälyn yhteys toimii.',
+            'test_connection_failed' => 'Tekoälyn yhteys epäonnistui.',
+            'test_connection_missing' => 'Yhteyden testaamiseen tarvitaan palveluntarjoaja, malli ja API-avain.',
+            'test_connection_no_sdk' => 'Tekoälyn SDK (laravel/ai) ei ole asennettu.',
+            'section' => 'Tekoälyanalyysi',
+            'section_helper' => 'Käytä LLM:ää ehdottamaan todennäköisiä syitä napatuille poikkeuksille.',
+            'no_providers' => 'Tekoälyntarjoajia ei löytynyt. Tarkista laravel/ai-asennuksesi.',
+            'enabled' => 'Ota tekoälyn virheanalyysi käyttöön',
+            'enabled_helper' => 'Kun käytössä, virheviestit sisältävät tekoälyn luoman ehdotusosion.',
+            'provider' => 'Tarjoaja',
+            'model' => 'Malli',
+            'model_placeholder' => 'Valitse ensin tarjoaja',
+            'api_key' => 'API-avain',
+            'api_key_set' => 'Avain asetettu — jätä tyhjäksi säilyttääksesi nykyisen avaimen',
+            'api_key_enter' => 'Syötä API-avain valitulle tarjoajalle',
+            'timeout' => 'Aikakatkaisu',
+            'timeout_helper' => 'Maksimisekunnit tekoälyn vastausta odottaessa (1-10).',
+            'max_tokens' => 'Tulostokenien maksimi',
+            'hourly_cap' => 'Tuntiraja',
+            'hourly_cap_helper' => 'Tekoälykutsujen maksimi tunnissa. Aseta 0 poistaaksesi rajan käytöstä.',
+            'cache_ttl' => 'Välimuistin TTL',
+            'cache_ttl_helper' => 'Minuutit onnistuneiden tekoälyehdotusten välimuistitukseen ennen uutta kyselyä. Alue: 5–1440 minuuttia (≥ kuristusikkuna suositellaan; oletus 60 minuuttia).',
+            'strict_scrubbing' => 'Tiukka puhdistus',
+            'strict_scrubbing_helper' => 'Kun käytössä, tekoälykehote sisältää vain poikkeusluokan, viestin ensimmäisen rivin ja file:line — ei pinojälkeä.',
+            'prompt_template' => 'Kehotemalli',
+            'prompt_template_helper' => 'Tekoälyntarjoajalle lähetettävä malli. {{error}}-paikkamerkki korvataan puhdistetuilla poikkeustiedoilla. Muokkaa varovasti — {{error}}:n poistaminen estää tallentamisen.',
+            'prompt_template_placeholder' => 'Olet vanhempi Laravel-insinööri. Analysoi: {{error}}',
+            'template_missing_token' => 'Kehotemallin täytyy sisältää {{error}}-paikkamerkki.',
+            'prompt_template_default' => 'Käytä oletusmallia',
+            'usage_section' => 'Käyttö',
+            'usage_last_call_label' => 'Viimeisin kutsu',
+            'usage_month_label' => 'Tässä kuussa',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokenia',
+            'test_email' => [
+                'ai_success' => 'Tekoäly: onnistui.',
+                'ai_cached' => 'Tekoäly: välimuistista.',
+                'ai_failed' => 'Tekoäly: epäonnistui (:reason).',
+                'ai_skipped' => 'Tekoäly: ohitettu (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Järjestelmälokit',
         'heading' => 'Lokitiedostot',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Lähetä tämä lokitiedosto sähköpostin liitteenä määritetylle vastaanottajalle.',
         'bulk_email_description' => 'Lähetä valitut lokitiedostot yksittäisinä sähköpostiliitteinä määritetylle vastaanottajalle.',
         'bulk_email_files' => 'Valitut tiedostot',
-
         'filter' => [
             'date_from' => 'Alkaen',
             'date_to' => 'Päättyen',
         ],
-
         'column' => [
             'filename' => 'Tiedostonimi',
             'size' => 'Koko',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Aikaleima',
             'message' => 'Viesti',
         ],
-
         'action' => [
             'refresh' => 'Päivitä',
             'view' => 'Näytä',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Lokitiedosto poistettu',
             'bulk_deleted' => ':count lokitiedostoa poistettu',
         ],
-
         'confirm' => [
             'delete' => 'Haluatko varmasti poistaa tämän lokitiedoston? Tätä toimintoa ei voi perua.',
             'bulk_delete' => 'Haluatko varmasti poistaa valitut lokitiedostot? Tätä toimintoa ei voi perua.',
         ],
-
         'entry' => [
             'detail' => 'Merkinnän tiedot',
             'line' => 'Rivi',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopioitu!',
         ],
     ],
-
 ];

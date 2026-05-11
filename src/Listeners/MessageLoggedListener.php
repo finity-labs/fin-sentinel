@@ -4,9 +4,16 @@ declare(strict_types=1);
 
 namespace FinityLabs\FinSentinel\Listeners;
 
+use FinityLabs\FinSentinel\Contracts\AiErrorAnalyzerContract;
+use FinityLabs\FinSentinel\Facades\FinSentinel;
 use FinityLabs\FinSentinel\FinSentinelServiceProvider;
 use FinityLabs\FinSentinel\Mail\ErrorMail;
+use FinityLabs\FinSentinel\Services\DataScrubber;
 use FinityLabs\FinSentinel\Settings\ErrorChannelSettings;
+use FinityLabs\FinSentinel\Support\Ai\AiOutputValidator;
+use FinityLabs\FinSentinel\Support\AiSuggestionResult;
+use FinityLabs\FinSentinel\Support\AiSuggestionState;
+use FinityLabs\FinSentinel\Support\ScrubbedErrorPayload;
 use Illuminate\Log\Events\MessageLogged;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
@@ -38,8 +45,31 @@ class MessageLoggedListener
         }
 
         FinSentinelServiceProvider::guardedHandle(function () use ($event, $exception) {
+            $aiSuggestion = null;
+
+            if (FinSentinel::aiAvailable() && $exception instanceof \Throwable) {
+                try {
+                    $payload = ScrubbedErrorPayload::fromException(
+                        $exception,
+                        app(DataScrubber::class),
+                        strict: $this->settings->ai_strict_scrubbing,
+                    );
+                    $aiSuggestion = app(AiErrorAnalyzerContract::class)->analyze($payload);
+
+                    if (
+                        $aiSuggestion->state === AiSuggestionState::SUCCESS
+                        && $aiSuggestion->suggestion !== null
+                        && ! app(AiOutputValidator::class)->validate($aiSuggestion->suggestion)
+                    ) {
+                        $aiSuggestion = AiSuggestionResult::failed('output rejected: matched injection marker');
+                    }
+                } catch (\Throwable) {
+                    $aiSuggestion = null;
+                }
+            }
+
             Mail::to($this->settings->error_recipients)
-                ->send(new ErrorMail($event->message, $exception));
+                ->send(new ErrorMail($event->message, $exception, $aiSuggestion));
         });
     }
 
@@ -71,7 +101,7 @@ class MessageLoggedListener
         }
 
         $key = $exception instanceof \Throwable
-            ? 'fin-sentinel:throttle:'.md5($exception::class.$exception->getMessage().$exception->getFile().':'.$exception->getLine())
+            ? 'fin-sentinel:throttle:'.self::hashException($exception)
             : 'fin-sentinel:throttle:'.md5('log_error'.$event->message);
 
         if (Cache::has($key)) {
@@ -81,5 +111,20 @@ class MessageLoggedListener
         Cache::put($key, true, now()->addMinutes($this->settings->error_throttle_minutes));
 
         return false;
+    }
+
+    public static function hashException(\Throwable $exception): string
+    {
+        return self::hashExceptionParts(
+            $exception::class,
+            $exception->getMessage(),
+            $exception->getFile(),
+            $exception->getLine(),
+        );
+    }
+
+    public static function hashExceptionParts(string $class, string $message, string $file, int $line): string
+    {
+        return md5($class.$message.$file.':'.$line);
     }
 }

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'การตั้งค่า',
         'error_channel' => 'ช่องทางข้อผิดพลาด',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'ไฟล์บันทึก',
         'log_entries' => 'รายการบันทึก',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'การแจ้งเตือนข้อผิดพลาด',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'ไฟล์บันทึก',
         ],
         'footer' => 'ส่งโดย Fin-Sentinel',
-
         'label' => [
             'error_message' => 'ข้อความผิดพลาด',
             'class' => 'คลาส',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'ตำแหน่ง',
             'trace_call' => 'การเรียก',
         ],
-
         'collection' => [
             'count' => ':count รายการ',
             'more' => '... และอีก :count รายการ',
         ],
-
         'error' => [
             'subject' => ':app - เกิดข้อผิดพลาดขึ้น',
             'guest' => 'ผู้เยี่ยมชม',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'ผู้ใช้ที่ยืนยันตัวตน',
             'section_environment' => 'สภาพแวดล้อม',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'ผู้เยี่ยมชม',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'บริบทคำขอ',
             'section_environment' => 'สภาพแวดล้อม',
         ],
-
         'log_file' => [
             'subject' => ':app - ไฟล์บันทึก: :file',
             'bulk_subject' => ':app - แนบไฟล์บันทึก :count ไฟล์',
             'body' => 'ไฟล์บันทึก <strong>:file</strong> จาก :app ได้แนบมาในอีเมลนี้แล้ว',
             'body_text' => 'ไฟล์บันทึก :file จาก :app ได้แนบมาในอีเมลนี้แล้ว',
         ],
+        'ai' => [
+            'heading' => 'คำแนะนำจาก AI',
+            'footnote_prefix' => 'ผ่าน',
+            'disclaimer' => 'สร้างโดย AI ตรวจสอบก่อนใช้งาน',
+            'cached_badge' => 'แคช',
+            'failed_prefix' => 'การวิเคราะห์ AI ล้มเหลว',
+            'skipped_prefix' => 'ข้ามการวิเคราะห์ AI',
+            'reason' => [
+                'timeout' => 'หมดเวลา',
+                'authentication_failed' => 'การยืนยันตัวตนล้มเหลว',
+                'rate_limited' => 'จำกัดอัตรา',
+                'quota_exceeded' => 'เกินโควตา',
+                'unknown_error' => 'ข้อผิดพลาดที่ไม่รู้จัก',
+                'output_rejected_matched_injection_marker' => 'ผลลัพธ์ถูกปฏิเสธ (เครื่องหมาย injection)',
+                'hourly_cap_reached' => 'ถึงขีดจำกัดต่อชั่วโมง',
+                'circuit_open' => 'เซอร์กิตเปิด',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'ผู้รับ',
         'throttling' => 'การจำกัดความถี่',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'ยังไม่ได้ตั้งค่าผู้รับ - การแจ้งเตือนจะไม่ถูกส่งจนกว่าจะเพิ่มอีเมลอย่างน้อยหนึ่งรายการ',
         'throttle_rate' => 'อัตราการจำกัด',
         'minutes_suffix' => 'นาที',
-
         'error' => [
             'enabled' => 'เปิดใช้งานการแจ้งเตือนข้อผิดพลาด',
             'enabled_helper' => 'เมื่อปิดใช้งาน จะไม่มีการส่งอีเมลข้อผิดพลาด',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'เลือกข้อยกเว้น',
             'add_exception' => 'เพิ่มข้อยกเว้น',
         ],
-
         'debug' => [
             'enabled' => 'เปิดใช้งานช่องทาง Debug',
             'enabled_helper' => 'เมื่อปิดใช้งาน การเรียก Sentinel::debug() จะถูกเพิกเฉย',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'เมื่อปิดใช้งาน ทุกการเรียก Debug จะส่งอีเมล เมื่อเปิดใช้งาน การเรียกที่ซ้ำกันจะถูกจำกัด',
             'throttle_helper' => 'จำนวนนาทีขั้นต่ำระหว่างอีเมล Debug ที่ซ้ำกัน',
         ],
-
         'test_email' => [
             'send' => 'ส่งอีเมลทดสอบ',
             'sent' => 'ส่งอีเมลทดสอบไปยังผู้รับ :count ราย',
@@ -148,8 +154,50 @@ return [
             'failed' => 'ส่งอีเมลทดสอบไม่สำเร็จ',
             'channel_disabled' => 'ช่องทางนี้ถูกปิดใช้งานอยู่ อีเมลทดสอบจะยังคงถูกส่งออกไป',
         ],
+        'ai' => [
+            'test_connection' => 'ทดสอบ',
+            'test_connection_success' => 'การเชื่อมต่อ AI ทำงานปกติ',
+            'test_connection_failed' => 'การเชื่อมต่อ AI ล้มเหลว',
+            'test_connection_missing' => 'ต้องระบุผู้ให้บริการ โมเดล และคีย์ API เพื่อทดสอบการเชื่อมต่อ',
+            'test_connection_no_sdk' => 'ยังไม่ได้ติดตั้ง AI SDK (laravel/ai)',
+            'section' => 'การวิเคราะห์ AI',
+            'section_helper' => 'ใช้ LLM เพื่อแนะนำสาเหตุที่เป็นไปได้ของข้อยกเว้นที่จับได้',
+            'no_providers' => 'ไม่พบผู้ให้บริการ AI ตรวจสอบการติดตั้ง laravel/ai',
+            'enabled' => 'เปิดใช้การวิเคราะห์ข้อผิดพลาด AI',
+            'enabled_helper' => 'เมื่อเปิดใช้ อีเมลข้อผิดพลาดจะมีส่วนคำแนะนำที่สร้างโดย AI',
+            'provider' => 'ผู้ให้บริการ',
+            'model' => 'โมเดล',
+            'model_placeholder' => 'เลือกผู้ให้บริการก่อน',
+            'api_key' => 'คีย์ API',
+            'api_key_set' => 'ตั้งคีย์แล้ว — เว้นว่างไว้เพื่อเก็บคีย์ที่มีอยู่',
+            'api_key_enter' => 'ป้อนคีย์ API สำหรับผู้ให้บริการที่เลือก',
+            'timeout' => 'หมดเวลา',
+            'timeout_helper' => 'จำนวนวินาทีสูงสุดที่รอการตอบสนอง AI (1-10)',
+            'max_tokens' => 'โทเค็นเอาต์พุตสูงสุด',
+            'hourly_cap' => 'ขีดจำกัดต่อชั่วโมง',
+            'hourly_cap_helper' => 'จำนวนการเรียก AI สูงสุดต่อชั่วโมง ตั้งเป็น 0 เพื่อปิดใช้ขีดจำกัด',
+            'cache_ttl' => 'TTL ของแคช',
+            'cache_ttl_helper' => 'นาทีสำหรับแคชคำแนะนำ AI ที่สำเร็จก่อนการสอบถามอีกครั้ง ช่วง: 5–1440 นาที (แนะนำ ≥ หน้าต่างจำกัด; ค่าเริ่มต้น 60 นาที)',
+            'strict_scrubbing' => 'การทำความสะอาดเข้มงวด',
+            'strict_scrubbing_helper' => 'เมื่อเปิดใช้ พรอมป์ AI จะมีเฉพาะคลาสข้อยกเว้น บรรทัดแรกของข้อความ และ file:line — ไม่มี stack trace',
+            'prompt_template' => 'เทมเพลตพรอมป์',
+            'prompt_template_helper' => 'เทมเพลตที่ส่งไปยังผู้ให้บริการ AI ตัวยึดตำแหน่ง {{error}} จะถูกแทนที่ด้วยรายละเอียดข้อยกเว้นที่ทำความสะอาดแล้ว แก้ไขด้วยความระมัดระวัง — การลบ {{error}} จะป้องกันการบันทึก',
+            'prompt_template_placeholder' => 'คุณเป็นวิศวกร Laravel อาวุโส วิเคราะห์: {{error}}',
+            'template_missing_token' => 'เทมเพลตพรอมป์ต้องมีตัวยึดตำแหน่ง {{error}}',
+            'prompt_template_default' => 'ใช้เทมเพลตเริ่มต้น',
+            'usage_section' => 'การใช้งาน',
+            'usage_last_call_label' => 'การเรียกล่าสุด',
+            'usage_month_label' => 'เดือนนี้',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'โทเค็น',
+            'test_email' => [
+                'ai_success' => 'AI: สำเร็จ',
+                'ai_cached' => 'AI: จากแคช',
+                'ai_failed' => 'AI: ล้มเหลว (:reason)',
+                'ai_skipped' => 'AI: ข้าม (:reason)',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'บันทึกระบบ',
         'heading' => 'ไฟล์บันทึก',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'ส่งไฟล์บันทึกนี้เป็นไฟล์แนบอีเมลไปยังผู้รับที่ระบุ',
         'bulk_email_description' => 'ส่งไฟล์บันทึกที่เลือกเป็นไฟล์แนบอีเมลแยกรายการไปยังผู้รับที่ระบุ',
         'bulk_email_files' => 'ไฟล์ที่เลือก',
-
         'filter' => [
             'date_from' => 'ตั้งแต่',
             'date_to' => 'ถึง',
         ],
-
         'column' => [
             'filename' => 'ชื่อไฟล์',
             'size' => 'ขนาด',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'เวลา',
             'message' => 'ข้อความ',
         ],
-
         'action' => [
             'refresh' => 'รีเฟรช',
             'view' => 'ดู',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'ลบไฟล์บันทึกแล้ว',
             'bulk_deleted' => 'ลบไฟล์บันทึก :count ไฟล์แล้ว',
         ],
-
         'confirm' => [
             'delete' => 'คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์บันทึกนี้? การดำเนินการนี้ไม่สามารถยกเลิกได้',
             'bulk_delete' => 'คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์บันทึกที่เลือก? การดำเนินการนี้ไม่สามารถยกเลิกได้',
         ],
-
         'entry' => [
             'detail' => 'รายละเอียดรายการ',
             'line' => 'บรรทัด',
@@ -206,5 +249,4 @@ return [
             'copied' => 'คัดลอกแล้ว!',
         ],
     ],
-
 ];

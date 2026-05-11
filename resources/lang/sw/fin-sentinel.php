@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Mipangilio',
         'error_channel' => 'Kituo cha Hitilafu',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Faili za Kumbukumbu',
         'log_entries' => 'Maingizo ya Kumbukumbu',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Arifa ya Hitilafu',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Faili ya Kumbukumbu',
         ],
         'footer' => 'Imetumwa na Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Ujumbe wa Hitilafu',
             'class' => 'Darasa',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Eneo',
             'trace_call' => 'Wito',
         ],
-
         'collection' => [
             'count' => 'kipengee :count|vipengee :count',
             'more' => '... na vipengee :count zaidi',
         ],
-
         'error' => [
             'subject' => ':app - Hitilafu imetokea',
             'guest' => 'Mgeni',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Mtumiaji Aliyethibitishwa',
             'section_environment' => 'Mazingira',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Mgeni',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Muktadha wa Ombi',
             'section_environment' => 'Mazingira',
         ],
-
         'log_file' => [
             'subject' => ':app - Faili ya kumbukumbu: :file',
             'bulk_subject' => ':app - Faili :count za kumbukumbu zimeambatishwa',
             'body' => 'Faili ya kumbukumbu <strong>:file</strong> kutoka :app imeambatishwa.',
             'body_text' => 'Faili ya kumbukumbu :file kutoka :app imeambatishwa.',
         ],
+        'ai' => [
+            'heading' => 'Pendekezo la AI',
+            'footnote_prefix' => 'kupitia',
+            'disclaimer' => 'Imezalishwa na AI. Hakiki kabla ya kutekeleza.',
+            'cached_badge' => 'iliyohifadhiwa',
+            'failed_prefix' => 'Uchanganuzi wa AI umeshindwa',
+            'skipped_prefix' => 'Uchanganuzi wa AI umerukwa',
+            'reason' => [
+                'timeout' => 'muda umeisha',
+                'authentication_failed' => 'uthibitishaji umeshindwa',
+                'rate_limited' => 'kasi imepunguzwa',
+                'quota_exceeded' => 'mgao umezidiwa',
+                'unknown_error' => 'hitilafu isiyojulikana',
+                'output_rejected_matched_injection_marker' => 'matokeo yamekataliwa (alama ya kuingiza)',
+                'hourly_cap_reached' => 'kikomo cha saa kimefikiwa',
+                'circuit_open' => 'mzunguko umefunguliwa',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Wapokeaji',
         'throttling' => 'Udhibiti wa Kasi',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Hakuna wapokeaji waliowekwa — arifa hazitatumwa hadi barua pepe angalau moja iongezwe.',
         'throttle_rate' => 'Kiwango cha udhibiti',
         'minutes_suffix' => 'dakika',
-
         'error' => [
             'enabled' => 'Wezesha arifa za hitilafu',
             'enabled_helper' => 'Ikizimwa, hakuna barua pepe za hitilafu zitatumwa.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Chagua ubaguzi',
             'add_exception' => 'Ongeza ubaguzi',
         ],
-
         'debug' => [
             'enabled' => 'Wezesha kituo cha Debug',
             'enabled_helper' => 'Ikizimwa, wito wa Sentinel::debug() utapuuzwa kimya.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Ikizimwa, kila wito wa Debug utatuma barua pepe. Ikiwashwa, wito zinazofanana zitadhibitiwa.',
             'throttle_helper' => 'Dakika za chini kati ya barua pepe za Debug zinazofanana.',
         ],
-
         'test_email' => [
             'send' => 'Tuma Barua Pepe ya Majaribio',
             'sent' => 'Barua pepe ya majaribio imetumwa kwa wapokeaji :count',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Imeshindwa kutuma barua pepe ya majaribio',
             'channel_disabled' => 'Kituo hiki kimezimwa kwa sasa. Barua pepe ya majaribio bado itatumwa.',
         ],
+        'ai' => [
+            'test_connection' => 'Jaribu',
+            'test_connection_success' => 'Muunganisho wa AI unafanya kazi.',
+            'test_connection_failed' => 'Muunganisho wa AI umeshindwa.',
+            'test_connection_missing' => 'Mtoa huduma, modeli, na ufunguo wa API zinahitajika kujaribu muunganisho.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) haijasakinishwa.',
+            'section' => 'Uchambuzi wa AI',
+            'section_helper' => 'Tumia LLM kupendekeza sababu zinazowezekana za hitilafu zilizonaswa.',
+            'no_providers' => 'Hakuna watoa AI waliotambuliwa. Angalia usanidi wako wa laravel/ai.',
+            'enabled' => 'Wezesha uchambuzi wa hitilafu wa AI',
+            'enabled_helper' => 'Ikiwezeshwa, barua pepe za hitilafu zinajumuisha sehemu ya pendekezo iliyozalishwa na AI.',
+            'provider' => 'Mtoa huduma',
+            'model' => 'Modeli',
+            'model_placeholder' => 'Chagua mtoa huduma kwanza',
+            'api_key' => 'Ufunguo wa API',
+            'api_key_set' => 'Ufunguo umewekwa — acha tupu kuhifadhi ufunguo uliopo',
+            'api_key_enter' => 'Weka ufunguo wa API kwa mtoa huduma uliyechagua',
+            'timeout' => 'Muda umeisha',
+            'timeout_helper' => 'Sekunde za juu za kusubiri jibu la AI (1-10).',
+            'max_tokens' => 'Tokeni za juu za matokeo',
+            'hourly_cap' => 'Kikomo cha saa',
+            'hourly_cap_helper' => 'Simu za juu za AI kwa saa. Weka 0 kuzima kikomo.',
+            'cache_ttl' => 'TTL ya cache',
+            'cache_ttl_helper' => 'Dakika za kuhifadhi mapendekezo ya AI yaliyofaulu kabla ya kuuliza tena. Kiwango: 5–1440 dakika (≥ dirisha la kupunguza inapendekezwa; chaguo-msingi 60 dakika).',
+            'strict_scrubbing' => 'Usafishaji mkali',
+            'strict_scrubbing_helper' => 'Ikiwezeshwa, prompt ya AI ina daraja la hitilafu pekee, mstari wa kwanza wa ujumbe, na file:line — hakuna stack trace.',
+            'prompt_template' => 'Kiolezo cha prompt',
+            'prompt_template_helper' => 'Kiolezo kinachotumwa kwa mtoa huduma wa AI. Kishika nafasi {{error}} kinabadilishwa na maelezo ya hitilafu yaliyosafishwa. Hariri kwa uangalifu — kuondoa {{error}} kunazuia kuhifadhi.',
+            'prompt_template_placeholder' => 'Wewe ni mhandisi mwandamizi wa Laravel. Chambua: {{error}}',
+            'template_missing_token' => 'Kiolezo cha prompt lazima kiwe na kishika nafasi {{error}}.',
+            'prompt_template_default' => 'Tumia kiolezo cha chaguo-msingi',
+            'usage_section' => 'Matumizi',
+            'usage_last_call_label' => 'Simu ya mwisho',
+            'usage_month_label' => 'Mwezi huu',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'tokeni',
+            'test_email' => [
+                'ai_success' => 'AI: imefanikiwa.',
+                'ai_cached' => 'AI: kutoka cache.',
+                'ai_failed' => 'AI: imeshindwa (:reason).',
+                'ai_skipped' => 'AI: imerukwa (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Kumbukumbu za Mfumo',
         'heading' => 'Faili za Kumbukumbu',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Tuma faili hii ya kumbukumbu kama kiambatisho cha barua pepe kwa mpokeaji aliyeainishwa.',
         'bulk_email_description' => 'Tuma faili zilizochaguliwa za kumbukumbu kama viambatisho vya barua pepe kwa mpokeaji aliyeainishwa.',
         'bulk_email_files' => 'Faili Zilizochaguliwa',
-
         'filter' => [
             'date_from' => 'Kuanzia',
             'date_to' => 'Hadi',
         ],
-
         'column' => [
             'filename' => 'Jina la Faili',
             'size' => 'Ukubwa',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Muda',
             'message' => 'Ujumbe',
         ],
-
         'action' => [
             'refresh' => 'Onyesha upya',
             'view' => 'Tazama',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Faili ya kumbukumbu imefutwa',
             'bulk_deleted' => 'Faili :count za kumbukumbu zimefutwa',
         ],
-
         'confirm' => [
             'delete' => 'Una uhakika unataka kufuta faili hii ya kumbukumbu? Kitendo hiki hakiwezi kutenduliwa.',
             'bulk_delete' => 'Una uhakika unataka kufuta faili zilizochaguliwa za kumbukumbu? Kitendo hiki hakiwezi kutenduliwa.',
         ],
-
         'entry' => [
             'detail' => 'Maelezo ya Ingizo',
             'line' => 'Mstari',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Imenakiliwa!',
         ],
     ],
-
 ];

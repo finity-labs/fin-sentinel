@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'تنظیمات',
         'error_channel' => 'کانال خطا',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'فایل‌های گزارش',
         'log_entries' => 'رکوردهای گزارش',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'اعلان خطا',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'فایل گزارش',
         ],
         'footer' => 'ارسال شده توسط Fin-Sentinel',
-
         'label' => [
             'error_message' => 'پیام خطا',
             'class' => 'کلاس',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'موقعیت',
             'trace_call' => 'فراخوانی',
         ],
-
         'collection' => [
             'count' => ':count مورد|:count مورد',
             'more' => '... و :count مورد دیگر',
         ],
-
         'error' => [
             'subject' => ':app - خطایی رخ داده است',
             'guest' => 'مهمان',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'کاربر احراز هویت شده',
             'section_environment' => 'محیط',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'مهمان',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'زمینه درخواست',
             'section_environment' => 'محیط',
         ],
-
         'log_file' => [
             'subject' => ':app - فایل گزارش: :file',
             'bulk_subject' => ':app - :count فایل گزارش پیوست شده',
             'body' => 'فایل گزارش <strong>:file</strong> از :app پیوست شده است.',
             'body_text' => 'فایل گزارش :file از :app پیوست شده است.',
         ],
+        'ai' => [
+            'heading' => 'پیشنهاد هوش مصنوعی',
+            'footnote_prefix' => 'از طریق',
+            'disclaimer' => 'تولید شده توسط هوش مصنوعی. قبل از اجرا تأیید کنید.',
+            'cached_badge' => 'کش شده',
+            'failed_prefix' => 'تحلیل هوش مصنوعی ناموفق',
+            'skipped_prefix' => 'تحلیل هوش مصنوعی رد شد',
+            'reason' => [
+                'timeout' => 'زمان تمام شد',
+                'authentication_failed' => 'احراز هویت ناموفق',
+                'rate_limited' => 'نرخ محدود شده',
+                'quota_exceeded' => 'سهمیه تمام شد',
+                'unknown_error' => 'خطای ناشناخته',
+                'output_rejected_matched_injection_marker' => 'خروجی رد شد (نشانگر تزریق)',
+                'hourly_cap_reached' => 'سقف ساعتی پر شد',
+                'circuit_open' => 'مدار باز است',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'گیرندگان',
         'throttling' => 'کنترل نرخ',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'گیرنده‌ای تنظیم نشده — تا زمانی که حداقل یک آدرس ایمیل اضافه نشود، اعلان‌ها ارسال نخواهند شد.',
         'throttle_rate' => 'نرخ محدودیت',
         'minutes_suffix' => 'دقیقه',
-
         'error' => [
             'enabled' => 'فعال‌سازی اعلان‌های خطا',
             'enabled_helper' => 'در صورت غیرفعال بودن، ایمیل خطا ارسال نخواهد شد.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'انتخاب استثنا',
             'add_exception' => 'افزودن استثنا',
         ],
-
         'debug' => [
             'enabled' => 'فعال‌سازی کانال Debug',
             'enabled_helper' => 'در صورت غیرفعال بودن، فراخوانی‌های Sentinel::debug() بی‌صدا نادیده گرفته می‌شوند.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'در صورت غیرفعال بودن، هر فراخوانی debug یک ایمیل ارسال می‌کند. در صورت فعال بودن، فراخوانی‌های تکراری محدود می‌شوند.',
             'throttle_helper' => 'حداقل دقیقه بین ایمیل‌های debug تکراری.',
         ],
-
         'test_email' => [
             'send' => 'ارسال ایمیل آزمایشی',
             'sent' => 'ایمیل آزمایشی به :count گیرنده ارسال شد',
@@ -148,8 +154,50 @@ return [
             'failed' => 'ارسال ایمیل آزمایشی ناموفق بود',
             'channel_disabled' => 'این کانال در حال حاضر غیرفعال است. ایمیل آزمایشی همچنان ارسال خواهد شد.',
         ],
+        'ai' => [
+            'test_connection' => 'آزمایش',
+            'test_connection_success' => 'اتصال هوش مصنوعی کار می‌کند.',
+            'test_connection_failed' => 'اتصال هوش مصنوعی ناموفق بود.',
+            'test_connection_missing' => 'برای آزمایش اتصال، ارائه‌دهنده، مدل و کلید API لازم است.',
+            'test_connection_no_sdk' => 'SDK هوش مصنوعی (laravel/ai) نصب نشده است.',
+            'section' => 'تحلیل هوش مصنوعی',
+            'section_helper' => 'برای پیشنهاد علل احتمالی استثناهای گرفته‌شده از یک LLM استفاده کنید.',
+            'no_providers' => 'هیچ ارائه‌دهنده هوش مصنوعی یافت نشد. نصب laravel/ai را بررسی کنید.',
+            'enabled' => 'فعال‌سازی تحلیل خطای هوش مصنوعی',
+            'enabled_helper' => 'وقتی فعال است، ایمیل‌های خطا شامل بخش پیشنهاد تولیدشده توسط هوش مصنوعی می‌شوند.',
+            'provider' => 'ارائه‌دهنده',
+            'model' => 'مدل',
+            'model_placeholder' => 'ابتدا یک ارائه‌دهنده انتخاب کنید',
+            'api_key' => 'کلید API',
+            'api_key_set' => 'کلید تنظیم شده — برای حفظ کلید موجود خالی بگذارید',
+            'api_key_enter' => 'کلید API را برای ارائه‌دهنده انتخاب‌شده وارد کنید',
+            'timeout' => 'مهلت زمانی',
+            'timeout_helper' => 'حداکثر ثانیه انتظار برای پاسخ هوش مصنوعی (1-10).',
+            'max_tokens' => 'حداکثر توکن خروجی',
+            'hourly_cap' => 'سقف ساعتی',
+            'hourly_cap_helper' => 'حداکثر فراخوانی هوش مصنوعی در ساعت. برای غیرفعال کردن سقف، 0 قرار دهید.',
+            'cache_ttl' => 'TTL کش',
+            'cache_ttl_helper' => 'دقیقه‌های کش پیشنهادهای موفق هوش مصنوعی قبل از پرس‌وجوی مجدد. محدوده: 5–1440 دقیقه (≥ پنجره تنظیم نرخ توصیه می‌شود؛ پیش‌فرض 60 دقیقه).',
+            'strict_scrubbing' => 'پاکسازی سخت‌گیرانه',
+            'strict_scrubbing_helper' => 'وقتی فعال است، پرامپت فقط شامل کلاس استثنا، خط اول پیام و file:line است — بدون استک تریس.',
+            'prompt_template' => 'قالب پرامپت',
+            'prompt_template_helper' => 'قالب ارسالی به ارائه‌دهنده هوش مصنوعی. جانگهدار {{error}} با جزئیات پاک‌شده استثنا جایگزین می‌شود. با احتیاط ویرایش کنید — حذف {{error}} ذخیره را مسدود می‌کند.',
+            'prompt_template_placeholder' => 'شما یک مهندس ارشد Laravel هستید. تحلیل کنید: {{error}}',
+            'template_missing_token' => 'قالب پرامپت باید شامل جانگهدار {{error}} باشد.',
+            'prompt_template_default' => 'استفاده از قالب پیش‌فرض',
+            'usage_section' => 'مصرف',
+            'usage_last_call_label' => 'آخرین فراخوانی',
+            'usage_month_label' => 'این ماه',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'توکن',
+            'test_email' => [
+                'ai_success' => 'هوش مصنوعی: موفق.',
+                'ai_cached' => 'هوش مصنوعی: از کش.',
+                'ai_failed' => 'هوش مصنوعی: ناموفق (:reason).',
+                'ai_skipped' => 'هوش مصنوعی: رد شد (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'گزارش‌های سیستم',
         'heading' => 'فایل‌های گزارش',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'این فایل گزارش را به عنوان پیوست ایمیل به گیرنده مشخص شده ارسال کنید.',
         'bulk_email_description' => 'فایل‌های گزارش انتخاب شده را به عنوان پیوست‌های ایمیل جداگانه به گیرنده مشخص شده ارسال کنید.',
         'bulk_email_files' => 'فایل‌های انتخاب شده',
-
         'filter' => [
             'date_from' => 'از',
             'date_to' => 'تا',
         ],
-
         'column' => [
             'filename' => 'نام فایل',
             'size' => 'حجم',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'برچسب زمانی',
             'message' => 'پیام',
         ],
-
         'action' => [
             'refresh' => 'بازنشانی',
             'view' => 'مشاهده',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'فایل گزارش حذف شد',
             'bulk_deleted' => ':count فایل گزارش حذف شد',
         ],
-
         'confirm' => [
             'delete' => 'آیا از حذف این فایل گزارش اطمینان دارید؟ این عمل قابل بازگشت نیست.',
             'bulk_delete' => 'آیا از حذف فایل‌های گزارش انتخاب شده اطمینان دارید؟ این عمل قابل بازگشت نیست.',
         ],
-
         'entry' => [
             'detail' => 'جزئیات رکورد',
             'line' => 'خط',
@@ -206,5 +249,4 @@ return [
             'copied' => 'کپی شد!',
         ],
     ],
-
 ];

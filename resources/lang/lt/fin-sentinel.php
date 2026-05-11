@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Nustatymai',
         'error_channel' => 'Klaidų kanalas',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Žurnalo failai',
         'log_entries' => 'Žurnalo įrašai',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Pranešimas apie klaidą',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Žurnalo failas',
         ],
         'footer' => 'Išsiųsta Fin-Sentinel',
-
         'label' => [
             'error_message' => 'Klaidos pranešimas',
             'class' => 'Klasė',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Vieta',
             'trace_call' => 'Kvietimas',
         ],
-
         'collection' => [
             'count' => ':count elementas|:count elementų',
             'more' => '... ir dar :count elementų',
         ],
-
         'error' => [
             'subject' => ':app — Įvyko klaida',
             'guest' => 'Svečias',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Autentifikuotas naudotojas',
             'section_environment' => 'Aplinka',
         ],
-
         'debug' => [
             'subject' => ':app — Debug: :subject',
             'guest' => 'Svečias',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Užklausos kontekstas',
             'section_environment' => 'Aplinka',
         ],
-
         'log_file' => [
             'subject' => ':app — Žurnalo failas: :file',
             'bulk_subject' => ':app — :count žurnalo failų prisegta',
             'body' => 'Žurnalo failas <strong>:file</strong> iš :app yra prisegtas.',
             'body_text' => 'Žurnalo failas :file iš :app yra prisegtas.',
         ],
+        'ai' => [
+            'heading' => 'DI pasiūlymas',
+            'footnote_prefix' => 'per',
+            'disclaimer' => 'DI sugeneruota. Patikrinkite prieš veikdami.',
+            'cached_badge' => 'iš talpyklos',
+            'failed_prefix' => 'DI analizė nepavyko',
+            'skipped_prefix' => 'DI analizė praleista',
+            'reason' => [
+                'timeout' => 'baigėsi laikas',
+                'authentication_failed' => 'autentifikavimas nepavyko',
+                'rate_limited' => 'dažnis ribojamas',
+                'quota_exceeded' => 'kvota viršyta',
+                'unknown_error' => 'nežinoma klaida',
+                'output_rejected_matched_injection_marker' => 'išvestis atmesta (injekcijos žymė)',
+                'hourly_cap_reached' => 'pasiekta valandos riba',
+                'circuit_open' => 'grandinė atvira',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Gavėjai',
         'throttling' => 'Dažnio ribojimas',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Gavėjai nesukonfigūruoti — pranešimai nebus siunčiami, kol nebus pridėtas bent vienas email adresas.',
         'throttle_rate' => 'Ribojimo dažnis',
         'minutes_suffix' => 'minučių',
-
         'error' => [
             'enabled' => 'Įjungti klaidų pranešimus',
             'enabled_helper' => 'Kai išjungta, klaidų email-ai nebus siunčiami.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'Pasirinkite išimtį',
             'add_exception' => 'Pridėti išimtį',
         ],
-
         'debug' => [
             'enabled' => 'Įjungti derinimo kanalą',
             'enabled_helper' => 'Kai išjungta, Sentinel::debug() kvietimai bus ignoruojami.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Kai išjungta, kiekvienas debug kvietimas siunčia email. Kai įjungta, pasikartojantys kvietimai yra ribojami.',
             'throttle_helper' => 'Minimalus intervalas minutėmis tarp pasikartojančių debug email-ų.',
         ],
-
         'test_email' => [
             'send' => 'Siųsti bandomąjį email',
             'sent' => 'Bandomasis email išsiųstas :count gavėjui(-ams)',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Nepavyko išsiųsti bandomojo email',
             'channel_disabled' => 'Šis kanalas šiuo metu išjungtas. Bandomasis email vis tiek bus išsiųstas.',
         ],
+        'ai' => [
+            'test_connection' => 'Testuoti',
+            'test_connection_success' => 'AI ryšys veikia.',
+            'test_connection_failed' => 'AI ryšys nepavyko.',
+            'test_connection_missing' => 'Norint patikrinti ryšį, reikalingas tiekėjas, modelis ir API raktas.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) neįdiegtas.',
+            'section' => 'DI analizė',
+            'section_helper' => 'Naudokite LLM, kad pasiūlytų tikėtinas pagautų išimčių priežastis.',
+            'no_providers' => 'Neaptikta jokių DI tiekėjų. Patikrinkite savo laravel/ai diegimą.',
+            'enabled' => 'Įjungti DI klaidų analizę',
+            'enabled_helper' => 'Kai įjungta, klaidų el. laiškuose yra DI sugeneruotos pasiūlymo skyrius.',
+            'provider' => 'Tiekėjas',
+            'model' => 'Modelis',
+            'model_placeholder' => 'Pirmiausia pasirinkite tiekėją',
+            'api_key' => 'API raktas',
+            'api_key_set' => 'Raktas nustatytas — palikite tuščią, kad išliktų esamas raktas',
+            'api_key_enter' => 'Įveskite pasirinkto tiekėjo API raktą',
+            'timeout' => 'Laiko limitas',
+            'timeout_helper' => 'Maksimalus DI atsako laukimo sekundžių skaičius (1-10).',
+            'max_tokens' => 'Maks. išvesties žetonų',
+            'hourly_cap' => 'Riba per valandą',
+            'hourly_cap_helper' => 'Maks. DI iškvietimų per valandą. Nustatykite 0, kad išjungtumėte ribą.',
+            'cache_ttl' => 'Talpyklos TTL',
+            'cache_ttl_helper' => 'Minutės sėkmingiems DI pasiūlymams talpinti prieš pakartotinę užklausą. Diapazonas: 5–1440 min. (≥ ribojimo langas rekomenduojama; numatyta 60 min.).',
+            'strict_scrubbing' => 'Griežtas valymas',
+            'strict_scrubbing_helper' => 'Kai įjungta, DI užklausoje yra tik išimties klasė, pirmoji pranešimo eilutė ir file:line — be steko pėdsako.',
+            'prompt_template' => 'Užklausos šablonas',
+            'prompt_template_helper' => 'Šablonas, siunčiamas DI tiekėjui. {{error}} žymeklis pakeičiamas išvalytais išimties duomenimis. Redaguokite atsargiai — pašalinus {{error}}, įrašymas blokuojamas.',
+            'prompt_template_placeholder' => 'Esate vyresnysis Laravel inžinierius. Analizuokite: {{error}}',
+            'template_missing_token' => 'Užklausos šablone privalo būti {{error}} žymeklis.',
+            'prompt_template_default' => 'Naudoti numatytąjį šabloną',
+            'usage_section' => 'Naudojimas',
+            'usage_last_call_label' => 'Paskutinis iškvietimas',
+            'usage_month_label' => 'Šį mėnesį',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'žetonai',
+            'test_email' => [
+                'ai_success' => 'DI: sėkmė.',
+                'ai_cached' => 'DI: iš talpyklos.',
+                'ai_failed' => 'DI: nepavyko (:reason).',
+                'ai_skipped' => 'DI: praleista (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Sistemos žurnalai',
         'heading' => 'Žurnalo failai',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Siųsti šį žurnalo failą kaip priedą nurodytu adresu.',
         'bulk_email_description' => 'Siųsti pasirinktus žurnalo failus kaip atskirus priedus nurodytu adresu.',
         'bulk_email_files' => 'Pasirinkti failai',
-
         'filter' => [
             'date_from' => 'Nuo',
             'date_to' => 'Iki',
         ],
-
         'column' => [
             'filename' => 'Failo pavadinimas',
             'size' => 'Dydis',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Laikas',
             'message' => 'Pranešimas',
         ],
-
         'action' => [
             'refresh' => 'Atnaujinti',
             'view' => 'Peržiūrėti',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Žurnalo failas ištrintas',
             'bulk_deleted' => ':count žurnalo failas(-ai) ištrintas(-i)',
         ],
-
         'confirm' => [
             'delete' => 'Ar tikrai norite ištrinti šį žurnalo failą? Šio veiksmo negalima atšaukti.',
             'bulk_delete' => 'Ar tikrai norite ištrinti pasirinktus žurnalo failus? Šio veiksmo negalima atšaukti.',
         ],
-
         'entry' => [
             'detail' => 'Įrašo informacija',
             'line' => 'Eilutė',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Nukopijuota!',
         ],
     ],
-
 ];

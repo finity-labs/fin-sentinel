@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'navigation' => [
         'settings' => 'Parametrlər',
         'error_channel' => 'Xəta Kanalı',
@@ -14,7 +13,6 @@ return [
         'log_files' => 'Qeyd Faylları',
         'log_entries' => 'Qeyd Yazıları',
     ],
-
     'enums' => [
         'navigation_group' => [
             'sentinel' => 'Sentinel',
@@ -30,7 +28,6 @@ return [
             'DEBUG' => 'Debug',
         ],
     ],
-
     'email' => [
         'header' => [
             'error' => 'Xəta Bildirişi',
@@ -38,7 +35,6 @@ return [
             'log_file' => 'Qeyd Faylı',
         ],
         'footer' => 'Fin-Sentinel tərəfindən göndərildi',
-
         'label' => [
             'error_message' => 'Xəta Mesajı',
             'class' => 'Sinif',
@@ -68,12 +64,10 @@ return [
             'trace_location' => 'Mövqe',
             'trace_call' => 'Çağırış',
         ],
-
         'collection' => [
             'count' => ':count element|:count element',
             'more' => '... və :count element daha',
         ],
-
         'error' => [
             'subject' => ':app - Xəta baş verdi',
             'guest' => 'Qonaq',
@@ -84,7 +78,6 @@ return [
             'section_user' => 'Autentifikasiya Olunmuş İstifadəçi',
             'section_environment' => 'Mühit',
         ],
-
         'debug' => [
             'subject' => ':app - Debug: :subject',
             'guest' => 'Qonaq',
@@ -94,15 +87,31 @@ return [
             'section_request' => 'Sorğu Konteksti',
             'section_environment' => 'Mühit',
         ],
-
         'log_file' => [
             'subject' => ':app - Qeyd faylı: :file',
             'bulk_subject' => ':app - :count qeyd faylı əlavə edildi',
             'body' => '<strong>:file</strong> qeyd faylı :app tətbiqindən əlavə olunub.',
             'body_text' => ':file qeyd faylı :app tətbiqindən əlavə olunub.',
         ],
+        'ai' => [
+            'heading' => 'AI Təklifi',
+            'footnote_prefix' => 'vasitəsilə',
+            'disclaimer' => 'AI tərəfindən yaradılıb. Tətbiq etməzdən əvvəl yoxlayın.',
+            'cached_badge' => 'keşlənmiş',
+            'failed_prefix' => 'AI təhlili uğursuz oldu',
+            'skipped_prefix' => 'AI təhlili atlandı',
+            'reason' => [
+                'timeout' => 'vaxt bitdi',
+                'authentication_failed' => 'kimlik doğrulama uğursuz',
+                'rate_limited' => 'sürət məhdudlaşdırılıb',
+                'quota_exceeded' => 'kvota aşıldı',
+                'unknown_error' => 'naməlum xəta',
+                'output_rejected_matched_injection_marker' => 'çıxış rədd edildi (injeksiya işarəsi)',
+                'hourly_cap_reached' => 'saatlıq həddə çatıldı',
+                'circuit_open' => 'dövrə açıq',
+            ],
+        ],
     ],
-
     'settings' => [
         'recipients' => 'Alıcılar',
         'throttling' => 'Sürət Məhdudiyyəti',
@@ -111,7 +120,6 @@ return [
         'no_recipients_warning' => 'Alıcı təyin edilməyib — ən azı bir e-poçt ünvanı əlavə edilənə qədər bildirişlər göndərilməyəcək.',
         'throttle_rate' => 'Məhdudiyyət dərəcəsi',
         'minutes_suffix' => 'dəqiqə',
-
         'error' => [
             'enabled' => 'Xəta bildirişlərini aktivləşdir',
             'enabled_helper' => 'Deaktiv olduqda, xəta e-poçtları göndərilməyəcək.',
@@ -131,7 +139,6 @@ return [
             'select_exception' => 'İstisna seçin',
             'add_exception' => 'İstisna əlavə et',
         ],
-
         'debug' => [
             'enabled' => 'Debug kanalını aktivləşdir',
             'enabled_helper' => 'Deaktiv olduqda, Sentinel::debug() çağırışları səssizcə nəzərə alınmayacaq.',
@@ -140,7 +147,6 @@ return [
             'throttle_enabled_helper' => 'Deaktiv olduqda, hər debug çağırışı e-poçt göndərir. Aktiv olduqda, təkrar çağırışlar məhdudlaşdırılır.',
             'throttle_helper' => 'Təkrar debug e-poçtları arasında minimum dəqiqə.',
         ],
-
         'test_email' => [
             'send' => 'Test E-poçtu Göndər',
             'sent' => ':count alıcıya test e-poçtu göndərildi',
@@ -148,8 +154,50 @@ return [
             'failed' => 'Test e-poçtu göndərilə bilmədi',
             'channel_disabled' => 'Bu kanal hal-hazırda deaktivdir. Test e-poçtu yenə də göndəriləcək.',
         ],
+        'ai' => [
+            'test_connection' => 'Test et',
+            'test_connection_success' => 'AI bağlantısı işləyir.',
+            'test_connection_failed' => 'AI bağlantısı uğursuz oldu.',
+            'test_connection_missing' => 'Bağlantını test etmək üçün təminatçı, model və API açarı tələb olunur.',
+            'test_connection_no_sdk' => 'AI SDK (laravel/ai) quraşdırılmayıb.',
+            'section' => 'AI Analizi',
+            'section_helper' => 'Tutulan istisnaların ehtimal olunan səbəblərini təklif etmək üçün LLM-dən istifadə edin.',
+            'no_providers' => 'AI provayderi tapılmadı. laravel/ai quraşdırmasını yoxlayın.',
+            'enabled' => 'AI xəta analizini aktivləşdir',
+            'enabled_helper' => 'Aktiv olduqda, xəta e-poçtlarına AI tərəfindən yaradılan təklif bölməsi əlavə edilir.',
+            'provider' => 'Provayder',
+            'model' => 'Model',
+            'model_placeholder' => 'Əvvəlcə provayder seçin',
+            'api_key' => 'API açarı',
+            'api_key_set' => 'Açar təyin edilib — mövcud açarı saxlamaq üçün boş buraxın',
+            'api_key_enter' => 'Seçilmiş provayder üçün API açarını daxil edin',
+            'timeout' => 'Vaxt aşımı',
+            'timeout_helper' => 'AI cavabını gözləmək üçün maksimum saniyə (1-10).',
+            'max_tokens' => 'Maksimum çıxış tokeni',
+            'hourly_cap' => 'Saatlıq limit',
+            'hourly_cap_helper' => 'Saatda maksimum AI çağırışı. Limiti söndürmək üçün 0 təyin edin.',
+            'cache_ttl' => 'Keş TTL',
+            'cache_ttl_helper' => 'Uğurlu AI təkliflərinin yenidən sorğulamadan əvvəl keşlənmə dəqiqələri. Aralıq: 5–1440 dəqiqə (≥ tənzim pəncərəsi tövsiyə olunur; standart 60 dəqiqə).',
+            'strict_scrubbing' => 'Sərt təmizləmə',
+            'strict_scrubbing_helper' => 'Aktiv olduqda, AI sorğusu yalnız istisna sinfini, mesajın ilk sətrini və file:line-ı ehtiva edir — yığın izi yoxdur.',
+            'prompt_template' => 'Sorğu şablonu',
+            'prompt_template_helper' => 'AI provayderinə göndərilən şablon. {{error}} yer tutucusu təmizlənmiş istisna detalları ilə əvəzlənir. Diqqətli redaktə edin — {{error}}-i silmək saxlanılmanı bloklayır.',
+            'prompt_template_placeholder' => 'Siz təcrübəli Laravel mühəndisisiniz. Təhlil edin: {{error}}',
+            'template_missing_token' => 'Sorğu şablonu mütləq {{error}} yer tutucusunu ehtiva etməlidir.',
+            'prompt_template_default' => 'Standart şablondan istifadə et',
+            'usage_section' => 'İstifadə',
+            'usage_last_call_label' => 'Son çağırış',
+            'usage_month_label' => 'Bu ay',
+            'usage_empty_marker' => '—',
+            'usage_tokens_suffix' => 'token',
+            'test_email' => [
+                'ai_success' => 'AI: uğurlu.',
+                'ai_cached' => 'AI: keşdən.',
+                'ai_failed' => 'AI: uğursuz (:reason).',
+                'ai_skipped' => 'AI: ötürüldü (:reason).',
+            ],
+        ],
     ],
-
     'logs' => [
         'title' => 'Sistem Qeydləri',
         'heading' => 'Qeyd Faylları',
@@ -163,12 +211,10 @@ return [
         'email_description' => 'Bu qeyd faylını göstərilən alıcıya e-poçt əlavəsi olaraq göndərin.',
         'bulk_email_description' => 'Seçilmiş qeyd fayllarını göstərilən alıcıya ayrı e-poçt əlavələri olaraq göndərin.',
         'bulk_email_files' => 'Seçilmiş Fayllar',
-
         'filter' => [
             'date_from' => 'Başlanğıc',
             'date_to' => 'Son',
         ],
-
         'column' => [
             'filename' => 'Fayl Adı',
             'size' => 'Ölçü',
@@ -178,7 +224,6 @@ return [
             'timestamp' => 'Vaxt Damğası',
             'message' => 'Mesaj',
         ],
-
         'action' => [
             'refresh' => 'Yenilə',
             'view' => 'Bax',
@@ -191,12 +236,10 @@ return [
             'deleted' => 'Qeyd faylı silindi',
             'bulk_deleted' => ':count qeyd faylı silindi',
         ],
-
         'confirm' => [
             'delete' => 'Bu qeyd faylını silmək istədiyinizə əminsiniz? Bu əməliyyat geri qaytarıla bilməz.',
             'bulk_delete' => 'Seçilmiş qeyd fayllarını silmək istədiyinizə əminsiniz? Bu əməliyyat geri qaytarıla bilməz.',
         ],
-
         'entry' => [
             'detail' => 'Yazı Təfərrüatı',
             'line' => 'Sətir',
@@ -206,5 +249,4 @@ return [
             'copied' => 'Kopyalandı!',
         ],
     ],
-
 ];

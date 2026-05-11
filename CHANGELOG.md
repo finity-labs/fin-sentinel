@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] - 2026-05-11
+
+### Removed
+
+- **`tests-network-blocked` CI job** -- The job was introduced in v1.1.0 to prove the test suite makes zero outbound HTTP calls at the network level. After four iterations (harden-runner pre-step blocking composer, the apostrophe-mangled v1.1.1 commit, naive iptables killing the runner heartbeat in v1.1.2/v1.1.3, and an ESTABLISHED/RELATED stopgap in v1.1.4), the maintenance cost has outweighed the marginal value. The Laravel-layer defense — `Http::fake([])` + `Http::preventStrayRequests()` in `tests/TestCase.php`, asserted by `HttpPreventStrayRequestsTest` — remains the primary guarantee and is honestly more rigorous: it applies to every test, not one matrix row.
+
 ## [1.1.4] - 2026-05-11
 
 ### Fixed
 
-- **`tests-network-blocked` job killed the GitHub runner mid-execution** -- The v1.1.2 implementation set a blanket `iptables -A OUTPUT -j REJECT` after composer install, which also blocked the runner agent's heartbeat to GitHub's control plane. After ~45 minutes the hosted runner was force-terminated with "The hosted runner lost communication with the server." Replaced with a stateful rule that accepts ESTABLISHED/RELATED traffic (so the runner's existing WebSocket to GitHub keeps flowing) and only rejects NEW outbound connections — which is exactly the shape of an unmocked HTTP call from a test.
+- **`tests-network-blocked` job killed the GitHub runner mid-execution** -- The v1.1.2 implementation set a blanket `iptables -A OUTPUT -j REJECT` after composer install, which also blocked the runner agent's heartbeat to GitHub's control plane. After ~45 minutes the hosted runner was force-terminated with "The hosted runner lost communication with the server." Replaced with a stateful rule that accepts ESTABLISHED/RELATED traffic (so the runner's existing WebSocket to GitHub keeps flowing) and only rejects NEW outbound connections — which is exactly the shape of an unmocked HTTP call from a test. *(Job removed entirely in v1.1.5; see that release.)*
 
 ## [1.1.3] - 2026-05-11
 

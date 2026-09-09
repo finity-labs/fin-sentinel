@@ -15,6 +15,7 @@
         "php": "^8.2",
         "filament/filament": "^4.0|^5.0",
         "filament/spatie-laravel-settings-plugin": "^3.0|^4.0|^5.0",
+        "finity-labs/fin-support": "^0.1",
         "illuminate/contracts": "^11.0|^12.0|^13.0",
         "spatie/laravel-package-tools": "^1.16",
         "spatie/laravel-settings": "^3.0|^4.0"
@@ -29,6 +30,22 @@
     "suggest": {
         "laravel/ai": "Enables AI-assisted error analysis in failure emails. Requires PHP 8.3 and Laravel 12+."
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../fin-support*",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../lin-support*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "autoload": {
         "psr-4": {
             "FinityLabs\\FinSentinel\\": "src/"

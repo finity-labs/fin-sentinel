@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace FinityLabs\FinSentinel\Commands;
 
 use Composer\InstalledVersions;
-use FinityLabs\FinSentinel\Commands\Concerns\CanRegisterPlugin;
-use FinityLabs\FinSentinel\Commands\Concerns\DiscoversPanelProviders;
+use FinityLabs\FinSentinel\Clusters\FinSentinelSettings\Pages\ManageDebugChannelSettings;
+use FinityLabs\FinSentinel\Clusters\FinSentinelSettings\Pages\ManageErrorChannelSettings;
+use FinityLabs\FinSentinel\FinSentinelPlugin;
+use FinityLabs\FinSentinel\Pages\LogFileList;
+use FinityLabs\FinSentinel\Pages\LogFileViewer;
 use FinityLabs\FinSentinel\Settings\ErrorChannelSettings;
 use FinityLabs\FinSentinel\Support\Ai\AiProviderLabels;
+use FinityLabs\FinSupport\Console\Concerns\DiscoversPanelProviders;
+use FinityLabs\FinSupport\Console\Concerns\EditsPanelProviders;
+use FinityLabs\FinSupport\Console\Concerns\EditsShieldConfig;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
 
@@ -23,8 +29,21 @@ use Symfony\Component\Process\Process;
 #[AsCommand(name: 'fin-sentinel:install', description: 'Install the FinSentinel plugin')]
 class InstallCommand extends Command
 {
-    use CanRegisterPlugin;
     use DiscoversPanelProviders;
+    use EditsPanelProviders;
+    use EditsShieldConfig;
+
+    /**
+     * What Shield's config gets: the pages and their abilities.
+     *
+     * @var array<class-string, list<string>>
+     */
+    private const SHIELD_PAGES = [
+        LogFileList::class => ['viewAny', 'view', 'delete'],
+        LogFileViewer::class => ['view'],
+        ManageErrorChannelSettings::class => ['view', 'update'],
+        ManageDebugChannelSettings::class => ['view', 'update'],
+    ];
 
     protected ?string $selectedPanelId = null;
 
@@ -347,7 +366,7 @@ class InstallCommand extends Command
             }
 
             $this->comment("Registering FinSentinelPlugin in {$panelId} panel...");
-            $this->registerPlugin($panelProviders[$panelId]);
+            $this->registerPlugin($panelProviders[$panelId], FinSentinelPlugin::class);
             $registered[] = $panelId;
         }
 
@@ -359,9 +378,7 @@ class InstallCommand extends Command
 
     protected function configureShield(): void
     {
-        $configPath = config_path('filament-shield.php');
-
-        if (! file_exists($configPath)) {
+        if (! $this->hasShieldConfig()) {
             return;
         }
 
@@ -369,83 +386,10 @@ class InstallCommand extends Command
             return;
         }
 
-        $content = file_get_contents($configPath);
-
-        if ($content === false) {
-            $this->components->warn('Could not read Shield config file.');
-
+        if (! $this->registerShieldResources(self::SHIELD_PAGES, 'FinityLabs\\FinSentinel')) {
             return;
         }
 
-        if (str_contains($content, 'FinityLabs\\FinSentinel')) {
-            $this->components->warn('FinSentinel pages are already registered in Shield config.');
-
-            return;
-        }
-
-        $entries = ''
-            ."            \\FinityLabs\\FinSentinel\\Pages\\LogFileList::class => [\n"
-            ."                'viewAny',\n"
-            ."                'view',\n"
-            ."                'delete',\n"
-            ."            ],\n"
-            ."            \\FinityLabs\\FinSentinel\\Pages\\LogFileViewer::class => [\n"
-            ."                'view',\n"
-            ."            ],\n"
-            ."            \\FinityLabs\\FinSentinel\\Clusters\\FinSentinelSettings\\Pages\\ManageErrorChannelSettings::class => [\n"
-            ."                'view',\n"
-            ."                'update',\n"
-            ."            ],\n"
-            ."            \\FinityLabs\\FinSentinel\\Clusters\\FinSentinelSettings\\Pages\\ManageDebugChannelSettings::class => [\n"
-            ."                'view',\n"
-            ."                'update',\n"
-            ."            ],\n";
-
-        $managePos = strpos($content, "'manage' => [");
-
-        if ($managePos === false) {
-            $this->components->warn('Could not find the manage array in Shield config. Add FinSentinel pages manually.');
-
-            return;
-        }
-
-        $openBracket = strpos($content, '[', $managePos + strlen("'manage' => "));
-
-        if ($openBracket === false) {
-            $this->components->warn('Could not parse Shield config. Add FinSentinel pages manually.');
-
-            return;
-        }
-
-        $depth = 1;
-        $pos = $openBracket + 1;
-        $len = strlen($content);
-
-        while ($pos < $len && $depth > 0) {
-            if ($content[$pos] === '[') {
-                $depth++;
-            } elseif ($content[$pos] === ']') {
-                $depth--;
-            }
-
-            if ($depth > 0) {
-                $pos++;
-            }
-        }
-
-        $insertPos = strrpos(substr($content, 0, $pos), "\n");
-
-        if ($insertPos === false) {
-            $this->components->warn('Could not parse Shield config. Add FinSentinel pages manually.');
-
-            return;
-        }
-
-        $insertPos++;
-
-        $content = substr($content, 0, $insertPos).$entries.substr($content, $insertPos);
-
-        file_put_contents($configPath, $content);
         $this->info('  FinSentinel pages registered in Shield config');
 
         $this->generateShieldPermissions();

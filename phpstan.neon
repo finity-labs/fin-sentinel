@@ -8,8 +8,6 @@ parameters:
         - database
     level: 5
     ignoreErrors:
-        # Shield facade is only called after class_exists guard
-        - '#BezhanSalleh\\FilamentShield\\#'
 
         # Host-app User model properties (name, email) are not on the base class
         - '#Access to an undefined property Illuminate\\Foundation\\Auth\\User::\$#'

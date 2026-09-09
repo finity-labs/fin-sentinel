@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-09-09
+
+### Changed
+
+- The shared plumbing moved to [fin-support](https://github.com/finity-labs/fin-support), which FinSentinel now requires (`finity-labs/fin-support ^0.1`): the install and uninstall commands edit panel providers and the Shield config through the support concerns, and `Traits\HasPageShieldSupport` is fin-support's page access with the plugin's `canAccessUsing()` closure kept as the fallback. Behaviour is unchanged. `Commands\Concerns\CanRegisterPlugin`, `CanDeregisterPlugin` and `DiscoversPanelProviders` are gone from this package.
+
 ## [1.1.5] - 2026-05-11
 
 ### Removed

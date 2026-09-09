@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace FinityLabs\FinSentinel\Commands;
 
-use FinityLabs\FinSentinel\Commands\Concerns\CanDeregisterPlugin;
-use FinityLabs\FinSentinel\Commands\Concerns\DiscoversPanelProviders;
+use FinityLabs\FinSentinel\FinSentinelPlugin;
+use FinityLabs\FinSupport\Console\Concerns\DiscoversPanelProviders;
+use FinityLabs\FinSupport\Console\Concerns\EditsPanelProviders;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -15,8 +16,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 #[AsCommand(name: 'fin-sentinel:uninstall', description: 'Uninstall the Fin Sentinel plugin')]
 class UninstallCommand extends Command
 {
-    use CanDeregisterPlugin;
     use DiscoversPanelProviders;
+    use EditsPanelProviders;
 
     private const SETTINGS_MIGRATION_FILES = [
         'create_fin_sentinel_settings.php',
@@ -79,7 +80,7 @@ class UninstallCommand extends Command
 
             if ($content !== false && str_contains($content, 'FinSentinelPlugin')) {
                 $this->comment("Removing FinSentinelPlugin from {$panelId} panel...");
-                $this->deregisterPlugin($path);
+                $this->deregisterPlugin($path, FinSentinelPlugin::class);
             }
         }
     }

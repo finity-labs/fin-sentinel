@@ -12,6 +12,11 @@ parameters:
         # Host-app User model properties (name, email) are not on the base class
         - '#Access to an undefined property Illuminate\\Foundation\\Auth\\User::\$#'
 
+        # Package views are registered at runtime — PHPStan can't validate view-string.
+        # PHPStan 2.2.13 dropped the argument position for named arguments, so the
+        # pattern accepts the message with and without it.
+        - '#Parameter (\#\d+ )?\$(view|text) .* expects view-string\|null, string given#'
+
         # Static access to private $handling property is intentional (loop guard)
         - '#Unsafe access to private property.*through static::#'
 

@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-09-11
+
+### Fixed
+
+- The static analysis gate failed on a fresh install with PHPStan 2.2.13, which reports the three mailables' runtime-registered package views as "expects view-string|null, string given" and drops the argument position for named arguments. `phpstan.neon` now ignores that message for the `$view` and `$text` parameters, in both forms. No runtime change
+
 ## [1.2.0] - 2026-09-09
 
 ### Changed

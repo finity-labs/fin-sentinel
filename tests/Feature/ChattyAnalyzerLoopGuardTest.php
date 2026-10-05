@@ -60,7 +60,7 @@ it('handles a chatty AI analyzer without recursion or a stuck handling flag', fu
 
     $listener->handle($event);
 
-    Mail::assertSentTimes(ErrorMail::class, 1);
+    Mail::assertSent(ErrorMail::class, 1);
 
     $reflection = new ReflectionProperty(FinSentinelServiceProvider::class, 'handling');
     $reflection->setAccessible(true);

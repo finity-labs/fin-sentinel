@@ -28,7 +28,13 @@ return new class extends SettingsMigration
         ];
 
         foreach ($defaults as $key => $value) {
-            if (! $this->migrator->exists($key)) {
+            if ($this->migrator->exists($key)) {
+                continue;
+            }
+
+            if ($key === 'fin-sentinel.ai_api_key') {
+                $this->migrator->addEncrypted($key, $value);
+            } else {
                 $this->migrator->add($key, $value);
             }
         }

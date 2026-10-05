@@ -53,4 +53,19 @@ class ErrorChannelSettings extends Settings
     {
         return 'fin-sentinel';
     }
+
+    /**
+     * The encrypted properties, declared here as well as through the
+     * ShouldBeEncrypted attribute on purpose. spatie merges both lists, and
+     * this method is honoured by every release of the package while the
+     * attribute only exists from 3.7.2; a host whose settings package
+     * predates it would otherwise write the key in plain text without any
+     * error.
+     *
+     * @return list<string>
+     */
+    public static function encrypted(): array
+    {
+        return ['ai_api_key'];
+    }
 }

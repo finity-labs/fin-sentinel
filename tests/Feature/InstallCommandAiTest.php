@@ -44,9 +44,19 @@ function bindMockedInstallCommand(bool $composerSucceeds): void
     app()->instance(InstallCommand::class, makeInstallCommandWithMockedComposer($composerSucceeds));
 }
 
+/**
+ * Mirrors InstallCommand::checkAiVersionRequirements(): the AI flow and its
+ * prompts exist only on PHP 8.3+ and Laravel 12+. Below that the command warns
+ * and skips, which is what the lowest-deps leg (Laravel 11) exercises.
+ */
+function finSentinelAiRuntimeSupported(): bool
+{
+    return PHP_VERSION_ID >= 80300 && (int) explode('.', app()->version())[0] >= 12;
+}
+
 it('shows the toggle prompt on bare install and respects no answer', function () {
-    if (PHP_VERSION_ID < 80300) {
-        $this->markTestSkipped('AI toggle prompt is hidden on PHP < 8.3.');
+    if (! finSentinelAiRuntimeSupported()) {
+        $this->markTestSkipped('The AI install flow and its prompts exist only on PHP 8.3+ and Laravel 12+.');
     }
 
     $this->artisan('fin-sentinel:install')
@@ -59,9 +69,9 @@ it('shows the toggle prompt on bare install and respects no answer', function ()
     expect($settings->ai_enabled)->toBeFalse();
 });
 
-it('warns and skips AI install when PHP version is below 8.3', function () {
-    if (PHP_VERSION_ID >= 80300) {
-        $this->markTestSkipped('Cannot simulate PHP < 8.3 on this runtime.');
+it('warns and skips AI install when the runtime is below PHP 8.3 or Laravel 12', function () {
+    if (finSentinelAiRuntimeSupported()) {
+        $this->markTestSkipped('Cannot simulate an unsupported runtime here; the lowest-deps leg covers it on Laravel 11.');
     }
 
     $this->artisan('fin-sentinel:install --ai-only')
@@ -70,8 +80,8 @@ it('warns and skips AI install when PHP version is below 8.3', function () {
 });
 
 it('with --ai flag and SDK absent, runs composer require and instructs re-run', function () {
-    if (PHP_VERSION_ID < 80300) {
-        $this->markTestSkipped('AI install flow requires PHP 8.3+.');
+    if (! finSentinelAiRuntimeSupported()) {
+        $this->markTestSkipped('The AI install flow and its prompts exist only on PHP 8.3+ and Laravel 12+.');
     }
 
     if (InstalledVersions::isInstalled('laravel/ai')) {
@@ -91,8 +101,8 @@ it('with --ai flag and SDK absent, runs composer require and instructs re-run', 
 });
 
 it('reports composer require failure and exits cleanly', function () {
-    if (PHP_VERSION_ID < 80300) {
-        $this->markTestSkipped('AI install flow requires PHP 8.3+.');
+    if (! finSentinelAiRuntimeSupported()) {
+        $this->markTestSkipped('The AI install flow and its prompts exist only on PHP 8.3+ and Laravel 12+.');
     }
 
     if (InstalledVersions::isInstalled('laravel/ai')) {

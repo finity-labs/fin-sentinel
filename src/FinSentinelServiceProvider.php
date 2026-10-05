@@ -36,6 +36,7 @@ class FinSentinelServiceProvider extends PackageServiceProvider
             ->hasMigrations([
                 '../settings/create_fin_sentinel_settings',
                 '../settings/add_fin_sentinel_ai_settings',
+                '../settings/encrypt_fin_sentinel_ai_api_key',
             ])
             ->hasCommands([
                 Commands\InstallCommand::class,

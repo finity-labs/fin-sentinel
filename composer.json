@@ -13,17 +13,17 @@
     "type": "library",
     "require": {
         "php": "^8.2",
-        "filament/filament": "^4.0|^5.0",
+        "filament/filament": "^4.12.6|^5.0",
         "filament/spatie-laravel-settings-plugin": "^3.0|^4.0|^5.0",
         "finity-labs/fin-support": "^0.1",
         "illuminate/contracts": "^11.0|^12.0|^13.0",
         "spatie/laravel-package-tools": "^1.16",
-        "spatie/laravel-settings": "^3.0|^4.0"
+        "spatie/laravel-settings": "^3.7.2|^4.0"
     },
     "require-dev": {
         "larastan/larastan": "^2.0|^3.0",
         "laravel/pint": "^1.0",
-        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "orchestra/testbench": "^9.5|^10.0|^11.0",
         "pestphp/pest": "^2.0|^3.0",
         "pestphp/pest-plugin-laravel": "^2.0|^3.0"
     },

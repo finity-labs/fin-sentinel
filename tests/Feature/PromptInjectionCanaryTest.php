@@ -177,5 +177,5 @@ it('triggers exactly one ErrorMail per compromised exception (loop guard preserv
         new MessageLogged('error', 'canary trigger', ['exception' => $exception])
     );
 
-    Mail::assertSentTimes(ErrorMail::class, 1);
+    Mail::assertSent(ErrorMail::class, 1);
 });

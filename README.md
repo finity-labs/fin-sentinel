@@ -244,13 +244,22 @@ php artisan vendor:publish --tag=fin-sentinel-translations
 
 ## Filament Shield Integration
 
-FinSentinel pages use the `HasPageShieldSupport` trait, which integrates with [Filament Shield](https://github.com/bezhanSalleh/filament-shield) for page-level permissions. Shield is entirely optional -- without it, all pages are accessible to any authenticated user.
+Every FinSentinel page uses the `HasPageShieldSupport` trait, which integrates with [Filament Shield](https://github.com/bezhanSalleh/filament-shield) for page-level permissions. Shield is entirely optional -- without it, a page follows a `page_{ClassBasename}` Gate ability when your app defines one (`Gate::define('page_LogFileViewer', ...)`), and otherwise the plugin's [`canAccess` closure](#plugin-options).
 
 If you use Shield, generate the permissions:
 
 ```bash
 php artisan shield:generate --panel=admin --option=policies_and_permissions
 ```
+
+Shield then gates each page through its own permission. A role that may read logs needs both log permissions: the viewer is reachable by URL on its own, not only through the list.
+
+| Page | Permission |
+| --- | --- |
+| Log file list (`sentinel/logs`) | `View:LogFileList` |
+| Log file viewer (`sentinel/logs/{file}`) | `View:LogFileViewer` |
+| Error channel settings | `View:ManageErrorChannelSettings` |
+| Debug channel settings | `View:ManageDebugChannelSettings` |
 
 ## Uninstalling
 

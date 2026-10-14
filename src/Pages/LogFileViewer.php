@@ -23,12 +23,14 @@ use Filament\Tables\Table;
 use FinityLabs\FinSentinel\Enums\LogLevel;
 use FinityLabs\FinSentinel\Mail\LogFileMail;
 use FinityLabs\FinSentinel\Services\LogEntryParser;
+use FinityLabs\FinSentinel\Traits\HasPageShieldSupport;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\HtmlString;
 
 class LogFileViewer extends Page implements HasTable
 {
+    use HasPageShieldSupport;
     use InteractsWithTable;
 
     protected static ?string $slug = 'sentinel/logs/{file}';
